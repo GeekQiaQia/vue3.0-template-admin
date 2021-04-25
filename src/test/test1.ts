@@ -1,4 +1,4 @@
-var x = 'hello'
+const x = 'hello';
 
-
-console.log(x)
+// eslint-disable-next-line no-console
+console.log(x);
