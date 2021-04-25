@@ -7,8 +7,8 @@
     "serve": "vite preview",
     "prepare": "husky install"
   },
-  "lint-staged":{
-    "*.{vue,js,ts}":"eslint --fix"
+  "lint-staged": {
+    "*.{vue,js,ts}": "eslint --fix"
   },
   "dependencies": {
     "vue": "^3.0.5",

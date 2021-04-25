@@ -10,8 +10,4 @@ import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css'
 
 // 链式注册插件
-createApp(App)
-    .use(router)
-    .use(store)
-    .use(ElementPlus)
-    .mount('#app')
+createApp(App).use(router).use(store).use(ElementPlus).mount('#app')
