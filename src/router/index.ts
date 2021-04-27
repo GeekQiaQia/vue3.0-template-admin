@@ -1,22 +1,39 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Home from '@/views/home.vue'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+// eslint-disable-next-line import/no-unresolved
 
-const routes: Array<RouteRecordRaw> = [
+// 静态路由
+export const constantRoutes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect: '/home',
+    meta: {
+      title: '首页',
+    },
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        meta: {
+          title: '首页',
+          icon: 'home',
+        },
+        component: () => import('@/views/home/home.vue'),
+      },
+    ],
   },
   {
-    path: '/header',
-    name: 'header',
-    component: () => import('@/views/header.vue') // 懒加载组件
-  }
-]
+    path: '/noFound',
+    name: 'NoFound',
+    component: () => import('@/views/noFound.vue'),
+  },
+];
+
+// 异步路由
+export const asyncRoutes:Array<RouteRecordRaw> = [];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
-})
+  routes: constantRoutes,
+});
 
-export default router
+export default router;
