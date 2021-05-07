@@ -3,6 +3,25 @@
     <hamburger :is-active="opened" class="hamburger-container"
      @toggleClick="toggleSideBar" />
     <breadcrumb class="breadcrumb-container" />
+      <div class="right-menu">
+      <el-dropdown class="avatar-container" trigger="click">
+        <div class="avatar-wrapper">
+           <el-avatar :src="avatar"></el-avatar>
+        </div>
+        <template #dropdown>
+           <el-dropdown-menu  class="user-dropdown">
+          <router-link to="/">
+            <el-dropdown-item>首页</el-dropdown-item>
+          </router-link>
+          <el-dropdown-item divided>
+            <span style="display:block;" @click="logout">退出登录</span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+        </template>
+
+      </el-dropdown>
+    </div>
+    <div class="nickname">{{ nickname }}</div>
   </div>
 </template>
 <script lang="ts">
@@ -11,6 +30,7 @@ import { defineComponent, computed } from 'vue';
 import Hamburger from '@/components/Hamburger/Hamburger.vue';
 // eslint-disable-next-line import/extensions
 import Breadcrumb from '@/components/Breadcrumb/index.vue';
+import avatar from '@/assets/avatar.gif'
 import { useStore } from '../../store/index';
 
 export default defineComponent({
@@ -21,15 +41,22 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
+    const opened = computed(() => store.getters['appModule/getSidebarState']);
 
     // methods
     const toggleSideBar = () => {
       store.dispatch('appModule/toggleSideBar');
     };
-    const opened = computed(() => store.getters['appModule/getSidebarState']);
+    const logout=()=> {
+      // clear()
+      // this.$router.push('/login')
+      window.open('/logout');
+    }
     return {
+      avatar,
       toggleSideBar,
       opened,
+      logout
     };
   },
 });

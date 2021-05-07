@@ -14,8 +14,13 @@ const settingsModule: Module<settingStateTypes, RootStateTypes> = {
     fixedHeader,
     sideBarLogo,
     showSettings,
+    tableHeight: 600, // 表格宽度
+
   },
   mutations: {
+    setTableHeight: (state:settingStateTypes, height) => {
+      state.tableHeight = height;
+    },
 
   },
   actions: {},

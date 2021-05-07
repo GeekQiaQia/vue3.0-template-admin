@@ -3,7 +3,6 @@
     <div class="page-title">Vite2.x + Vue3.x + TypeScript + Element Plus</div>
   </div>
 </template>
-
 <script lang="ts">
 import { defineComponent } from 'vue';
 
