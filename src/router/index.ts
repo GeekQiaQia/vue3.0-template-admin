@@ -135,6 +135,28 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     ],
   },
 
+  {
+    path: '/form',
+    component: layout,
+    redirect: '/form/formInfo',
+    meta: {
+      title: 'Form',
+      icon: 'el-icon-document',
+    },
+    children: [
+      {
+        path: '/form/formInfo',
+        name: 'formInfo',
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Form/formInfo.vue'),
+        meta: {
+          title: '表单',
+          icon: 'el-icon-document',
+
+        },
+      },
+    ],
+  },
+
 ];
 
 const router = createRouter({

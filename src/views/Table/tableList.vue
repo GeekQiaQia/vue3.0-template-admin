@@ -31,7 +31,7 @@
                         <el-input
                         v-model="search"
                         size="mini"
-                        placeholder="输入关键字搜索"/>
+                        placeholder="输入姓名字段关键字搜索"/>
                     </template>
                      <template #default="scope">
                         <el-button
@@ -56,13 +56,24 @@
                     disable-transitions>{{scope.row.tag}}</el-tag>
                 </template>
                 </el-table-column>
-            </el-table>
+        </el-table>
+        <el-pagination
+            :hide-on-single-page="false"
+            :current-page="currentPage"
+            :page-sizes="[5,10, 15, 20, 25]"
+            :page-size="pageSize"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="total"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange">
+        </el-pagination>
     </div>
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 
 export default defineComponent({
+    name:'TableList',
     setup() {
         // 思考 ref 响应式和 reactive 响应式的区别； 修改对象属性值，是否会刷新数据
 
@@ -88,13 +99,36 @@ export default defineComponent({
           address: '上海市普陀区金沙江路 1519 弄',
           tag: '家'
         }, {
-          date: '2016-05-03',
+          date: '2016-07-03',
           name: '王麻子',
           address: '上海市普陀区金沙江路 1516 弄',
           tag: '公司'
-        }]);
+        }, {
+          date: '2016-07-07',
+          name: '白小白',
+          address: '上海市普陀区金沙江路 1518 弄',
+          tag: '家'
+        },{
+          date: '2016-07-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄',
+          tag: '家'
+        }, {
+          date: '2016-07-04',
+          name: '李小胖',
+          address: '上海市普陀区金沙江路 1517 弄',
+          tag: '公司'
+        }, {
+          date: '2016-07-01',
+          name: '王老五',
+          address: '上海市普陀区金沙江路 1519 弄',
+          tag: '家'
+        }, ]);
         const filterTable=ref();
         const search=ref();
+        const currentPage=ref(1);
+        const pageSize=ref(5);
+        const total=ref(tableData.value.length);
         onMounted(()=>{
             // eslint-disable-next-line no-console
             console.dir(filterTable.value);
@@ -107,6 +141,7 @@ export default defineComponent({
       const clearFilter=()=> {
         filterTable.value.clearFilter();
       };
+
       const formatter=(row: { address: any; })=> row.address;
       const filterTag=(value: any, row: { tag: any; })=> row.tag === value;
       const filterHandler=(value: any, row: { [x: string]: any; }, column: { property: any; })=> {
@@ -120,8 +155,27 @@ export default defineComponent({
       const handleDelete=(index: any, row: any)=> {
         // eslint-disable-next-line no-console
         console.log(index, row);
-      }
+      };
+        const handleSizeChange=(val: any)=> {
+        // eslint-disable-next-line no-console
+        console.log(`每页 ${val} 条`);
+        pageSize.value=val;
+        // request api to change tableData
+
+      };
+      const handleCurrentChange=(val: any)=> {
+        // eslint-disable-next-line no-console
+        console.log(`当前页: ${val}`);
+        currentPage.value=val;
+        // request api to change tableData
+
+      };
     return {
+        total,
+        pageSize,
+        handleCurrentChange,
+        handleSizeChange,
+        currentPage,
         handleEdit,
         handleDelete,
         search,
