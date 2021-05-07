@@ -73,3 +73,6 @@ module.exports = {
   // ...
 }
 ```
+
+
+## 问题5：vite 修改data以后没有刷新数据

@@ -113,6 +113,28 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     ],
   },
 
+  {
+    path: '/table',
+    component: layout,
+    redirect: '/table/tableList',
+    meta: {
+      title: 'Table',
+      icon: 'el-icon-folder-opened',
+    },
+    children: [
+      {
+        path: '/table/tableList',
+        name: 'tableList',
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Table/tableList.vue'),
+        meta: {
+          title: '表格',
+          icon: 'el-icon-folder-opened',
+
+        },
+      },
+    ],
+  },
+
 ];
 
 const router = createRouter({

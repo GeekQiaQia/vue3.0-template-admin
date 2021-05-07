@@ -4,9 +4,10 @@
      @toggleClick="toggleSideBar" />
     <breadcrumb class="breadcrumb-container" />
       <div class="right-menu">
-      <el-dropdown class="avatar-container" trigger="click">
+      <el-dropdown class="avatar-container" trigger="hover">
         <div class="avatar-wrapper">
            <el-avatar :src="avatar"></el-avatar>
+            <div class="nickname">{{ nickname }}</div>
         </div>
         <template #dropdown>
            <el-dropdown-menu  class="user-dropdown">
@@ -21,7 +22,7 @@
 
       </el-dropdown>
     </div>
-    <div class="nickname">{{ nickname }}</div>
+
   </div>
 </template>
 <script lang="ts">
@@ -42,7 +43,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const opened = computed(() => store.getters['appModule/getSidebarState']);
-
+    const nickname =computed(()=> JSON.parse(localStorage.getItem('userInfo') as string)?.personName ?? '默认昵称');
     // methods
     const toggleSideBar = () => {
       store.dispatch('appModule/toggleSideBar');
@@ -53,6 +54,7 @@ export default defineComponent({
       window.open('/logout');
     }
     return {
+      nickname,
       avatar,
       toggleSideBar,
       opened,
@@ -89,8 +91,8 @@ export default defineComponent({
 
   .nickname {
     float: right;
-    padding: 0 20px;
-    line-height: 50px;
+    padding: 0 16px;
+    line-height: 40px;
     outline: none;
   }
 
@@ -127,6 +129,7 @@ export default defineComponent({
       .avatar-wrapper {
         margin-top: 5px;
         position: relative;
+        cursor: pointer;
 
         .user-avatar {
           cursor: pointer;
