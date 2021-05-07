@@ -7,11 +7,14 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
+      '~': resolve(__dirname, './'),
       '@': resolve(__dirname, 'src'),
     },
   },
   base: './', // 设置打包路径
   server: {
+    hmr: { overlay: false },
+
     // 服务配置
     port: 4399, // 设置服务器启动端口
     open: true, // 设置服务器启动自动打开浏览器；

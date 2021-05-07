@@ -1,39 +1,127 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-// eslint-disable-next-line import/no-unresolved
+import {
+  createRouter, createWebHashHistory, RouteRecordRaw,
+} from 'vue-router';
 
+import layout from '../layout/index.vue';
 // 静态路由
 export const constantRoutes: Array<RouteRecordRaw> = [
+
   {
     path: '/',
+    component: layout,
     redirect: '/home',
     meta: {
       title: '首页',
+      icon: 'el-icon-s-home',
     },
     children: [
       {
-        path: 'home',
-        name: 'Home',
+        path: '/home',
+        name: 'home',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/home.vue'),
         meta: {
           title: '首页',
           icon: 'home',
         },
-        component: () => import('@/views/home/home.vue'),
       },
     ],
   },
   {
     path: '/noFound',
     name: 'NoFound',
-    component: () => import('@/views/noFound.vue'),
+    component: () => import(/* webpackChunkName: "noFound" */ '@/views/noFound.vue'),
+    meta: {
+      title: '首页',
+      icon: 'home',
+      hidden: true,
+    },
   },
+  { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import(/* webpackChunkName: "noFound" */ '@/views/noFound.vue') },
 ];
 
 // 异步路由
-export const asyncRoutes:Array<RouteRecordRaw> = [];
+export const asyncRoutes:Array<RouteRecordRaw> = [
+  {
+    path: '/dashboard',
+    component: layout,
+    redirect: '/dashboard/workplace',
+    meta: {
+      title: 'Dashboard',
+      icon: 'el-icon-data-analysis',
+    },
+    children: [
+      {
+        path: '/dashboard/workplace',
+        name: 'workplace',
+        component: () => import(/* webpackChunkName: "richText" */ '@/views/Dashboard/workplace.vue'),
+        meta: {
+          title: '工作台',
+          icon: 'home',
+        },
+      },
+      {
+        path: '/dashboard/analysis',
+        name: 'analysis',
+        component: () => import(/* webpackChunkName: "richText" */ '@/views/Dashboard/analysis.vue'),
+        meta: {
+          title: '分析页',
+          icon: 'home',
+        },
+      },
+    ],
+  },
+  {
+    path: '/edit',
+    component: layout,
+    redirect: '/edit/richText',
+    meta: {
+      title: '富文本',
+      icon: 'el-icon-edit-outline',
+    },
+    children: [
+      {
+        path: '/edit/richText',
+        name: 'richText',
+        component: () => import(/* webpackChunkName: "richText" */ '@/views/RichText/index.vue'),
+        meta: {
+          title: '富文本',
+          icon: 'home',
+        },
+      },
+    ],
+  },
+
+  {
+    path: '/personal',
+    component: layout,
+    redirect: '/personal/personalCenter',
+    meta: {
+      title: '个人中心',
+      icon: 'el-icon-user-solid',
+    },
+    children: [
+      {
+        path: '/personal/personalCenter',
+        name: 'personalCenter',
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/PersonalCenter/index.vue'),
+        meta: {
+          title: '个人中心',
+          icon: 'el-icon-user-solid',
+
+        },
+      },
+    ],
+  },
+
+];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory(), // hash模式：createWebHashHistory，history模式：createWebHistory
+  scrollBehavior: () => ({
+    top: 0,
+  }),
   routes: constantRoutes,
+
 });
 
 export default router;

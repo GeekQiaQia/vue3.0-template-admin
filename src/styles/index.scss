@@ -1,0 +1,113 @@
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './sidebar.scss';
+
+
+*{
+  padding: 0;
+  margin: 0;
+}
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+label {
+  font-weight: 700;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+// main-container global css
+.app-container {
+  padding: 20px;
+}
+
+
+// 表单的全局样式
+.mb10{
+  margin-bottom:10px;
+}
+.ml10{
+  margin-left:10px;
+}
+.w120{
+  width:120px;
+}
+.w140{
+  width:140px;
+}
+.w160{
+  width:160px;
+}
+.w180{
+  width:180px;
+}
+.w200{
+  width:200px;
+}
+.w220{
+  width:220px;
+}
+.w240{
+  width:240px;
+}
+.w260{
+  width:260px;
+}
+
+
+// 自定义表头样式
+.slot-header{
+  font-size: 12px;
+  color: #ccc;
+  line-height: 16px;
+}
+
+

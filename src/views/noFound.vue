@@ -2,48 +2,35 @@
   <div class="wscn-http404-container">
     <div class="wscn-http404">
       <div class="pic-404">
-        <!-- <img class="pic-404__parent" :src="img404" alt="404">
+        <img class="pic-404__parent" :src="img404" alt="404">
         <img class="pic-404__child left" :src="img404Cloud" alt="404">
         <img class="pic-404__child mid" :src="img404Cloud" alt="404">
-        <img class="pic-404__child right" :src="img404Cloud" alt="404"> -->
+        <img class="pic-404__child right" :src="img404Cloud" alt="404">
       </div>
     </div>
   </div>
 </template>
 
-<script>
-// import img404 from '@/assets/noFound/404.png';
-// import img404Cloud from '@/assets/noFound/404_cloud.png';
+<script lang="ts">
+// eslint-disable-next-line import/extensions
+import img404 from '@/assets/noFound/404.png';
+// eslint-disable-next-line import/extensions
+import img404Cloud from '@/assets/noFound/404_cloud.png';
 
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'NoFound',
-  components: {
-
-  },
-  props: {
-  },
   data() {
     return {
-      // img404,
-      // img404Cloud,
+      img404,
+      img404Cloud,
     };
   },
-  computed: {
-
-  },
-  created() {
-
-  },
-  mounted() {
-
-  },
-  methods: {
-
-  },
-};
+});
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style rel="stylesheet/scss" lang="stylus"  scoped>
 .wscn-http404-container{
   transform: translate(-50%,-50%);
   position: absolute;
