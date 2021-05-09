@@ -20,6 +20,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'vue/no-multiple-template-root': 'off',
     "vue/html-self-closing": "off",
+    // "consistent-return":"off",  // 返回类型一致性
     'no-param-reassign': [
       'error',
       {

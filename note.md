@@ -75,4 +75,19 @@ module.exports = {
 ```
 
 
-## 问题5：vite 修改data以后没有刷新数据
+## 问题5：
+>vite 修改data以后没有刷新数据；修改组件参数，并没有更新视图
+### 原因：
+
+### 优化：
+
+## 问题6：
+> 添加修改元素属性 css 样式 等； vite进行热更新，template 没有重新渲染，
+```
+  example : icon="el-icon-edit"
+
+ <el-button size="mini" icon="el-icon-edit">
+ </el-button>
+
+```
+

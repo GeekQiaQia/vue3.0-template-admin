@@ -141,7 +141,7 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     redirect: '/form/formInfo',
     meta: {
       title: 'Form',
-      icon: 'el-icon-document',
+      icon: 'el-icon-s-grid',
     },
     children: [
       {
@@ -149,8 +149,28 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'formInfo',
         component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Form/formInfo.vue'),
         meta: {
-          title: '表单',
-          icon: 'el-icon-document',
+          title: '基础表单',
+          icon: 'el-icon-s-grid',
+
+        },
+      },
+      {
+        path: '/form/stepForm',
+        name: 'stepForm',
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Form/stepForm.vue'),
+        meta: {
+          title: '分步表单',
+          icon: 'el-icon-s-grid',
+
+        },
+      },
+      {
+        path: '/form/advanceForm',
+        name: 'advanceForm',
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Form/advanceForm.vue'),
+        meta: {
+          title: '高级表单',
+          icon: 'el-icon-s-grid',
 
         },
       },
