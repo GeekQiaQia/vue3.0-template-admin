@@ -7,7 +7,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'personalCenter',
+  name: 'PersonalCenter',
   setup() {
 
   },

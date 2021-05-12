@@ -13,3 +13,5 @@
 
 ## 使用到的插件
 [eslint-plugin-vue](https://eslint.vuejs.org/user-guide/#faq)
+
+[vue-i18n-next](https://vue-i18n-next.intlify.dev/installation.html#es-modules-import)

@@ -96,16 +96,26 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/personal/personalCenter',
     meta: {
-      title: '个人中心',
+      title: '个人页',
       icon: 'el-icon-user-solid',
     },
     children: [
       {
         path: '/personal/personalCenter',
         name: 'personalCenter',
-        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/PersonalCenter/index.vue'),
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Personal/personalCenter.vue'),
         meta: {
           title: '个人中心',
+          icon: 'el-icon-user-solid',
+
+        },
+      },
+      {
+        path: '/personal/personalSetting',
+        name: 'personalSetting',
+        component: () => import(/* webpackChunkName: "personalSetting" */ '@/views/Personal/personalSetting.vue'),
+        meta: {
+          title: '个人设置',
           icon: 'el-icon-user-solid',
 
         },
@@ -118,7 +128,7 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/table/tableList',
     meta: {
-      title: 'Table',
+      title: '列表页',
       icon: 'el-icon-folder-opened',
     },
     children: [
@@ -140,7 +150,7 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/form/formInfo',
     meta: {
-      title: 'Form',
+      title: '表单页',
       icon: 'el-icon-s-grid',
     },
     children: [
