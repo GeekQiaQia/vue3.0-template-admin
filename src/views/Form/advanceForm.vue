@@ -81,13 +81,21 @@
               </el-table>
               <div style="margin: 5px"><el-button @click="handleAddRecord">+ 新增记录</el-button></div>
             </fragment>
+          </el-card>
+        </div>
+      </el-col>
+    </el-row>
 
+    <el-row>
+      <el-col :offset="1" :span="22">
+        <div class="grid-content bg-purple-dark">
+          <el-card class="box-card">
             <fragment>
-                <div style="text-align: left">
+              <div style="text-align: left">
                 <span>活动管理</span>
                 <el-divider></el-divider>
               </div>
-              <el-form ref="form"  style="text-align:left;" :model="sizeForm" label-width="80px" size="mini">
+              <el-form ref="form" style="text-align: left" :model="sizeForm" label-width="80px" size="mini">
                 <el-form-item label="活动名称">
                   <el-input v-model="sizeForm.name"></el-input>
                 </el-form-item>
@@ -166,16 +174,16 @@ export default defineComponent({
       }
     ])
 
-    const sizeForm = reactive( {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        })
+    const sizeForm = reactive({
+      name: '',
+      region: '',
+      date1: '',
+      date2: '',
+      delivery: false,
+      type: [],
+      resource: '',
+      desc: ''
+    })
 
     const sizeFormRef = ref()
     onMounted(() => {
@@ -285,5 +293,9 @@ export default defineComponent({
   .box-card {
     width:100%;
   }
+
+   .el-row {
+       margin-bottom: 20px;
+     }
 }
 </style>

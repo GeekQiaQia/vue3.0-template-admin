@@ -232,7 +232,7 @@ export default defineComponent({
       align-items :center;
     }
      .el-row {
-    margin-bottom: 20px;
+       margin-bottom: 20px;
      }
 }
 </style>
