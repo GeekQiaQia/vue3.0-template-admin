@@ -73,18 +73,18 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
   {
     path: '/edit',
     component: layout,
-    redirect: '/edit/richText',
+    redirect: '/edit/copyText',
     meta: {
-      title: '富文本',
+      title: '复制文本',
       icon: 'el-icon-edit-outline',
     },
     children: [
       {
-        path: '/edit/richText',
-        name: 'richText',
-        component: () => import(/* webpackChunkName: "richText" */ '@/views/RichText/index.vue'),
+        path: '/edit/copyText',
+        name: 'copyText',
+        component: () => import(/* webpackChunkName: "richText" */ '@/views/CopyText/index.vue'),
         meta: {
-          title: '富文本',
+          title: '复制文本',
           icon: 'home',
         },
       },
