@@ -31,7 +31,7 @@ import { defineComponent, computed } from 'vue';
 import Hamburger from '@/components/Hamburger/Hamburger.vue';
 // eslint-disable-next-line import/extensions
 import Breadcrumb from '@/components/Breadcrumb/index.vue';
-import avatar from '@/assets/avatar.gif'
+import avatar from '@/assets/avatar-default.jpg'
 import { useStore } from '../../store/index';
 
 export default defineComponent({
