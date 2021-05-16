@@ -72,13 +72,13 @@
                     <span v-else>{{ scope.row.city }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column prop="address" label="详细地址" width="120">
+                <el-table-column prop="address" label="详细地址" >
                   <template #default="scope">
                     <el-input v-if="scope.row.edit" v-model="scope.row.address"></el-input>
                     <span v-else>{{ scope.row.address }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="操作">
+                <el-table-column label="操作" width="200">
                   <template #default="scope">
                     <el-button v-if="scope.row.edit"  size="medium" type="success" plain icon="el-icon-check" @click="handleSave(scope.$index, scope.row)">保存</el-button>
 
