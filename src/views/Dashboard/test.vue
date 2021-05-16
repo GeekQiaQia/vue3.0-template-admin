@@ -1,5 +1,5 @@
 <template>
-  <div class="analysisInfo">
+  <div class="workplace-container">
     <fragment>
       <div class="info">
         <span style="display:block;font-size:24px;margin:24px 0;">数据可视化</span>
@@ -34,7 +34,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 import * as Echarts from 'echarts'
 
 export default defineComponent({
-  name: 'Analysis',
+  name: 'Workplace',
   setup() {
     const refEchart = ref();
     const lineEchart=ref();
@@ -150,27 +150,38 @@ export default defineComponent({
         }
     ]
 };
-    const radarOptions={
-    legend: {},
-    tooltip: {},
-    dataset: {
-        source: [
-            ['product', '2015', '2016', '2017'],
-            ['Matcha Latte', 43.3, 85.8, 93.7],
-            ['Milk Tea', 83.1, 73.4, 55.1],
-            ['Cheese Cocoa', 86.4, 65.2, 82.5],
-            ['Walnut Brownie', 72.4, 53.9, 39.1]
+    const radarOptions= {
+    title: {
+        text: '基础雷达图'
+    },
+    legend: {
+        data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
+    },
+    radar: {
+        shape: 'circle',
+        indicator: [
+            { name: '销售（Sales）', max: 6500},
+            { name: '管理（Administration）', max: 16000},
+            { name: '信息技术（Information Technology）', max: 30000},
+            { name: '客服（Customer Support）', max: 38000},
+            { name: '研发（Development）', max: 52000},
+            { name: '市场（Marketing）', max: 25000}
         ]
     },
-    xAxis: {type: 'category'},
-    yAxis: {},
-    // Declare several bar series, each will be mapped
-    // to a column of dataset.source by default.
-    series: [
-        {type: 'bar'},
-        {type: 'bar'},
-        {type: 'bar'}
-    ]
+    series: [{
+        name: '预算 vs 开销（Budget vs spending）',
+        type: 'radar',
+        data: [
+            {
+                value: [4200, 3000, 20000, 35000, 50000, 18000],
+                name: '预算分配（Allocated Budget）'
+            },
+            {
+                value: [5000, 14000, 28000, 26000, 42000, 21000],
+                name: '实际开销（Actual Spending）'
+            }
+        ]
+    }]
 };
     onMounted(() => {
       const myChart = Echarts.init(refEchart.value)
@@ -197,7 +208,7 @@ export default defineComponent({
 })
 </script>
 <style lang="stylus" scoped>
-.analysisInfo{
+.workplace-container{
   background: #100c2a;
   color:white;
   padding:20px;

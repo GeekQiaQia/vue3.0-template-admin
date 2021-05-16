@@ -13,9 +13,16 @@
                 <div></div>
               </div>
             </template>
-            <template>
-                <span>sss</span>
-            </template>
+            <fragment>
+                 <el-tabs :tab-position="tabPosition" style="height: 200px;">
+                    <el-tab-pane label="基本设置">基本设置</el-tab-pane>
+                    <el-tab-pane label="安全设置">安全设置</el-tab-pane>
+                    <el-tab-pane label="账号绑定">账号绑定</el-tab-pane>
+                    <el-tab-pane label="个性化">个性化</el-tab-pane>
+                    <el-tab-pane label="新消息通知">新消息通知</el-tab-pane>
+
+                </el-tabs>
+            </fragment>
 
           </el-card>
         </div></el-col
@@ -24,14 +31,14 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted} from 'vue'
+import { defineComponent, onMounted,ref} from 'vue'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'PersonalSetting',
   setup() {
     const router = useRouter()
-
+    const tabPosition=ref('left');
 
 
     onMounted(() => {
@@ -44,6 +51,7 @@ export default defineComponent({
     }
     return {
       handleBack,
+      tabPosition
 
     }
   }

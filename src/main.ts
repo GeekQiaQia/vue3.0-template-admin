@@ -9,7 +9,6 @@ import router from './router/index';
 import App from './App.vue';
 import '@/styles/index.scss'; // global css
 import '@/permission'; // permission control 全局路由守卫
-
 import 'dayjs/locale/zh-cn'
 // eslint-disable-next-line import/order
 // import enLocale from 'element-plus/lib/locale/lang/en'

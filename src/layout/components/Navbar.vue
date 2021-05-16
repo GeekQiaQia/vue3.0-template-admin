@@ -43,7 +43,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const opened = computed(() => store.getters['appModule/getSidebarState']);
-    const nickname =computed(()=> JSON.parse(localStorage.getItem('userInfo') as string)?.personName ?? '默认昵称');
+    const nickname =computed(()=> JSON.parse(localStorage.getItem('userInfo') as string)?.personName ?? '极客恰恰');
     // methods
     const toggleSideBar = () => {
       store.dispatch('appModule/toggleSideBar');

@@ -15,3 +15,5 @@
 [eslint-plugin-vue](https://eslint.vuejs.org/user-guide/#faq)
 
 [vue-i18n-next](https://vue-i18n-next.intlify.dev/installation.html#es-modules-import)
+
+[antv数据可视化](https://antv.vision/zh)
