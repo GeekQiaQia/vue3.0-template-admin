@@ -31,12 +31,15 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     name: 'NoFound',
     component: () => import(/* webpackChunkName: "noFound" */ '@/views/noFound.vue'),
     meta: {
-      title: '首页',
-      icon: 'home',
+      title: '404',
       hidden: true,
     },
   },
-  { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import(/* webpackChunkName: "noFound" */ '@/views/noFound.vue') },
+  { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import(/* webpackChunkName: "noFound" */ '@/views/noFound.vue'),
+    meta: {
+    title: 'not-found',
+    hidden: true,
+  }, },
 ];
 
 // 异步路由

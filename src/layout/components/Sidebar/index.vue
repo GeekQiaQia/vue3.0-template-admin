@@ -13,54 +13,27 @@
       @open="handleOpen"
       @close="handleClose"
       @select="handleSelect">
-            <template v-for="route in routes">
-                <template v-if="route?.meta && !route.meta?.hidden">
-                    <!--only has one child check redirect-->
-                    <template v-if="route.children &&route.children.length==1&& route.meta.title">
-
-                        <el-menu-item :key="route.redirect" :index="route.path" >
-                            <i :class="route.meta.icon"></i>
-                            <template #title>{{route.meta.title}}</template>
-                        </el-menu-item>
-                    </template>
-                    <!--more the one child -->
-                    <template v-else>
-                         <el-submenu :key="route.redirect" >
-                            <template #title>
-                            <i :class="route.meta.icon"></i>
-                            <span>{{route.meta.title}}</span>
-                            </template>
-                            <template v-for="child in route.children"  >
-                               <template v-if="route.meta.title">
-                                    <el-menu-item :key="child.path" :index="child.path">
-                                          {{child.meta.title}}
-                                    </el-menu-item>
-                               </template>
-                            </template>
-
-                        </el-submenu>
-                    </template>
-
-                </template>
-            </template>
+        <!--递归路由对象-->
+       <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
 
       </el-menu>
     </el-scrollbar>
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, onMounted } from 'vue';
 import {
   useRouter,
 } from 'vue-router';
 import { isExternal } from '@/utils/validate';
+import sidebarItem from '@/layout/components/Sidebar/sidebarItem.vue';
 import logo from './Logo.vue';
 import { useStore } from '../../../store/index';
-// import SidebarItem from './SidebarItem.vue';
+
 export default defineComponent({
   components: {
     logo,
-    // SidebarItem,
+    sidebarItem,
   },
   setup() {
     const router = useRouter();
@@ -70,10 +43,14 @@ export default defineComponent({
     const showLogo = computed(() => store.state.settingsModule.sideBarLogo);
     const routes = computed(() => store.state.permissionModule.routes);
     const activeMenu = computed(() => router.currentRoute.value.fullPath);
+    onMounted(()=>{
+      console.log(activeMenu.value);
+    });
     // mothods
     const handleOpen = (key: any, keyPath: any) => {
       // eslint-disable-next-line no-console
-      console.log(key, keyPath);
+      console.log("key is ",key);
+      console.log('keyPath is ',keyPath);
     };
     const handleClose = (key: any, keyPath: any) => {
       // eslint-disable-next-line no-console

@@ -68,7 +68,7 @@ export default defineComponent({
   }
   .vue-element-plus-logo {
     width:100%;
-    min-width:973px;
+    max-width:1080px;
     height:100%;
     cursor :pointer;
   }
@@ -81,11 +81,11 @@ export default defineComponent({
   }
 
   .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
+    background-color:white;
   }
 
   .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
+    background-color:white;
   }
 }
 </style>
