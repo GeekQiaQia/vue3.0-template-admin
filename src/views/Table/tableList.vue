@@ -38,7 +38,19 @@
         </template>
         <template #default="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+            <el-popconfirm
+                      confirm-button-text="确定"
+                      cancel-button-text="取消"
+                      icon="el-icon-info"
+                      icon-color="red"
+                      title="确定删除该条记录吗？"
+                      @confirm="handleDelete(scope.$index, scope.row)"
+                    >
+                      <template #reference>
+                          <el-button size="mini" type="danger" >删除</el-button>
+                      </template>
+                    </el-popconfirm>
+
         </template>
       </el-table-column>
       <el-table-column
@@ -72,6 +84,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue'
+import {useRouter} from 'vue-router'
 
 export default defineComponent({
   name: 'TableList',
@@ -134,6 +147,7 @@ export default defineComponent({
         tag: '家'
       }
     ])
+    const router=useRouter();
     const filterTable = ref()
     const search = ref()
     const currentPage = ref(1)
@@ -164,11 +178,13 @@ export default defineComponent({
     }
     const handleEdit = (index: any, row: any) => {
       // eslint-disable-next-line no-console
-      console.log(index, row)
+      console.log(index, row);
+      router.push('/form/advanceForm');
     }
     const handleDelete = (index: any, row: any) => {
       // eslint-disable-next-line no-console
       console.log(index, row)
+      tableData.value.splice(index,1);
     }
     const handleSizeChange = (val: any) => {
       // eslint-disable-next-line no-console

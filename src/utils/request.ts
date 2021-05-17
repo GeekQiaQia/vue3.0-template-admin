@@ -1,34 +1,36 @@
 import Axios from 'axios'
 import { ElMessage } from 'element-plus'
 
-const baseURL = 'http://.....'
+// const baseURL = 'http://www.mock.com'
 const axios = Axios.create({
-  baseURL,
+  // baseURL,
   timeout: 20000
 })
-//
+// 允许携带cookie
+axios.defaults.withCredentials = true
+// 请求头信息
+axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
+// 默认使用 application/json 形式
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+
+// 请求拦截器
 axios.interceptors.request.use(
-  (res) => {
-    return res
-  },
-  (err) => {
-    return Promise.reject(err)
-  }
+  (res) => res,
+  (err) => Promise.reject(err)
 )
-//
+// 响应拦截器
 axios.interceptors.response.use(
-  (res) => {
-    return res
-  },
+  (res) => res,
   (err) => {
     if (err.response && err.response.data) {
       const code = err.response.status
       const msg = err.response.data.message
       ElMessage.error(`Code: ${code}, Message: ${msg}`)
-      console.error(`[Axios err]`, err.response)
     } else {
       ElMessage.error(`${err}`)
     }
     return Promise.reject(err)
   }
 )
+
+export default axios

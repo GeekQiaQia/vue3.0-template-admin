@@ -80,7 +80,6 @@ export default defineComponent({
 
       // 如果没有孩子，则展示父级路由；
       if (showingChildren.length === 0) {
-        console.log('showingChildren', showingChildren,parent)
 
         onlyOneChild.value = { ...parent, noShowingChildren: true }
         return true

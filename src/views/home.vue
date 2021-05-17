@@ -15,8 +15,9 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, onMounted, reactive,toRefs } from 'vue';
 import  logo from '@/assets/logo.png'
+import axios from '@/utils/request'
 
 export default defineComponent({
   name: 'Home',
@@ -24,36 +25,52 @@ export default defineComponent({
   },
   setup() {
 
-    const  swiperItems=reactive([{
-      name:'vue-next',
-      itemSrc:'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c588b8ab65a74d59aa379801136df4e0~tplv-k3u1fbpfcp-watermark.image',
-      targetLink:'https://github.com/vuejs/docs-next-zh-cn'
-    },{
-      name:'vitejs',
-      itemSrc:'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a7351d2dcd7846158604ac8bd57222b5~tplv-k3u1fbpfcp-watermark.image',
-      targetLink:'https://github.com/vitejs'
-
-    },
-    {
-      name:'element-plus',
-      itemSrc:'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/48a7fd198df44cca9c0dc10a8047bbef~tplv-k3u1fbpfcp-watermark.image',
-      targetLink:'https://github.com/element-plus/element-plus'
-
-    },
-     {
-      name:'tslang',
-      itemSrc:'https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/610fc57450884ceaae9578689663fe2f~tplv-k3u1fbpfcp-watermark.image',
-      targetLink:'https://github.com/Microsoft/TypeScript'
-
-    },
-    ])
+     const state=reactive({
+       swiperItems:[{
+            name:'vue-next',
+            itemSrc:'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c588b8ab65a74d59aa379801136df4e0~tplv-k3u1fbpfcp-watermark.image',
+            targetLink:'https://github.com/vuejs/docs-next-zh-cn'
+          }]
+     });
     // methods
      const handleClickImg=(targetUrl: string|undefined)=>{
          window.open(targetUrl, '_blank');
      }
+     /**
+      * @description 获取角色
+     */
+     const getRoles=()=>{
+       axios.get('/api/auth/roles')
+       .then((res: any)=>{
+         console.log(res);
+       })
+       .catch((err: any)=>{
+        // eslint-disable-next-line no-console
+         console.error(err);
+       });
+     }
+      /**
+      * @description 获取swiperInfo
+     */
+     const getSwiperInfo=()=>{
+       axios.get('/api/home/swiperInfo')
+       .then((res:any)=>{
+         if(res.data.code===0){
+           state.swiperItems=res.data.data;
+         }
+       })
+       .catch((err:any)=>{
+         // eslint-disable-next-line no-console
+         console.error(err);
+       })
+     }
+     onMounted(()=>{
+       getRoles();
+       getSwiperInfo();
+     });
     return{
       handleClickImg,
-      swiperItems,
+      ...toRefs(state),
       logo,
     }
   }
@@ -68,7 +85,7 @@ export default defineComponent({
   }
   .vue-element-plus-logo {
     width:100%;
-    max-width:1080px;
+    max-width:750px;
     height:100%;
     cursor :pointer;
   }

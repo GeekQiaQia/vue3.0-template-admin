@@ -32,6 +32,7 @@ import Hamburger from '@/components/Hamburger/Hamburger.vue';
 // eslint-disable-next-line import/extensions
 import Breadcrumb from '@/components/Breadcrumb/index.vue';
 import avatar from '@/assets/avatar-default.jpg'
+import { useRouter } from 'vue-router';
 import { useStore } from '../../store/index';
 
 export default defineComponent({
@@ -41,17 +42,17 @@ export default defineComponent({
     Breadcrumb,
   },
   setup() {
+    const router=useRouter();
     const store = useStore();
     const opened = computed(() => store.getters['appModule/getSidebarState']);
-    const nickname =computed(()=> JSON.parse(localStorage.getItem('userInfo') as string)?.personName ?? '极客恰恰');
+    const nickname =computed(()=> JSON.parse(localStorage.getItem('userInfo') as string)?.userName ?? '极客恰恰');
     // methods
     const toggleSideBar = () => {
       store.dispatch('appModule/toggleSideBar');
     };
     const logout=()=> {
       // clear()
-      // this.$router.push('/login')
-      window.open('/logout');
+      router.replace('/login')
     }
     return {
       nickname,
@@ -91,7 +92,7 @@ export default defineComponent({
 
   .nickname {
     float: right;
-    padding: 0 16px;
+    padding: 0px 25px 0px 25px;
     line-height: 40px;
     outline: none;
   }

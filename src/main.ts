@@ -22,38 +22,11 @@ import 'dayjs/locale/zh-cn'
 // 3、挂载 elementPlus UI;
 import 'element-plus/lib/theme-chalk/index.css';
 
-// const messages = {
-//     [enLocale.name]: {
-//       // el 这个属性很关键，一定要保证有这个属性，
-//       el: enLocale.el,
-//       // 定义您自己的字典，但是请不要和 `el` 重复，这样会导致 ElementPlus 内部组件的翻译失效.
-//       message: {
-//         hello: 'hello world',
-//       },
-//     },
-//     [zhLocale.name]: {
-//       el: zhLocale.el,
-//       // 定义您自己的字典，但是请不要和 `el` 重复，这样会导致 ElementPlus 内部组件的翻译失效.
-//       message: {
-//         hello: '你好，世界',
-//       },
-//     },
-//     testLocale: {
-//       el: {},
-//       // 没有定义 message 字段，会 fallback 回到 en 去, fallbackLocale 的定义在下方 👇
-//     },
-//   }
-
-//   const i18n = createI18n({
-//     locale: zhLocale.name,
-//     fallbackLocale: enLocale.name,
-//   })
+import '@/mock'
 
 
 // 在挂载路由之前，先进行异步路由处理
 store.dispatch('permissionModule/getPermissonRoutes');
-
-// .use(VueClipboard)
 
 // , {
 //     i18n: i18n.global.t,

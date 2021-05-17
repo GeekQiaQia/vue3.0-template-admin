@@ -53,13 +53,13 @@
                     <span v-else>{{ scope.row.city }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column prop="address" label="详细地址" width="120">
+                <el-table-column prop="address" label="详细地址" >
                   <template #default="scope">
                     <el-input v-if="scope.row.edit" v-model="scope.row.address"></el-input>
                     <span v-else>{{ scope.row.address }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="操作">
+                <el-table-column label="操作" width="200">
                   <template #default="scope">
                     <el-button v-if="scope.row.edit" size="mini" type="success" icon="el-icon-check" @click="handleSave(scope.$index, scope.row)">保存</el-button>
 
@@ -95,7 +95,7 @@
                 <span>活动管理</span>
                 <el-divider></el-divider>
               </div>
-              <el-form ref="form" style="text-align: left" :model="sizeForm" label-width="80px" size="mini">
+              <el-form ref="activityForm" style="text-align: left" :model="sizeForm" label-width="80px" size="mini">
                 <el-form-item label="活动名称">
                   <el-input v-model="sizeForm.name"></el-input>
                 </el-form-item>
@@ -185,17 +185,19 @@ export default defineComponent({
       desc: ''
     })
 
-    const sizeFormRef = ref()
+    const activityForm = ref()
     onMounted(() => {
       // eslint-disable-next-line no-console
-      console.log('show sizeFormRef.value', sizeFormRef.value)
+      console.log('show sizeFormRef.value', activityForm.value)
     })
     // methods
     const submitForm = () => {
-      sizeFormRef.value.validate((valid: any): boolean => {
+      activityForm.value.validate((valid: any): boolean => {
         if (valid) {
-          // eslint-disable-next-line no-alert
-          alert('submit!')
+         ElMessage({
+           type:'success',
+           message:'创建成功'
+         });
           return true
         }
         // eslint-disable-next-line no-console
@@ -204,7 +206,7 @@ export default defineComponent({
       })
     }
     const resetForm = () => {
-      sizeFormRef.value.resetFields()
+      activityForm.value.resetFields()
     }
     const handleBack = () => {
       router.go(-1)
@@ -231,6 +233,10 @@ export default defineComponent({
       // save current row data and update table data;
       tableData[index].edit = false
       tableData[index] = row
+       ElMessage({
+         type:'success',
+         message:'保存成功'
+       });
       return true
     }
     const handleDelete = (index: any, row: any) => {
@@ -256,7 +262,7 @@ export default defineComponent({
       tableData,
       handleBack,
       sizeForm,
-      sizeFormRef,
+      activityForm,
       submitForm,
       resetForm
     }

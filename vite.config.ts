@@ -19,13 +19,13 @@ export default defineConfig({
     port: 4399, // 设置服务器启动端口
     open: true, // 设置服务器启动自动打开浏览器；
     cors: true, // 允许跨域
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://xxx.xxx.xxx.xxx:x000',
-    //     changeOrigin: true,
-    //     secure: false,
-    //     rewrite: (path) => path.replace('/api/', '/')
-    //   }
-    // },
+    proxy: { // 调用模拟mock数据跨域处理
+      '/api': {
+        target: 'http://localhost:4399',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace('/api/', '')
+      }
+    },
   },
 });

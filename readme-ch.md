@@ -17,3 +17,6 @@
 [vue-i18n-next](https://vue-i18n-next.intlify.dev/installation.html#es-modules-import)
 
 [antv数据可视化](https://antv.vision/zh)
+
+[echart数据可视化](http://echarts.apache.org/zh/index.html)
+[mockjs](http://mockjs.com/)
