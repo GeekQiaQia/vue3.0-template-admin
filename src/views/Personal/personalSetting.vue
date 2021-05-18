@@ -8,7 +8,7 @@
               <div class="card-header">
                 <el-button class="button" type="text" @click="handleBack"><i class="el-icon-arrow-left" />返回</el-button>
 
-                <span>表单信息</span>
+                <span>个人设置</span>
                 <div></div>
               </div>
             </template>
@@ -36,7 +36,7 @@
                         </el-form-item>
 
                         <el-form-item>
-                          <el-button type="primary" @click="submitForm()">更新基本信息</el-button>
+                          <el-button type="primary" :loading="updateLoading" @click="submitForm()">更新基本信息</el-button>
                           <el-button @click="resetForm()">重置</el-button>
                         </el-form-item>
                       </el-form>
@@ -44,7 +44,7 @@
                     <div class="avatar">
                       <div class="preview">
                         <span>头像</span>
-                        <img src="../../assets/avatar-default.jpg">
+                        <img src="../../assets/avatar-default.jpg" />
                       </div>
                       <el-upload
                         class="avatar-uploader"
@@ -53,15 +53,91 @@
                         :on-success="handleAvatarSuccess"
                         :before-upload="beforeAvatarUpload"
                       >
-                         <el-button style="margin-left: 10px;" size="small" type="success" ><i class="el-icon-upload"></i>更换头像</el-button>
+                        <el-button style="margin-left: 10px" size="small" type="success"><i class="el-icon-upload"></i>更换头像</el-button>
                       </el-upload>
                     </div>
                   </div>
                 </el-tab-pane>
-                <el-tab-pane label="安全设置">安全设置</el-tab-pane>
-                <el-tab-pane label="账号绑定">账号绑定</el-tab-pane>
-                <el-tab-pane label="个性化">个性化</el-tab-pane>
-                <el-tab-pane label="新消息通知">新消息通知</el-tab-pane>
+                <el-tab-pane label="安全设置">
+                  <div class="set-title">
+                    <span>安全设置</span>
+                  </div>
+                  <div class="secure-item">
+                    <div class="secure-info">
+                      <span class="secure-key">账户密码</span>
+                      <span class="secure-value">当前密码强度：强</span>
+                    </div>
+                    <div class="opera-btn"><span>修改</span></div>
+                  </div>
+                  <div class="secure-item">
+                    <div class="secure-info">
+                      <span class="secure-key">密保手机</span>
+                      <span class="secure-value">已绑定手机：138****2234</span>
+                    </div>
+                    <div class="opera-btn"><span>修改</span></div>
+                  </div>
+                    <div class="secure-item">
+                    <div class="secure-info">
+                      <span class="secure-key">绑定邮箱</span>
+                      <span class="secure-value">已绑定邮箱：geek****@outlook.com</span>
+                    </div>
+                    <div class="opera-btn"><span>修改</span></div>
+                  </div>
+                </el-tab-pane>
+                <el-tab-pane label="新消息通知">
+                   <div class="set-title">
+                    <span>新消息通知</span>
+                  </div>
+                  <div class="secure-item">
+                    <div class="secure-info">
+                      <span class="secure-key">账户密码</span>
+                      <span class="secure-value">用户信息将以系统内部渠道通知</span>
+                    </div>
+                    <el-tooltip :content="'是否开启用户信息: '" placement="top">
+                      <el-switch
+                        v-model="userSwitch"
+                        active-color="#13ce66"
+                        inactive-color="#ff4949"
+                        :active-value="true"
+                       :inactive-value="false"
+                      >
+                      </el-switch>
+                    </el-tooltip>
+                  </div>
+                  <div class="secure-item">
+                    <div class="secure-info">
+                      <span class="secure-key">系统消息</span>
+                      <span class="secure-value">系统消息将以系统内部渠道通知</span>
+                    </div>
+                     <el-tooltip :content="'是否开启系统消息: '" placement="top">
+                      <el-switch
+                        v-model="sysSwitch"
+                        active-color="#13ce66"
+                        inactive-color="#ff4949"
+                        :active-value="true"
+                        :inactive-value="false"
+                      >
+                      </el-switch>
+                    </el-tooltip>
+                  </div>
+                    <div class="secure-item">
+                    <div class="secure-info">
+                      <span class="secure-key">代办任务</span>
+                      <span class="secure-value">代办任务将以系统内部渠道通知</span>
+                    </div>
+                   <el-tooltip :content="'是否开启代办任务消息: '" placement="top">
+                    <el-switch
+                      v-model="taskSwitch"
+                      active-color="#13ce66"
+                      inactive-color="#ff4949"
+                      :active-value="true"
+                      :inactive-value="false"
+                    >
+                    </el-switch>
+                  </el-tooltip>
+                  </div>
+
+                </el-tab-pane>
               </el-tabs>
             </fragment>
           </el-card>
@@ -72,8 +148,9 @@
 </template>
 <script lang="ts">
 import { ElMessage } from 'element-plus'
-import { defineComponent, onMounted, reactive, ref } from 'vue'
+import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
+import axios from '@/utils/request'
 
 export default defineComponent({
   name: 'PersonalSetting',
@@ -81,6 +158,11 @@ export default defineComponent({
     const router = useRouter()
     const tabPosition = ref('left')
     const settingFormRef = ref()
+    const noticeSwitch=reactive({
+      userSwtich:false,
+      sysSwitch:true,
+      taskSwitch:true
+    })
     const settingForm = reactive({
       email: '',
       nickname: '',
@@ -88,6 +170,7 @@ export default defineComponent({
       mobile: ''
     })
     const imageUrl = ref()
+    const updateLoading = ref(false)
 
     // eslint-disable-next-line no-unused-vars
     const validateMobile = (rule: any, value: string, callback: (arg0: Error | undefined) => void) => {
@@ -120,8 +203,33 @@ export default defineComponent({
       router.go(-1)
     }
     const submitForm = () => {
-      settingFormRef.value.validate((valid: any) => {
+      settingFormRef.value.validate(async (valid: any) => {
         if (valid) {
+          updateLoading.value = true
+          const data = {
+            ...settingForm
+          }
+          await axios
+            .post('/api/setting/basicInfo', data)
+            .then((res: any) => {
+              if (res.data.code === 0) {
+                updateLoading.value = false
+                ElMessage({
+                  type: 'success',
+                  message: res.data.message
+                })
+              } else {
+                ElMessage({
+                  type: 'warning',
+                  message: res.data.message
+                })
+              }
+            })
+            .catch((err: any) => {
+              // eslint-disable-next-line no-console
+              console.error(err)
+            })
+
           // 执行通过校验以后的操作；
           return true
         }
@@ -132,11 +240,9 @@ export default defineComponent({
       settingFormRef.value.resetFields()
     }
     const handleAvatarSuccess = (res: any, file: { raw: any }) => {
-      console.log(file);
       imageUrl.value = URL.createObjectURL(file.raw)
     }
-    const beforeAvatarUpload = (file: { raw: any,type: string; size: number }) => {
-      console.log(file);
+    const beforeAvatarUpload = (file: { raw: any; type: string; size: number }) => {
       const isJPG = file.type === 'image/jpeg'
       const isLt2M = file.size / 1024 / 1024 < 2
 
@@ -158,7 +264,9 @@ export default defineComponent({
       handleAvatarSuccess,
       beforeAvatarUpload,
       rules,
-      imageUrl
+      imageUrl,
+      ...toRefs(noticeSwitch),
+      updateLoading
     }
   }
 })
@@ -172,6 +280,37 @@ export default defineComponent({
     }
     .set-title{
       text-align :left;
+    }
+    .secure-item{
+      width:100%;
+      padding:20px;
+      border-bottom:1px solid #f0f0f0;
+      display :flex;
+      flex-direction:row;
+      justify-content :space-between;
+      align-items :center;
+      .secure-info{
+         display :flex;
+      flex-direction:column;
+      justify-content :flex-start;
+      align-items :flex-start;
+        .secure-key{
+          margin-bottom: 4px;
+          color: rgba(0,0,0,.85);
+          font-size: 14px;
+          line-height: 1.6;
+        }
+        .secure-value{
+          color: rgba(0,0,0,.45);
+          font-size: 14px;
+          line-height: 1.6;
+        }
+      }
+      .opera-btn{
+        color:#1890ff;
+        cursor:pointer;
+
+      }
     }
     .set-info{
       display :flex;

@@ -74,14 +74,23 @@ module.exports = {
 }
 ```
 
+# 待处理
+## 待处理问题7：修改配置项，ctrl+s 保存即执行代码格式化
+### 现象：
+> ctrl+s 保存当前失去了格式化效果
+### 解决方案：举例
+```
 
-## 问题5：
+```
+
+
+## 问题8：
 >vite 修改data以后没有刷新数据；修改组件参数，并没有更新视图
 ### 原因：
 
 ### 优化：
 
-## 问题6：
+## 问题9：
 > 添加修改元素属性 css 样式 等； vite进行热更新，template 没有重新渲染，
 ```
   example : icon="el-icon-edit"
@@ -90,4 +99,8 @@ module.exports = {
  </el-button>
 
 ```
+## 问题10： 错误提示不友好
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1a07ce8d1bea437685e16dbb12c28464~tplv-k3u1fbpfcp-watermark.image)
 
+## 问题11： ElementUI 国际化处理
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3b2568fdd7134016bb468791fbfc89b8~tplv-k3u1fbpfcp-watermark.image)

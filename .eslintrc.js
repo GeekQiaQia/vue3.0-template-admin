@@ -6,7 +6,7 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ['airbnb-base', "eslint:recommended", 'plugin:vue/vue3-recommended', 'prettier'],
+  extends: ['airbnb-base', "eslint:recommended", 'plugin:vue/vue3-recommended','plugin:vue/essential', 'prettier'],
   parserOptions: {
     ecmaVersion: 12,
     parser: '@typescript-eslint/parser',

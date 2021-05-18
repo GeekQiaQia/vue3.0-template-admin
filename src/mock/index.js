@@ -67,6 +67,16 @@ Mock.mock('/api/auth/login','post',(option) => {
 
 
 });
+Mock.mock('/api/setting/basicInfo','post',(option)=>{
+    const {email,nickname,desc,mobile} = JSON.parse(option.body);
+    return {
+        code:0,
+        data:{
+            email,nickname,desc,mobile
+        },
+        message:'更新成功'
+    }
+});
 Mock.mock('/api/auth/roles','get',genRoles);
 Mock.mock('/api/home/swiperInfo','get',getSwiperInfo);
 
