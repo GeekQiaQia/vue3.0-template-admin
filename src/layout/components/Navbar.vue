@@ -4,6 +4,14 @@
      @toggleClick="toggleSideBar" />
     <breadcrumb class="breadcrumb-container" />
       <div class="right-menu">
+      <el-button  class="full-screen">
+          <el-tooltip content="全屏浏览" effect="dark" placement="left">
+            <i v-show="fullScreen==false" class="el-icon-full-screen" @click="toShowFullScreen()"></i>
+          </el-tooltip>
+          <el-tooltip content="退出全屏" effect="dark" placement="left">
+            <i v-show="fullScreen==true" class="el-icon-bottom-left" @click="toExitFullScreen()"></i>
+          </el-tooltip>
+        </el-button>
       <el-dropdown class="avatar-container" trigger="hover">
         <div class="avatar-wrapper">
            <el-avatar :src="avatar"></el-avatar>
@@ -32,13 +40,17 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 // eslint-disable-next-line import/extensions
 import Hamburger from '@/components/Hamburger/Hamburger.vue';
 // eslint-disable-next-line import/extensions
 import Breadcrumb from '@/components/Breadcrumb/index.vue';
 import avatar from '@/assets/avatar-default.jpg'
 import { useRouter } from 'vue-router';
+import {
+  toFullScreen,
+  exitFullScreen
+} from "@/utils/screen";
 import { useStore } from '../../store/index';
 
 export default defineComponent({
@@ -52,15 +64,31 @@ export default defineComponent({
     const store = useStore();
     const opened = computed(() => store.getters['appModule/getSidebarState']);
     const nickname =computed(()=> JSON.parse(localStorage.getItem('userInfo') as string)?.userName ?? '极客恰恰');
+    const fullScreen=ref(false);
     // methods
     const toggleSideBar = () => {
       store.dispatch('appModule/toggleSideBar');
+    };
+
+    const toShowFullScreen=()=> {
+      toFullScreen();
+      fullScreen.value = true;
+    };
+
+    const toExitFullScreen=()=> {
+      exitFullScreen();
+      fullScreen.value = false;
     };
     const logout=()=> {
       // clear()
       router.replace('/login')
     }
     return {
+      toShowFullScreen,
+      toExitFullScreen,
+      toFullScreen,
+      exitFullScreen,
+      fullScreen,
       nickname,
       avatar,
       toggleSideBar,
@@ -107,10 +135,23 @@ export default defineComponent({
     float: right;
     height: 100%;
     line-height: 50px;
-
+    display: flex;
     &:focus {
       outline: none;
     }
+     .full-screen {
+      background-color: transparent;
+      border: none;
+      padding: 5px 20px;
+
+      i {
+          background-color: transparent;
+          border: none;
+          color: #2c3e50;
+          font-size: 28px;
+        }
+    }
+
 
     .right-menu-item {
       display: inline-block;

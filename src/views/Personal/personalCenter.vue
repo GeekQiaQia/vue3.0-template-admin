@@ -52,8 +52,12 @@
         <el-card class="box-card">
           <el-calendar>
           <template #dateCell="{data}">
-            <p :class="data.isSelected ? 'is-selected' : ''">
+            <p :class="data.isSelected ? 'is-selected' : ''" @click="handleFocusCurrent(data.day)">
               {{ data.day.split('-').slice(1).join('-') }} {{ data.isSelected ? '✔️' : '' }}
+              <el-input v-if="data.isSelected" v-model="currentEdit" autofocus @focus="handleFocusCurrent(data.day)" @blur="handleBlurCurrent(data.day)"  @keyup.enter="handleInputEnter" />
+              <ul v-else>
+                <li>test</li>
+              </ul>
             </p>
           </template>
         </el-calendar>
@@ -63,7 +67,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs,ref } from 'vue'
+import { defineComponent, reactive, toRefs,ref, computed } from 'vue'
 
 export default defineComponent({
   name: 'PersonalCenter',
@@ -73,20 +77,40 @@ export default defineComponent({
       inputVisible: false,
       inputValue: ''
     })
+    const record=new Map();
+    record.set('2021-05-19','test');
+    const recordData=reactive({
+      record
+    });
     const size=ref('medium');
     const showDesc=ref(true);
+    const selectedDay=ref();
     // mothods
     const handleClose = (tag: string) => {
       state.dynamicTags.splice(state.dynamicTags.indexOf(tag), 1)
     }
-
+    const filterData=computed(()=>recordData.record.get(selectedDay.value));
     const showInput = () => {
       state.inputVisible = true
-      // this.$nextTick(_ => {
-      //   this.$refs.saveTagInput.$refs.input.focus();
-      // });
-    }
 
+    }
+    const filter=(day:any)=>{
+        if(recordData.record.has(day)){
+          return recordData.record.get(day)
+        }
+          return false;
+
+    }
+    const currentEdit=ref();
+    // 聚焦的时候，
+    const handleFocusCurrent=(day: any)=>{
+      selectedDay.value=day
+      currentEdit.value=recordData.record.get(selectedDay.value);
+    }
+    const handleBlurCurrent=()=>{
+         recordData.record.set(selectedDay.value,currentEdit.value);
+         // 更新到后台接口
+    }
     const handleInputConfirm = () => {
       const { inputValue } = state
       if (inputValue) {
@@ -96,13 +120,22 @@ export default defineComponent({
       state.inputValue = ''
     }
 
+    const handleInputEnter=()=>{
+    }
     return {
+      filter,
+      handleBlurCurrent,
+      handleFocusCurrent,
+      currentEdit,
+      filterData,
       ...toRefs(state),
+      ...toRefs(recordData),
       size,
       showDesc,
       handleClose,
       showInput,
-      handleInputConfirm
+      handleInputConfirm,
+      handleInputEnter
     }
   }
 })
@@ -111,6 +144,15 @@ export default defineComponent({
 .box-card{
     .is-selected {
     color: #1989FA;
+  }
+  ul{
+    margin-top: 4%;
+    margin-left: 15%;
+    width: 80%;
+    text-align :left;
+    position: relative;
+    display: inline-block;
+    background-color: white;
   }
   margin-top:14px;
   .account-avatar{

@@ -20,3 +20,6 @@
 
 [echart数据可视化](http://echarts.apache.org/zh/index.html)
 [mockjs](http://mockjs.com/)
+## 功能
+### 全屏功能
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9a65c47c1194442d86e4a18128aa59d5~tplv-k3u1fbpfcp-watermark.image)

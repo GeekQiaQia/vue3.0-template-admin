@@ -74,6 +74,21 @@ module.exports = {
 }
 ```
 
+
+## 问题11： ElementUI 国际化处理
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3b2568fdd7134016bb468791fbfc89b8~tplv-k3u1fbpfcp-watermark.image)
+### 现象：
+>elementUI 组件默认英文
+### 解决方案：
+```
+import ElementPlus from 'element-plus'
+import 'dayjs/locale/zh-cn'
+import locale from 'element-plus/lib/locale/lang/zh-cn'
+
+createApp(App).use(ElementPlus, { locale })
+
+```
+
 # 待处理
 ## 待处理问题7：修改配置项，ctrl+s 保存即执行代码格式化
 ### 现象：
@@ -102,5 +117,3 @@ module.exports = {
 ## 问题10： 错误提示不友好
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1a07ce8d1bea437685e16dbb12c28464~tplv-k3u1fbpfcp-watermark.image)
 
-## 问题11： ElementUI 国际化处理
-![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3b2568fdd7134016bb468791fbfc89b8~tplv-k3u1fbpfcp-watermark.image)

@@ -2,6 +2,7 @@
 /* eslint-disable import/extensions */
 import { createApp } from 'vue';
 import ElementPlus from 'element-plus';
+import locale from 'element-plus/lib/locale/lang/zh-cn'
 
 // eslint-disable-next-line import/no-unresolved
 import { key, store } from './store/index';
@@ -32,7 +33,7 @@ store.dispatch('permissionModule/getPermissonRoutes');
 //     i18n: i18n.global.t,
 //   }
 // 链式注册插件
-const app = createApp(App).use(store, key).use(router).use(ElementPlus);
+const app = createApp(App).use(store, key).use(router).use(ElementPlus,{locale});
 // 现在所有的导航都是异步的，等路由ready以后再进行挂载组件；
 router.isReady().then(() => app.mount('#app'));
 

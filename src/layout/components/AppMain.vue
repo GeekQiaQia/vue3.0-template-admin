@@ -14,7 +14,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'appMain',
+  name: 'AppMain',
   setup() {},
 });
 </script>
@@ -25,6 +25,7 @@ export default defineComponent({
   width: 100%;
   position: relative;
   overflow: hidden;
+  background-color: white;
 }
 .fixed-header + .app-main {
   padding-top: 50px;
