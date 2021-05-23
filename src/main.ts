@@ -3,7 +3,6 @@
 import { createApp } from 'vue';
 import ElementPlus from 'element-plus';
 import locale from 'element-plus/lib/locale/lang/zh-cn'
-
 // eslint-disable-next-line import/no-unresolved
 import { key, store } from './store/index';
 import router from './router/index';

@@ -52,56 +52,161 @@
         <el-card class="box-card">
           <el-calendar>
           <template #dateCell="{data}">
-            <p :class="data.isSelected ? 'is-selected' : ''" @click="handleFocusCurrent(data.day)">
-              {{ data.day.split('-').slice(1).join('-') }} {{ data.isSelected ? '✔️' : '' }}
-              <el-input v-if="data.isSelected" v-model="currentEdit" autofocus @focus="handleFocusCurrent(data.day)" @blur="handleBlurCurrent(data.day)"  @keyup.enter="handleInputEnter" />
-              <ul v-else>
-                <li>test</li>
-              </ul>
+            <p :class="data.isSelected ? 'is-selected' : ''" @dblclick="handleDoubleClick(data.day)" @click="handleFocusCurrent(data.day)">
+               {{ data.day.split('-')[2] }} {{ data.isSelected ? '✔️' : '' }}
             </p>
+              <ul  >
+                <p v-for=" [key, value] of record.entries()"   :key="key">
+                <template v-if="key===data.day" >
+
+                 <li  v-for="(tasks,index) in value"   :key="tasks" >
+                   <span style="height:auto;line-height:0px;" class="el-tag el-tag--light " data-v-53b8cb1a="">{{tasks.task}}<i class="el-tag__close el-icon-close" @click="handleListItem(index,value)"></i></span>
+                   </li>
+
+               </template>
+                </p>
+
+              </ul>
+
           </template>
         </el-calendar>
         </el-card>
       </el-col>
     </el-row>
+    <el-dialog v-model="dialogFormVisible" title="请输入列表任务">
+      <el-form :model="listForm">
+        <el-form-item label="当前任务" :label-width="formLabelWidth">
+          <el-input v-model="listForm.task" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="handleAddNewTask">确 定</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs,ref, computed } from 'vue'
+import { defineComponent, reactive, toRefs,ref, computed, onMounted } from 'vue'
+import {ElMessage} from 'element-plus'
+import axios from '@/utils/request'
 
 export default defineComponent({
   name: 'PersonalCenter',
+  components:{
+  },
   setup() {
     const state = reactive({
-      dynamicTags: ['积极阳光', '专注', '认真负责'],
+      dynamicTags: ["default"],
       inputVisible: false,
       inputValue: ''
     })
-    const record=new Map();
-    record.set('2021-05-19','test');
-    const recordData=reactive({
-      record
+    const formLabelWidth=ref(100);
+    const listForm=reactive({
+      task:''
     });
+    // const initData=[
+
+    // ['2021-05-19',[{task:"读书看报"}]],
+
+    // ['2021-05-20',[{task:"吃饭打屁"}]]
+    // ];
+
+
+    const currentEdit=ref();
+    // record.set();
+    const recordData=reactive({
+      record:new Map()
+    });
+    const computedData=computed(()=>recordData.record.entries());
     const size=ref('medium');
     const showDesc=ref(true);
+    const dialogFormVisible=ref(false);
     const selectedDay=ref();
+
     // mothods
     const handleClose = (tag: string) => {
       state.dynamicTags.splice(state.dynamicTags.indexOf(tag), 1)
     }
     const filterData=computed(()=>recordData.record.get(selectedDay.value));
+
     const showInput = () => {
       state.inputVisible = true
-
     }
     const filter=(day:any)=>{
         if(recordData.record.has(day)){
           return recordData.record.get(day)
         }
           return false;
+    }
+
+    const handleDoubleClick=(day:any)=>{
+        selectedDay.value=day
+
+        dialogFormVisible.value=true;
+         listForm.task=""
+    }
+      /**
+      * @description 获取角色
+     */
+     const  getTaskList= async ()=>{
+       await axios.get('/api/personal/tasks')
+       .then((res: any)=>{
+         if(res.data.code===0){
+           const initData=res.data.data.tasks;
+           const record=new Map(initData as any);
+           recordData.record=record;
+         }
+       })
+       .catch((err: any)=>{
+        // eslint-disable-next-line no-console
+         console.error(err);
+       });
+     }
+     /**
+      * @description 获取当前tags
+     */
+      /**
+      * @description 获取角色
+     */
+     const  getTagList= async ()=>{
+       await axios.get('/api/personal/tags')
+       .then((res: any)=>{
+         if(res.data.code===0){
+          state.dynamicTags=res.data.data.tags;
+         }
+       })
+       .catch((err: any)=>{
+        // eslint-disable-next-line no-console
+         console.error(err);
+       });
+     }
+
+     /**
+      * @description 删除当前列表任务
+     */
+    const handleListItem=(index:number,list:any[])=>{
+      // 删除当前item ;
+        list.splice(index,1);
+
+         ElMessage({
+            type: 'success',
+            message: '删除成功!'
+          });
+    }
+    const handleAddNewTask=()=>{
+      // 存储当前日期的事件；
+       if( recordData.record.get(selectedDay.value)){
+         recordData.record.get(selectedDay.value as string).push([{task:listForm.task}])
+       }else{
+         // fixbug proxy 代理对象的索引
+          recordData.record.set(selectedDay.value,[{task:listForm.task}]);
+       }
+       dialogFormVisible.value=false;
 
     }
-    const currentEdit=ref();
     // 聚焦的时候，
     const handleFocusCurrent=(day: any)=>{
       selectedDay.value=day
@@ -120,10 +225,24 @@ export default defineComponent({
       state.inputValue = ''
     }
 
+
+
     const handleInputEnter=()=>{
     }
+
+      onMounted(()=>{
+       getTaskList()
+       getTagList()
+    });
     return {
+      dialogFormVisible,
+      computedData,
       filter,
+      listForm,
+      formLabelWidth,
+      handleListItem,
+      handleAddNewTask,
+      handleDoubleClick,
       handleBlurCurrent,
       handleFocusCurrent,
       currentEdit,
@@ -142,6 +261,9 @@ export default defineComponent({
 </script>
 <style lang="stylus" scoped>
 .box-card{
+  p{
+    text-align :right;
+  }
     .is-selected {
     color: #1989FA;
   }
@@ -153,6 +275,44 @@ export default defineComponent({
     position: relative;
     display: inline-block;
     background-color: white;
+    li{
+      text-align :left;
+      .list-tag{
+            background-color: #ecf5ff;
+            border-color: #d9ecff;
+            height: 32px;
+            padding: 0 10px;
+            line-height: 30px;
+            font-size: 12px;
+            color: #409EFF;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 4px;
+            box-sizing: border-box;
+            white-space: nowrap;
+            .el-icon-close{
+              border-radius: 50%;
+                text-align: center;
+                position: relative;
+                cursor: pointer;
+                font-size: 12px;
+                height: 16px;
+                width: 16px;
+                line-height: 16px;
+                vertical-align: middle;
+                top: -1px;
+                right: -5px;
+
+                :before{
+                  display :block;
+                }
+             }
+        .el-tag__close{
+                  color: #409eff;
+            }
+      }
+
+    }
   }
   margin-top:14px;
   .account-avatar{

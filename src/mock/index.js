@@ -77,6 +77,25 @@ Mock.mock('/api/setting/basicInfo','post',(option)=>{
         message:'更新成功'
     }
 });
+Mock.mock('/api/personal/tags','get',()=>({
+    code:0,
+    data:{
+        tags:['积极阳光', '专注', '认真负责','花痴']
+    },
+    message:'成功'
+}));
+Mock.mock('/api/personal/tasks','get',()=>({
+        code:0,
+        data:{
+            tasks:[
+
+                ['2021-05-19',[{task:"读书看报"}]],
+
+                ['2021-05-20',[{task:"吃饭打屁"}]]
+                ]
+        },
+        message:'更新成功'
+    }));
 Mock.mock('/api/auth/roles','get',genRoles);
 Mock.mock('/api/home/swiperInfo','get',getSwiperInfo);
 
