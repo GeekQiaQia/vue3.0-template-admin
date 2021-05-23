@@ -6,6 +6,9 @@
      git status  // check status
 
      git cz  // commit change
+
+     git push // push stage commit
+
 举例：新增功能
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2a1f4ad3d8f441898d37215da1c0c3e1~tplv-k3u1fbpfcp-watermark.image)
 举例: 修改文档
