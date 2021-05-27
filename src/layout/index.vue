@@ -8,18 +8,32 @@
       </div>
       <!--AppMain-->
       <AppMain/>
+      <RightPanel v-if="showSetting">
+        <div class="setting-item">
+          <div class="setting-draw-title">
+          主题色
+        </div>
+        <el-color-picker
+        v-model="color"
+        show-alpha
+        :predefine="predefineColors">
+      </el-color-picker>
+      <div class="divider"></div>
+        </div>
+      </RightPanel>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import {
-  defineComponent, reactive, computed, toRefs,
+  defineComponent, reactive, computed, toRefs,ref
 } from 'vue';
-import { useStore } from '../store/index';
+import { useStore } from '@/store/index';
 import Navbar from './components/Navbar.vue';
 import Sidebar from './components/Sidebar/index.vue';
 import AppMain from './components/AppMain.vue';
+import RightPanel from './components/RightSetting/RightPanel.vue'
 
 export default defineComponent({
   name: 'Layout',
@@ -27,6 +41,7 @@ export default defineComponent({
     Navbar,
     Sidebar,
     AppMain,
+    RightPanel
   },
   setup() {
     const store = useStore();
@@ -35,7 +50,25 @@ export default defineComponent({
     const reactiveData = reactive({
       fixedHeader: computed(() => store?.state?.settingsModule?.fixedHeader),
     });
+     const color=ref('rgba(255, 69, 0, 0.68)');
 
+     const predefineColors=ref( [
+          '#ff4500',
+          '#ff8c00',
+          '#ffd700',
+          '#90ee90',
+          '#00ced1',
+          '#1e90ff',
+          '#c71585',
+          'rgba(255, 69, 0, 0.68)',
+          'rgb(255, 120, 0)',
+          'hsv(51, 100, 98)',
+          'hsva(120, 40, 94, 0.5)',
+          'hsl(181, 100%, 37%)',
+          'hsla(209, 100%, 56%, 0.73)',
+          '#c7158577'
+        ])
+    const showSetting=computed(()=>store.state.settingsModule.showSettings);
     const opened = computed(() => store.getters['appModule/getSidebarState']);
     const device = computed(() => store.getters['appModule/getDeviceState']);
     const withoutAnimation = computed(() => store.getters['appModule/getSidebarAnimation']);
@@ -47,7 +80,10 @@ export default defineComponent({
       mobile: device.value === 'mobile',
     }));
     return {
+      color,
+      predefineColors,
       classObj,
+      showSetting,
       ...toRefs(reactiveData),
     };
   },
@@ -77,6 +113,37 @@ export default defineComponent({
   position: absolute;
   z-index: 999;
 }
+.setting-item{
+margin-bottom:24px;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: flex-start;
+.setting-draw-title{
+  margin-bottom:12px;
+  color: rgba(0,0,0,.85);
+  font-size: 14px;
+  line-height:22px
+}
+.divider{
+  width:100%;
+  display: flex;
+  clear:both;
+  min-width:100%;
+  margin:24px 0;
+
+  box-sizing: border-box;
+  padding: 0px;
+  color:rgba(0,0,0,.85);
+  font-size: 14px;
+  border-top:1px solid rgba(0,0,0,.09);
+  list-style: none;
+  line-height:1.5715;
+
+
+}
+}
+
 
 .fixed-header {
   position: fixed;

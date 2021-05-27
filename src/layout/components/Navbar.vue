@@ -51,7 +51,7 @@ import {
   toFullScreen,
   exitFullScreen
 } from "@/utils/screen";
-import { useStore } from '../../store/index';
+import { useStore } from '@/store/index';
 
 export default defineComponent({
   name: 'Navbar',
