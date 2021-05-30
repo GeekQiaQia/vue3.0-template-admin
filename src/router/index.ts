@@ -169,6 +169,26 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: '/qrcode',
+    component: layout,
+    redirect: '/qrcode/qrcodeGen',
+    meta: {
+      title: '二维码',
+      icon: 'el-icon-c-scale-to-original',
+    },
+    children: [
+      {
+        path: '/qrcode/qrcodeGen',
+        name: 'qrcodeGen',
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/qrcode/qrcodeGen.vue'),
+        meta: {
+          title: '二维码',
+          icon: 'el-icon-c-scale-to-original',
+        },
+      }
+    ],
+  },
+  {
     path: '/personal',
     component: layout,
     redirect: '/personal/personalCenter',

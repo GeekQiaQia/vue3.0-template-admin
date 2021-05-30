@@ -22,9 +22,13 @@
 [echart数据可视化](http://echarts.apache.org/zh/index.html)
 
 [mockjs 模拟和交互数据](http://mockjs.com/)
+
+ npm install qrcodejs2 --save
 ## 功能
 ### 全屏功能
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9a65c47c1194442d86e4a18128aa59d5~tplv-k3u1fbpfcp-watermark.image)
+### tab标签页
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fd7269635ab043f4a61302f2b7374906~tplv-k3u1fbpfcp-watermark.image)
 ### 首页
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eea4ccee9af045b088c46a05c2f2cc86~tplv-k3u1fbpfcp-watermark.image)
 
@@ -50,3 +54,7 @@
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e93867b395394f39926a0b3b88da39dd~tplv-k3u1fbpfcp-watermark.image)
 ### 个人设置
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ddf3f9dbe5b84230b030de41c83912b2~tplv-k3u1fbpfcp-watermark.image)
+
+### 主题设置
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cc192a56d9104cd3b8404b37c024ac76~tplv-k3u1fbpfcp-watermark.image)

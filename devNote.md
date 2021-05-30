@@ -106,9 +106,9 @@ createApp(App).use(ElementPlus, { locale })
 ### 优化：
 
 ## 问题9：
-> 添加修改元素属性 css 样式 等； vite进行热更新，template 没有重新渲染，
-```
-  example : icon="el-icon-edit"
+> 添加修改元素属性 css 样式 等； vite进行热更新，template 没有重新渲染， // example : icon="el-icon-edit"
+```html
+
 
  <el-button size="mini" icon="el-icon-edit">
  </el-button>
@@ -117,3 +117,44 @@ createApp(App).use(ElementPlus, { locale })
 ## 问题10： 错误提示不友好
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1a07ce8d1bea437685e16dbb12c28464~tplv-k3u1fbpfcp-watermark.image)
 
+## 问题11： vue3语法改变
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eae4d702a29d4211b6f33f469029d619~tplv-k3u1fbpfcp-watermark.image)
+
+
+```html
+    <!-- <transition name="fade" mode="out-in">
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+      </keep-alive>
+    </transition>
+
+    <transition name="fade" mode="out-in">
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
+    </transition> -->
+
+```
+```html
+<router-view v-if="$route.meta.keepAlive" v-slot="{ Component }" >
+  <transition  name="fade" mode="out-in">
+    <component :is="Component" />
+  </transition>
+</router-view>
+
+<router-view v-if="!$route.meta.keepAlive" v-slot="{ Component }" >
+  <transition  name="fade" mode="out-in">
+    <keep-alive>
+    <component :is="Component" />
+    </keep-alive>
+  </transition>
+</router-view>
+
+
+```
+
+## 问题12： hot
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/627a906b1b1b4088ba927f9db007b816~tplv-k3u1fbpfcp-watermark.image)
+
+
+## 问题13：hot module
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/df4e74f57ee24d2db09fe39d2fbdc17e~tplv-k3u1fbpfcp-watermark.image)

@@ -8,7 +8,7 @@
       </div>
       <!--AppMain-->
       <AppMain/>
-      <RightPanel v-if="showSetting">
+      <!-- <RightPanel v-if="showSetting">
         <div class="setting-item">
           <div class="setting-draw-title">
           主题色
@@ -20,7 +20,22 @@
       </el-color-picker>
       <div class="divider"></div>
         </div>
-      </RightPanel>
+      </RightPanel> -->
+      <RightDrawer  v-if="showSetting">
+          <div class="setting-item">
+          <div class="setting-draw-title">
+          主题色
+        </div>
+        <el-color-picker
+        v-model="color"
+        show-alpha
+        :predefine="predefineColors"
+        @change='handleChangeTheme'>
+      </el-color-picker>
+      <div class="divider"></div>
+        </div>
+      </RightDrawer>
+
     </div>
   </div>
 </template>
@@ -33,7 +48,7 @@ import { useStore } from '@/store/index';
 import Navbar from './components/Navbar.vue';
 import Sidebar from './components/Sidebar/index.vue';
 import AppMain from './components/AppMain.vue';
-import RightPanel from './components/RightSetting/RightPanel.vue'
+import RightDrawer from './components/RightSetting/RightDrawer.vue'
 
 export default defineComponent({
   name: 'Layout',
@@ -41,7 +56,7 @@ export default defineComponent({
     Navbar,
     Sidebar,
     AppMain,
-    RightPanel
+    RightDrawer
   },
   setup() {
     const store = useStore();
@@ -79,10 +94,16 @@ export default defineComponent({
       withoutAnimation: withoutAnimation.value,
       mobile: device.value === 'mobile',
     }));
+    // 将这个颜色设置为主题颜色；
+    const handleChangeTheme=()=>{
+      console.log("color",color.value);
+    }
     return {
+
       color,
       predefineColors,
       classObj,
+      handleChangeTheme,
       showSetting,
       ...toRefs(reactiveData),
     };
