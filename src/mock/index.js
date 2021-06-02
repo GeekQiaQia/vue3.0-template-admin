@@ -8,16 +8,13 @@ Mock.setup({
 });
 
 // mock 一组角色数据；
-const genRoles=function(){
-    return {
+const genRoles=()=>({
         code:0,
         data:['super','admin','nomal'],
         message:'成功'
-    }
-}
+    })
 
-const getSwiperInfo=function(){
-    return {
+const getSwiperInfo=()=>({
         code:0,
         data:[{
             name:'vue-next',
@@ -43,8 +40,7 @@ const getSwiperInfo=function(){
           },
           ],
           message:'成功'
-    }
-}
+    })
 
 Mock.mock('/api/auth/login','post',(option) => {
     const {account,password} = JSON.parse(option.body);

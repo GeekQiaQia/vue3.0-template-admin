@@ -21,6 +21,7 @@ module.exports = {
     'vue/no-multiple-template-root': 'off',
     "vue/html-self-closing": "off",
     // "consistent-return":"off",  // 返回类型一致性
+    "no-console": "off",
     'no-param-reassign': [
       'error',
       {

@@ -5,6 +5,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
+    "lint":"eslint --ext .vue,.js,.ts ./",
     "prepare": "husky install"
   },
   "lint-staged": {
