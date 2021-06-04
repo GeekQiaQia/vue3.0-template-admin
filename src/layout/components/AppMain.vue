@@ -1,7 +1,7 @@
 <template>
   <section class="app-main">
     <el-tabs v-model="currentIndex" type="card" closable @tab-click="clickTab" @tab-remove="removeTab">
-      <el-tab-pane v-for="item in tabsOption" :key="item.route" :closable="item.route !== '/'" :label="item.name" :name="item.route">
+      <el-tab-pane v-for="item in tabsOption" :key="item.route" :closable="item.route !== '/home'" :label="item.name" :name="item.route">
         <router-view v-if="$route.meta.keepAlive" v-slot="{ Component }">
           <transition name="fade" mode="out-in">
             <component :is="Component" />
@@ -30,19 +30,25 @@ export default defineComponent({
     // store 中获取当前路由以及所有的路由对象；
     const store = useStore()
     const tabsOption = computed(() => store.getters['tabModule/getTabsOption'])
+    console.log('tabsOption.value is ', tabsOption.value)
     const currentIndex = computed(() => store.getters['tabModule/getCurrentIndex'])
     const router = useRouter()
     const route = useRoute()
-    // 刷新页面，将当前刷新路由压入栈中
+    // 刷新页面，将当前刷新路由压入栈中除了/home
     const activeMenu = computed(() => router.currentRoute.value.fullPath)
     const activeTitle = computed(() => router.currentRoute.value.meta.title)
 
     onMounted(() => {
-      store.commit('tabModule/SET_TAB', activeMenu)
-      store.commit('tabModule/ADD_TAB', { route: activeMenu, name: activeTitle })
+      store.commit('tabModule/SET_TAB', activeMenu.value)
+      // 默认home已经压栈，不再进行入栈
+      if(activeMenu.value!=='/home'){
+      store.commit('tabModule/ADD_TAB', { route: activeMenu.value, name: activeTitle.value })
+
+      }
     })
+    // 监听当前路由，判断是否入栈
     watch(route, () => {
-      // 判断当前路由中是否以及入栈
+      // 判断当前路由中是否已经入栈
       const flag = tabsOption.value.findIndex((tab: { route: string }) => tab.route === route.fullPath) > -1
       if (!flag) {
         store.commit('tabModule/ADD_TAB', { route: route.fullPath, name: route.meta.title })
@@ -51,7 +57,7 @@ export default defineComponent({
     })
     // mothods
     const removeTab = (tabName: string) => {
-      if (tabName === '/') {
+      if (tabName === '/home') {
         return
       }
       // 移除tab

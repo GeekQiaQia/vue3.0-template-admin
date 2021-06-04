@@ -76,7 +76,7 @@
                     </div>
                     <div class="opera-btn"><span>修改</span></div>
                   </div>
-                    <div class="secure-item">
+                  <div class="secure-item">
                     <div class="secure-info">
                       <span class="secure-key">绑定邮箱</span>
                       <span class="secure-value">已绑定邮箱：geek****@outlook.com</span>
@@ -85,7 +85,7 @@
                   </div>
                 </el-tab-pane>
                 <el-tab-pane label="新消息通知">
-                   <div class="set-title">
+                  <div class="set-title">
                     <span>新消息通知</span>
                   </div>
                   <div class="secure-item">
@@ -94,14 +94,7 @@
                       <span class="secure-value">用户信息将以系统内部渠道通知</span>
                     </div>
                     <el-tooltip :content="'是否开启用户信息: '" placement="top">
-                      <el-switch
-                        v-model="userSwitch"
-                        active-color="#13ce66"
-                        inactive-color="#ff4949"
-                        :active-value="true"
-                       :inactive-value="false"
-                      >
-                      </el-switch>
+                      <el-switch v-model="userSwitch" active-color="#13ce66" inactive-color="#ff4949" :active-value="true" :inactive-value="false"> </el-switch>
                     </el-tooltip>
                   </div>
                   <div class="secure-item">
@@ -109,40 +102,24 @@
                       <span class="secure-key">系统消息</span>
                       <span class="secure-value">系统消息将以系统内部渠道通知</span>
                     </div>
-                     <el-tooltip :content="'是否开启系统消息: '" placement="top">
-                      <el-switch
-                        v-model="sysSwitch"
-                        active-color="#13ce66"
-                        inactive-color="#ff4949"
-                        :active-value="true"
-                        :inactive-value="false"
-                      >
-                      </el-switch>
+                    <el-tooltip :content="'是否开启系统消息: '" placement="top">
+                      <el-switch v-model="sysSwitch" active-color="#13ce66" inactive-color="#ff4949" :active-value="true" :inactive-value="false"> </el-switch>
                     </el-tooltip>
                   </div>
-                    <div class="secure-item">
+                  <div class="secure-item">
                     <div class="secure-info">
                       <span class="secure-key">代办任务</span>
                       <span class="secure-value">代办任务将以系统内部渠道通知</span>
                     </div>
-                   <el-tooltip :content="'是否开启代办任务消息: '" placement="top">
-                    <el-switch
-                      v-model="taskSwitch"
-                      active-color="#13ce66"
-                      inactive-color="#ff4949"
-                      :active-value="true"
-                      :inactive-value="false"
-                    >
-                    </el-switch>
-                  </el-tooltip>
+                    <el-tooltip :content="'是否开启代办任务消息: '" placement="top">
+                      <el-switch v-model="taskSwitch" active-color="#13ce66" inactive-color="#ff4949" :active-value="true" :inactive-value="false"> </el-switch>
+                    </el-tooltip>
                   </div>
-
                 </el-tab-pane>
               </el-tabs>
             </fragment>
-          </el-card>
-        </div></el-col
-      >
+          </el-card></div
+      ></el-col>
     </el-row>
   </div>
 </template>
@@ -158,10 +135,10 @@ export default defineComponent({
     const router = useRouter()
     const tabPosition = ref('left')
     const settingFormRef = ref()
-    const noticeSwitch=reactive({
-      userSwtich:false,
-      sysSwitch:true,
-      taskSwitch:true
+    const noticeSwitch = reactive({
+      userSwtich: false,
+      sysSwitch: true,
+      taskSwitch: true
     })
     const settingForm = reactive({
       email: '',
