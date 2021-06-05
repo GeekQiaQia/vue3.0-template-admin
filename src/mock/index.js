@@ -7,17 +7,16 @@ Mock.setup({
     timeout:'200-600'
 });
 
+// 是否拦截 Ajax 请求
+// Mock.prototype.match = false
 // mock 一组角色数据；
-const genRoles=function(){
-    return {
+const genRoles=()=>({
         code:0,
         data:['super','admin','nomal'],
         message:'成功'
-    }
-}
+    })
 
-const getSwiperInfo=function(){
-    return {
+const getSwiperInfo=()=>({
         code:0,
         data:[{
             name:'vue-next',
@@ -43,8 +42,7 @@ const getSwiperInfo=function(){
           },
           ],
           message:'成功'
-    }
-}
+    })
 
 Mock.mock('/api/auth/login','post',(option) => {
     const {account,password} = JSON.parse(option.body);
@@ -84,6 +82,93 @@ Mock.mock('/api/personal/tags','get',()=>({
     },
     message:'成功'
 }));
+Mock.mock('/api/data/world-population','get',()=>({
+        code:0,
+        data:{
+            dataSets:[
+                {category: "frontEnd",
+                value: 13832220000,
+                x: "Vue-next"},
+                {category: "frontEnd",
+                value: 13832210000,
+                x: "Vuex"},
+                {category: "frontEnd",
+                value: 1383232300,
+                x: "vue-router"},
+                {category: "frontLib",
+                value: 13832210000,
+                x: "ElementPlus"},
+                {category: "frontEnd",
+                value: 1383232200,
+                x: "react"},
+                {category: "frontEnd",
+                value: 13831322200,
+                x: "antd"},
+                {category: "frontEnd",
+                value: 13831322200,
+                x: "antv"},
+                {category: "lowcode",
+                value: 1383232400,
+                x: "lowcode"},
+                {category: "frontEnd",
+                value: 1383232400,
+                x: "micro-frontend"},
+                {category: "frontEnd",
+                value: 1383232400,
+                x: "flutter"},
+                {category: "frontEnd",
+                value: 1383232300,
+                x: "微信小程序"},
+                {category: "frontEnd",
+                value: 1383232000,
+                x: "Taro"},
+                {category: "frontEnd",
+                value: 1383231000,
+                x: "抖音小程序"},
+                {category: "frontEnd",
+                value: 1383236000,
+                x: "快手小程序"},
+                {category: "frontEnd",
+                value: 138322000,
+                x: "UniApp"},
+                {category: "frontEnd",
+                value: 138322000,
+                x: "NodeJS"},
+                {category: "frontEnd",
+                value: 138322000,
+                x: "Koa"},
+                {category: "frontEnd",
+                value: 130922000,
+                x: "Vite"},
+                {category: "frontEnd",
+                value: 130922009,
+                x: "VitePress"},
+                {category: "frontEnd",
+                value: 130989000,
+                x: "TypeScript"},
+                {category: "frontEnd",
+                value: 130989003,
+                x: "stylus"},
+                {category: "frontEnd",
+                value: 130989003,
+                x: "less"},
+                {category: "frontEnd",
+                value: 130989003,
+                x: "sass"},
+                {category: "frontEnd",
+                value: 130989010,
+                x: "fidder"},
+                {category: "frontEnd",
+                value: 130989015,
+                x: "G2"},
+                {category: "frontEnd",
+                value: 130989010,
+                x: "mockjs"}
+
+                ]
+        },
+        message:'更新成功'
+    }));
 Mock.mock('/api/personal/tasks','get',()=>({
         code:0,
         data:{

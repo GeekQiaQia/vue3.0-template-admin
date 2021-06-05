@@ -32,7 +32,6 @@
         </div>
       </el-col>
        </el-row>
-
        <el-row>
       <el-col :offset="1" :span="22">
         <div class="grid-content bg-purple-dark">

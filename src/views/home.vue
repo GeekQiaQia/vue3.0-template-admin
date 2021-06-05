@@ -1,23 +1,43 @@
 <template>
   <div class="home-container page-container">
-    <div class="page-title">
-      <el-link type="info">信息链接:</el-link>
-      <el-link type="primary"  href="https://www.vitejs.net/guide/" >Vite2.x +</el-link>
-      <el-link type="success"  href="https://v3.cn.vuejs.org/" >Vue3.x +</el-link>
-      <el-link type="warning"  href="https://www.tslang.cn/" >TypeScript +</el-link>
-      <el-link type="danger"  href="https://element-plus.gitee.io/#/zh-CN/component/link" >Element Plus</el-link>
-    </div>
+
      <el-carousel  :interval="4000"  indicator-position="outside">
         <el-carousel-item v-for="item in swiperItems" :key="item">
           <img class="vue-element-plus-logo " :alt="item.name" :src="item.itemSrc" @click="handleClickImg(item.targetLink)"/>
         </el-carousel-item>
       </el-carousel>
+       <div class="top-container">
+          <div class="title">搜索词云</div>
+           <div class="page-title">
+          <el-link type="info">信息链接:</el-link>
+          <el-link type="primary"  href="https://www.vitejs.net/guide/" >Vite2.x +</el-link>
+          <el-link type="success"  href="https://v3.cn.vuejs.org/" >Vue3.x +</el-link>
+          <el-link type="warning"  href="https://www.tslang.cn/" >TypeScript +</el-link>
+          <el-link type="danger"  href="https://element-plus.gitee.io/#/zh-CN/component/link" >Element Plus</el-link>
+    </div>
+        </div>
+      <div class="word-cloud-wrapper">
+
+           <div class="right-bottom">
+     </div>
+
+    <div class="word-sets">
+      <div class="sets-module">
+      <div id="container" />
+
+      </div>
+    </div>
+      </div>
+
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive,toRefs } from 'vue';
 import  logo from '@/assets/logo.png'
 import axios from '@/utils/request'
+import DataSet from '@antv/data-set';
+import { Chart, registerShape, Util } from '@antv/g2';
+import { ShapeInfo } from 'node_modules/@antv/g2/lib/interface';
 
 export default defineComponent({
   name: 'Home',
@@ -32,6 +52,40 @@ export default defineComponent({
             targetLink:'https://github.com/vuejs/docs-next-zh-cn'
           }]
      });
+
+const getTextAttrs=(cfg: ShapeInfo)=>({
+    ...cfg.defaultStyle,
+    ...cfg.style,
+    fontSize: cfg?.data?.size,
+    text: cfg?.data?.text,
+    textAlign: 'center',
+    fontFamily: cfg?.data?.font,
+    fill: cfg.color || cfg?.defaultStyle?.stroke,
+    textBaseline: 'Alphabetic'
+  })
+
+// 给point注册一个词云的shape
+registerShape('point', 'cloud', {
+  draw(cfg, container) {
+    const attrs = getTextAttrs(cfg);
+    const textShape = container.addShape('text', {
+      attrs: {
+        ...attrs,
+        x: cfg?.x,
+        y: cfg?.y
+      }
+    });
+    if (cfg?.data?.rotate) {
+      Util.rotate(textShape, cfg?.data?.rotate * Math.PI / 180);
+    }
+    return textShape;
+  }
+});
+// fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/world-population.json')
+//   .then(res => res.json())
+//   .then(data => {
+
+//   });
     // methods
      const handleClickImg=(targetUrl: string|undefined)=>{
          window.open(targetUrl, '_blank');
@@ -49,6 +103,74 @@ export default defineComponent({
          console.error(err);
        });
      }
+     /**
+      * @description 获取词云
+     */
+     const getWords=()=>{
+         axios.get('/api/data/world-population')
+       .then((res: any)=>{
+         if(res.data.code===0){
+          const {dataSets} = res.data.data;
+          const dv = new DataSet.View().source(dataSets);
+          const range = dv.range('value');
+          const min = range[0];
+          const max = range[1];
+          dv.transform({
+            type: 'tag-cloud',
+            fields: ['x', 'value'],
+            size: [600, 500],
+            font: 'Verdana',
+            padding: 0,
+            timeInterval: 5000, // max execute time
+            rotate() {
+              // eslint-disable-next-line no-bitwise
+              let random = ~~(Math.random() * 4) % 4;
+              if (random === 2) {
+                random = 0;
+              }
+              return random * 90; // 0, 90, 270
+            },
+            fontSize(d) {
+              if (d.value) {
+                return ((d.value - min) / (max - min)) * (80 - 24) + 24;
+              }
+              return 0;
+            }
+          });
+          const chart = new Chart({
+            container: 'container',
+            autoFit: false,
+            width: 600,
+            height: 500,
+            padding: 0
+          });
+          chart.data(dv.rows);
+          chart.scale({
+            x: { nice: false },
+            y: { nice: false }
+          });
+          chart.legend(false);
+          chart.axis(false);
+          chart.tooltip({
+            showTitle: false,
+            showMarkers: false
+          });
+          chart.coordinate().reflect();
+          chart.point()
+            .position('x*y')
+            .color('CornflowerBlue')
+            .shape('cloud')
+            .tooltip('value*category');
+          chart.interaction('element-active');
+          chart.render();
+
+         }
+       })
+       .catch((err: any)=>{
+        // eslint-disable-next-line no-console
+         console.error(err);
+       });
+       }
       /**
       * @description 获取swiperInfo
      */
@@ -67,6 +189,7 @@ export default defineComponent({
      onMounted(()=>{
        getRoles();
        getSwiperInfo();
+       getWords();
      });
     return{
       handleClickImg,
@@ -80,8 +203,62 @@ export default defineComponent({
 
 <style scoped lang="stylus">
 .home-container {
+  background: #f0f5fa;
+   .top-container{
+      width:90%;
+      margin:0px auto;
+      .title{
+
+        margin-left: 4.06%;
+        font-size: 2.714em;
+        color: #000;
+        margin-bottom: 0;
+        font-weight: 500;
+        position: relative;
+        height: -webkit-min-content;
+        height: min-content;
+        cursor: pointer;
+        text-align :left;
+      }
+    }
+  .word-cloud-wrapper{
+    width:100%;
+    height:800px;
+    display: flex;
+    margin: 50px auto auto;
+    position: relative;
+    flex-direction: column;
+    padding: 0;
+    background: #f0f5fa;
+    overflow-x: hidden;
+    transition: all .3s;
+
+      .right-bottom{
+    background:linear-gradient(130deg, #6a91ff 40%, #615edd);
+    width: 100%;
+    height: 80%;
+    right: 0;
+    margin-top: 48px;
+    position: absolute;
+  }
+  .word-sets{
+    width: 95.8%;
+    height: 100%;
+    margin-left: 0;
+    margin-bottom: 5%;
+    position: relative;
+    .sets-module{
+      background: #fff;
+      width: 100%;
+      height: 85%;
+      position: relative;
+      box-shadow: -5px 5px 15px rgba(0,0,0,.1);
+      overflow: hidden;
+    }
+  }
+  }
+
   .page-title{
-    margin:20px;
   }
   .vue-element-plus-logo {
     width:100%;
