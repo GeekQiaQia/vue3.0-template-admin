@@ -228,6 +228,9 @@ const router = createRouter({
     top: 0,
   }),
   routes: constantRoutes,
+  // sensitive: false,
+  // strict: false,
+  // end: false,
 
 });
 

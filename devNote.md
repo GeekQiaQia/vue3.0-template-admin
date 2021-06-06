@@ -218,3 +218,7 @@ createApp(App).use(ElementPlus, { locale })
 ## 问题 13：hot module
 
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/df4e74f57ee24d2db09fe39d2fbdc17e~tplv-k3u1fbpfcp-watermark.image)
+
+## cjs default
+
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0e13a67abd5f4f1c9eb075024f792856~tplv-k3u1fbpfcp-watermark.image)
