@@ -12,6 +12,9 @@ export default defineConfig({
     },
   },
   base: './', // 设置打包路径
+  optimizeDeps:{
+    include: ["vuedraggable"]
+  },
   server: {
     hmr: { overlay: false },
 

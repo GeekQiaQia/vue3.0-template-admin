@@ -1,0 +1,7 @@
+{
+"stylusSupremacy.insertColons": true,
+"stylusSupremacy.insertSemicolons": false,
+"stylusSupremacy.insertBraces": false,
+"stylusSupremacy.insertNewLineAroundImports": false,
+"stylusSupremacy.insertNewLineAroundBlocks":false
+}

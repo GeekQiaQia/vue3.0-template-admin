@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
-    "lint":"eslint --ext .vue,.js,.ts ./",
+    "lint": "eslint --ext .vue,.js,.ts ./",
     "prepare": "husky install"
   },
   "lint-staged": {
@@ -28,6 +28,8 @@
     "@types/mockjs": "^1.0.3",
     "@types/node": "^15.0.1",
     "@types/qrcode": "^1.4.0",
+    "@types/sortablejs": "^1.10.6",
+    "@types/vuedraggable": "^2.24.0",
     "@vitejs/plugin-vue": "^1.2.1",
     "axios": "^0.21.1",
     "dom-to-image": "^2.6.0",
@@ -42,6 +44,7 @@
     "sass": "^1.32.12",
     "scss": "^0.2.4",
     "slate-vue": "^0.2.0",
+    "sortablejs": "^1.13.0",
     "tinymce": "^5.8.0",
     "vite": "^2.2.2",
     "vue": "^3.0.5",
@@ -50,6 +53,7 @@
     "vue-qr": "^2.4.0",
     "vue-router": "^4.0.6",
     "vue-tsx-support": "^3.1.0",
+    "vuedraggable": "^2.24.3",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
