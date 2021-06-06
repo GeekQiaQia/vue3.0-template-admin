@@ -189,6 +189,26 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: '/dragable',
+    component: layout,
+    redirect: '/dragable/dragableComponent',
+    meta: {
+      title: '拖拽组件',
+      icon: 'el-icon-s-promotion',
+    },
+    children: [
+      {
+        path: '/dragable/dragableComponent',
+        name: 'dragableComponent',
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/dragable/dragableComponent.vue'),
+        meta: {
+          title: '拖拽组件',
+          icon: 'el-icon-s-promotion',
+        },
+      }
+    ],
+  },
+  {
     path: '/personal',
     component: layout,
     redirect: '/personal/personalCenter',
