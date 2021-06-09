@@ -1,0 +1,64 @@
+<template>
+  <div class="editorWrapper">
+    <div class="info">
+      <el-divider content-position="left">markdown编辑器</el-divider>
+      <span style="text-align: left">markdown编辑器常用于技术型文本编辑场景。</span>
+    </div>
+    <div>
+      <el-row>
+        <el-col :offset="1" :span="22">
+          <div class="grid-content bg-purple-dark">
+            <el-card class="box-card">
+              <fragment>
+                <div style="text-align: left">
+                  <span>超简单的markdown编辑器</span>
+                  <el-divider></el-divider>
+                </div>
+              </fragment>
+              <simpleMD> </simpleMD>
+            </el-card>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+  </div>
+</template>
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
+import simpleMD from './components/simpleMarkdown.vue'
+
+export default defineComponent({
+  components: {
+    simpleMD
+  },
+  setup() {
+    const value = ref('')
+
+    return {
+      value
+    }
+  }
+})
+</script>
+<style lang="stylus" scoped>
+.editorWrapper{
+       margin-top:20px;
+
+    .info{
+        text-align: left;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    }
+    .section{
+      display:flex;
+      flex-direction:row;
+      justify-content: flex-start;
+      align-items :center;
+    }
+     .el-row {
+       margin-bottom: 20px;
+     }
+
+}
+</style>

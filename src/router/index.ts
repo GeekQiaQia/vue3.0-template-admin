@@ -209,6 +209,55 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: '/editor',
+    component: layout,
+    redirect: '/Editor/editorComponent',
+    meta: {
+      title: '编辑器组件',
+      icon: 'el-icon-edit',
+    },
+    children: [
+      {
+        path: '/Editor/markdownEditor',
+        name: 'markdownEditor',
+        component: () => import( '@/views/Editor/markdownEditor.vue'),
+        meta: {
+          title: 'markdown编辑器',
+          icon: 'el-icon-edit',
+        },
+      },
+      {
+        path: '/Editor/richEditor',
+        name: 'richEditor',
+        component: () => import( '@/views/Editor/richEditor.vue'),
+        meta: {
+          title: '富文本编辑器',
+          icon: 'el-icon-edit',
+        },
+      }
+    ],
+  },
+  {
+    path: '/permission',
+    component: layout,
+    redirect: '/permission/permission',
+    meta: {
+      title: '权限',
+      icon: 'el-icon-c-scale-to-original',
+    },
+    children: [
+      {
+        path: '/permission/permission',
+        name: 'permission',
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/permission/permission.vue'),
+        meta: {
+          title: '权限',
+          icon: 'el-icon-c-scale-to-original',
+        },
+      }
+    ],
+  },
+  {
     path: '/personal',
     component: layout,
     redirect: '/personal/personalCenter',
