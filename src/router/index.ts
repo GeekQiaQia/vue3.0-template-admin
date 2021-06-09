@@ -239,6 +239,27 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: '/upload',
+    component: layout,
+    redirect: '/upload/uploadFile',
+    meta: {
+      title: '文件上传',
+      icon: 'el-icon-upload',
+    },
+    children: [
+      {
+        path: '/upload/uploadFile',
+        name: 'copyText',
+        component: () => import(/* webpackChunkName: "richText" */ '@/views/Upload/uplodFile.vue'),
+        meta: {
+          title: '文件上传',
+          icon: 'home',
+        },
+      },
+    ],
+  },
+
 
 ];
 
