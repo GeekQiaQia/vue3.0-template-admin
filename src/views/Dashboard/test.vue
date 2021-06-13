@@ -1,8 +1,8 @@
 <template>
-  <div class="workplace-container">
+  <div class="analysisInfo">
     <fragment>
       <div class="info">
-        <span style="display:block;font-size:24px;margin:24px 0;">数据可视化</span>
+        <span style="display: block; font-size: 24px; margin: 24px 0">数据可视化</span>
         <span style="text-align: left">数据可视化主要旨在借助于图形化手段，清晰有效地传达与沟通信息，</span>
       </div>
     </fragment>
@@ -15,18 +15,15 @@
         </div>
       </el-col>
     </el-row> -->
-     <div class="echart-container">
-
-              <fragment>
-                <div ref="lineEchart" style="width: 100%; height: 400px" class="echart"></div>
-              </fragment>
-              <div class="bottom-chart">
-                       <div ref="refEchart" style="width: 49%; height: 400px" class="echart"></div>
-                <div ref="radarEchart" style="width: 49%; height: 400px" class="echart"></div>
-
-              </div>
-
-            </div>
+    <div class="echart-container">
+      <fragment>
+        <div ref="lineEchart" style="width: 100%; height: 400px" class="echart"></div>
+      </fragment>
+      <div class="bottom-chart">
+        <div ref="refEchart" style="width: 49%; height: 400px" class="echart"></div>
+        <div ref="radarEchart" style="width: 49%; height: 400px" class="echart"></div>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -34,11 +31,11 @@ import { defineComponent, onMounted, ref } from 'vue'
 import * as Echarts from 'echarts'
 
 export default defineComponent({
-  name: 'Workplace',
+  name: 'Analysis',
   setup() {
-    const refEchart = ref();
-    const lineEchart=ref();
-    const radarEchart=ref();
+    const refEchart = ref()
+    const lineEchart = ref()
+    const radarEchart = ref()
 
     // 指定图表的配置项和数据
     const option = {
@@ -88,116 +85,99 @@ export default defineComponent({
         }
       ]
     }
-    const lineOptions= {
-    title: {
+    const lineOptions = {
+      title: {
         text: '折线图堆叠'
-    },
-    tooltip: {
+      },
+      tooltip: {
         trigger: 'axis'
-    },
-    legend: {
+      },
+      legend: {
         data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
-    },
-    grid: {
+      },
+      grid: {
         left: '3%',
         right: '4%',
         bottom: '3%',
         containLabel: true
-    },
-    toolbox: {
+      },
+      toolbox: {
         feature: {
-            saveAsImage: {}
+          saveAsImage: {}
         }
-    },
-    xAxis: {
+      },
+      xAxis: {
         type: 'category',
         boundaryGap: false,
         data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-    },
-    yAxis: {
+      },
+      yAxis: {
         type: 'value'
-    },
-    series: [
+      },
+      series: [
         {
-            name: '邮件营销',
-            type: 'line',
-            stack: '总量',
-            data: [120, 132, 101, 134, 90, 230, 210]
+          name: '邮件营销',
+          type: 'line',
+          stack: '总量',
+          data: [120, 132, 101, 134, 90, 230, 210]
         },
         {
-            name: '联盟广告',
-            type: 'line',
-            stack: '总量',
-            data: [220, 182, 191, 234, 290, 330, 310]
+          name: '联盟广告',
+          type: 'line',
+          stack: '总量',
+          data: [220, 182, 191, 234, 290, 330, 310]
         },
         {
-            name: '视频广告',
-            type: 'line',
-            stack: '总量',
-            data: [150, 232, 201, 154, 190, 330, 410]
+          name: '视频广告',
+          type: 'line',
+          stack: '总量',
+          data: [150, 232, 201, 154, 190, 330, 410]
         },
         {
-            name: '直接访问',
-            type: 'line',
-            stack: '总量',
-            data: [320, 332, 301, 334, 390, 330, 320]
+          name: '直接访问',
+          type: 'line',
+          stack: '总量',
+          data: [320, 332, 301, 334, 390, 330, 320]
         },
         {
-            name: '搜索引擎',
-            type: 'line',
-            stack: '总量',
-            data: [820, 932, 901, 934, 1290, 1330, 1320]
+          name: '搜索引擎',
+          type: 'line',
+          stack: '总量',
+          data: [820, 932, 901, 934, 1290, 1330, 1320]
         }
-    ]
-};
-    const radarOptions= {
-    title: {
-        text: '基础雷达图'
-    },
-    legend: {
-        data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
-    },
-    radar: {
-        shape: 'circle',
-        indicator: [
-            { name: '销售（Sales）', max: 6500},
-            { name: '管理（Administration）', max: 16000},
-            { name: '信息技术（Information Technology）', max: 30000},
-            { name: '客服（Customer Support）', max: 38000},
-            { name: '研发（Development）', max: 52000},
-            { name: '市场（Marketing）', max: 25000}
+      ]
+    }
+    const radarOptions = {
+      legend: {},
+      tooltip: {},
+      dataset: {
+        source: [
+          ['product', '2015', '2016', '2017'],
+          ['Matcha Latte', 43.3, 85.8, 93.7],
+          ['Milk Tea', 83.1, 73.4, 55.1],
+          ['Cheese Cocoa', 86.4, 65.2, 82.5],
+          ['Walnut Brownie', 72.4, 53.9, 39.1]
         ]
-    },
-    series: [{
-        name: '预算 vs 开销（Budget vs spending）',
-        type: 'radar',
-        data: [
-            {
-                value: [4200, 3000, 20000, 35000, 50000, 18000],
-                name: '预算分配（Allocated Budget）'
-            },
-            {
-                value: [5000, 14000, 28000, 26000, 42000, 21000],
-                name: '实际开销（Actual Spending）'
-            }
-        ]
-    }]
-};
+      },
+      xAxis: { type: 'category' },
+      yAxis: {},
+      // Declare several bar series, each will be mapped
+      // to a column of dataset.source by default.
+      series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+    }
     onMounted(() => {
       const myChart = Echarts.init(refEchart.value)
 
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option as any)
 
-      const lineChart=Echarts.init(lineEchart.value);
-       // 使用刚指定的配置项和数据显示图表。
+      const lineChart = Echarts.init(lineEchart.value)
+      // 使用刚指定的配置项和数据显示图表。
       lineChart.setOption(lineOptions as any)
 
-       const radarChart=Echarts.init(radarEchart.value);
-       // 使用刚指定的配置项和数据显示图表。
+      const radarChart = Echarts.init(radarEchart.value)
+      // 使用刚指定的配置项和数据显示图表。
       radarChart.setOption(radarOptions as any)
-
-
     })
     return {
       refEchart,
@@ -208,7 +188,7 @@ export default defineComponent({
 })
 </script>
 <style lang="stylus" scoped>
-.workplace-container{
+.analysisInfo{
   background: #100c2a;
   color:white;
   padding:20px;

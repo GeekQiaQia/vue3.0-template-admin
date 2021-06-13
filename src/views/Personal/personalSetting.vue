@@ -220,16 +220,20 @@ export default defineComponent({
       imageUrl.value = URL.createObjectURL(file.raw)
     }
     const beforeAvatarUpload = (file: { raw: any; type: string; size: number }) => {
-      const isJPG = file.type === 'image/jpeg'
+      // const isJPG = file.type === 'image/jpeg'
+      if (!/(gif|png|jpg|jpeg)$/i.test(file.type)) {
+        ElMessage({
+          message: '上传头像图片只能是gif|png|jpg|jpeg 格式!',
+          type: 'warning'
+        })
+        return false
+      }
       const isLt2M = file.size / 1024 / 1024 < 2
 
-      if (!isJPG) {
-        ElMessage.error('上传头像图片只能是 JPG 格式!')
-      }
       if (!isLt2M) {
         ElMessage.error('上传头像图片大小不能超过 2MB!')
       }
-      return isJPG && isLt2M
+      return isLt2M
     }
     return {
       handleBack,

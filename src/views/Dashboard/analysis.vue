@@ -2,205 +2,204 @@
   <div class="analysisInfo">
     <fragment>
       <div class="info">
-        <span style="display:block;font-size:24px;margin:24px 0;">数据可视化</span>
+        <span style="display: block; font-size: 24px; margin: 24px 0">数据可视化</span>
         <span style="text-align: left">数据可视化主要旨在借助于图形化手段，清晰有效地传达与沟通信息，</span>
       </div>
     </fragment>
-    <!-- <el-row>
-      <el-col :offset="1" :span="15">
-        <div class="grid-content bg-purple-dark">
-          <el-card class="box-card">
-
-          </el-card>
+    <el-row>
+      <el-col :span="24">
+        <div class="indicators">
+          <div class="indicator">
+            <div class="title">访问 UV</div>
+            <div class="measure">
+              <div class="value">2.211</div>
+              <div class="unit">亿</div>
+            </div>
+            <div class="compare">
+              <div class="name">日环比</div>
+              <div class="icon up"></div>
+              <div class="value up">8.9%</div>
+            </div>
+          </div>
+          <div class="indicator">
+            <div class="title">点击 UV</div>
+            <div class="measure">
+              <div class="value">15.2</div>
+              <div class="unit">%</div>
+            </div>
+            <div class="compare">
+              <div class="name">日环比</div>
+              <div class="icon up"></div>
+              <div class="value up">2.3%</div>
+            </div>
+          </div>
+          <div class="indicator">
+            <div class="title">UV 点击率</div>
+            <div class="measure">
+              <div class="value">875</div>
+              <div class="unit">%</div>
+            </div>
+            <div class="compare">
+              <div class="name">日环比</div>
+              <div class="icon down"></div>
+              <div class="value down">1.83%</div>
+            </div>
+          </div>
         </div>
       </el-col>
-    </el-row> -->
-     <div class="echart-container">
-
-              <fragment>
-                <div ref="lineEchart" style="width: 100%; height: 400px" class="echart"></div>
-              </fragment>
-              <div class="bottom-chart">
-                       <div ref="refEchart" style="width: 49%; height: 400px" class="echart"></div>
-                <div ref="radarEchart" style="width: 49%; height: 400px" class="echart"></div>
-
-              </div>
-
-            </div>
+    </el-row>
+    <el-row>
+      <el-col :span="16">
+        <el-row>
+          <el-col :span="6"> 经营状况 </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="6">
+            <div ref="plot1Ref"></div>
+          </el-col>
+          <el-col :span="6">
+            <div ref="plot2Ref"></div>
+          </el-col>
+          <el-col :span="6">
+            <div ref="plot3Ref"></div>
+          </el-col>
+          <el-col :span="6">
+            <div ref="plot4Ref"></div>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-row>
+            <el-col :span="24"> 转化率 </el-col>
+          </el-row>
+          <el-col :span="24">
+            <div ref="barRef"></div>
+          </el-col>
+        </el-row>
+      </el-col>
+      <el-col :span="8">
+        <el-row> 城市分布 </el-row>
+        <div ref="chartRef"></div
+      ></el-col>
+    </el-row>
+    <el-row justify="start"> 指标转化桑基图 </el-row>
+    <el-row>
+      <el-col :span="24">
+        <div ref="indicatorRef"></div>
+      </el-col>
+    </el-row>
+    <el-row justify="start"> 用户年龄分布 </el-row>
+    <el-row>
+      <el-col :span="24">
+        <div ref="ageRef"></div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import * as Echarts from 'echarts'
+import { useInitPlot, useInitBar, useInitChart, useInitIndicator, useInitAge } from './useInitG2'
 
 export default defineComponent({
   name: 'Analysis',
   setup() {
-    const refEchart = ref();
-    const lineEchart=ref();
-    const radarEchart=ref();
-
-    // 指定图表的配置项和数据
-    const option = {
-      // backgroundColor: '#2c343c',
-      visualMap: {
-        show: false,
-        min: 80,
-        max: 600,
-        inRange: {
-          colorLightness: [0, 1]
-        }
-      },
-      series: [
-        {
-          name: '访问来源',
-          type: 'pie',
-          radius: '55%',
-          data: [
-            { value: 235, name: '视频广告' },
-            { value: 274, name: '联盟广告' },
-            { value: 310, name: '邮件营销' },
-            { value: 335, name: '直接访问' },
-            { value: 400, name: '搜索引擎' }
-          ],
-          roseType: 'angle',
-          label: {
-            normal: {
-              textStyle: {
-                color: 'rgba(255, 255, 255, 0.3)'
-              }
-            }
-          },
-          labelLine: {
-            normal: {
-              lineStyle: {
-                color: 'rgba(255, 255, 255, 0.3)'
-              }
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: '#c23531',
-              shadowBlur: 200,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
-        }
-      ]
-    }
-    const lineOptions= {
-    title: {
-        text: '折线图堆叠'
-    },
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    toolbox: {
-        feature: {
-            saveAsImage: {}
-        }
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [
-        {
-            name: '邮件营销',
-            type: 'line',
-            stack: '总量',
-            data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-            name: '联盟广告',
-            type: 'line',
-            stack: '总量',
-            data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-            name: '视频广告',
-            type: 'line',
-            stack: '总量',
-            data: [150, 232, 201, 154, 190, 330, 410]
-        },
-        {
-            name: '直接访问',
-            type: 'line',
-            stack: '总量',
-            data: [320, 332, 301, 334, 390, 330, 320]
-        },
-        {
-            name: '搜索引擎',
-            type: 'line',
-            stack: '总量',
-            data: [820, 932, 901, 934, 1290, 1330, 1320]
-        }
-    ]
-};
-    const radarOptions={
-    legend: {},
-    tooltip: {},
-    dataset: {
-        source: [
-            ['product', '2015', '2016', '2017'],
-            ['Matcha Latte', 43.3, 85.8, 93.7],
-            ['Milk Tea', 83.1, 73.4, 55.1],
-            ['Cheese Cocoa', 86.4, 65.2, 82.5],
-            ['Walnut Brownie', 72.4, 53.9, 39.1]
-        ]
-    },
-    xAxis: {type: 'category'},
-    yAxis: {},
-    // Declare several bar series, each will be mapped
-    // to a column of dataset.source by default.
-    series: [
-        {type: 'bar'},
-        {type: 'bar'},
-        {type: 'bar'}
-    ]
-};
+    const plot1Ref = ref()
+    const plot2Ref = ref()
+    const plot3Ref = ref()
+    const plot4Ref = ref()
+    const chartRef = ref()
+    const barRef = ref()
+    const indicatorRef = ref()
+    const ageRef = ref()
     onMounted(() => {
-      const myChart = Echarts.init(refEchart.value)
-
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option as any)
-
-      const lineChart=Echarts.init(lineEchart.value);
-       // 使用刚指定的配置项和数据显示图表。
-      lineChart.setOption(lineOptions as any)
-
-       const radarChart=Echarts.init(radarEchart.value);
-       // 使用刚指定的配置项和数据显示图表。
-      radarChart.setOption(radarOptions as any)
-
-
+      useInitPlot(plot1Ref.value, '盈利率')
+      useInitPlot(plot2Ref.value, '今日UV')
+      useInitPlot(plot3Ref.value, '今日PV')
+      useInitPlot(plot4Ref.value, '净增长')
+      useInitChart(chartRef.value)
+      useInitBar(barRef.value)
+      useInitIndicator(indicatorRef.value)
+      useInitAge(ageRef.value)
     })
+
     return {
-      refEchart,
-      lineEchart,
-      radarEchart
+      plot1Ref,
+      plot2Ref,
+      plot3Ref,
+      plot4Ref,
+      chartRef,
+      barRef,
+      indicatorRef,
+      ageRef
     }
   }
 })
 </script>
 <style lang="stylus" scoped>
 .analysisInfo{
-  background: #100c2a;
-  color:white;
+  // background: #100c2a;
+  color:black;
   padding:20px;
+  .indicators {
+  font-family: PingFangSC-Regular;
+  display: flex;
+}
+.indicators .indicator {
+  padding: 16px;
+}
+.indicators .indicator .title {
+  font-size: 12px;
+  color: #000000;
+  opacity: 0.65;
+}
+.indicators .indicator .measure {
+  margin-top: 4px;
+  display: flex;
+  align-items: baseline;
+}
+.indicators .indicator .measure .value {
+  margin-right: 12px;
+  opacity: 0.85;
+  font-family: Helvetica;
+  font-size: 24px;
+  color: #000000;
+}
+.indicators .indicator .measure .unit {
+  font-size: 12px;
+  color: #333;
+  opacity: 0.65;
+}
+.indicators .indicator .compare {
+  display: flex;
+  align-items: baseline;
+}
+.indicators .indicator .compare .name {
+  color: #666;
+  margin-right: 4px;
+}
+.indicators .indicator .compare .icon {
+  width: 0;
+  height: 0;
+  border-left: 3.5px solid transparent;
+  border-right: 3.5px solid transparent;
+  border-bottom: 9px solid #000;
+  margin-right: 4px;
+}
+.indicators .indicator .compare .icon.up {
+  transform: rotate(0deg);
+  color: #f5684a;
+  border-bottom-color: #f5684a;
+}
+.indicators .indicator .compare .icon.down {
+  transform: rotate(180deg);
+  color: #28a995;
+  border-bottom-color: #28a995;
+}
+.indicators .indicator .compare .value.up {
+  color: #f5684a;
+}
+.indicators .indicator .compare .value.down {
+  color: #28a995;
+}
 
    .info{
     text-align: left;

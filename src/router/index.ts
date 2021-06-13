@@ -83,18 +83,18 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     ],
   },
   {
-    path: '/edit',
+    path: '/copy',
     component: layout,
-    redirect: '/edit/copyText',
+    redirect: '/copy/copyText',
     meta: {
       title: '复制文本',
       icon: 'el-icon-edit-outline',
     },
     children: [
       {
-        path: '/edit/copyText',
+        path: '/copy/copyText',
         name: 'copyText',
-        component: () => import(/* webpackChunkName: "richText" */ '@/views/CopyText/index.vue'),
+        component: () => import( '@/views/CopyText/index.vue'),
         meta: {
           title: '复制文本',
           icon: 'home',
@@ -250,11 +250,31 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     children: [
       {
         path: '/upload/uploadFile',
-        name: 'copyText',
+        name: 'uploadFile',
         component: () => import(/* webpackChunkName: "richText" */ '@/views/Upload/uplodFile.vue'),
         meta: {
           title: '文件上传',
           icon: 'home',
+        },
+      },
+    ],
+  },
+  {
+    path: '/cropper',
+    component: layout,
+    redirect: '/cropper/cropFile',
+    meta: {
+      title: '图片裁剪',
+      icon: 'el-icon-upload',
+    },
+    children: [
+      {
+        path: '/cropper/cropFile',
+        name: 'cropFile',
+        component: () => import(/* webpackChunkName: "richText" */ '@/views/Cropper/cropFile.vue'),
+        meta: {
+          title: '图片裁剪',
+          icon: 'croper',
         },
       },
     ],
