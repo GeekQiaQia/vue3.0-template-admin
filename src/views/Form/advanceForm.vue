@@ -53,7 +53,7 @@
                     <span v-else>{{ scope.row.city }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column prop="address" label="详细地址" >
+                <el-table-column prop="address" label="详细地址">
                   <template #default="scope">
                     <el-input v-if="scope.row.edit" v-model="scope.row.address"></el-input>
                     <span v-else>{{ scope.row.address }}</span>
@@ -194,10 +194,10 @@ export default defineComponent({
     const submitForm = () => {
       activityForm.value.validate((valid: any): boolean => {
         if (valid) {
-         ElMessage({
-           type:'success',
-           message:'创建成功'
-         });
+          ElMessage({
+            type: 'success',
+            message: '创建成功'
+          })
           return true
         }
         // eslint-disable-next-line no-console
@@ -233,10 +233,10 @@ export default defineComponent({
       // save current row data and update table data;
       tableData[index].edit = false
       tableData[index] = row
-       ElMessage({
-         type:'success',
-         message:'保存成功'
-       });
+      ElMessage({
+        type: 'success',
+        message: '保存成功'
+      })
       return true
     }
     const handleDelete = (index: any, row: any) => {

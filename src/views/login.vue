@@ -49,12 +49,12 @@ import { ElMessage } from 'element-plus'
 export default defineComponent({
   name: 'Login',
   setup() {
-      const router=useRouter();
+    const router = useRouter()
     const loginFormRef = ref()
     const rules = reactive({
       password: [
         { required: true, message: '请输入密码', trigger: 'blur' },
-        { min:5, max: 10, message: '长度在 5 到 10 个字符', trigger: 'blur' }
+        { min: 5, max: 10, message: '长度在 5 到 10 个字符', trigger: 'blur' }
       ],
       account: [{ required: true, message: '请输入账号', trigger: 'change' }]
     })
@@ -66,25 +66,24 @@ export default defineComponent({
     const submitForm = () => {
       loginFormRef.value.validate(async (valid: any) => {
         if (valid) {
-            const data={
-                ...loginForm
-            }
-            await axios.post('/api/auth/login',data)
-            .then(res=>{
-                if(res.data.code===0){
-                router.push('/');
-                }else{
-                    ElMessage({
-                        type:'warning',
-                        message:'账号或者密码有误'
-                    });
-                }
-
-
+          const data = {
+            ...loginForm
+          }
+          await axios
+            .post('/api/auth/login', data)
+            .then((res) => {
+              if (res.data.code === 0) {
+                router.push('/')
+              } else {
+                ElMessage({
+                  type: 'warning',
+                  message: '账号或者密码有误'
+                })
+              }
             })
-            .catch(err=>{
-                // eslint-disable-next-line no-console
-                console.log(err);
+            .catch((err) => {
+              // eslint-disable-next-line no-console
+              console.log(err)
             })
         }
         return false

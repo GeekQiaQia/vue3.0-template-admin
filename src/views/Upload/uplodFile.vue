@@ -10,12 +10,10 @@
           <el-col :offset="1" :span="22">
             <div class="grid-content bg-purple-dark">
               <el-card class="box-card">
-                <fragment>
-                  <div style="text-align: left">
-                    <span>拖拽上传场景</span>
-                    <el-divider></el-divider>
-                  </div>
-                </fragment>
+                <div style="text-align: left">
+                  <span>拖拽上传场景</span>
+                  <el-divider></el-divider>
+                </div>
                 <div class="section">
                   <el-upload class="upload-demo" drag action="https://jsonplaceholder.typicode.com/posts/" multiple>
                     <i class="el-icon-upload"></i>
@@ -28,12 +26,10 @@
               </el-card>
 
               <el-card class="box-card">
-                <fragment>
-                  <div style="text-align: left">
-                    <span>图片列表缩略图场景</span>
-                    <el-divider></el-divider>
-                  </div>
-                </fragment>
+                <div style="text-align: left">
+                  <span>图片列表缩略图场景</span>
+                  <el-divider></el-divider>
+                </div>
                 <div class="section">
                   <el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview" :on-remove="handleRemove" :file-list="fileList" list-type="picture">
                     <el-button size="small" type="primary">点击上传</el-button>
