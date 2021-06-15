@@ -138,3 +138,7 @@ npm run build
 ### 拖拽组件
 
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6fa6e9b7f60a440196b6b7b8586dc64f~tplv-k3u1fbpfcp-watermark.image)
+
+### 菜单管理
+
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8dcdc968093348c8a2cfe2f6d17c2c59~tplv-k3u1fbpfcp-watermark.image)
