@@ -3,9 +3,9 @@
 @import './transition.scss';
 @import './element-ui.scss';
 @import './sidebar.scss';
+@import './icons.scss';
 
-
-*{
+* {
   padding: 0;
   margin: 0;
 }
@@ -58,7 +58,7 @@ div:focus {
     visibility: hidden;
     display: block;
     font-size: 0;
-    content: " ";
+    content: ' ';
     clear: both;
     height: 0;
   }
@@ -69,45 +69,49 @@ div:focus {
   padding: 20px;
 }
 
-
 // 表单的全局样式
-.mb10{
-  margin-bottom:10px;
+.mb10 {
+  margin-bottom: 10px;
 }
-.ml10{
-  margin-left:10px;
+.ml10 {
+  margin-left: 10px;
 }
-.w120{
-  width:120px;
+.w120 {
+  width: 120px;
 }
-.w140{
-  width:140px;
+.w140 {
+  width: 140px;
 }
-.w160{
-  width:160px;
+.w160 {
+  width: 160px;
 }
-.w180{
-  width:180px;
+.w180 {
+  width: 180px;
 }
-.w200{
-  width:200px;
+.w200 {
+  width: 200px;
 }
-.w220{
-  width:220px;
+.w220 {
+  width: 220px;
 }
-.w240{
-  width:240px;
+.w240 {
+  width: 240px;
 }
-.w260{
-  width:260px;
+.w260 {
+  width: 260px;
 }
-
 
 // 自定义表头样式
-.slot-header{
+.slot-header {
   font-size: 12px;
   color: #ccc;
   line-height: 16px;
 }
-
-
+[class*='ic-'],
+[class^='ic-'] {
+  vertical-align: middle;
+  margin-right: 5px;
+  width: 24px;
+  text-align: center;
+  font-size: 18px;
+}

@@ -265,7 +265,7 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     redirect: '/cropper/cropFile',
     meta: {
       title: '图片裁剪',
-      icon: 'el-icon-upload',
+      icon: 'ic ic-tailor',
     },
     children: [
       {
@@ -274,7 +274,27 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "richText" */ '@/views/Cropper/cropFile.vue'),
         meta: {
           title: '图片裁剪',
-          icon: 'croper',
+          icon: 'ic ic-tailor',
+        },
+      },
+    ],
+  },
+  {
+    path: '/menu',
+    component: layout,
+    redirect: '/Menu/menuEdit',
+    meta: {
+      title: '菜单管理',
+      icon: 'ic ic-other',
+    },
+    children: [
+      {
+        path: '/Menu/menuEdit',
+        name: 'menuEdit',
+        component: () => import(/* @/views/Menu/menuManage.vueichText" */ '@/views/Menu/menuManage.vue'),
+        meta: {
+          title: '菜单管理',
+          icon: 'ic ic-other',
         },
       },
     ],

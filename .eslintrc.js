@@ -6,7 +6,7 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ['airbnb-base', "eslint:recommended", 'plugin:vue/vue3-recommended','plugin:vue/essential', 'prettier'],
+  extends: ['airbnb-base', 'eslint:recommended', 'plugin:vue/vue3-recommended', 'plugin:vue/essential','prettier'],
   parserOptions: {
     ecmaVersion: 12,
     parser: '@typescript-eslint/parser',
@@ -19,9 +19,9 @@ module.exports = {
     'import/no-absolute-path': 'off',
     'import/no-extraneous-dependencies': 'off',
     'vue/no-multiple-template-root': 'off',
-    "vue/html-self-closing": "off",
+    'vue/html-self-closing': 'off',
     // "consistent-return":"off",  // 返回类型一致性
-    "no-console": "off",
+    'no-console': 'off',
     'no-param-reassign': [
       'error',
       {
