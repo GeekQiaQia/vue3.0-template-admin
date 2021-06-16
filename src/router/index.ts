@@ -334,5 +334,20 @@ const router = createRouter({
   // end: false,
 
 });
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  if(sessionStorage.getItem('auth')){
+    next()
+  }else if(to.path==='/login'){
+    next();
+  }else{
+    console.log('into login');
+         next({
+        path: '/login',
+        query: {redirect: to.fullPath}
+      })
+  }
 
+
+});
 export default router;

@@ -76,6 +76,7 @@ export default defineComponent({
     }
     const logout = () => {
       // clear()
+      sessionStorage.removeItem('auth')
       router.replace('/login')
     }
     return {

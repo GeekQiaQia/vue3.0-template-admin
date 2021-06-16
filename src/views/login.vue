@@ -73,6 +73,7 @@ export default defineComponent({
             .post('/api/auth/login', data)
             .then((res) => {
               if (res.data.code === 0) {
+                sessionStorage.setItem('auth', 'true')
                 router.push('/')
               } else {
                 ElMessage({
