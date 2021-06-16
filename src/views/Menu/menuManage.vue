@@ -59,19 +59,19 @@
         </el-col>
       </el-row>
     </el-card>
-    <el-dialog v-model="add_visible" width="632px" title="新增菜单">
+    <el-dialog v-model="addVisible" width="632px" title="新增菜单">
       <menu-new @success="onAddSuccess"></menu-new>
     </el-dialog>
-    <el-dialog v-model="edit_visible" center width="632px" :title="posted.menu.meta.title">
+    <el-dialog v-model="editVisible" center width="632px" :title="posted.menu.meta.title">
       <menu-edit :current-menu="posted.menu" @success="onEditSuccess"></menu-edit>
     </el-dialog>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs, computed } from 'vue'
-// import { asyncRoutes } from '@/router'
 import { useStore } from '@/store'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { RouteRecordRaw } from 'vue-router'
 import MenuNew from './menuNew.vue'
 import MenuEdit from './menuEdits.vue'
 
@@ -95,12 +95,34 @@ const useConfirmDelete = (index: any) => {
       })
     })
 }
+interface stateTypes {
+  url: {}
+  param: {
+    limit: Number
+    page: Number
+  }
+  data: Array<RouteRecordRaw>
+  total: Number
+  loading: Boolean
+  addVisible: Boolean
+  editVisible: Boolean
+  detailVisible: Boolean
+  posted: {
+    menu: {
+      path: String
+      meta: {
+        title: String
+        icon: String
+      }
+    }
+  }
+}
 export default defineComponent({
   name: 'Menu',
   components: { MenuNew, MenuEdit },
   setup() {
     const store = useStore()
-    const state = reactive({
+    const state = reactive<stateTypes>({
       url: {
         c: '/menu/add',
         r: '/menu/list',
@@ -134,9 +156,9 @@ export default defineComponent({
       ],
       total: 1,
       loading: false,
-      add_visible: false,
-      edit_visible: false,
-      detail_visible: false,
+      addVisible: false,
+      editVisible: false,
+      detailVisible: false,
       posted: {
         menu: {
           path: '',
@@ -151,7 +173,6 @@ export default defineComponent({
 
     const initTableData = () => {
       const result = routes.value.filter((item) => item?.meta?.hidden !== true)
-      // unhandle ts error
       state.data = result
     }
     /**
@@ -169,7 +190,7 @@ export default defineComponent({
       fetchData(val)
     }
     const onCreate = () => {
-      state.add_visible = true
+      state.addVisible = true
     }
     const onRefresh = () => {
       fetchData()
@@ -177,7 +198,7 @@ export default defineComponent({
     const onEdit = (index: any, row: any) => {
       console.log('row,', row, index)
       state.posted.menu = row
-      state.edit_visible = true
+      state.editVisible = true
     }
 
     const onDelete = (index: any) => {
@@ -189,12 +210,12 @@ export default defineComponent({
       // store.dispatch
     }
     const onAddSuccess = () => {
-      state.add_visible = false
+      state.addVisible = false
       fetchData()
     }
     const onEditSuccess = () => {
       console.log('on edit success')
-      state.edit_visible = false
+      state.editVisible = false
     }
     const onError = () => {}
     onMounted(() => {
@@ -215,4 +236,4 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="less" scoped></style>
+<style lang="stylus" scoped></style>

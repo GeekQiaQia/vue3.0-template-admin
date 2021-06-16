@@ -41,7 +41,6 @@ const validPath = (rule: any, value: string, callback: VoidNoop) => {
 export default defineComponent({
   name: 'MenuNew',
   components: { Icons },
-
   emits: ['success'],
   setup(props, { emit }) {
     // url: this.$store.state.server + '/menu/add',
