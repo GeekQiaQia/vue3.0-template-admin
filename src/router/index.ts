@@ -237,26 +237,26 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
       }
     ],
   },
-  {
-    path: '/permission',
-    component: layout,
-    redirect: '/permission/permission',
-    meta: {
-      title: '权限',
-      icon: 'el-icon-c-scale-to-original',
-    },
-    children: [
-      {
-        path: '/permission/permission',
-        name: 'permission',
-        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/permission/permission.vue'),
-        meta: {
-          title: '权限',
-          icon: 'el-icon-c-scale-to-original',
-        },
-      }
-    ],
-  },
+  // {
+  //   path: '/permission',
+  //   component: layout,
+  //   redirect: '/permission/permission',
+  //   meta: {
+  //     title: '权限',
+  //     icon: 'el-icon-c-scale-to-original',
+  //   },
+  //   children: [
+  //     {
+  //       path: '/permission/permission',
+  //       name: 'permission',
+  //       component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/permission/permission.vue'),
+  //       meta: {
+  //         title: '权限',
+  //         icon: 'el-icon-c-scale-to-original',
+  //       },
+  //     }
+  //   ],
+  // },
   {
     path: '/personal',
     component: layout,
