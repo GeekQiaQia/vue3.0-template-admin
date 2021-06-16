@@ -109,7 +109,7 @@ export default defineComponent({
 .container{
 
     position: relative;
-    background-image:linear-gradient(90deg, #ebebeb, #e6efe8);
+    background-image:linear-gradient(90deg, #ebebeb, #f5f7f6);
     height: 100vh;
     display: flex;
     justify-content: center;

@@ -36,10 +36,11 @@ export default defineComponent({
     const route = useRoute()
     // 监听当前路由，判断是否入栈
     watchEffect(() => {
+      console.log(route)
       // 判断当前路由中是否已经入栈 route
       const flag = tabsOption.value.findIndex((tab: { route: string }) => tab.route === route.fullPath) > -1
       console.log('watchEffect route,', route, route.fullPath, flag)
-      if (!flag) {
+      if (!flag && !route.meta.hidden) {
         store.commit('tabModule/ADD_TAB', { route: route.fullPath, title: route.meta.title, name: route.name })
       }
       store.commit('tabModule/SET_TAB', route.fullPath)
