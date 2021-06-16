@@ -58,12 +58,13 @@ npm run build
 - [√] 个人页
 - [√] 404 / 403
 - [√] 菜单管理
+- [√] 角色管理
+- [√] 自定义图标
+- [√] 图片拖拽/裁剪
+- [√] 富文本编辑器
 
 - [x] 支持切换主题色:一键换肤
 - [x] 权限：v-permisson
-- [x] 图片拖拽/裁剪上传
-- [x] 自定义图标
-- [x] 富文本编辑器
 - [x] markdown 编辑器
 - [x] 可拖拽弹窗
 - [x] 国际化
@@ -143,3 +144,7 @@ npm run build
 ### 菜单管理
 
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8dcdc968093348c8a2cfe2f6d17c2c59~tplv-k3u1fbpfcp-watermark.image)
+
+### 角色管理
+
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2d3e75f06808445ba3aab88186633d4e~tplv-k3u1fbpfcp-watermark.image)
