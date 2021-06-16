@@ -83,18 +83,18 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     ],
   },
   {
-    path: '/edit',
+    path: '/copy',
     component: layout,
-    redirect: '/edit/copyText',
+    redirect: '/copy/copyText',
     meta: {
       title: '复制文本',
       icon: 'el-icon-edit-outline',
     },
     children: [
       {
-        path: '/edit/copyText',
+        path: '/copy/copyText',
         name: 'copyText',
-        component: () => import(/* webpackChunkName: "richText" */ '@/views/CopyText/index.vue'),
+        component: () => import( '@/views/CopyText/index.vue'),
         meta: {
           title: '复制文本',
           icon: 'home',
@@ -288,6 +288,87 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: '/upload',
+    component: layout,
+    redirect: '/upload/uploadFile',
+    meta: {
+      title: '文件上传',
+      icon: 'el-icon-upload',
+    },
+    children: [
+      {
+        path: '/upload/uploadFile',
+        name: 'uploadFile',
+        component: () => import(/* webpackChunkName: "richText" */ '@/views/Upload/uplodFile.vue'),
+        meta: {
+          title: '文件上传',
+          icon: 'home',
+        },
+      },
+    ],
+  },
+  {
+    path: '/cropper',
+    component: layout,
+    redirect: '/cropper/cropFile',
+    meta: {
+      title: '图片裁剪',
+      icon: 'ic ic-tailor',
+    },
+    children: [
+      {
+        path: '/cropper/cropFile',
+        name: 'cropFile',
+        component: () => import(/* webpackChunkName: "richText" */ '@/views/Cropper/cropFile.vue'),
+        meta: {
+          title: '图片裁剪',
+          icon: 'ic ic-tailor',
+        },
+      },
+    ],
+  },
+  {
+    path: '/menu',
+    component: layout,
+    redirect: '/Menu/menuEdit',
+    meta: {
+      title: '菜单管理',
+      icon: 'ic ic-other',
+    },
+    children: [
+      {
+        path: '/Menu/menuEdit',
+        name: 'menuEdit',
+        component: () => import(/* @/views/Menu/menuManage.vueichText" */ '@/views/Menu/menuManage.vue'),
+        meta: {
+          title: '菜单管理',
+          icon: 'ic ic-other',
+        },
+      },
+    ],
+  },
+  {
+    path: '/role',
+    component: layout,
+    redirect: '/Role/roleManage',
+    meta: {
+      title: '角色管理',
+      icon: 'ic ic-other',
+    },
+    children: [
+      {
+        path: '/Role/roleManage',
+        name: 'roleManage',
+        component: () => import(/* @/views/Menu/menuManage.vueichText" */ '@/views/Role/rolesManage.vue'),
+        meta: {
+          title: '角色管理',
+          icon: 'ic ic-other',
+        },
+      },
+    ],
+  },
+
 
 ];
 
@@ -302,5 +383,20 @@ const router = createRouter({
   // end: false,
 
 });
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  if(sessionStorage.getItem('auth')){
+    next()
+  }else if(to.path==='/login'){
+    next();
+  }else{
+    console.log('into login');
+         next({
+        path: '/login',
+        query: {redirect: to.fullPath}
+      })
+  }
 
+
+});
 export default router;

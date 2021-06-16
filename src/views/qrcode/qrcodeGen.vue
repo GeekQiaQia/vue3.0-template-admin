@@ -8,12 +8,10 @@
       <el-col :offset="1" :span="22">
         <div class="grid-content bg-purple-dark">
           <el-card class="box-card">
-            <fragment>
-              <div style="text-align: left">
-                <span>后台活动营销配置推广码场景</span>
-                <el-divider></el-divider>
-              </div>
-            </fragment>
+            <div style="text-align: left">
+              <span>后台活动营销配置推广码场景</span>
+              <el-divider></el-divider>
+            </div>
             <div class="qrcode-wrapper">
               <div ref="qrcodeRef">
                 <qrcode-vue :value="configForm.hostName"></qrcode-vue>
@@ -61,7 +59,7 @@ export default defineComponent({
      * @description 下载图片
      */
     const handleDownImg = () => {
-      urlToBlob(qrcodeImgSrc.value, (res) => {
+      urlToBlob(qrcodeImgSrc.value, (res: any) => {
         const link = document.createElement('a')
         const href = window.URL.createObjectURL(res) // 创建下载的链接
         link.href = href

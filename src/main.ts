@@ -3,7 +3,6 @@
 import { createApp } from 'vue';
 import ElementPlus from 'element-plus';
 import locale from 'element-plus/lib/locale/lang/zh-cn'
-import mavonEditor from 'mavon-editor'
 
 import { key, store } from './store/index';
 import router from './router/index';
@@ -11,7 +10,8 @@ import App from './App.vue';
 import '@/styles/index.scss'; // global css
 import '@/permission'; // permission control 全局路由守卫
 import 'dayjs/locale/zh-cn'
-    import 'mavon-editor/dist/css/index.css'
+
+
 // eslint-disable-next-line import/order
 // import enLocale from 'element-plus/lib/locale/lang/en'
 // eslint-disable-next-line import/order
@@ -35,7 +35,6 @@ store.dispatch('permissionModule/getPermissonRoutes');
 //   }
 // 链式注册插件
 const app = createApp(App).use(store, key).use(router).use(ElementPlus,{locale});
-app.use(mavonEditor)
 // 现在所有的导航都是异步的，等路由ready以后再进行挂载组件；
 router.isReady().then(() => app.mount('#app'));
 

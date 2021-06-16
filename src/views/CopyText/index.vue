@@ -1,43 +1,31 @@
 <template>
   <div class="copy-container">
-  <div class="info">
-        <el-divider content-position="left">文本复制</el-divider>
-        <span style="text-align: left">文本复制常用于多数据拼接或者长文本内容复制场景。</span>
-      </div>
+    <div class="info">
+      <el-divider content-position="left">文本复制</el-divider>
+      <span style="text-align: left">文本复制常用于多数据拼接或者长文本内容复制场景。</span>
+    </div>
     <div>
-       <el-row>
-      <el-col :offset="1" :span="22">
-        <div class="grid-content bg-purple-dark">
-          <el-card class="box-card">
-               <fragment>
-                   <div style="text-align: left">
+      <el-row>
+        <el-col :offset="1" :span="22">
+          <div class="grid-content bg-purple-dark">
+            <el-card class="box-card">
+              <div style="text-align: left">
                 <span>长文本内容复制场景</span>
                 <el-divider></el-divider>
               </div>
-    </fragment>
-    <div class="section">
-         <el-input
-      id="textarea"
-      v-model="inputContent"
-      style="width:70%;margin: 0px 20px;"
-      type="textarea"
-      :rows="2"
-      placeholder="请输入内容">
-      </el-input>
-      <el-button  class="copy-btn"   size="medium" type="success" plain data-clipboard-action="copy" data-clipboard-target="#textarea">复制</el-button>
-      <el-button  class="cut-btn"  size="medium" type="warning" plain data-clipboard-action="cut" data-clipboard-target="#textarea">剪切</el-button>
-
-    </div>
-          </el-card>
-        </div>
-      </el-col>
-       </el-row>
-       <el-row>
-      <el-col :offset="1" :span="22">
-        <div class="grid-content bg-purple-dark">
-          <el-card class="box-card">
-
-            <fragment>
+              <div class="section">
+                <el-input id="textarea" v-model="inputContent" style="width: 70%; margin: 0px 20px" type="textarea" :rows="2" placeholder="请输入内容"> </el-input>
+                <el-button class="copy-btn" size="medium" type="success" plain data-clipboard-action="copy" data-clipboard-target="#textarea">复制</el-button>
+                <el-button class="cut-btn" size="medium" type="warning" plain data-clipboard-action="cut" data-clipboard-target="#textarea">剪切</el-button>
+              </div>
+            </el-card>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :offset="1" :span="22">
+          <div class="grid-content bg-purple-dark">
+            <el-card class="box-card">
               <div style="text-align: left">
                 <span>多数据拼接复制场景</span>
                 <el-divider></el-divider>
@@ -71,7 +59,7 @@
                     <span v-else>{{ scope.row.city }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column prop="address" label="详细地址" >
+                <el-table-column prop="address" label="详细地址">
                   <template #default="scope">
                     <el-input v-if="scope.row.edit" v-model="scope.row.address"></el-input>
                     <span v-else>{{ scope.row.address }}</span>
@@ -79,64 +67,60 @@
                 </el-table-column>
                 <el-table-column label="操作" width="200">
                   <template #default="scope">
-                    <el-button v-if="scope.row.edit"  size="medium" type="success" plain icon="el-icon-check" @click="handleSave(scope.$index, scope.row)">保存</el-button>
+                    <el-button v-if="scope.row.edit" size="medium" type="success" plain icon="el-icon-check" @click="handleSave(scope.$index, scope.row)">保存</el-button>
 
-                    <el-button  size="medium" type="info" icon="el-icon-copy" plain class="copy-btn" :data-clipboard-text="`姓名:${scope.row.name},详细地址:${scope.row.address}`">复制</el-button>
+                    <el-button size="medium" type="info" icon="el-icon-copy" plain class="copy-btn" :data-clipboard-text="`姓名:${scope.row.name},详细地址:${scope.row.address}`">复制</el-button>
                   </template>
                 </el-table-column>
               </el-table>
               <div style="margin: 5px"><el-button @click="handleAddRecord">+ 新增记录</el-button></div>
-            </fragment>
-          </el-card>
-        </div></el-col
-      >
-    </el-row>
+            </el-card>
+          </div></el-col
+        >
+      </el-row>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, onMounted, onUnmounted,reactive } from 'vue'
+import { defineComponent, ref, onMounted, onUnmounted, reactive } from 'vue'
 import ClipboardJS from 'clipboard'
 import { ElMessage } from 'element-plus'
 
 export default defineComponent({
   name: 'RichText',
-  components: {
-
-  },
+  components: {},
   setup() {
     const inputContent = ref('vue3+vite+typescirpt+ElementPlus')
     const clipboard = new ClipboardJS('.copy-btn')
     const cutClipboard = new ClipboardJS('.cut-btn')
 
-    onMounted(()=>{
-    if (clipboard) {
-      clipboard.on('success', (e) => {
-        ElMessage({
-          type: 'success',
-          message: '复制成功'
+    onMounted(() => {
+      if (clipboard) {
+        clipboard.on('success', (e) => {
+          ElMessage({
+            type: 'success',
+            message: '复制成功'
+          })
+          e.clearSelection()
         })
-        e.clearSelection()
-      })
-    }
-    if (cutClipboard) {
-      cutClipboard.on('success', (e) => {
-        ElMessage({
-          type: 'success',
-          message: '剪切成功'
+      }
+      if (cutClipboard) {
+        cutClipboard.on('success', (e) => {
+          ElMessage({
+            type: 'success',
+            message: '剪切成功'
+          })
+          e.clearSelection()
         })
-        e.clearSelection()
-      })
-    }
+      }
+    })
 
-    });
+    onUnmounted(() => {
+      clipboard.destroy()
+      cutClipboard.destroy()
+    })
 
-    onUnmounted(()=>{
-      clipboard.destroy();
-      cutClipboard.destroy();
-    });
-
-      const tableData = reactive([
+    const tableData = reactive([
       {
         province: '上海市',
         city: '浦东新区',
@@ -206,11 +190,8 @@ export default defineComponent({
       handleEdit,
       handleSave,
       handleDelete,
-      tableData,
-
+      tableData
     }
-
-
   }
 })
 </script>

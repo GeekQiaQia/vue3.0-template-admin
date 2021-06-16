@@ -9,12 +9,10 @@
         <el-col :offset="1" :span="22">
           <div class="grid-content bg-purple-dark">
             <el-card class="box-card">
-              <fragment>
-                <div style="text-align: left">
-                  <span>overview pinned 展示场景</span>
-                  <el-divider></el-divider>
-                </div>
-              </fragment>
+              <div style="text-align: left">
+                <span>overview pinned 展示场景</span>
+                <el-divider></el-divider>
+              </div>
               <div ref="cardRef" class="card-container">
                 <fragment v-for="card in cardInfo" :key="card.id" class="card">
                   <el-card shadow="hover" style="width: 100%; min-height: 154px">

@@ -1,7 +1,7 @@
 <template>
   <section class="app-main">
     <el-tabs v-model="currentIndex" type="card" closable @tab-click="clickTab" @tab-remove="removeTab">
-      <el-tab-pane v-for="item in tabsOption" :key="item.route" :closable="item.route !== '/home'" :label="item.name" :name="item.route">
+      <el-tab-pane v-for="item in tabsOption" :key="item.route" :closable="item.route !== '/home'" :label="item.title" :name="item.route">
         <router-view v-if="$route.meta.keepAlive" v-slot="{ Component }">
           <transition name="fade" mode="out-in">
             <component :is="Component" />
@@ -20,7 +20,7 @@
   </section>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, watch } from 'vue'
+import { computed, defineComponent, watchEffect } from 'vue'
 import { useStore } from '@/store/index'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -34,24 +34,14 @@ export default defineComponent({
     const currentIndex = computed(() => store.getters['tabModule/getCurrentIndex'])
     const router = useRouter()
     const route = useRoute()
-    // 刷新页面，将当前刷新路由压入栈中除了/home
-    const activeMenu = computed(() => router.currentRoute.value.fullPath)
-    const activeTitle = computed(() => router.currentRoute.value.meta.title)
-
-    onMounted(() => {
-      store.commit('tabModule/SET_TAB', activeMenu.value)
-      // 默认home已经压栈，不再进行入栈
-      if(activeMenu.value!=='/home'){
-      store.commit('tabModule/ADD_TAB', { route: activeMenu.value, name: activeTitle.value })
-
-      }
-    })
     // 监听当前路由，判断是否入栈
-    watch(route, () => {
-      // 判断当前路由中是否已经入栈
+    watchEffect(() => {
+      console.log(route)
+      // 判断当前路由中是否已经入栈 route
       const flag = tabsOption.value.findIndex((tab: { route: string }) => tab.route === route.fullPath) > -1
-      if (!flag) {
-        store.commit('tabModule/ADD_TAB', { route: route.fullPath, name: route.meta.title })
+      console.log('watchEffect route,', route, route.fullPath, flag)
+      if (!flag && !route.meta.hidden) {
+        store.commit('tabModule/ADD_TAB', { route: route.fullPath, title: route.meta.title, name: route.name })
       }
       store.commit('tabModule/SET_TAB', route.fullPath)
     })
@@ -60,7 +50,9 @@ export default defineComponent({
       if (tabName === '/home') {
         return
       }
-      // 移除tab
+      /**
+       * @description 移除tab
+       * */
       store.commit('tabModule/DELETE_TAB', tabName)
       if (currentIndex.value === tabName) {
         if (tabsOption.value && tabsOption.value.length) {
@@ -74,11 +66,10 @@ export default defineComponent({
     /**
      * @description 点击tab
      */
-    const clickTab = (tabName: { paneName: any }) => {
+    const clickTab = (tabName: { paneName: string }) => {
       // eslint-disable-next-line no-console
-      console.log(tabName.paneName)
       store.commit('tabModule/SET_TAB', tabName.paneName)
-      router.push({ path: currentIndex.value })
+      router.replace({ path: currentIndex.value })
     }
     return {
       tabsOption,

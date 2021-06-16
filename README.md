@@ -58,11 +58,17 @@ npm run build
 - [√] 富文本编辑器
 - [x] markdown 编辑器
 - [√] 个人页
+- [√] 登录页
 - [√] 404 / 403
-- [x] 文件上传/图片裁剪
+- [√] 菜单管理
+- [√] 角色管理
+- [√] 自定义图标
+- [√] 图片拖拽/裁剪
+- [√] 富文本编辑器
+
 - [x] 支持切换主题色:一键换肤
 - [x] 权限：v-permisson
-- [x] 自定义图标
+- [x] markdown 编辑器
 - [x] 可拖拽弹窗
 - [x] 国际化
 
@@ -71,8 +77,6 @@ npm run build
 [eslint-plugin-vue](https://eslint.vuejs.org/user-guide/#faq)
 
 [antv 数据可视化](https://antv.vision/zh)
-
-[echart 数据可视化](http://echarts.apache.org/zh/index.html)
 
 [mockjs 模拟和交互数据](http://mockjs.com/)
 
@@ -137,3 +141,11 @@ npm run build
 ### 拖拽组件
 
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6fa6e9b7f60a440196b6b7b8586dc64f~tplv-k3u1fbpfcp-watermark.image)
+
+### 菜单管理
+
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8dcdc968093348c8a2cfe2f6d17c2c59~tplv-k3u1fbpfcp-watermark.image)
+
+### 角色管理
+
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2d3e75f06808445ba3aab88186633d4e~tplv-k3u1fbpfcp-watermark.image)

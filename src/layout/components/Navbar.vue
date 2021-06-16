@@ -1,86 +1,82 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="opened" class="hamburger-container"
-     @toggleClick="toggleSideBar" />
+    <hamburger :is-active="opened" class="hamburger-container" @toggleClick="toggleSideBar" />
     <breadcrumb class="breadcrumb-container" />
-      <div class="right-menu">
-      <el-button  class="full-screen">
-          <el-tooltip content="全屏浏览" effect="dark" placement="left">
-            <i v-show="fullScreen==false" class="el-icon-full-screen" @click="toShowFullScreen()"></i>
-          </el-tooltip>
-          <el-tooltip content="退出全屏" effect="dark" placement="left">
-            <i v-show="fullScreen==true" class="el-icon-bottom-left" @click="toExitFullScreen()"></i>
-          </el-tooltip>
-        </el-button>
+    <div class="right-menu">
+      <el-button class="full-screen">
+        <el-tooltip content="全屏浏览" effect="dark" placement="left">
+          <i v-show="fullScreen == false" class="el-icon-full-screen" @click="toShowFullScreen()"></i>
+        </el-tooltip>
+        <el-tooltip content="退出全屏" effect="dark" placement="left">
+          <i v-show="fullScreen == true" class="el-icon-bottom-left" @click="toExitFullScreen()"></i>
+        </el-tooltip>
+      </el-button>
       <el-dropdown class="avatar-container" trigger="hover">
         <div class="avatar-wrapper">
-           <el-avatar :src="avatar"></el-avatar>
-            <div class="nickname">{{ nickname }}</div>
+          <el-avatar :src="avatar"></el-avatar>
+          <div class="nickname">{{ nickname }}</div>
         </div>
         <template #dropdown>
-           <el-dropdown-menu  class="user-dropdown">
-          <router-link to="/">
-            <el-dropdown-item>首页</el-dropdown-item>
-          </router-link>
-           <router-link to="/personal/personalCenter">
-            <el-dropdown-item>个人中心</el-dropdown-item>
-          </router-link>
-          <router-link to="/personal/personalSetting">
-            <el-dropdown-item>个人设置</el-dropdown-item>
-          </router-link>
-          <el-dropdown-item divided>
-            <span style="display:block;" @click="logout">退出登录</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
+          <el-dropdown-menu class="user-dropdown">
+            <router-link to="/">
+              <el-dropdown-item>首页</el-dropdown-item>
+            </router-link>
+            <router-link to="/personal/personalCenter">
+              <el-dropdown-item>个人中心</el-dropdown-item>
+            </router-link>
+            <router-link to="/personal/personalSetting">
+              <el-dropdown-item>个人设置</el-dropdown-item>
+            </router-link>
+            <el-dropdown-item divided>
+              <span style="display: block" @click="logout">退出登录</span>
+            </el-dropdown-item>
+          </el-dropdown-menu>
         </template>
-
       </el-dropdown>
     </div>
-
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue';
+import { defineComponent, computed, ref } from 'vue'
 // eslint-disable-next-line import/extensions
-import Hamburger from '@/components/Hamburger/Hamburger.vue';
+import Hamburger from '@/components/Hamburger/Hamburger.vue'
 // eslint-disable-next-line import/extensions
-import Breadcrumb from '@/components/Breadcrumb/index.vue';
+import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import avatar from '@/assets/avatar-default.jpg'
-import { useRouter } from 'vue-router';
-import {
-  toFullScreen,
-  exitFullScreen
-} from "@/utils/screen";
-import { useStore } from '@/store/index';
+import { useRouter } from 'vue-router'
+import { toFullScreen, exitFullScreen } from '@/utils/screen'
+import { useStore } from '@/store/index'
 
 export default defineComponent({
   name: 'Navbar',
   components: {
     Hamburger,
-    Breadcrumb,
+    Breadcrumb
   },
   setup() {
-    const router=useRouter();
-    const store = useStore();
-    const opened = computed(() => store.getters['appModule/getSidebarState']);
-    const nickname =computed(()=> JSON.parse(localStorage.getItem('userInfo') as string)?.userName ?? '极客恰恰');
-    const fullScreen=ref(false);
+    const router = useRouter()
+    const store = useStore()
+    const opened = computed(() => store.getters['appModule/getSidebarState'])
+    const nickname = computed(() => JSON.parse(localStorage.getItem('userInfo') as string)?.userName ?? '极客恰恰')
+    const fullScreen = ref(false)
     // methods
     const toggleSideBar = () => {
-      store.dispatch('appModule/toggleSideBar');
-    };
+      console.log('into toggleSideBar')
+      store.dispatch('appModule/toggleSideBar')
+    }
 
-    const toShowFullScreen=()=> {
-      toFullScreen();
-      fullScreen.value = true;
-    };
+    const toShowFullScreen = () => {
+      toFullScreen()
+      fullScreen.value = true
+    }
 
-    const toExitFullScreen=()=> {
-      exitFullScreen();
-      fullScreen.value = false;
-    };
-    const logout=()=> {
+    const toExitFullScreen = () => {
+      exitFullScreen()
+      fullScreen.value = false
+    }
+    const logout = () => {
       // clear()
+      sessionStorage.removeItem('auth')
       router.replace('/login')
     }
     return {
@@ -94,9 +90,9 @@ export default defineComponent({
       toggleSideBar,
       opened,
       logout
-    };
-  },
-});
+    }
+  }
+})
 </script>
 <style lang="scss" scoped>
 .navbar {
@@ -139,19 +135,18 @@ export default defineComponent({
     &:focus {
       outline: none;
     }
-     .full-screen {
+    .full-screen {
       background-color: transparent;
       border: none;
       padding: 5px 20px;
 
       i {
-          background-color: transparent;
-          border: none;
-          color: #2c3e50;
-          font-size: 28px;
-        }
+        background-color: transparent;
+        border: none;
+        color: #2c3e50;
+        font-size: 28px;
+      }
     }
-
 
     .right-menu-item {
       display: inline-block;

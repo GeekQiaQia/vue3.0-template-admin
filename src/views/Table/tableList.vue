@@ -14,7 +14,7 @@
         <el-button type="primary" @click="onSubmit">查询</el-button>
       </el-form-item>
     </el-form>
-    <el-table ref="filterTable" class="table-list" row-key="date" :data="tableData.filter((data) => !search || data.name.toLowerCase().includes(search.toLowerCase()))" style="width: 100%">
+    <el-table ref="filterTableRef" class="table-list" row-key="date" :data="tableData.filter((data) => !search || data.name.toLowerCase().includes(search.toLowerCase()))" style="width: 100%">
       <el-table-column
         prop="date"
         label="日期"
@@ -38,19 +38,11 @@
         </template>
         <template #default="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-            <el-popconfirm
-                      confirm-button-text="确定"
-                      cancel-button-text="取消"
-                      icon="el-icon-info"
-                      icon-color="red"
-                      title="确定删除该条记录吗？"
-                      @confirm="handleDelete(scope.$index, scope.row)"
-                    >
-                      <template #reference>
-                          <el-button size="mini" type="danger" >删除</el-button>
-                      </template>
-                    </el-popconfirm>
-
+          <el-popconfirm confirm-button-text="确定" cancel-button-text="取消" icon="el-icon-info" icon-color="red" title="确定删除该条记录吗？" @confirm="handleDelete(scope.$index, scope.row)">
+            <template #reference>
+              <el-button size="mini" type="danger">删除</el-button>
+            </template>
+          </el-popconfirm>
         </template>
       </el-table-column>
       <el-table-column
@@ -83,138 +75,138 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue'
-import {useRouter} from 'vue-router'
+import { computed, defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'TableList',
   setup() {
     // 思考 ref 响应式和 reactive 响应式的区别； 修改对象属性值，是否会刷新数据
 
-    const tableData = ref([
-      {
-        date: '2016-05-07',
-        name: '白小白',
-        address: '上海市普陀区金沙江路 1518 弄',
-        tag: '家'
-      },
-      {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-        tag: '家'
-      },
-      {
-        date: '2016-05-04',
-        name: '李小胖',
-        address: '上海市普陀区金沙江路 1517 弄',
-        tag: '公司'
-      },
-      {
-        date: '2016-05-01',
-        name: '王老五',
-        address: '上海市普陀区金沙江路 1519 弄',
-        tag: '家'
-      },
-      {
-        date: '2016-07-03',
-        name: '王麻子',
-        address: '上海市普陀区金沙江路 1516 弄',
-        tag: '公司'
-      },
-      {
-        date: '2016-07-07',
-        name: '白小白',
-        address: '上海市普陀区金沙江路 1518 弄',
-        tag: '家'
-      },
-      {
-        date: '2016-07-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-        tag: '家'
-      },
-      {
-        date: '2016-07-04',
-        name: '李小胖',
-        address: '上海市普陀区金沙江路 1517 弄',
-        tag: '公司'
-      },
-      {
-        date: '2016-07-01',
-        name: '王老五',
-        address: '上海市普陀区金沙江路 1519 弄',
-        tag: '家'
-      }
-    ])
-    const router=useRouter();
-    const filterTable = ref()
-    const search = ref()
-    const currentPage = ref(1)
-    const pageSize = ref(5)
-    const total = ref(tableData.value.length)
-    const formInline=reactive({
-         user: '',
-          region: ''
-    });
+    const router = useRouter()
+    const filterTableRef = ref()
+    const state = reactive({
+      tableData: [
+        {
+          date: '2016-05-07',
+          name: '白小白',
+          address: '上海市普陀区金沙江路 1518 弄',
+          tag: '家'
+        },
+        {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄',
+          tag: '家'
+        },
+        {
+          date: '2016-05-04',
+          name: '李小胖',
+          address: '上海市普陀区金沙江路 1517 弄',
+          tag: '公司'
+        },
+        {
+          date: '2016-05-01',
+          name: '王老五',
+          address: '上海市普陀区金沙江路 1519 弄',
+          tag: '家'
+        },
+        {
+          date: '2016-07-03',
+          name: '王麻子',
+          address: '上海市普陀区金沙江路 1516 弄',
+          tag: '公司'
+        },
+        {
+          date: '2016-07-07',
+          name: '白小白',
+          address: '上海市普陀区金沙江路 1518 弄',
+          tag: '家'
+        },
+        {
+          date: '2016-07-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄',
+          tag: '家'
+        },
+        {
+          date: '2016-07-04',
+          name: '李小胖',
+          address: '上海市普陀区金沙江路 1517 弄',
+          tag: '公司'
+        },
+        {
+          date: '2016-07-01',
+          name: '王老五',
+          address: '上海市普陀区金沙江路 1519 弄',
+          tag: '家'
+        }
+      ],
+      currentPage: 1,
+      pageSize: 5,
+      search: ''
+    })
+    const formInline = reactive({
+      user: '',
+      region: ''
+    })
+    const total = computed(() => state.tableData.length)
+
     onMounted(() => {
       // eslint-disable-next-line no-console
-      console.dir(filterTable.value)
+      console.dir(filterTableRef.value)
     })
     // methods
     const resetDateFilter = () => {
-      filterTable.value.clearFilter('date')
+      filterTableRef.value.clearFilter('date')
     }
 
     const clearFilter = () => {
-      filterTable.value.clearFilter()
+      filterTableRef.value.clearFilter()
     }
 
-    const formatter = (row: { address: any }) => row.address;
-    const filterTag = (value: any, row: { tag: any }) => row.tag === value;
+    const formatter = (row: { address: any }) => row.address
+    const filterTag = (value: any, row: { tag: any }) => row.tag === value
     const filterHandler = (value: any, row: { [x: string]: any }, column: { property: any }) => {
       const { property } = column
       return row[property] === value
     }
     const handleEdit = (index: any, row: any) => {
       // eslint-disable-next-line no-console
-      console.log(index, row);
-      router.push('/form/advanceForm');
+      console.log(index, row)
+      router.replace('/form/advanceForm')
     }
     const handleDelete = (index: any, row: any) => {
       // eslint-disable-next-line no-console
       console.log(index, row)
-      tableData.value.splice(index,1);
+      state.tableData.splice(index, 1)
     }
     const handleSizeChange = (val: any) => {
       // eslint-disable-next-line no-console
       console.log(`每页 ${val} 条`)
-      pageSize.value = val
+      state.pageSize = val
       // request api to change tableData
     }
     const handleCurrentChange = (val: any) => {
       // eslint-disable-next-line no-console
       console.log(`当前页: ${val}`)
-      currentPage.value = val
+      state.currentPage = val
       // request api to change tableData
-    };
-    const onSubmit=()=> {
-        // eslint-disable-next-line no-console
-        console.log('submit!');
-      }
+    }
+    const onSubmit = () => {
+      // eslint-disable-next-line no-console
+      console.log('submit!')
+    }
     return {
-        formInline,
+      formInline,
       total,
-      pageSize,
+      ...toRefs(state),
       handleCurrentChange,
       handleSizeChange,
       onSubmit,
-      currentPage,
       handleEdit,
       handleDelete,
-      search,
-      filterTable,
-      tableData,
+      filterTableRef,
       resetDateFilter,
       clearFilter,
       formatter,

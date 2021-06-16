@@ -15,6 +15,7 @@ export default defineConfig({
   optimizeDeps:{
     include: ["vuedraggable"]
   },
+
   server: {
     hmr: { overlay: false },
 

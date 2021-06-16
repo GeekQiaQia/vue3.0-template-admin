@@ -1,7 +1,7 @@
 import { Module } from 'vuex';
+import router, { constantRoutes, asyncRoutes } from '@/router';
 import permissionStateTypes from './types';
 import RootStateTypes from '../../types';
-import router, { constantRoutes, asyncRoutes } from '../../../router';
 // create a new Store Modules.
 const permissionModule: Module<permissionStateTypes, RootStateTypes> = {
   namespaced: true,
@@ -33,6 +33,10 @@ const permissionModule: Module<permissionStateTypes, RootStateTypes> = {
 
   },
   getters: {
+    getAccessRoutes(state:permissionStateTypes) {
+      return state.routes;
+    },
+
   },
 };
 export default permissionModule;
