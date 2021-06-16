@@ -56,6 +56,7 @@ npm run build
 - [√] 二维码生成
 - [√] 拖拽组件
 - [√] 个人页
+- [√] 登录页
 - [√] 404 / 403
 - [√] 菜单管理
 - [√] 角色管理
@@ -74,8 +75,6 @@ npm run build
 [eslint-plugin-vue](https://eslint.vuejs.org/user-guide/#faq)
 
 [antv 数据可视化](https://antv.vision/zh)
-
-[echart 数据可视化](http://echarts.apache.org/zh/index.html)
 
 [mockjs 模拟和交互数据](http://mockjs.com/)
 
