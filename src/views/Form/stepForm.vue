@@ -90,6 +90,12 @@ import { useRouter } from 'vue-router'
 
 export default defineComponent({
   setup() {
+    const rules = {
+      payAccountNo: [{ required: true, message: '请输入付款人账户', trigger: 'blur' }],
+      accAccountNo: [{ required: true, message: '请输入收款人账户', trigger: 'blur' }],
+      accAccountName: [{ required: true, message: '请输入收款人姓名', trigger: 'blur' }],
+      transferNum: [{ required: true, message: '请输入转账金额', trigger: 'blur' }]
+    }
     const accountForm = ref()
     const active = ref(0)
     const ruleForm = reactive({
@@ -100,12 +106,7 @@ export default defineComponent({
     })
     // 下一步标记
     const selectedAccType = ref('1')
-    const rules = reactive({
-      payAccountNo: [{ required: true, message: '请输入付款人账户', trigger: 'blur' }],
-      accAccountNo: [{ required: true, message: '请输入收款人账户', trigger: 'blur' }],
-      accAccountName: [{ required: true, message: '请输入收款人姓名', trigger: 'blur' }],
-      transferNum: [{ required: true, message: '请输入转账金额', trigger: 'blur' }]
-    })
+
     const router = useRouter()
     // method
 

@@ -80,18 +80,7 @@ export default defineComponent({
   name: 'FormInfo',
   setup() {
     const router = useRouter()
-
-    const ruleForm = reactive({
-      name: '',
-      region: '',
-      date1: '',
-      date2: '',
-      delivery: false,
-      type: [],
-      resource: '',
-      desc: ''
-    })
-    const rules = ref({
+    const rules = {
       name: [
         { required: true, message: '请输入活动名称', trigger: 'blur' },
         { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
@@ -102,7 +91,18 @@ export default defineComponent({
       type: [{ type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }],
       resource: [{ required: true, message: '请选择活动资源', trigger: 'change' }],
       desc: [{ required: true, message: '请填写活动形式', trigger: 'blur' }]
+    }
+    const ruleForm = reactive({
+      name: '',
+      region: '',
+      date1: '',
+      date2: '',
+      delivery: false,
+      type: [],
+      resource: '',
+      desc: ''
     })
+
     const ruleFormRef = ref()
     onMounted(() => {
       // eslint-disable-next-line no-console

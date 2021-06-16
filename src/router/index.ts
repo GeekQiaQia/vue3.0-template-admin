@@ -299,6 +299,26 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: '/role',
+    component: layout,
+    redirect: '/Role/roleManage',
+    meta: {
+      title: '角色管理',
+      icon: 'ic ic-other',
+    },
+    children: [
+      {
+        path: '/Role/roleManage',
+        name: 'roleManage',
+        component: () => import(/* @/views/Menu/menuManage.vueichText" */ '@/views/Role/rolesManage.vue'),
+        meta: {
+          title: '角色管理',
+          icon: 'ic ic-other',
+        },
+      },
+    ],
+  },
 
 
 ];
