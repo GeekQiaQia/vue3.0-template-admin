@@ -55,7 +55,7 @@ npm run build
 - [x] 图表 :antv echart
 - [x] 二维码生成
 - [x] 拖拽组件
-- [x]富文本编辑器
+- [x] 富文本编辑器
 - [x] markdown 编辑器
 - [x] 个人页
 - [x] 登录页
