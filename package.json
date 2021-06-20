@@ -62,7 +62,8 @@
     "vue-tsx-support": "^3.1.0",
     "vuedraggable": "^2.24.3",
     "vuex": "^4.0.0",
-    "wangeditor": "^4.7.2"
+    "wangeditor": "^4.7.2",
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",

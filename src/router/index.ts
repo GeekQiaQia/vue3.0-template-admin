@@ -102,9 +102,26 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
       },
     ],
   },
-
-
-
+  {
+    path: '/excel',
+    component: layout,
+    redirect: '/excel/uploadExcel',
+    meta: {
+      title: '上传excel',
+      icon: 'el-icon-edit-outline',
+    },
+    children: [
+      {
+        path: '/excel/uploadExcel',
+        name: 'uploadExcel',
+        component: () => import( '@/views/Excel/uploadExcel.vue'),
+        meta: {
+          title: '上传excel',
+          icon: 'home',
+        },
+      },
+    ],
+  },
   {
     path: '/table',
     component: layout,

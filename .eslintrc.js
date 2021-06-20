@@ -22,6 +22,7 @@ module.exports = {
     'vue/html-self-closing': 'off',
     // "consistent-return":"off",  // 返回类型一致性
     'no-console': 'off',
+    'no-plusplus':'off',
     'no-param-reassign': [
       'error',
       {
