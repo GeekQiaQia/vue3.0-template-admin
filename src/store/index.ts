@@ -3,6 +3,7 @@ import { createStore, Store, useStore as baseUseStore } from 'vuex';
 
 import settingsModule from './modules/Setting/index';
 import appModule from './modules/app/index';
+import messageModule from './modules/message/index'
 import permissionModule from './modules/permission/index';
 import tabModule from './modules/tabs/index'
 import RootStateTypes, { AllStateTypes } from './types';
@@ -34,6 +35,7 @@ export const store = createStore({
   modules: {
     settingsModule,
     appModule,
+    messageModule,
     permissionModule,
     tabModule
   },

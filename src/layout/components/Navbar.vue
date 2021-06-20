@@ -3,6 +3,22 @@
     <hamburger :is-active="opened" class="hamburger-container" @toggleClick="toggleSideBar" />
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <el-dropdown @command="handleCommand">
+        <el-badge :value="messageNum" :max="99" class="message-badge" type="danger">
+          <el-button class="message">
+            <i class="el-icon-message-solid"></i>
+          </el-button>
+        </el-badge>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="a">mike 回复了你的邮件</el-dropdown-item>
+            <el-dropdown-item command="b">您有5个新任务</el-dropdown-item>
+            <el-dropdown-item command="c">您已经和Jone成为了好友</el-dropdown-item>
+            <el-dropdown-item command="d">项目验收通知</el-dropdown-item>
+            <el-dropdown-item command="e" divided>新会议通知</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
       <el-button class="full-screen">
         <el-tooltip content="全屏浏览" effect="dark" placement="left">
           <i v-show="fullScreen == false" class="el-icon-full-screen" @click="toShowFullScreen()"></i>
@@ -59,6 +75,7 @@ export default defineComponent({
     const opened = computed(() => store.getters['appModule/getSidebarState'])
     const nickname = computed(() => JSON.parse(localStorage.getItem('userInfo') as string)?.userName ?? '极客恰恰')
     const fullScreen = ref(false)
+    const messageNum = computed(() => store.getters['messageModule/getMessageNum'])
     // methods
     const toggleSideBar = () => {
       console.log('into toggleSideBar')
@@ -80,6 +97,7 @@ export default defineComponent({
       router.replace('/login')
     }
     return {
+      messageNum,
       toShowFullScreen,
       toExitFullScreen,
       toFullScreen,
@@ -135,6 +153,24 @@ export default defineComponent({
     &:focus {
       outline: none;
     }
+    .message-badge {
+      .is-fixed {
+        top: 12px !important;
+        right: 28px !important;
+      }
+      .message {
+        border: none;
+        padding: 5px 20px;
+
+        i {
+          background-color: transparent;
+          border: none;
+          color: #2c3e50;
+          font-size: 25px;
+        }
+      }
+    }
+
     .full-screen {
       background-color: transparent;
       border: none;

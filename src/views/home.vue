@@ -32,7 +32,7 @@ import logo from '@/assets/logo.png'
 import axios from '@/utils/request'
 import DataSet from '@antv/data-set'
 import { Chart, registerShape, Util } from '@antv/g2'
-import { ShapeInfo } from 'node_modules/@antv/g2/lib/interface'
+import { Datum, ShapeInfo } from 'node_modules/@antv/g2/lib/interface'
 
 export default defineComponent({
   name: 'Home',
@@ -51,10 +51,10 @@ export default defineComponent({
     const getTextAttrs = (cfg: ShapeInfo) => ({
       ...cfg.defaultStyle,
       ...cfg.style,
-      fontSize: cfg?.data?.size,
-      text: cfg?.data?.text,
+      fontSize: (cfg.data as Datum).size,
+      text: (cfg.data as Datum).text,
       textAlign: 'center',
-      fontFamily: cfg?.data?.font,
+      fontFamily: (cfg.data as Datum).font,
       fill: cfg.color || cfg?.defaultStyle?.stroke,
       textBaseline: 'Alphabetic'
     })
@@ -70,8 +70,10 @@ export default defineComponent({
             y: cfg?.y
           }
         })
-        if (cfg?.data?.rotate) {
-          Util.rotate(textShape, (cfg?.data?.rotate * Math.PI) / 180)
+        const data = cfg.data as Datum
+
+        if (data.rotate) {
+          Util.rotate(textShape, (data.rotate * Math.PI) / 180)
         }
         return textShape
       }
@@ -152,7 +154,7 @@ export default defineComponent({
               showTitle: false,
               showMarkers: false
             })
-            chart.coordinate().reflect()
+            chart.coordinate().reflect('x')
             chart.point().position('x*y').color('CornflowerBlue').shape('cloud').tooltip('value*category')
             chart.interaction('element-active')
             chart.render()

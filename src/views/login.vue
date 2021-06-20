@@ -118,6 +118,7 @@ export default defineComponent({
 
     .login-container{
         width:874px;
+        min-width: 874px;
         height: 78%;
         min-height: 600px;
         flex-direction: row;
