@@ -120,6 +120,15 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
           icon: 'home',
         },
       },
+      {
+        path: '/excel/exportExcel',
+        name: 'exportExcel',
+        component: () => import( '@/views/Excel/exportExcel.vue'),
+        meta: {
+          title: '导出excel',
+          icon: 'home',
+        },
+      },
     ],
   },
   {
@@ -249,6 +258,15 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         component: () => import( '@/views/Editor/richEditor.vue'),
         meta: {
           title: '富文本编辑器',
+          icon: 'el-icon-edit',
+        },
+      },
+      {
+        path: '/Editor/jsonEditor',
+        name: 'jsonEditor',
+        component: () => import( '@/views/Editor/jsonEditor.vue'),
+        meta: {
+          title: 'json编辑器',
           icon: 'el-icon-edit',
         },
       }

@@ -85,6 +85,7 @@ npm run dev
 [antv 数据可视化](https://antv.vision/zh)
 
 [mockjs 模拟和交互数据](http://mockjs.com/)
+[xlsx SheetJS ](https://www.npmjs.com/package/xlsx)
 
 ## 快照 (screen shots)
 

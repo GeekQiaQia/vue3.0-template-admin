@@ -6,7 +6,7 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ['airbnb-base', 'eslint:recommended', 'plugin:vue/vue3-recommended', 'plugin:vue/essential','prettier'],
+  extends: ['airbnb-base', 'eslint:recommended', 'plugin:vue/vue3-recommended','prettier'],
   parserOptions: {
     ecmaVersion: 12,
     parser: '@typescript-eslint/parser',
@@ -23,6 +23,7 @@ module.exports = {
     // "consistent-return":"off",  // 返回类型一致性
     'no-console': 'off',
     'no-plusplus':'off',
+    'no-bitwise':'off',
     'no-param-reassign': [
       'error',
       {

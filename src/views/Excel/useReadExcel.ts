@@ -5,7 +5,7 @@ import XLSX from 'xlsx'
     */
    export  const useReadExcelHead=(sheet: XLSX.WorkSheet)=> {
       const headers = []
-      const range = XLSX.utils.decode_range(sheet['!ref'] as string)
+      const range = XLSX.utils.decode_range(sheet['!ref']! )
       const rowNum  = range.s.r
       for (let colNum = range.s.c; colNum <= range.e.c; ++colNum) {
         const nextCell = sheet[XLSX.utils.encode_cell({ c: colNum, r: rowNum  })]
@@ -36,3 +36,4 @@ import XLSX from 'xlsx'
         reader.readAsArrayBuffer(rawFile)
       })
 
+export default useReadRawData
