@@ -20,9 +20,9 @@
   </section>
 </template>
 <script lang="ts">
-import { computed, defineComponent, watchEffect } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useStore } from '@/store/index'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'AppMain',
@@ -33,26 +33,14 @@ export default defineComponent({
     console.log('tabsOption.value is ', tabsOption.value)
     const currentIndex = computed(() => store.getters['tabModule/getCurrentIndex'])
     const router = useRouter()
-    const route = useRoute()
-    // 监听当前路由，判断是否入栈
-    watchEffect(() => {
-      console.log(route)
-      // 判断当前路由中是否已经入栈 route
-      const flag = tabsOption.value.findIndex((tab: { route: string }) => tab.route === route.fullPath) > -1
-      console.log('watchEffect route,', route, route.fullPath, flag)
-      if (!flag && !route.meta.hidden) {
-        store.commit('tabModule/ADD_TAB', { route: route.fullPath, title: route.meta.title, name: route.name })
-      }
-      store.commit('tabModule/SET_TAB', route.fullPath)
-    })
     // mothods
+    /**
+     * @description 移除tab
+     * */
     const removeTab = (tabName: string) => {
       if (tabName === '/home') {
         return
       }
-      /**
-       * @description 移除tab
-       * */
       store.commit('tabModule/DELETE_TAB', tabName)
       if (currentIndex.value === tabName) {
         if (tabsOption.value && tabsOption.value.length) {

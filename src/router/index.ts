@@ -1,7 +1,7 @@
 import {
   createRouter, createWebHashHistory, RouteRecordRaw,
 } from 'vue-router';
-
+import { store } from '@/store';
 import layout from '../layout/index.vue';
 // 静态路由
 export const constantRoutes: Array<RouteRecordRaw> = [
@@ -413,13 +413,18 @@ const router = createRouter({
     top: 0,
   }),
   routes: constantRoutes,
-  // sensitive: false,
-  // strict: false,
-  // end: false,
 
 });
 router.beforeEach((to, from, next) => {
-  console.log(to);
+    const tabsOption = store.getters['tabModule/getTabsOption']
+    // 判断当前路由中是否已经入栈
+    const flag = tabsOption.findIndex((tab: { route: string }) => tab.route === to.fullPath) > -1
+    if (!flag) {
+
+          store.commit('tabModule/ADD_TAB', { route: to.fullPath, title: to.meta.title,name: to.name })
+
+        }
+    store.commit('tabModule/SET_TAB', to.fullPath)
   if(sessionStorage.getItem('auth')){
     next()
   }else if(to.path==='/login'){

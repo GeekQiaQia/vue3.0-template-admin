@@ -44,6 +44,7 @@
     "file-saver": "^2.0.5",
     "highlight.js": "^11.0.1",
     "js-cookie": "^2.2.1",
+    "jsonlint": "^1.6.3",
     "lodash": "^4.17.21",
     "marked": "^2.0.7",
     "mockjs": "^1.1.0",
@@ -71,6 +72,7 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
+    "@types/codemirror": "^5.60.0",
     "@types/js-cookie": "^2.2.6",
     "@types/vue-cropperjs": "^4.1.1",
     "@typescript-eslint/eslint-plugin": "^4.22.0",

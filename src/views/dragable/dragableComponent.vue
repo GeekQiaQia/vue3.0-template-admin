@@ -2,7 +2,7 @@
   <div class="copy-container">
     <div class="info">
       <el-divider content-position="left">拖拽组件</el-divider>
-      <span style="text-align: left">拖拽组件常用于对当前活动列表进行优先级重新排列场景。</span>
+      <span style="text-align: left">拖拽组件常用于对当前活动列表进行优先级重新排列场景。（Sortable实现）</span>
     </div>
     <div>
       <el-row>
