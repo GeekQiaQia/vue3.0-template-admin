@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "prod":"vite build",
+    "build": "vite build",
+    "prod":" vue-tsc --noEmit &&vite build",
     "serve": "vite preview",
     "lint": "eslint --ext .vue,.js,.ts ./",
     "prepare": "husky install"
