@@ -15,8 +15,10 @@
               </div>
               <div class="section">
                 <el-input id="textarea" v-model="inputContent" style="width: 70%; margin: 0px 20px" type="textarea" :rows="2" placeholder="请输入内容"> </el-input>
-                <el-button class="copy-btn" size="medium" type="success" plain data-clipboard-action="copy" data-clipboard-target="#textarea">复制</el-button>
-                <el-button class="cut-btn" size="medium" type="warning" plain data-clipboard-action="cut" data-clipboard-target="#textarea">剪切</el-button>
+                <el-button size="medium" type="success" plain @click="handleCopyInput(inputContent, $event)">复制</el-button>
+                <!--clipboard bug-->
+                <!-- <el-button v-clip:cut="inputContent" class="cut-btn" size="medium" type="warning" plain>剪切</el-button> -->
+                <!-- <el-button class="cut-btn" size="medium" type="warning" plain data-clipboard-action="cut" data-clipboard-target="#textarea">剪切</el-button> -->
               </div>
             </el-card>
           </div>
@@ -69,7 +71,7 @@
                   <template #default="scope">
                     <el-button v-if="scope.row.edit" size="medium" type="success" plain icon="el-icon-check" @click="handleSave(scope.$index, scope.row)">保存</el-button>
 
-                    <el-button size="medium" type="info" icon="el-icon-copy" plain class="copy-btn" :data-clipboard-text="`姓名:${scope.row.name},详细地址:${scope.row.address}`">复制</el-button>
+                    <el-button v-else v-clip:copy="`姓名:${scope.row.name},详细地址:${scope.row.address}`" size="medium" type="info" icon="el-icon-copy" plain>复制</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -82,28 +84,24 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, onMounted, onUnmounted, reactive } from 'vue'
+import { defineComponent, ref, onMounted, onUnmounted, reactive, toRefs } from 'vue'
 import ClipboardJS from 'clipboard'
 import { ElMessage } from 'element-plus'
+import clipboard from '@/utils/clipboard' // use clipboard directly
+import clip from '@/direction/clipboard/clipboard'
 
 export default defineComponent({
   name: 'RichText',
   components: {},
+  directives: {
+    clip
+  },
   setup() {
     const inputContent = ref('vue3+vite+typescirpt+ElementPlus')
-    const clipboard = new ClipboardJS('.copy-btn')
     const cutClipboard = new ClipboardJS('.cut-btn')
 
+    // clipboard's bug for event twice and cut clip
     onMounted(() => {
-      if (clipboard) {
-        clipboard.on('success', (e) => {
-          ElMessage({
-            type: 'success',
-            message: '复制成功'
-          })
-          e.clearSelection()
-        })
-      }
       if (cutClipboard) {
         cutClipboard.on('success', (e) => {
           ElMessage({
@@ -116,39 +114,40 @@ export default defineComponent({
     })
 
     onUnmounted(() => {
-      clipboard.destroy()
       cutClipboard.destroy()
     })
 
-    const tableData = reactive([
-      {
-        province: '上海市',
-        city: '浦东新区',
-        name: '王小虎1',
-        address: '上海市普陀区金沙江路 1518 弄',
-        edit: false
-      },
-      { province: '上海市', city: '浦东新区', name: '王小虎2', address: '上海市普陀区金沙江路 1517 弄', edit: false },
-      {
-        province: '上海市',
-        city: '浦东新区',
-        name: '王小虎3',
-        address: '上海市普陀区金沙江路 1519 弄',
-        edit: false
-      },
-      {
-        province: '上海市',
-        city: '浦东新区',
-        name: '王小虎4',
-        address: '上海市普陀区金沙江路 1516 弄',
-        edit: true
-      }
-    ])
+    const state = reactive({
+      tableData: [
+        {
+          province: '上海市',
+          city: '浦东新区',
+          name: '王小虎1',
+          address: '上海市普陀区金沙江路 1518 弄',
+          edit: false
+        },
+        { province: '上海市', city: '浦东新区', name: '王小虎2', address: '上海市普陀区金沙江路 1517 弄', edit: false },
+        {
+          province: '上海市',
+          city: '浦东新区',
+          name: '王小虎3',
+          address: '上海市普陀区金沙江路 1519 弄',
+          edit: false
+        },
+        {
+          province: '上海市',
+          city: '浦东新区',
+          name: '王小虎4',
+          address: '上海市普陀区金沙江路 1516 弄',
+          edit: true
+        }
+      ]
+    })
 
     const handleEdit = (index: any, row: any) => {
       // eslint-disable-next-line no-console
       console.log(index, row)
-      tableData[index].edit = true
+      state.tableData[index].edit = true
     }
     /**
      * @description  useXXX写法,代替mixin有待改进的地方
@@ -165,18 +164,20 @@ export default defineComponent({
         return false
       }
       // save current row data and update table data;
-      tableData[index].edit = false
-      tableData[index] = row
+      state.tableData[index].edit = false
+      state.tableData[index] = row
       return true
     }
     const handleDelete = (index: any, row: any) => {
       // eslint-disable-next-line no-console
       console.log(index, row)
-      tableData.splice(index, 1)
+      state.tableData.splice(index, 1)
     }
-    // 新增一条记录
+    /**
+     * @description 新增一条记录
+     * */
     const handleAddRecord = () => {
-      tableData.push({
+      state.tableData.push({
         province: '',
         city: '',
         name: '',
@@ -184,13 +185,24 @@ export default defineComponent({
         edit: true
       })
     }
+    /**
+     * @description 处理复制输入框
+     */
+    const handleCopyInput = (content: any, event: any) => {
+      const options = {
+        successTip: '复制成功',
+        failedTip: '复制失败'
+      }
+      clipboard(content, event, options)
+    }
     return {
+      handleCopyInput,
       inputContent,
       handleAddRecord,
       handleEdit,
       handleSave,
       handleDelete,
-      tableData
+      ...toRefs(state)
     }
   }
 })
