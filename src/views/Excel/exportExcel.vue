@@ -2,7 +2,7 @@
   <div>
     <el-form size="mini" inline :model="form">
       <el-form-item label="导出文件名称">
-        <el-input v-model="form.fileName" style="width: 150px" clearable placeholder="请输入模板名称" @keyup.enter="search"> </el-input>
+        <el-input v-model="form.fileName" style="width: 150px" clearable placeholder="请输入模板名称"> </el-input>
       </el-form-item>
 
       <el-form-item label="导出文件类型">

@@ -22,6 +22,17 @@ import { defineComponent, onMounted, ref, toRef } from 'vue'
 // import { isExternal } from '@/utils/validate'
 // import path from 'path'
 
+interface childType {
+  path: string
+  name: string
+  component: Function
+  meta: {
+    title: string
+    icon: string
+    hidden: boolean
+    [key: string]: any
+  }
+}
 export default defineComponent({
   name: 'SidebarItem',
   props: {
@@ -53,7 +64,7 @@ export default defineComponent({
     /**
      * @description 展示只有一个孩子的情况
      */
-    const hasOneShowingChild = (children = [], parent: any) => {
+    const hasOneShowingChild = (children: childType[], parent: any) => {
       // RouteRecordRaw 只能在meta中配置额外属性，过滤是否展示路由；
       // if (children) {
       const showingChildren = children.filter((item) => {

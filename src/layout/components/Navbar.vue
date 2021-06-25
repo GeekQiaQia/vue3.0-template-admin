@@ -3,7 +3,7 @@
     <hamburger :is-active="opened" class="hamburger-container" @toggleClick="toggleSideBar" />
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
-      <el-dropdown @command="handleCommand">
+      <el-dropdown>
         <el-badge :value="messageNum" :max="99" class="message-badge" type="danger">
           <el-button class="message">
             <i class="el-icon-message-solid"></i>

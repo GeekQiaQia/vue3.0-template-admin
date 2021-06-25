@@ -201,10 +201,11 @@ export default defineComponent({
       state.editVisible = true
     }
 
-    const onDelete = (index: any) => {
+    const onDelete = (index: any, row: any) => {
       // const form = {
       //   menuId: row.menuId
       // }
+      console.log(row);
       useConfirmDelete(index)
       // 次处省去异步接口处理 异步请求删除当前id路由
       // store.dispatch

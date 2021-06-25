@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "prod":"vite build",
     "serve": "vite preview",
     "lint": "eslint --ext .vue,.js,.ts ./",
     "prepare": "husky install"

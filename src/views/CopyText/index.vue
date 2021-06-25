@@ -88,7 +88,7 @@ import { defineComponent, ref, onMounted, onUnmounted, reactive, toRefs } from '
 import ClipboardJS from 'clipboard'
 import { ElMessage } from 'element-plus'
 import clipboard from '@/utils/clipboard' // use clipboard directly
-import clip from '@/direction/clipboard/clipboard'
+import clip from '@/directive/clipboard/clipboard'
 
 export default defineComponent({
   name: 'RichText',
