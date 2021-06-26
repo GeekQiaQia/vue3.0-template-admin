@@ -19,6 +19,8 @@ Element-plus:
 - 💪 Vue 3.0 Composition API
 - 🔥 Written in TypeScript
 
+* 预览 [vue3.0-template-admin](https://geekqiaqia.github.io/vue3.0-template-admin/#/login?redirect=/home)
+
 ## 快速启动
 
 ```
@@ -86,6 +88,7 @@ npm run dev
 
 [mockjs 模拟和交互数据](http://mockjs.com/)
 [xlsx SheetJS ](https://www.npmjs.com/package/xlsx)
+https://geekqiaqia.github.io/vue3.0-template-admin/#/login?redirect=/home
 
 ## 快照 (screen shots)
 
