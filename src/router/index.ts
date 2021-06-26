@@ -426,11 +426,13 @@ router.beforeEach((to, from, next) => {
         }
     store.commit('tabModule/SET_TAB', to.fullPath)
   if(sessionStorage.getItem('auth')){
+    console.log("has authed");
     next()
   }else if(to.path==='/login'){
+    console.log("/login");
     next();
   }else{
-    console.log('into login');
+    console.log('unauthed into login');
          next({
         path: '/login',
         query: {redirect: to.fullPath}

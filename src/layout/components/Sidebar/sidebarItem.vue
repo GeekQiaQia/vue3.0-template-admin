@@ -21,15 +21,14 @@
 import { defineComponent, onMounted, ref, toRef } from 'vue'
 // import { isExternal } from '@/utils/validate'
 // import path from 'path'
-
 interface childType {
   path: string
-  name: string
+  name?: string
   component: Function
   meta: {
     title: string
     icon: string
-    hidden: boolean
+    hidden?: boolean
     [key: string]: any
   }
 }
@@ -64,30 +63,31 @@ export default defineComponent({
     /**
      * @description 展示只有一个孩子的情况
      */
-    const hasOneShowingChild = (children: childType[], parent: any) => {
+    const hasOneShowingChild = (children: childType[] = [], parent: any) => {
       // RouteRecordRaw 只能在meta中配置额外属性，过滤是否展示路由；
-      if (children) {
-        const showingChildren = children.filter((item) => {
-          // 如果meta 配置隐藏该路由，则返回false;
-          if (item.meta.hidden) {
-            return false
-          }
-          //
-          onlyOneChild.value = item
-          return true
-        })
+      // if (children) {
+      const showingChildren = children.filter((item) => {
+        // 如果meta 配置隐藏该路由，则返回false;
 
-        // 判断当前路由，是否有孩子children，以及孩子个数；
-        if (showingChildren.length === 1) {
-          return true
+        if (item?.meta?.hidden) {
+          return false
         }
+        //
+        onlyOneChild.value = item
+        return true
+      })
 
-        // 如果没有孩子，则展示父级路由；
-        if (showingChildren.length === 0) {
-          onlyOneChild.value = { ...parent, noShowingChildren: true }
-          return true
-        }
+      // 判断当前路由，是否有孩子children，以及孩子个数；
+      if (showingChildren.length === 1) {
+        return true
       }
+
+      // 如果没有孩子，则展示父级路由；
+      if (showingChildren.length === 0) {
+        onlyOneChild.value = { ...parent, noShowingChildren: true }
+        return true
+      }
+      // }
 
       return false
     }
