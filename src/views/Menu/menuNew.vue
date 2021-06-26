@@ -18,7 +18,7 @@
         <el-input v-model="form.path" placeholder="请输入菜单路径"></el-input>
       </el-form-item>
       <el-row class="btn-container">
-        <el-button size="mini" type="primary" @click="submitForm('form')"> <i class="fa fa-plus"> </i> 确认修改 </el-button>
+        <el-button size="mini" type="primary" @click="submitForm()"> <i class="fa fa-plus"> </i> 确认修改 </el-button>
       </el-row>
     </el-form>
   </div>

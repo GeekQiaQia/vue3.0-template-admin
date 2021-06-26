@@ -419,7 +419,7 @@ router.beforeEach((to, from, next) => {
     const tabsOption = store.getters['tabModule/getTabsOption']
     // 判断当前路由中是否已经入栈
     const flag = tabsOption.findIndex((tab: { route: string }) => tab.route === to.fullPath) > -1
-    if (!flag) {
+    if (!flag && !to.meta.hidden) {
 
           store.commit('tabModule/ADD_TAB', { route: to.fullPath, title: to.meta.title,name: to.name })
 

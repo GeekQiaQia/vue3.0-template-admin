@@ -42,7 +42,7 @@
 import { defineComponent, reactive, ref } from 'vue'
 import viteLogo from '@/assets/logo-vite.svg'
 import vueLogo from '@/assets/logo.png'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import axios from '@/utils/request'
 import { ElMessage } from 'element-plus'
 
@@ -50,6 +50,7 @@ export default defineComponent({
   name: 'Login',
   setup() {
     const router = useRouter()
+    const route = useRoute()
     const loginFormRef = ref()
     const rules = reactive({
       password: [
@@ -74,7 +75,12 @@ export default defineComponent({
             .then((res) => {
               if (res.data.code === 0) {
                 sessionStorage.setItem('auth', 'true')
-                router.push('/')
+                if (route.query.redirect) {
+                  const path = route.query.redirect
+                  router.push({ path: path as string })
+                } else {
+                  router.push('/')
+                }
               } else {
                 ElMessage({
                   type: 'warning',

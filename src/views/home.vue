@@ -15,7 +15,7 @@
         <el-link type="danger" href="https://element-plus.gitee.io/#/zh-CN/component/link">Element Plus</el-link>
       </div>
     </div>
-    <div class="word-cloud-wrapper">
+    <!-- <div class="word-cloud-wrapper">
       <div class="right-bottom"></div>
 
       <div class="word-sets">
@@ -23,16 +23,16 @@
           <div id="container" />
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 import logo from '@/assets/logo.png'
 import axios from '@/utils/request'
-import DataSet from '@antv/data-set'
-import { Chart, registerShape, Util } from '@antv/g2'
-import { Datum, ShapeInfo } from 'node_modules/@antv/g2/lib/interface'
+// import DataSet from '@antv/data-set'
+// import { Chart, registerShape, ShapeAttrs, Util } from '@antv/g2'
+// import { Datum, ShapeInfo } from 'node_modules/@antv/g2/lib/interface'
 
 export default defineComponent({
   name: 'Home',
@@ -48,41 +48,37 @@ export default defineComponent({
       ]
     })
 
-    const getTextAttrs = (cfg: ShapeInfo) => ({
-      ...cfg.defaultStyle,
-      ...cfg.style,
-      fontSize: (cfg.data as Datum).size,
-      text: (cfg.data as Datum).text,
-      textAlign: 'center',
-      fontFamily: (cfg.data as Datum).font,
-      fill: cfg.color || cfg?.defaultStyle?.stroke,
-      textBaseline: 'Alphabetic'
-    })
+    // const getTextAttrs = (cfg: ShapeInfo): ShapeAttrs => ({
+    //   ...cfg.defaultStyle,
+    //   ...cfg.style,
+    //   fontSize: (cfg.data as Datum).size,
+    //   text: (cfg.data as Datum).text,
+    //   textAlign: 'center',
+    //   fontFamily: (cfg.data as Datum).font,
+    //   fill: cfg.color || cfg?.defaultStyle?.stroke,
+    //   textBaseline: 'alphabetic'
+    // })
 
-    // 给point注册一个词云的shape
-    registerShape('point', 'cloud', {
-      draw(cfg, container) {
-        const attrs = getTextAttrs(cfg)
-        const textShape = container.addShape('text', {
-          attrs: {
-            ...attrs,
-            x: cfg?.x,
-            y: cfg?.y
-          }
-        })
-        const data = cfg.data as Datum
+    // // 给point注册一个词云的shape
+    // registerShape('point', 'cloud', {
+    //   draw(cfg, container) {
+    //     const attrs = getTextAttrs(cfg)
+    //     const textShape = container.addShape('text', {
+    //       attrs: {
+    //         ...attrs,
+    //         x: cfg?.x,
+    //         y: cfg?.y
+    //       }
+    //     })
+    //     const data = cfg.data as Datum
 
-        if (data.rotate) {
-          Util.rotate(textShape, (data.rotate * Math.PI) / 180)
-        }
-        return textShape
-      }
-    })
-    // fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/world-population.json')
-    //   .then(res => res.json())
-    //   .then(data => {
+    //     if (data.rotate) {
+    //       Util.rotate(textShape, (data.rotate * Math.PI) / 180)
+    //     }
+    //     return textShape
+    //   }
+    // })
 
-    //   });
     // methods
     const handleClickImg = (targetUrl: string | undefined) => {
       window.open(targetUrl, '_blank')
@@ -101,70 +97,70 @@ export default defineComponent({
           console.error(err)
         })
     }
-    /**
-     * @description 获取词云
-     */
-    const getWords = () => {
-      axios
-        .get('/api/data/world-population')
-        .then((res: any) => {
-          if (res.data.code === 0) {
-            const { dataSets } = res.data.data
-            const dv = new DataSet.View().source(dataSets)
-            const range = dv.range('value')
-            const min = range[0]
-            const max = range[1]
-            dv.transform({
-              type: 'tag-cloud',
-              fields: ['x', 'value'],
-              size: [600, 500],
-              font: 'Verdana',
-              padding: 0,
-              timeInterval: 5000, // max execute time
-              rotate() {
-                // eslint-disable-next-line no-bitwise
-                let random = ~~(Math.random() * 4) % 4
-                if (random === 2) {
-                  random = 0
-                }
-                return random * 90 // 0, 90, 270
-              },
-              fontSize(d) {
-                if (d.value) {
-                  return ((d.value - min) / (max - min)) * (80 - 24) + 24
-                }
-                return 0
-              }
-            })
-            const chart = new Chart({
-              container: 'container',
-              autoFit: false,
-              width: 600,
-              height: 500,
-              padding: 0
-            })
-            chart.data(dv.rows)
-            chart.scale({
-              x: { nice: false },
-              y: { nice: false }
-            })
-            chart.legend(false)
-            chart.axis(false)
-            chart.tooltip({
-              showTitle: false,
-              showMarkers: false
-            })
-            chart.coordinate().reflect('x')
-            chart.point().position('x*y').color('CornflowerBlue').shape('cloud').tooltip('value*category')
-            chart.interaction('element-active')
-            chart.render()
-          }
-        })
-        .catch((err: any) => {
-          // eslint-disable-next-line no-console
-          console.error(err)
-        })
-    }
+    // /**
+    //  * @description 获取词云
+    //  */
+    // const getWords = () => {
+    //   axios
+    //     .get('/api/data/world-population')
+    //     .then((res: any) => {
+    //       if (res.data.code === 0) {
+    //         const { dataSets } = res.data.data
+    //         const dv = new DataSet.View().source(dataSets)
+    //         const range = dv.range('value')
+    //         const min = range[0]
+    //         const max = range[1]
+    //         dv.transform({
+    //           type: 'tag-cloud',
+    //           fields: ['x', 'value'],
+    //           size: [600, 500],
+    //           font: 'Verdana',
+    //           padding: 0,
+    //           timeInterval: 5000, // max execute time
+    //           rotate() {
+    //             // eslint-disable-next-line no-bitwise
+    //             let random = ~~(Math.random() * 4) % 4
+    //             if (random === 2) {
+    //               random = 0
+    //             }
+    //             return random * 90 // 0, 90, 270
+    //           },
+    //           fontSize(d) {
+    //             if (d.value) {
+    //               return ((d.value - min) / (max - min)) * (80 - 24) + 24
+    //             }
+    //             return 0
+    //           }
+    //         })
+    //         const chart = new Chart({
+    //           container: 'container',
+    //           autoFit: false,
+    //           width: 600,
+    //           height: 500,
+    //           padding: 0
+    //         })
+    //         chart.data(dv.rows)
+    //         chart.scale({
+    //           x: { nice: false },
+    //           y: { nice: false }
+    //         })
+    //         chart.legend(false)
+    //         chart.axis(false)
+    //         chart.tooltip({
+    //           showTitle: false,
+    //           showMarkers: false
+    //         })
+    //         chart.coordinate().reflect('x')
+    //         chart.point().position('x*y').color('CornflowerBlue').shape('cloud').tooltip('value*category')
+    //         chart.interaction('element-active')
+    //         chart.render()
+    //       }
+    //     })
+    //     .catch((err: any) => {
+    //       // eslint-disable-next-line no-console
+    //       console.error(err)
+    //     })
+    // }
     /**
      * @description 获取swiperInfo
      */
@@ -184,7 +180,7 @@ export default defineComponent({
     onMounted(() => {
       getRoles()
       getSwiperInfo()
-      getWords()
+      // getWords()
     })
     return {
       handleClickImg,

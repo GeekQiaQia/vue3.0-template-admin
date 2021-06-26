@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prod":" vue-tsc --noEmit &&vite build",
+    "prod": " vue-tsc --noEmit &&vite build",
     "serve": "vite preview",
     "lint": "eslint --ext .vue,.js,.ts ./",
     "prepare": "husky install"
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@antv/data-set": "^0.11.8",
-    "@antv/g2": "^4.1.17",
-    "@antv/g2plot": "^2.3.20",
+    "@antv/g2": "^4.1.19",
+    "@antv/g2plot": "^2.3.24",
     "@fullcalendar/daygrid": "^5.5.0",
     "@fullcalendar/interaction": "^5.5.0",
     "@fullcalendar/timegrid": "^5.5.0",
@@ -64,7 +64,7 @@
     "vue-cropperjs": "^5.0.0",
     "vue-fullcalendar": "^1.0.9",
     "vue-qr": "^2.4.0",
-    "vue-router": "^4.0.6",
+    "vue-router": "^4.0.10",
     "vue-tsx-support": "^3.1.0",
     "vuedraggable": "^2.24.3",
     "vuex": "^4.0.0",
