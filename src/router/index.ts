@@ -292,37 +292,7 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
   //     }
   //   ],
   // },
-  {
-    path: '/personal',
-    component: layout,
-    redirect: '/personal/personalCenter',
-    meta: {
-      title: '个人页',
-      icon: 'el-icon-user-solid',
-    },
-    children: [
-      {
-        path: '/personal/personalCenter',
-        name: 'personalCenter',
-        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Personal/personalCenter.vue'),
-        meta: {
-          title: '个人中心',
-          icon: 'el-icon-user-solid',
 
-        },
-      },
-      {
-        path: '/personal/personalSetting',
-        name: 'personalSetting',
-        component: () => import(/* webpackChunkName: "personalSetting" */ '@/views/Personal/personalSetting.vue'),
-        meta: {
-          title: '个人设置',
-          icon: 'el-icon-user-solid',
-
-        },
-      },
-    ],
-  },
   {
     path: '/upload',
     component: layout,
@@ -399,6 +369,37 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         meta: {
           title: '角色管理',
           icon: 'ic ic-other',
+        },
+      },
+    ],
+  },
+  {
+    path: '/personal',
+    component: layout,
+    redirect: '/personal/personalCenter',
+    meta: {
+      title: '个人页',
+      icon: 'el-icon-user-solid',
+    },
+    children: [
+      {
+        path: '/personal/personalCenter',
+        name: 'personalCenter',
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Personal/personalCenter.vue'),
+        meta: {
+          title: '个人中心',
+          icon: 'el-icon-user-solid',
+
+        },
+      },
+      {
+        path: '/personal/personalSetting',
+        name: 'personalSetting',
+        component: () => import(/* webpackChunkName: "personalSetting" */ '@/views/Personal/personalSetting.vue'),
+        meta: {
+          title: '个人设置',
+          icon: 'el-icon-user-solid',
+
         },
       },
     ],

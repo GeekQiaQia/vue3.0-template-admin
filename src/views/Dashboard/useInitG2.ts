@@ -21,7 +21,7 @@ export const useInitPlot = (plot: string | HTMLElement,title:string) => {
           lineHeight: 1,
           fill: percent > 0.65 ? 'white' : 'rgba(44,53,66,0.85)'
         }),
-        customHtml: (container, view, { percent }) => {
+        customHtml: (container, view,{ percent }) => {
           const { width, height } = container.getBoundingClientRect()
           // eslint-disable-next-line no-restricted-properties
           const d = Math.sqrt(Math.pow(width / 2, 2) + Math.pow(height / 2, 2))

@@ -89,6 +89,7 @@ import { defineComponent, reactive, toRefs, ref, computed, onMounted } from 'vue
 import { ElMessage } from 'element-plus'
 import axios from '@/utils/request'
 
+declare type indexType = string | number | symbol
 export default defineComponent({
   name: 'PersonalCenter',
   components: {},
@@ -183,9 +184,10 @@ export default defineComponent({
     /**
      * @description 删除当前列表任务
      */
-    const handleListItem = (index: number, list: any[]) => {
+    const handleListItem = (index: indexType, list: any[]) => {
       // 删除当前item ;
-      list.splice(index, 1)
+      const listIndex = index as number
+      list.splice(listIndex, 1)
 
       ElMessage({
         type: 'success',

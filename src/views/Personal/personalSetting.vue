@@ -136,7 +136,7 @@ export default defineComponent({
     const tabPosition = ref('left')
     const settingFormRef = ref()
     const noticeSwitch = reactive({
-      userSwtich: false,
+      userSwitch: false,
       sysSwitch: true,
       taskSwitch: true
     })

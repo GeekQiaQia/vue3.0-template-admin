@@ -127,7 +127,7 @@ function sheetFromArrayOfArrays(data: string | any[], opts?: undefined) {
           else if (typeof cell.v === 'boolean') cell.t = 'b';
           else if (cell.v instanceof Date) {
             cell.t = 'n';
-            const z=XLSX.SSF._table[14]
+            const z=XLSX.SSF.parse_date_code(14)
             cell.z =z ;
             cell.v = datenum(cell.v);
           } else cell.t = 's';
