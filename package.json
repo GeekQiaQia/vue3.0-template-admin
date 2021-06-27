@@ -40,6 +40,7 @@
     "clipboard": "^2.0.4",
     "codemirror": "^5.62.0",
     "dom-to-image": "^2.6.0",
+    "driver.js": "^0.9.8",
     "echarts": "^5.1.1",
     "element-plus": "^1.0.2-beta.48",
     "eslint-import-resolver-webpack": "^0.13.0",
