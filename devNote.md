@@ -157,6 +157,18 @@ createApp(App).use(ElementPlus, { locale })
 
 ```
 
+## 问题 13 Uncaught ReferenceError: process is not defined
+
+### 解决方案
+
+vite.config.ts
+
+```
+ define: {
+    'process.env': {}
+  },
+```
+
 # 待处理
 
 ## 问题 8：

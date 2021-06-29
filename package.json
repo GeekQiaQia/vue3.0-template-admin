@@ -45,6 +45,7 @@
     "element-plus": "^1.0.2-beta.48",
     "eslint-import-resolver-webpack": "^0.13.0",
     "file-saver": "^2.0.5",
+    "fuse.js": "^6.4.6",
     "highlight.js": "^11.0.1",
     "js-cookie": "^2.2.1",
     "jsonlint": "^1.6.3",

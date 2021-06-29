@@ -3,6 +3,7 @@
     <hamburger id="Hamburger" :is-active="opened" class="hamburger-container" @toggleClick="toggleSideBar" />
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <search></search>
       <div id="Message">
         <el-dropdown>
           <el-badge :value="messageNum" :max="99" class="message-badge" type="danger">
@@ -60,6 +61,7 @@ import { defineComponent, computed, ref } from 'vue'
 import Hamburger from '@/components/Hamburger/Hamburger.vue'
 // eslint-disable-next-line import/extensions
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import Search from '@/components/Search/index.vue'
 import avatar from '@/assets/avatar-default.jpg'
 import { useRouter } from 'vue-router'
 import { toFullScreen, exitFullScreen } from '@/utils/screen'
@@ -69,7 +71,8 @@ export default defineComponent({
   name: 'Navbar',
   components: {
     Hamburger,
-    Breadcrumb
+    Breadcrumb,
+    Search
   },
   setup() {
     const router = useRouter()
