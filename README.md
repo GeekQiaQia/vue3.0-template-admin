@@ -80,15 +80,15 @@ npm run dev
 - [x] 可拖拽弹窗
 - [x] 国际化 -->
 
-## 使用到的插件
+## 使用到的插件/库
 
 [eslint-plugin-vue](https://eslint.vuejs.org/user-guide/#faq)
-
+[fues.js Fuzzy Search 前端模糊搜索](https://github.com/krisk/Fuse)
 [antv 数据可视化](https://antv.vision/zh)
 [echart 数据可视化](http://echarts.apache.org/zh/index.html)
 [mockjs 模拟和交互数据](http://mockjs.com/)
 [xlsx SheetJS ](https://www.npmjs.com/package/xlsx)
-https://geekqiaqia.github.io/vue3.0-template-admin/#/login?redirect=/home
+[wangeditor 富文本编辑器](https://www.wangeditor.com/doc/)
 
 ## 快照 (screen shots)
 

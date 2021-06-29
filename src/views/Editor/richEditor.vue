@@ -51,13 +51,15 @@ export default defineComponent({
 </script>
 <style lang="stylus" scoped>
 .editorWrapper{
-       margin-top:20px;
-
+    margin-top:20px;
+    :deep .w-e-text-container{
+      text-align :left;
+    }
     .info{
-        text-align: left;
-    padding-left: 20px;
-    margin-bottom: 20px;
-    font-size: 12px;
+      text-align: left;
+      padding-left: 20px;
+      margin-bottom: 20px;
+      font-size: 12px;
     }
     .section{
       display:flex;

@@ -30,8 +30,10 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button type="primary" @click="submitForm()">登录</el-button>
-            <el-button @click="resetForm()">重置</el-button>
+            <div class="btn-container">
+              <el-button type="primary" @click="submitForm()">登录</el-button>
+              <el-button @click="resetForm()">重置</el-button>
+            </div>
           </el-form-item>
         </el-form>
       </div>
@@ -39,36 +41,45 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue'
+import { defineComponent, reactive, ref, toRefs } from 'vue'
 import viteLogo from '@/assets/logo-vite.svg'
 import vueLogo from '@/assets/logo.png'
 import { useRouter, useRoute } from 'vue-router'
 import axios from '@/utils/request'
 import { ElMessage } from 'element-plus'
 
+interface stateType {
+  loginForm: {
+    account: string
+    password: string
+  }
+}
 export default defineComponent({
   name: 'Login',
   setup() {
     const router = useRouter()
     const route = useRoute()
     const loginFormRef = ref()
-    const rules = reactive({
+
+    const state = reactive<stateType>({
+      loginForm: {
+        account: '',
+        password: ''
+      }
+    })
+    const rules = {
       password: [
         { required: true, message: '请输入密码', trigger: 'blur' },
         { min: 5, max: 10, message: '长度在 5 到 10 个字符', trigger: 'blur' }
       ],
       account: [{ required: true, message: '请输入账号', trigger: 'change' }]
-    })
-    const loginForm = reactive({
-      account: '',
-      password: ''
-    })
+    }
     // methods
     const submitForm = () => {
       loginFormRef.value.validate(async (valid: any) => {
         if (valid) {
           const data = {
-            ...loginForm
+            ...state.loginForm
           }
           await axios
             .post('/api/auth/login', data)
@@ -102,7 +113,7 @@ export default defineComponent({
     return {
       vueLogo,
       viteLogo,
-      loginForm,
+      ...toRefs(state),
       loginFormRef,
       rules,
       submitForm,
@@ -182,6 +193,12 @@ export default defineComponent({
                 margin: 0 auto;
             }
         }
+    }
+    .btn-container{
+      display :flex;
+      flex-direction:row;
+      justify-content :flex-start;
+      align-items :center;
     }
 }
 </style>
