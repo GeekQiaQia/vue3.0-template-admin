@@ -8,9 +8,17 @@ const steps = [
       }
     },
     {
+      element: '#Serach',
+      popover: {
+        title: 'Fuzzy Search',
+        description: '关键词模糊搜索',
+        position: 'bottom'
+      }
+    },
+    {
         element: '#Message',
         popover: {
-          title: 'message Tip',
+          title: 'Message Tip',
           description: '消息提醒,点击此处查看最近收到的消息',
           position: 'bottom'
         }
@@ -27,7 +35,7 @@ const steps = [
       {
         element:'#Tabs',
         popover: {
-          title: 'Tabs pane',
+          title: 'Tabs Pane',
           description: '您可以点击选项卡，快速选择已经打开的路由页面',
           position: 'bottom'
         }

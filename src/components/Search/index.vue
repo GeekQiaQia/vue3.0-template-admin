@@ -1,5 +1,5 @@
 <template>
-  <div class="search-container">
+  <div id="Serach" class="search-container">
     <el-select v-model="value" :remote-method="querySearch" filterable default-first-option remote placeholder="请输入关键字搜索" @change="handleChange">
       <template #prefix>
         <i class="el-input__icon el-icon-search"></i>
