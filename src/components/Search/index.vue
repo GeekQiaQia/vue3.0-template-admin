@@ -1,6 +1,9 @@
 <template>
   <div class="search-container">
     <el-select v-model="value" :remote-method="querySearch" filterable default-first-option remote placeholder="请输入关键字搜索" @change="handleChange">
+      <template #prefix>
+        <i class="el-input__icon el-icon-search"></i>
+      </template>
       <el-option v-for="{ item } in options" :key="item.path" :value="item" :label="item.title.join(' > ')"> </el-option>
     </el-select>
   </div>
@@ -32,9 +35,9 @@ export default defineComponent({
     })
     const config = {
       shouldSort: true,
-      threshold: 0.4,
+      threshold: 0.7,
       location: 0,
-      distance: 100,
+      distance: 150,
       maxPatternLength: 32,
       minMatchCharLength: 1,
       keys: [

@@ -6,7 +6,8 @@ import { resolve } from 'path';
 export default defineConfig({
   plugins: [vue()],
   define: {
-    'process.env': {}
+    'process.platform': null,
+    'process.version': null,
   },
   resolve: {
     alias: {

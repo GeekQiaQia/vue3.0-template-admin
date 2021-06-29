@@ -159,14 +159,26 @@ createApp(App).use(ElementPlus, { locale })
 
 ## 问题 13 Uncaught ReferenceError: process is not defined
 
+### 场景
+
+在.vue 文件中使用 node 环境的模块
+import { resolve } from 'path'
+// 报错：Uncaught ReferenceError: process is not defined
+
 ### 解决方案
 
+[vue-next issue](https://github.com/vuejs/vue-next/issues/2154)
+[vite issue](https://github.com/vitejs/vite/issues/2723)
+[fix-merge](https://github.com/ipfs/js-ipfs-bitswap/pull/342)
 vite.config.ts
 
 ```
+//dev
  define: {
-    'process.env': {}
+   'process.platform': null,
+   'process.version': null,
   },
+
 ```
 
 # 待处理
