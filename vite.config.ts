@@ -9,6 +9,11 @@ export default defineConfig({
     'process.platform': null,
     'process.version': null,
   },
+  build:{
+    commonjsOptions:{
+      ignoreDynamicRequires:false
+    }
+  },
   resolve: {
     alias: {
       '~': resolve(__dirname, './'),
