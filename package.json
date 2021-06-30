@@ -31,6 +31,7 @@
     "@types/qrcode": "^1.4.0",
     "@types/sortablejs": "^1.10.6",
     "@types/vuedraggable": "^2.24.0",
+    "@vitejs/plugin-legacy": "^1.4.3",
     "@vitejs/plugin-vue": "^1.2.1",
     "axios": "^0.21.1",
     "buffer": "^6.0.3",

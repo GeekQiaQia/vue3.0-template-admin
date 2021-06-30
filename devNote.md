@@ -181,6 +181,32 @@ vite.config.ts
 
 ```
 
+## 问题 14 Uncaught TypeError: Cannot read property 'constant' of undefined
+
+### 场景
+
+引入 antv 相关组件，使用 npm run build 以后，打开 index 页面，在运行中报错：
+// 报错：Uncaught TypeError: Cannot read property 'constant' of undefined
+
+### 解决方案
+
+// https://github.com/rollup/plugins/tree/master/packages/commonjs
+vite 在执行 npm run build 的时候，使用 rollup 打包，在有些模块中存在 commonJS 和 esModule 混合存在的场景，
+// https://www.vitejs.net/config/#build-commonjsoptions
+
+#### 使用场景
+
+有些 require 调用不能被静态的解析为 imports
+
+```
+ build:{
+    commonjsOptions:{
+      ignoreDynamicRequires:false, // Default: false
+    }
+  },
+
+```
+
 # 待处理
 
 ## 问题 8：
