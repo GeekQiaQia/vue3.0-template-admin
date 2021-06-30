@@ -127,7 +127,7 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/excel/uploadExcel',
     meta: {
-      title: '上传excel',
+      title: 'Excel',
       icon: 'el-icon-edit-outline',
     },
     children: [

@@ -1,25 +1,27 @@
 <template>
-  <div>
-    <el-form size="mini" inline :model="form">
-      <el-form-item label="导出文件名称">
-        <el-input v-model="form.fileName" style="width: 150px" clearable placeholder="请输入模板名称"> </el-input>
-      </el-form-item>
+  <div class="export-container">
+    <div>
+      <el-form size="mini" inline :model="form">
+        <el-form-item label="导出文件名称">
+          <el-input v-model="form.fileName" style="width: 150px" clearable placeholder="请输入模板名称"> </el-input>
+        </el-form-item>
 
-      <el-form-item label="导出文件类型">
-        <el-select v-model="form.fileType" clearable placeholder="请选择">
-          <el-option v-for="item in fileTypes" :key="item.value" :label="item.value" :value="item.code"> </el-option>
-        </el-select>
-      </el-form-item>
+        <el-form-item label="导出文件类型">
+          <el-select v-model="form.fileType" clearable placeholder="请选择">
+            <el-option v-for="item in fileTypes" :key="item.value" :label="item.value" :value="item.code"> </el-option>
+          </el-select>
+        </el-form-item>
 
-      <el-form-item>
-        <el-button type="primary" @click="handleExportExcel">导出excel文件 <i class="el-icon-search"></i> </el-button>
-      </el-form-item>
-    </el-form>
+        <el-form-item>
+          <el-button type="primary" @click="handleExportExcel">导出excel文件 <i class="el-icon-search"></i> </el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+
+    <el-table id="tableId" ref="tableRef" :data="tableData" border highlight-current-row style="width: 100%">
+      <el-table-column v-for="item in tableColumn" :key="item.prop" :fixed="item.fixed" :prop="item.prop" :label="item.label" :width="item.width"> </el-table-column>
+    </el-table>
   </div>
-
-  <el-table id="tableId" ref="tableRef" :data="tableData" border highlight-current-row style="width: 100%">
-    <el-table-column v-for="item in tableColumn" :key="item.prop" :fixed="item.fixed" :prop="item.prop" :label="item.label" :width="item.width"> </el-table-column>
-  </el-table>
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, ref } from 'vue'
@@ -175,4 +177,8 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.export-container{
+
+}
+</style>
