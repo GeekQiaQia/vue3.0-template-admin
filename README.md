@@ -72,6 +72,7 @@ Give a ⭐️ if this project helped you!
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!.
+<br />Feel free to check [issues page](https://github.com/GeekQiaQia/vue3.0-template-admin/issues).
 
 ## 快速启动 | Quick Start
 
