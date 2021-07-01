@@ -18,42 +18,9 @@ Element-plus:
 
 - 💪 Vue 3.0 Composition API
 - 🔥 Written in TypeScript
+- 🏠 预览 [vue3.0-template-admin](https://geekqiaqia.github.io/vue3.0-template-admin/#/login?redirect=/home)
 
-* 预览 [vue3.0-template-admin](https://geekqiaqia.github.io/vue3.0-template-admin/#/login?redirect=/home)
-
-## 快速启动
-
-```
-# 克隆项目
-git clone https://github.com/GeekQiaQia/vue3.0-template-admin.git
-
-# 进入项目目录
-cd vue3.0-template-admin
-
-# 安装依赖
-npm install
-
-# 启动服务
-npm run dev
-
-```
-
-## 提交基本操作
-
-     git add *  // add everything
-
-     git status  // check status
-
-     git cz  // commit change
-
-     git push // push stage commit
-
-举例：新增功能
-![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2a1f4ad3d8f441898d37215da1c0c3e1~tplv-k3u1fbpfcp-watermark.image)
-举例: 修改文档
-![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cbb57adedaf84063b672b7802eeff6e6~tplv-k3u1fbpfcp-watermark.image)
-
-## 功能
+## 已完成功能 | The functionality is complete
 
 - [x] Element Plus
 - [x] N+1 多级菜单
@@ -73,24 +40,65 @@ npm run dev
 - [x] 角色管理
 - [x] 自定义图标
 - [x] 图片拖拽/裁剪
-<!--
+
+## 正在完成功能 | The functionality is being completed
+
 - [x] 支持切换主题色:一键换肤
 - [x] 权限：v-permisson
-- [x] markdown 编辑器
 - [x] 可拖拽弹窗
-- [x] 国际化 -->
+- [x] 国际化
 
-## 使用到的插件/库
+## 🤝 Contributing
 
-[eslint-plugin-vue](https://eslint.vuejs.org/user-guide/#faq)
-[fues.js Fuzzy Search 前端模糊搜索](https://github.com/krisk/Fuse)
-[antv 数据可视化](https://antv.vision/zh)
-[echart 数据可视化](http://echarts.apache.org/zh/index.html)
-[mockjs 模拟和交互数据](http://mockjs.com/)
-[xlsx SheetJS ](https://www.npmjs.com/package/xlsx)
-[wangeditor 富文本编辑器](https://www.wangeditor.com/doc/)
+Contributions, issues and feature requests are welcome!.
 
-## 快照 (screen shots)
+## ⭐️ Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 使用到的插件/库 | Plugin or lib
+
+- **eslint-plugin-vue** [eslint-plugin-vue](https://eslint.vuejs.org/user-guide/#faq)
+- **axios** 强大的前端请求库
+- **fues.js** [fues.js Fuzzy Search 前端模糊搜索](https://github.com/krisk/Fuse)
+- **echart** [echart 数据可视化](http://echarts.apache.org/zh/index.html)
+- **antv** [antv 蚂蚁数据可视化](https://antv.vision/zh)
+- **xlsx** [xlsx SheetJS ](https://www.npmjs.com/package/xlsx)
+- **mockjs** [mockjs 模拟和交互数据](http://mockjs.com/)
+- **wangeditor** [wangeditor 富文本编辑器](https://www.wangeditor.com/doc/)
+
+## 快速启动 | Quick Start
+
+```
+# 克隆项目
+git clone https://github.com/GeekQiaQia/vue3.0-template-admin.git
+
+# 进入项目目录
+cd vue3.0-template-admin
+
+# 安装依赖
+npm install
+
+# 启动服务
+npm run dev
+
+```
+
+## git 提交 | git commit
+
+     git add *  // add everything
+
+     git status  // check status
+
+     git cz  // commit change
+
+     git push // push stage commit
+
+## 持续升级 | Continuous upgrades
+
+敬请期待...
+
+## 快照 | screen shots
 
 ### 全屏功能
 
