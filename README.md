@@ -20,6 +20,10 @@ Element-plus:
 - 🔥 Written in TypeScript
 - 🏠 预览 [vue3.0-template-admin](https://geekqiaqia.github.io/vue3.0-template-admin/#/login?redirect=/home)
 
+## ⭐️ Show your support
+
+Give a ⭐️ if this project helped you!
+
 ## 已完成功能 | The functionality is complete
 
 - [x] Element Plus
@@ -48,14 +52,6 @@ Element-plus:
 - [x] 可拖拽弹窗
 - [x] 国际化
 
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!.
-
-## ⭐️ Show your support
-
-Give a ⭐️ if this project helped you!
-
 ## 使用到的插件/库 | Plugin or lib
 
 - **eslint-plugin-vue** [eslint-plugin-vue](https://eslint.vuejs.org/user-guide/#faq)
@@ -66,6 +62,16 @@ Give a ⭐️ if this project helped you!
 - **xlsx** [xlsx SheetJS ](https://www.npmjs.com/package/xlsx)
 - **mockjs** [mockjs 模拟和交互数据](http://mockjs.com/)
 - **wangeditor** [wangeditor 富文本编辑器](https://www.wangeditor.com/doc/)
+
+## 合作优质项目 | Partner project
+
+- [h5-Dooring - H5-Dooring 是一款功能强大，专业可靠的 H5 可视化页面配置解决方案](https://github.com/MrXujiang/h5-Dooring)
+- [Blink - 一款自定义的生成故障艺术动画的组件库](https://github.com/MrXujiang/blink)
+- [frontend-developer-roadmap | 一个能提高开发者工作效率的前端 js 库汇总](https://github.com/MrXujiang/frontend-developer-roadmap)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!.
 
 ## 快速启动 | Quick Start
 
