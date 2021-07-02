@@ -9,12 +9,23 @@
         <el-col :offset="1" :span="22">
           <div class="grid-content bg-purple-dark">
             <el-card class="box-card">
-              <fragment>
-                <div style="text-align: left">
-                  <span>超简单的markdown编辑器</span>
-                  <el-divider></el-divider>
-                </div>
-              </fragment>
+              <div style="text-align: left">
+                <span>Toast UI Editor markdown编辑器 <el-link type="primary" href="https://nhn.github.io/tui.editor/latest/tutorial-example01-editor-basic">Toast UI Editor </el-link></span>
+                <el-divider></el-divider>
+              </div>
+              <tuiEditor :model-value="content"></tuiEditor>
+            </el-card>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :offset="1" :span="22">
+          <div class="grid-content bg-purple-dark">
+            <el-card class="box-card">
+              <div style="text-align: left">
+                <span>超简单的markdown编辑器</span>
+                <el-divider></el-divider>
+              </div>
               <simpleMD> </simpleMD>
             </el-card>
           </div>
@@ -24,18 +35,24 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, reactive, ref, toRefs } from 'vue'
+
 import simpleMD from './components/simpleMarkdown.vue'
+import tuiEditor from './components/tuiEditor.vue'
 
 export default defineComponent({
   components: {
-    simpleMD
+    simpleMD,
+    tuiEditor
   },
   setup() {
     const value = ref('')
-
+    const state = reactive({
+      content: '# wesome Editor! Toast UI'
+    })
     return {
-      value
+      value,
+      ...toRefs(state)
     }
   }
 })
@@ -59,6 +76,7 @@ export default defineComponent({
      .el-row {
        margin-bottom: 20px;
      }
+
 
 }
 </style>

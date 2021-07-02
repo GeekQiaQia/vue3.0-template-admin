@@ -19,6 +19,8 @@
     "@kangc/v-md-editor": "^2.3.4",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@tinymce/tinymce-vue": "^4.0.0",
+    "@toast-ui/editor": "^3.0.0",
+    "@toast-ui/vue-editor": "^3.0.0",
     "@types/axios": "^0.14.0",
     "@types/clipboard": "^2.0.1",
     "@types/dom-to-image": "^2.6.2",
