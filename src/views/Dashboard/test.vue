@@ -1,11 +1,9 @@
 <template>
   <div class="analysisInfo">
-    <fragment>
-      <div class="info">
-        <span style="display: block; font-size: 24px; margin: 24px 0">数据可视化</span>
-        <span style="text-align: left">数据可视化主要旨在借助于图形化手段，清晰有效地传达与沟通信息，</span>
-      </div>
-    </fragment>
+    <div class="info">
+      <span style="display: block; font-size: 24px; margin: 24px 0">数据可视化</span>
+      <span style="text-align: left">数据可视化主要旨在借助于图形化手段，清晰有效地传达与沟通信息，</span>
+    </div>
     <!-- <el-row>
       <el-col :offset="1" :span="15">
         <div class="grid-content bg-purple-dark">
@@ -16,9 +14,8 @@
       </el-col>
     </el-row> -->
     <div class="echart-container">
-      <fragment>
-        <div ref="lineEchart" style="width: 100%; height: 400px" class="echart"></div>
-      </fragment>
+      <div ref="lineEchart" style="width: 100%; height: 400px" class="echart"></div>
+
       <div class="bottom-chart">
         <div ref="refEchart" style="width: 49%; height: 400px" class="echart"></div>
         <div ref="radarEchart" style="width: 49%; height: 400px" class="echart"></div>

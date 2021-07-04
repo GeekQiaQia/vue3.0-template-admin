@@ -1,11 +1,10 @@
 <template>
   <div class="stepForm">
-    <fragment>
-      <div class="info">
-        <el-divider content-position="left">分步表单</el-divider>
-        <span style="text-align: left">将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。</span>
-      </div>
-    </fragment>
+    <div class="info">
+      <el-divider content-position="left">分步表单</el-divider>
+      <span style="text-align: left">将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。</span>
+    </div>
+
     <el-row>
       <el-col :offset="1" :span="22">
         <div class="grid-content bg-purple-dark">
@@ -23,7 +22,7 @@
               <el-step title="确认转账信息" description="请仔细核对转账信息"></el-step>
               <el-step title="完成" description="操作成功"></el-step>
             </el-steps>
-            <fragment v-if="active == 0">
+            <template v-if="active == 0">
               <el-form ref="accountForm" :model="ruleForm" :rules="rules" label-width="100px" class="demo-ruleForm">
                 <el-form-item label="付款账户" prop="payAccountNo">
                   <el-input v-model="ruleForm.payAccountNo"></el-input>
@@ -49,8 +48,8 @@
                   <el-button @click="resetForm()">重置</el-button>
                 </el-form-item>
               </el-form>
-            </fragment>
-            <fragment v-else-if="active == 1">
+            </template>
+            <template v-else-if="active == 1">
               <el-form ref="accountForm" :model="ruleForm" label-width="100px" class="demo-ruleForm">
                 <el-form-item label="付款账户" prop="payAccountNo">
                   <el-input v-model="ruleForm.payAccountNo" readonly></el-input>
@@ -70,14 +69,14 @@
                 <el-button @click="handleLastStep()">上一步</el-button>
               </el-form-item>
               <el-divider></el-divider>
-            </fragment>
-            <fragment v-else-if="active == 3">
+            </template>
+            <template v-else-if="active == 3">
               <el-result icon="success" title="操作成功" sub-title="预计两小时内到账">
                 <template #extra>
                   <el-button type="primary" size="medium" @click="handleRedo">再转一笔</el-button>
                 </template>
               </el-result>
-            </fragment>
+            </template>
           </el-card>
         </div>
       </el-col>

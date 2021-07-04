@@ -9,12 +9,10 @@
         <el-col :offset="1" :span="22">
           <div class="grid-content bg-purple-dark">
             <el-card class="box-card">
-              <fragment>
-                <div style="text-align: left">
-                  <span>富文本编辑器</span>
-                  <el-divider></el-divider>
-                </div>
-              </fragment>
+              <div style="text-align: left">
+                <span>富文本编辑器</span>
+                <el-divider></el-divider>
+              </div>
               <div ref="reditor"></div>
             </el-card>
           </div>

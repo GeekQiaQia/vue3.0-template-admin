@@ -9,12 +9,10 @@
         <el-col :offset="1" :span="22">
           <div class="grid-content bg-purple-dark">
             <el-card class="box-card">
-              <fragment>
-                <div style="text-align: left">
-                  <span>JSON编辑器</span>
-                  <el-divider></el-divider>
-                </div>
-              </fragment>
+              <div style="text-align: left">
+                <span>JSON编辑器</span>
+                <el-divider></el-divider>
+              </div>
               <div class="form-container">
                 <el-form ref="form" :model="selectForm" label-width="120px">
                   <el-form-item label="主题 theme" :inline="true" label-position="right">

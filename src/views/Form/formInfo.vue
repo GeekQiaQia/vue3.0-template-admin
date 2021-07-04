@@ -1,11 +1,9 @@
 <template>
   <div class="FormInfo">
-    <fragment>
-      <div class="info">
-        <el-divider content-position="left">基础表单</el-divider>
-        <span style="text-align: left">用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。</span>
-      </div>
-    </fragment>
+    <div class="info">
+      <el-divider content-position="left">基础表单</el-divider>
+      <span style="text-align: left">用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。</span>
+    </div>
     <el-row>
       <el-col :offset="1" :span="22">
         <div class="grid-content bg-purple-dark">
