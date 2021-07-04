@@ -63,12 +63,8 @@ export default defineComponent({
       listSortable.destroy()
     })
 
-    const handleLinkClick = (targetLink: string | undefined) => {
-      window.open(targetLink, '_blank')
-    }
     return {
       itemsRef,
-      handleLinkClick,
       input
     }
   }

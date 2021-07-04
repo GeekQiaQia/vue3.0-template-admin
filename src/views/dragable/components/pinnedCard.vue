@@ -85,6 +85,10 @@ export default defineComponent({
         }
       ]
     })
+    // methods
+    const handleLinkClick = (targetLink: string | undefined) => {
+      window.open(targetLink, '_blank')
+    }
     onMounted(() => {
       cardSortable = Sortable.create(cardRef.value, {
         group: 'grid',
@@ -100,7 +104,8 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
-      cardRef
+      cardRef,
+      handleLinkClick
     }
   }
 })
