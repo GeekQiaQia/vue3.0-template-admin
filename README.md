@@ -78,7 +78,12 @@ Contributions, issues and feature requests are welcome!.
 
 ```
 # 克隆项目
+# cnpmjs
+git clone https://github.com.cnpmjs.org/GeekQiaQia/vue3.0-template-admin.git
+
+# or
 git clone https://github.com/GeekQiaQia/vue3.0-template-admin.git
+
 
 # 进入项目目录
 cd vue3.0-template-admin
@@ -104,6 +109,16 @@ npm run dev
 ## 持续升级 | Continuous upgrades
 
 敬请期待...
+
+## 赞助 | Sponsored
+
+开源不易, 有了您的赞助, 我们会做的更好~
+
+<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/04022bcd6f99449ba0f065f470d19458~tplv-k3u1fbpfcp-watermark.image" width="180px" />
+
+## 技术反馈和交流群 | Technical feedback and communication
+
+<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d41b5fec542444b4a28c00135ce27d42~tplv-k3u1fbpfcp-watermark.image" width="180px" />
 
 ## 快照 | screen shots
 
