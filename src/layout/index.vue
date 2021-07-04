@@ -1,7 +1,6 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <!--backtop-->
-    Scroll down to see the bottom-right button.
     <el-backtop target=".app-wrapper" :visibility-height="100"></el-backtop>
 
     <Sidebar class="sidebar-container" />
