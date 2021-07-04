@@ -1,5 +1,5 @@
 <template>
-  <div class="copy-container">
+  <div class="dragable-container">
     <div class="info">
       <el-divider content-position="left">拖拽组件</el-divider>
       <span style="text-align: left">拖拽组件常用于对当前活动列表进行优先级重新排列场景。<el-link type="primary" href="http://www.sortablejs.com/index.html">sortableJs</el-link></span>
@@ -75,7 +75,7 @@ export default defineComponent({
 })
 </script>
 <style lang="stylus" scoped>
-.copy-container{
+.dragable-container{
    margin-top:20px;
 
     .info{
