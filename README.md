@@ -96,6 +96,24 @@ npm run dev
 
 # 打包
 npm run build
+
+
+```
+
+## 同步代码 | synchronizing code
+
+```
+# add upstream
+git remote add upstream https://github.com/GeekQiaQia/vue3.0-template-admin
+
+# 抓取源仓库修改 master分支
+git fetch upstream main
+
+# 切换分支
+git checkout main
+
+# 合并远程分支
+git merge upstream/main
 ```
 
 ## git 提交 | git commit
