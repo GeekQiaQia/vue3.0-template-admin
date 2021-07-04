@@ -32,7 +32,7 @@ Give a ⭐️ if this project helped you!
 - [x] 表格
 - [x] router Tab 选项卡
 - [x] 表单
-- [x] 图表 :antv echart
+- [x] 图表 :antv or echart
 - [x] 二维码生成
 - [x] 拖拽组件
 - [x] 富文本编辑器
