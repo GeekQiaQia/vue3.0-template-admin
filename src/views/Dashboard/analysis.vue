@@ -1,8 +1,10 @@
 <template>
-  <div class="analysisInfo">
+  <div class="analysis-info">
     <div class="info">
       <span style="display: block; font-size: 24px; margin: 24px 0">数据可视化</span>
-      <span style="text-align: left">数据可视化主要旨在借助于图形化手段，清晰有效地传达与沟通信息，</span>
+      <span style="text-align: left"
+        >数据可视化主要旨在借助于图形化手段，清晰有效地传达与沟通信息，<el-link type="primary" href="https://g2.antv.vision/zh/examples/">AntV G2 让数据栩栩如生</el-link></span
+      >
     </div>
     <el-row>
       <el-col :span="24">
@@ -133,10 +135,10 @@ export default defineComponent({
 })
 </script>
 <style lang="stylus" scoped>
-.analysisInfo{
+.analysis-info{
   // background: #100c2a;
   color:black;
-  padding:20px;
+  padding:0px 20px;
   .indicators {
   font-family: PingFangSC-Regular;
   display: flex;
