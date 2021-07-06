@@ -48,119 +48,45 @@
 
       <el-col :span="15" :push="0">
         <el-card class="box-card">
-          <el-calendar>
-            <template #dateCell="{ data }">
-              <p :class="data.isSelected ? 'is-selected' : ''" @dblclick="handleDoubleClick(data.day)" @click="handleFocusCurrent(data.day)">
-                {{ data.day.split('-')[2] }} {{ data.isSelected ? '✔️' : '' }}
-              </p>
-              <ul>
-                <p v-for="[key, value] of record.entries()" :key="key">
-                  <template v-if="key === data.day">
-                    <li v-for="(tasks, index) in value" :key="tasks">
-                      <span style="height: auto; line-height: 0px" class="el-tag el-tag--light" data-v-53b8cb1a=""
-                        >{{ tasks.task }}<i class="el-tag__close el-icon-close" @click="handleListItem(index, value)"></i
-                      ></span>
-                    </li>
-                  </template>
-                </p>
-              </ul>
-            </template>
-          </el-calendar>
+          <fullcalendar></fullcalendar>
         </el-card>
       </el-col>
     </el-row>
-    <el-dialog v-model="dialogFormVisible" title="请输入列表任务">
-      <el-form :model="listForm">
-        <el-form-item label="当前任务" :label-width="formLabelWidth">
-          <el-input v-model="listForm.task" autocomplete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <template #footer>
-        <span class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="handleAddNewTask">确 定</el-button>
-        </span>
-      </template>
-    </el-dialog>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs, ref, computed, onMounted } from 'vue'
-import { ElMessage } from 'element-plus'
+import { defineComponent, reactive, toRefs, ref, onMounted } from 'vue'
 import axios from '@/utils/request'
+import fullcalendar from './components/fullCalendar/index.vue'
 
-declare type indexType = string | number | symbol
+interface stateType {
+  dynamicTags: string[]
+  inputVisible: boolean
+  inputValue: string
+}
 export default defineComponent({
   name: 'PersonalCenter',
-  components: {},
+  components: {
+    fullcalendar
+  },
   setup() {
-    const state = reactive({
+    const state = reactive<stateType>({
       dynamicTags: ['default'],
       inputVisible: false,
       inputValue: ''
     })
     const formLabelWidth = ref(100)
-    const listForm = reactive({
-      task: ''
-    })
-    // const initData=[
-
-    // ['2021-05-19',[{task:"读书看报"}]],
-
-    // ['2021-05-20',[{task:"吃饭打屁"}]]
-    // ];
-
-    const currentEdit = ref()
-    // record.set();
-    const recordData = reactive({
-      record: new Map()
-    })
-    const computedData = computed(() => recordData.record.entries())
     const size = ref('medium')
     const showDesc = ref(true)
-    const dialogFormVisible = ref(false)
-    const selectedDay = ref()
 
     // mothods
+    /**
+     * @description 关闭tag标签
+     */
     const handleClose = (tag: string) => {
       state.dynamicTags.splice(state.dynamicTags.indexOf(tag), 1)
     }
-    const filterData = computed(() => recordData.record.get(selectedDay.value))
 
-    const showInput = () => {
-      state.inputVisible = true
-    }
-    const filter = (day: any) => {
-      if (recordData.record.has(day)) {
-        return recordData.record.get(day)
-      }
-      return false
-    }
-
-    const handleDoubleClick = (day: any) => {
-      selectedDay.value = day
-
-      dialogFormVisible.value = true
-      listForm.task = ''
-    }
-    /**
-     * @description 获取角色
-     */
-    const getTaskList = async () => {
-      await axios
-        .get('/api/personal/tasks')
-        .then((res: any) => {
-          if (res.data.code === 0) {
-            const initData = res.data.data.tasks
-            const record = new Map(initData as any)
-            recordData.record = record
-          }
-        })
-        .catch((err: any) => {
-          // eslint-disable-next-line no-console
-          console.error(err)
-        })
-    }
     /**
      * @description 获取当前tags
      */
@@ -180,39 +106,6 @@ export default defineComponent({
           console.error(err)
         })
     }
-
-    /**
-     * @description 删除当前列表任务
-     */
-    const handleListItem = (index: indexType, list: any[]) => {
-      // 删除当前item ;
-      const listIndex = index as number
-      list.splice(listIndex, 1)
-
-      ElMessage({
-        type: 'success',
-        message: '删除成功!'
-      })
-    }
-    const handleAddNewTask = () => {
-      // 存储当前日期的事件；
-      if (recordData.record.get(selectedDay.value)) {
-        recordData.record.get(selectedDay.value as string).push([{ task: listForm.task }])
-      } else {
-        // fixbug proxy 代理对象的索引
-        recordData.record.set(selectedDay.value, [{ task: listForm.task }])
-      }
-      dialogFormVisible.value = false
-    }
-    // 聚焦的时候，
-    const handleFocusCurrent = (day: any) => {
-      selectedDay.value = day
-      currentEdit.value = recordData.record.get(selectedDay.value)
-    }
-    const handleBlurCurrent = () => {
-      recordData.record.set(selectedDay.value, currentEdit.value)
-      // 更新到后台接口
-    }
     const handleInputConfirm = () => {
       const { inputValue } = state
       if (inputValue) {
@@ -221,34 +114,21 @@ export default defineComponent({
       state.inputVisible = false
       state.inputValue = ''
     }
-
-    const handleInputEnter = () => {}
+    const showInput = () => {
+      state.inputVisible = true
+    }
 
     onMounted(() => {
-      getTaskList()
       getTagList()
     })
     return {
-      dialogFormVisible,
-      computedData,
-      filter,
-      listForm,
       formLabelWidth,
-      handleListItem,
-      handleAddNewTask,
-      handleDoubleClick,
-      handleBlurCurrent,
-      handleFocusCurrent,
-      currentEdit,
-      filterData,
-      ...toRefs(state),
-      ...toRefs(recordData),
-      size,
-      showDesc,
-      handleClose,
       showInput,
       handleInputConfirm,
-      handleInputEnter
+      ...toRefs(state),
+      size,
+      showDesc,
+      handleClose
     }
   }
 })
