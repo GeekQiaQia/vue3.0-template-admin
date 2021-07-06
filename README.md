@@ -193,7 +193,7 @@ git merge upstream/main
 
 ### 个人中心
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e4c53c2dc9dc4ceb8a7606dbd60f2a6e~tplv-k3u1fbpfcp-watermark.image)
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f167eaff155c489ea8fd844dc81feab2~tplv-k3u1fbpfcp-watermark.image)
 
 ### 个人设置
 
