@@ -1,5 +1,13 @@
 <template>
-  <div class="home-container page-container">
+  <div class="page-container">
+    <div class="info">
+      <el-divider content-position="left">个人中心</el-divider>
+      <span style="text-align: left"
+        >个人中心通常用来作为个人基本信息展示和个人事务通知中心
+        <el-link type="primary" href="https://fullcalendar.io/docs/initialize-globals-demo"
+          >fullCalendar Demo <el-tooltip class="item" effect="dark" :content="contentTip" placement="top-start"> <i class="el-icon-question"></i></el-tooltip> </el-link
+      ></span>
+    </div>
     <el-row :gutter="20">
       <el-col :span="7" :offset="1">
         <el-card class="box-card">
@@ -63,6 +71,7 @@ interface stateType {
   dynamicTags: string[]
   inputVisible: boolean
   inputValue: string
+  contentTip: string
 }
 export default defineComponent({
   name: 'PersonalCenter',
@@ -73,7 +82,8 @@ export default defineComponent({
     const state = reactive<stateType>({
       dynamicTags: ['default'],
       inputVisible: false,
-      inputValue: ''
+      inputValue: '',
+      contentTip: '您可：1、拖放事件任务 2、调整事件任务的大小 3、点击事件任务删除 4、点击日期添加新的事件任务'
     })
     const formLabelWidth = ref(100)
     const size = ref('medium')
@@ -134,6 +144,14 @@ export default defineComponent({
 })
 </script>
 <style lang="stylus" scoped>
+.page-container{
+      .info{
+        text-align: left;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    }
+}
 .box-card{
   p{
     text-align :right;
