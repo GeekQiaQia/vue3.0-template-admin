@@ -62,6 +62,7 @@ Give a ⭐️ if this project helped you!
 - **xlsx** [xlsx SheetJS ](https://www.npmjs.com/package/xlsx)
 - **mockjs** [mockjs 模拟和交互数据](http://mockjs.com/)
 - **wangeditor** [wangeditor 富文本编辑器](https://www.wangeditor.com/doc/)
+- **fullcalendar** [fullcalendar 丰富的日历插件](https://github.com/fullcalendar/fullcalendar-example-projects/tree/master/vue3-typescript)
 
 ## 合作优质项目 | Partner project
 
