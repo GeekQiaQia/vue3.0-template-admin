@@ -34,6 +34,8 @@ Give a ⭐️ if this project helped you!
 - [x] 表单
 - [x] 图表 :antv or echart
 - [x] 二维码生成
+- [x] 导入导出 Excel
+- [x] 导出 Zip 文件
 - [x] 拖拽组件
 - [x] 富文本编辑器
 - [x] markdown 编辑器
@@ -60,6 +62,7 @@ Give a ⭐️ if this project helped you!
 - **echart** [echart 数据可视化](http://echarts.apache.org/zh/index.html)
 - **antv** [antv 蚂蚁数据可视化](https://antv.vision/zh)
 - **xlsx** [xlsx SheetJS ](https://www.npmjs.com/package/xlsx)
+- **jszip** [jszip 优秀的前端压缩库 ](https://github.com/Stuk/jszip)
 - **mockjs** [mockjs 模拟和交互数据](http://mockjs.com/)
 - **wangeditor** [wangeditor 富文本编辑器](https://www.wangeditor.com/doc/)
 - **fullcalendar** [fullcalendar 丰富的日历插件](https://github.com/fullcalendar/fullcalendar-example-projects/tree/master/vue3-typescript)
