@@ -156,14 +156,14 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/zip/exportZip',
     meta: {
-      title: '复制文本',
+      title: 'Zip',
       icon: 'el-icon-folder',
     },
     children: [
       {
-        path: '/copy/copyText',
-        name: 'copyText',
-        component: () => import( '@/views/Zip/index.vue'),
+        path: '/zip/exportZip',
+        name: 'exportZip',
+        component: () => import( '@/views/Zip/exportZip.vue'),
         meta: {
           title: '导出zip',
           icon: 'el-icon-folder',

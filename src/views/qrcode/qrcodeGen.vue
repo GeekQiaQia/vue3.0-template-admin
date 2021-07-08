@@ -37,7 +37,7 @@ import qrcodeVue from 'qrcode.vue'
 import domtoimage from 'dom-to-image'
 import { defineComponent, ref } from 'vue'
 import { ElMessage } from 'element-plus'
-import { urlToBlob } from '@/utils/urlToblob'
+import { urlToBlob } from '@/utils/transferToBlob'
 
 export default defineComponent({
   components: {

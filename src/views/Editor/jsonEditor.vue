@@ -34,7 +34,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs } from 'vue'
-import codeJson from './components/codeJson.vue'
+import codeJson from '@/components/Editor/codeJson.vue'
 
 const jsonData =
   '[{"_id":"post 1","author":"Bob","content":"...","page_views":5},{"_id":"post 2","author":"Bob","content":"...","page_views":9},{"_id":"post 3","author":"Bob","content":"...","page_views":8},{"_id":"post 4","author":"Bob","content":"...","page_views":7}]'

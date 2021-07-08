@@ -37,8 +37,8 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs } from 'vue'
 
-import simpleMD from './components/simpleMarkdown.vue'
-import tuiEditor from './components/tuiEditor.vue'
+import tuiEditor from '@/components/Editor/tuiEditor.vue'
+import simpleMD from '@/components/Editor/simpleMarkdown.vue'
 
 export default defineComponent({
   components: {

@@ -16,3 +16,23 @@
     };
     xhr.send();
   };
+  /**
+ * @description base64转换为blob类型
+ */
+  export const base64ToBlob=(code: string)=> {
+    const parts = code.split(';base64,');
+    const contentType = parts[0].split(':')[1];
+    const raw = window.atob(parts[1]);
+    const rawLength = raw.length;
+    const uInt8Array = new Uint8Array(rawLength);
+    for (let i = 0; i < rawLength; ++i) {
+      uInt8Array[i] = raw.charCodeAt(i);
+    }
+    return new Blob([uInt8Array], { type: contentType });
+  };
+
+  export default {
+    base64ToBlob,
+    urlToBlob
+
+  }

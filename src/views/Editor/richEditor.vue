@@ -13,7 +13,7 @@
                 <span>富文本编辑器</span>
                 <el-divider></el-divider>
               </div>
-              <div ref="reditor"></div>
+              <RichEditor :model-value="editorValue" @update:modelValue="handleUpdateValue"></RichEditor>
             </el-card>
           </div>
         </el-col>
@@ -22,27 +22,27 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
-import E from 'wangeditor'
+import { defineComponent, ref } from 'vue'
+import RichEditor from '@/components/Editor/richEditor.vue'
 
 export default defineComponent({
-  components: {},
+  components: {
+    RichEditor
+  },
   setup() {
-    const reditor = ref() // 富文本引用
+    const editorValue = ref() // 富文本引用
     const richHtml = ref() // 富文本内容；
-    onMounted(() => {
-      const editor = new E(reditor.value)
-      // 配置 onchange 回调函数
-      editor.config.onchange = (newHtml: any) => {
-        richHtml.value = newHtml
-        console.log('change 之后最新的 html', richHtml.value)
-      }
-      // 配置触发 onchange 的时间频率，默认为 200ms
-      editor.config.onchangeTimeout = 500 // 修改为 500ms
-      editor.create()
-    })
+
+    /**
+     * @description  获取接收最新文本
+     */
+    const handleUpdateValue = (val: any) => {
+      console.log(val)
+      richHtml.value = val
+    }
     return {
-      reditor
+      handleUpdateValue,
+      editorValue
     }
   }
 })
