@@ -73,7 +73,11 @@ Give a ⭐️ if this project helped you!
 - [Blink - 一款自定义的生成故障艺术动画的组件库](https://github.com/MrXujiang/blink)
 - [frontend-developer-roadmap | 一个能提高开发者工作效率的前端 js 库汇总](https://github.com/MrXujiang/frontend-developer-roadmap)
 
-## 🤝 Contributing
+## 🤝 贡献 | Contributing
+
+欢迎参与贡献，提出问题、新功能合并请求等！
+
+最新的贡献情况可以参阅 GitHub 提供的[contributors](https://github.com/GeekQiaQia/vue3.0-template-admin/graphs/contributors)页面
 
 Contributions, issues and feature requests are welcome!.
 <br />Feel free to check [issues page](https://github.com/GeekQiaQia/vue3.0-template-admin/issues).
