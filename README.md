@@ -147,6 +147,7 @@ git merge upstream/main
 ## 技术反馈和交流群 | Technical feedback and communication
 
 <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d41b5fec542444b4a28c00135ce27d42~tplv-k3u1fbpfcp-watermark.image" width="180px" />
+<img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/651ae122b9be4114b157cef86bba23a2~tplv-k3u1fbpfcp-watermark.image" width="180px" />
 
 ## 快照 | screen shots
 
