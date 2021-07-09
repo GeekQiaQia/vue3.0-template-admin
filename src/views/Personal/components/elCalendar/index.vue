@@ -20,7 +20,7 @@
     </el-calendar>
     <el-dialog v-model="dialogFormVisible" title="请输入列表任务">
       <el-form :model="listForm">
-        <el-form-item label="当前任务" :label-width="formLabelWidth">
+        <el-form-item label="当前任务">
           <el-input v-model="listForm.task" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
