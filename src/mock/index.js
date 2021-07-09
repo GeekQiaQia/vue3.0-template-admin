@@ -62,6 +62,17 @@ Mock.mock('/api/auth/user/login','post',(option) => {
             message:'账户或者密码错误'
         }
 });
+
+
+Mock.mock('/api/auth/user/register','post',() => ({
+        status: 200,
+        data:{
+
+        },
+        success: true,
+        message:'成功'
+    }));
+
 Mock.mock('/api/setting/basicInfo','post',(option)=>{
     const {email,nickname,desc,mobile} = JSON.parse(option.body);
     return {

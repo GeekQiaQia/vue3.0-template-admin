@@ -44,7 +44,7 @@
             <el-input v-model="registerForm.email" autocomplete="off" placeholder="请输入注册邮箱"></el-input>
           </el-form-item>
           <el-form-item label="验证码" prop="capcha">
-            <el-input v-model.number="registerForm.capcha" autocomplete="off" placeholder="请输入验证码"></el-input>
+            <el-input v-model.number="registerForm.capcha" maxlength="6" autocomplete="off" placeholder="请输入验证码"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
             <el-input v-model="registerForm.password" type="password" autocomplete="off" placeholder="请输入密码(admin)"></el-input>
@@ -115,7 +115,7 @@ export default defineComponent({
         { required: true, message: '请输入账号', trigger: 'change' },
         { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
       ],
-      capcha: [{ required: true, min: 6, message: '长度在 6个字符', trigger: 'blur' }]
+      capcha: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
     }
 
     // methods
