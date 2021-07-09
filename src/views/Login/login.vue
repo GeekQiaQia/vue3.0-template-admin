@@ -67,10 +67,10 @@
 import { defineComponent, reactive, ref, toRefs } from 'vue'
 import viteLogo from '@/assets/logo-vite.svg'
 import vueLogo from '@/assets/logo.png'
-// import { useRouter, useRoute } from 'vue-router'
-// import { ElMessage } from 'element-plus'
+import { useRouter, useRoute } from 'vue-router'
+import { ElMessage } from 'element-plus'
 // import { encrypt } from '@/utils/aes'
-// import Service from './index'
+import Service from './index'
 
 interface stateType {
   loginForm: {
@@ -87,8 +87,8 @@ interface stateType {
 export default defineComponent({
   name: 'Login',
   setup() {
-    // const router = useRouter()
-    // const route = useRoute()
+    const router = useRouter()
+    const route = useRoute()
     const loginFormRef = ref()
     const registerRef = ref()
 
@@ -126,28 +126,28 @@ export default defineComponent({
       loginFormRef.value.validate(async (valid: any) => {
         if (valid) {
           try {
-            // const { email, password } = state.loginForm
-            // const data = {
-            //   email,
-            //   password: encrypt(password)
-            // }
-            // const res = await Service.postLogin(data)
-            // const accessToken = res?.data?.accessToken ?? null
-            // if (accessToken) {
-            //   sessionStorage.setItem('auth', 'true')
-            //   sessionStorage.setItem('accessToken', accessToken)
-            //   if (route.query.redirect) {
-            //     const path = route.query.redirect
-            //     router.push({ path: path as string })
-            //   } else {
-            //     router.push('/')
-            //   }
-            // } else {
-            //   ElMessage({
-            //     type: 'warning',
-            //     message: '账号或者密码有误'
-            //   })
-            // }
+            const { email, password } = state.loginForm
+            const data = {
+              email,
+              password
+            }
+            const res = await Service.postLogin(data)
+            const accessToken = res?.data?.accessToken ?? null
+            if (accessToken) {
+              sessionStorage.setItem('auth', 'true')
+              sessionStorage.setItem('accessToken', accessToken)
+              if (route.query.redirect) {
+                const path = route.query.redirect
+                router.push({ path: path as string })
+              } else {
+                router.push('/')
+              }
+            } else {
+              ElMessage({
+                type: 'warning',
+                message: '账号或者密码有误'
+              })
+            }
           } catch (err) {
             console.error(err)
           }
@@ -162,19 +162,19 @@ export default defineComponent({
       registerRef.value.validate(async (valid: any) => {
         if (valid) {
           try {
-            // const { email, password, capcha } = state.registerForm
-            // const data = {
-            //   email,
-            //   capcha,
-            //   password: encrypt(password)
-            // }
-            // Service.postRegister(data).then((res: any) => {
-            //   console.log(res)
-            //   ElMessage({
-            //     type: 'success',
-            //     message: '模拟注册成功'
-            //   })
-            // })
+            const { email, password, capcha } = state.registerForm
+            const data = {
+              email,
+              capcha,
+              password
+            }
+            Service.postRegister(data).then((res: any) => {
+              console.log(res)
+              ElMessage({
+                type: 'success',
+                message: '模拟注册成功'
+              })
+            })
           } catch (err) {
             console.error(err)
           }
