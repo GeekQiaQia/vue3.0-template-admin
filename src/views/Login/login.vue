@@ -70,8 +70,7 @@ import vueLogo from '@/assets/logo.png'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { encrypt } from '@/utils/aes'
-
-import Service from './api/index'
+import Service from './index'
 
 interface stateType {
   loginForm: {
@@ -169,8 +168,12 @@ export default defineComponent({
               capcha,
               password: encrypt(password)
             }
-            Service.postRegister(data).then((res) => {
+            Service.postRegister(data).then((res: any) => {
               console.log(res)
+              ElMessage({
+                type: 'success',
+                message: '模拟注册成功'
+              })
             })
           } catch (err) {
             console.error(err)
