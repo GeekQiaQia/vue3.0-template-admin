@@ -8,7 +8,7 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom","ES2015"],
     "types": ["vite/client"],
     "baseUrl": "./",
     "paths": {
