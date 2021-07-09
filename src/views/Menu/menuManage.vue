@@ -145,7 +145,7 @@ export default defineComponent({
             {
               path: '/home',
               name: 'home',
-              component: () => import(/* webpackChunkName: "home" */ '@/views/home.vue'),
+              component: () => import(/* webpackChunkName: "home" */ '@/views/Home/home.vue'),
               meta: {
                 title: '首页',
                 icon: 'home'
@@ -205,7 +205,7 @@ export default defineComponent({
       // const form = {
       //   menuId: row.menuId
       // }
-      console.log(row);
+      console.log(row)
       useConfirmDelete(index)
       // 次处省去异步接口处理 异步请求删除当前id路由
       // store.dispatch

@@ -64,7 +64,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, ref, onMounted } from 'vue'
-import axios from '@/utils/request'
+import Service from './api/index'
+
 import fullcalendar from './components/fullCalendar/index.vue'
 
 interface stateType {
@@ -104,17 +105,12 @@ export default defineComponent({
      * @description 获取角色
      */
     const getTagList = async () => {
-      await axios
-        .get('/api/personal/tags')
-        .then((res: any) => {
-          if (res.data.code === 0) {
-            state.dynamicTags = res.data.data.tags
-          }
-        })
-        .catch((err: any) => {
-          // eslint-disable-next-line no-console
-          console.error(err)
-        })
+      try {
+        const res = await Service.getPersonTags()
+        state.dynamicTags = res.data.tags
+      } catch (err) {
+        console.error(err)
+      }
     }
     const handleInputConfirm = () => {
       const { inputValue } = state

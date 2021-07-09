@@ -29,10 +29,10 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 import logo from '@/assets/logo.png'
-import axios from '@/utils/request'
 import DataSet from '@antv/data-set'
 import { Chart, registerShape, ShapeAttrs, Util } from '@antv/g2'
 import { Datum, ShapeInfo } from 'node_modules/@antv/g2/lib/interface'
+import Service from './api/index'
 
 export default defineComponent({
   name: 'Home',
@@ -44,6 +44,21 @@ export default defineComponent({
           name: 'vue-next',
           itemSrc: 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c588b8ab65a74d59aa379801136df4e0~tplv-k3u1fbpfcp-watermark.image',
           targetLink: 'https://github.com/vuejs/docs-next-zh-cn'
+        },
+        {
+          name: 'vitejs',
+          itemSrc: 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a7351d2dcd7846158604ac8bd57222b5~tplv-k3u1fbpfcp-watermark.image',
+          targetLink: 'https://github.com/vitejs'
+        },
+        {
+          name: 'element-plus',
+          itemSrc: 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/48a7fd198df44cca9c0dc10a8047bbef~tplv-k3u1fbpfcp-watermark.image',
+          targetLink: 'https://github.com/element-plus/element-plus'
+        },
+        {
+          name: 'tslang',
+          itemSrc: 'https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/610fc57450884ceaae9578689663fe2f~tplv-k3u1fbpfcp-watermark.image',
+          targetLink: 'https://github.com/Microsoft/TypeScript'
         }
       ]
     })
@@ -83,103 +98,68 @@ export default defineComponent({
     const handleClickImg = (targetUrl: string | undefined) => {
       window.open(targetUrl, '_blank')
     }
-    /**
-     * @description 获取角色
-     */
-    const getRoles = () => {
-      axios
-        .get('/api/auth/roles')
-        .then((res: any) => {
-          console.log(res)
-        })
-        .catch((err: any) => {
-          // eslint-disable-next-line no-console
-          console.error(err)
-        })
-    }
+
     // /**
     //  * @description 获取词云
     //  */
-    const getWords = () => {
-      axios
-        .get('/api/data/world-population')
-        .then((res: any) => {
-          if (res.data.code === 0) {
-            const { dataSets } = res.data.data
-            const dv = new DataSet.View().source(dataSets)
-            const range = dv.range('value')
-            const min = range[0]
-            const max = range[1]
-            dv.transform({
-              type: 'tag-cloud',
-              fields: ['x', 'value'],
-              size: [800, 600],
-              font: 'Verdana',
-              padding: 0,
-              timeInterval: 5000, // max execute time
-              rotate() {
-                // eslint-disable-next-line no-bitwise
-                let random = ~~(Math.random() * 4) % 4
-                if (random === 2) {
-                  random = 0
-                }
-                return random * 90 // 0, 90, 270
-              },
-              fontSize(d) {
-                if (d.value) {
-                  return ((d.value - min) / (max - min)) * (80 - 24) + 24
-                }
-                return 0
-              }
-            })
-            const chart = new Chart({
-              container: 'container',
-              autoFit: false,
-              width: 800,
-              height: 600,
-              padding: 0
-            })
-            chart.data(dv.rows)
-            chart.scale({
-              x: { nice: false },
-              y: { nice: false }
-            })
-            chart.legend(false)
-            chart.axis(false)
-            chart.tooltip({
-              showTitle: false,
-              showMarkers: false
-            })
-            chart.coordinate().reflect('x')
-            chart.point().position('x*y').color('CornflowerBlue').shape('cloud').tooltip('value*category')
-            chart.interaction('element-active')
-            chart.render()
+    const getWords = async () => {
+      try {
+        const res = await Service.getWorldPopulation()
+        const { dataSets } = res.data
+        const dv = new DataSet.View().source(dataSets)
+        const range = dv.range('value')
+        const min = range[0]
+        const max = range[1]
+        dv.transform({
+          type: 'tag-cloud',
+          fields: ['x', 'value'],
+          size: [800, 600],
+          font: 'Verdana',
+          padding: 0,
+          timeInterval: 5000, // max execute time
+          rotate() {
+            // eslint-disable-next-line no-bitwise
+            let random = ~~(Math.random() * 4) % 4
+            if (random === 2) {
+              random = 0
+            }
+            return random * 90 // 0, 90, 270
+          },
+          fontSize(d) {
+            if (d.value) {
+              return ((d.value - min) / (max - min)) * (80 - 24) + 24
+            }
+            return 0
           }
         })
-        .catch((err: any) => {
-          // eslint-disable-next-line no-console
-          console.error(err)
+        const chart = new Chart({
+          container: 'container',
+          autoFit: false,
+          width: 800,
+          height: 600,
+          padding: 0
         })
+        chart.data(dv.rows)
+        chart.scale({
+          x: { nice: false },
+          y: { nice: false }
+        })
+        chart.legend(false)
+        chart.axis(false)
+        chart.tooltip({
+          showTitle: false,
+          showMarkers: false
+        })
+        chart.coordinate().reflect('x')
+        chart.point().position('x*y').color('CornflowerBlue').shape('cloud').tooltip('value*category')
+        chart.interaction('element-active')
+        chart.render()
+      } catch (err) {
+        console.error(err)
+      }
     }
-    /**
-     * @description 获取swiperInfo
-     */
-    const getSwiperInfo = () => {
-      axios
-        .get('/api/home/swiperInfo')
-        .then((res: any) => {
-          if (res.data.code === 0) {
-            state.swiperItems = res.data.data
-          }
-        })
-        .catch((err: any) => {
-          // eslint-disable-next-line no-console
-          console.error(err)
-        })
-    }
+
     onMounted(() => {
-      getRoles()
-      getSwiperInfo()
       getWords()
     })
     return {

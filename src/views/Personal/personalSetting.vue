@@ -125,7 +125,7 @@
 import { ElMessage } from 'element-plus'
 import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
-import axios from '@/utils/request'
+import Service from './api/index'
 
 export default defineComponent({
   name: 'PersonalSetting',
@@ -180,31 +180,21 @@ export default defineComponent({
     const submitForm = () => {
       settingFormRef.value.validate(async (valid: any) => {
         if (valid) {
-          updateLoading.value = true
-          const data = {
-            ...settingForm
+          try {
+            updateLoading.value = true
+            const data = {
+              ...settingForm
+            }
+            const res = await Service.postSetBasicInfo(data)
+            console.log(res)
+            updateLoading.value = false
+            ElMessage({
+              type: 'success',
+              message: res.data.message
+            })
+          } catch (err) {
+            console.error(err)
           }
-          await axios
-            .post('/api/setting/basicInfo', data)
-            .then((res: any) => {
-              if (res.data.code === 0) {
-                updateLoading.value = false
-                ElMessage({
-                  type: 'success',
-                  message: res.data.message
-                })
-              } else {
-                ElMessage({
-                  type: 'warning',
-                  message: res.data.message
-                })
-              }
-            })
-            .catch((err: any) => {
-              // eslint-disable-next-line no-console
-              console.error(err)
-            })
-
           // 执行通过校验以后的操作；
           return true
         }

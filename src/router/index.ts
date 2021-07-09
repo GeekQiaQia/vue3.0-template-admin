@@ -18,7 +18,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
       {
         path: '/home',
         name: 'home',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/home.vue'),
+        component: () => import(/* webpackChunkName: "home" */ '@/views/Home/home.vue'),
         meta: {
           title: '首页',
           icon: 'home',
@@ -29,7 +29,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: '登录',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/login.vue'),
+    component: () => import(/* webpackChunkName: "login" */ '@/views/Login/login.vue'),
     meta: {
       title: '登录',
       hidden: true,

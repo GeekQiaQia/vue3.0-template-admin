@@ -36,7 +36,6 @@
 <script lang="ts">
 import { defineComponent, reactive, computed, ref, toRefs, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
-import axios from '@/utils/request'
 
 declare type indexType = string | number | symbol
 
@@ -103,27 +102,7 @@ export default defineComponent({
       return false
     }
 
-    /**
-     * @description 获取角色
-     */
-    const getTaskList = async () => {
-      await axios
-        .get('/api/personal/tasks')
-        .then((res: any) => {
-          if (res.data.code === 0) {
-            const initData = res.data.data.tasks
-            const record = new Map(initData as any)
-            recordData.record = record
-          }
-        })
-        .catch((err: any) => {
-          // eslint-disable-next-line no-console
-          console.error(err)
-        })
-    }
-    onMounted(() => {
-      getTaskList()
-    })
+    onMounted(() => {})
     return {
       handleListItem,
       handleAddNewTask,

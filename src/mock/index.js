@@ -7,17 +7,16 @@ Mock.setup({
     timeout:'200-600'
 });
 
-// 是否拦截 Ajax 请求
-// Mock.prototype.match = false
+
 // mock 一组角色数据；
 const genRoles=()=>({
-        code:0,
+        status: 200,
         data:['super','admin','nomal'],
         message:'成功'
     })
 
 const getSwiperInfo=()=>({
-        code:0,
+        status: 200,
         data:[{
             name:'vue-next',
             itemSrc:'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c588b8ab65a74d59aa379801136df4e0~tplv-k3u1fbpfcp-watermark.image',
@@ -44,31 +43,29 @@ const getSwiperInfo=()=>({
           message:'成功'
     })
 
-Mock.mock('/api/auth/login','post',(option) => {
-    const {account,password} = JSON.parse(option.body);
-
-    if(account==='admin'&&password==='admin'){
+Mock.mock('/api/auth/user/login','post',(option) => {
+    const {email,password} = JSON.parse(option.body);
+    console.log(email,password);
+    if(email==='admin@outlook.com'&&password==='hQBWwGOPm5PGfx7JSrqCOg=='){
         return {
-            code:0,
+            status: 200,
             data:{
-                userName:account
+                accessToken:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjIyODA1MjAxMjhAcXEuY29tIiwic3ViIjo5LCJpYXQiOjE2MjU4MzQ3MTksImV4cCI6MTYyODQyNjcxOX0.YQLVi-zw4XWQEd8Hy2YZGlFaqX8c7xyRPrYuxcFywFE'
             },
+            success: true,
             message:'成功'
         }
     }
         return {
-            code:1,
+            status:200,
             data:null,
             message:'账户或者密码错误'
         }
-
-
-
 });
 Mock.mock('/api/setting/basicInfo','post',(option)=>{
     const {email,nickname,desc,mobile} = JSON.parse(option.body);
     return {
-        code:0,
+        status: 200,
         data:{
             email,nickname,desc,mobile
         },
@@ -76,14 +73,14 @@ Mock.mock('/api/setting/basicInfo','post',(option)=>{
     }
 });
 Mock.mock('/api/personal/tags','get',()=>({
-    code:0,
+    status: 200,
     data:{
         tags:['积极阳光', '专注', '认真负责','花痴']
     },
     message:'成功'
 }));
 Mock.mock('/api/data/world-population','get',()=>({
-        code:0,
+        status: 200,
         data:{
             dataSets:[
                 {category: "frontEnd",
@@ -170,7 +167,7 @@ Mock.mock('/api/data/world-population','get',()=>({
         message:'更新成功'
     }));
 Mock.mock('/api/personal/tasks','get',()=>({
-        code:0,
+        status: 200,
         data:{
             tasks:[
 
