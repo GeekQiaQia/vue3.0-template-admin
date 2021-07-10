@@ -48,6 +48,7 @@
     "driver.js": "^0.9.8",
     "echarts": "^5.1.1",
     "element-plus": "^1.0.2-beta.48",
+    "esbuild": "^0.12.15",
     "eslint-import-resolver-webpack": "^0.13.0",
     "file-saver": "^2.0.5",
     "fullcalendar": "^5.8.0",
