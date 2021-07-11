@@ -46,13 +46,15 @@ Give a ⭐️ if this project helped you!
 - [x] 角色管理
 - [x] 自定义图标
 - [x] 图片拖拽/裁剪
+- [x] 支持切换主题色:一键换肤
 
 ## 正在完成功能 | The functionality is being completed
 
-- [x] 支持切换主题色:一键换肤
 - [x] 权限：v-permisson
 - [x] 可拖拽弹窗
 - [x] 国际化
+- [x] 导航模式切换
+- [x] 内容区域控制
 
 ## 使用到的插件/库 | Plugin or lib
 

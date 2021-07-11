@@ -1,14 +1,13 @@
 <template>
   <div class="rightDrawer">
-    <el-drawer v-model="openDrawer"  :modal-append-to-body="false" :with-header="false">
+    <el-drawer v-model="openDrawer" :modal-append-to-body="false" :with-header="false">
       <div class="slot-body">
         <slot />
       </div>
     </el-drawer>
     <div class="rightPanel">
-      <div class="handle-button" :class="{ 'handle-button-close': !openDrawer }" :style="{ top: buttonTop + 'px' }" @click="openDrawer = !openDrawer">
-        <i :class="openDrawer ? 'el-icon-close' : 'el-icon-setting'" />
-      </div>
+      <el-button class="handle-button" type="primary" icon="el-icon-setting" :class="{ 'handle-button-close': !openDrawer }" :style="{ top: buttonTop + 'px' }" @click="openDrawer = !openDrawer">
+      </el-button>
     </div>
   </div>
 </template>
@@ -65,7 +64,10 @@ export default defineComponent({
     cursor: pointer;
     color: #fff;
     line-height: 48px;
-    background-color :rgb(64,158,155);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
     i {
         font-size: 24px;

@@ -7,15 +7,14 @@
     <div class="main-container">
       <!--Navbar-->
       <div :class="{ 'fixed-header': fixedHeader }">
-        <navbar />
+        <navbar :primary="primary" />
       </div>
       <!--AppMain-->
       <AppMain />
 
       <RightDrawer v-if="showSetting">
         <div class="setting-item">
-          <div class="setting-draw-title">主题色</div>
-          <el-color-picker v-model="color" show-alpha :predefine="predefineColors" @change="handleChangeTheme"> </el-color-picker>
+          <theme-pick @submit="submitForm"></theme-pick>
           <div class="divider"></div>
         </div>
       </RightDrawer>
@@ -26,10 +25,14 @@
 <script lang="ts">
 import { defineComponent, reactive, computed, toRefs, ref } from 'vue'
 import { useStore } from '@/store/index'
+
+import { generateColors, writeNewStyle, getStyleTemplate } from '@/utils'
+import { useFiles } from '@/hooks/useFiles'
 import Navbar from './components/Navbar.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain.vue'
 import RightDrawer from './components/RightSetting/RightDrawer.vue'
+import ThemePick from './components/themePick/index.vue'
 
 export default defineComponent({
   name: 'Layout',
@@ -37,17 +40,23 @@ export default defineComponent({
     Navbar,
     Sidebar,
     AppMain,
-    RightDrawer
+    RightDrawer,
+    ThemePick
   },
   setup() {
+    const { getIndexStyle } = useFiles()
     const store = useStore()
+    const originalStyle = ref('')
+
     // eslint-disable-next-line no-console
     console.log(store)
     const reactiveData = reactive({
       fixedHeader: computed(() => store?.state?.settingsModule?.fixedHeader)
     })
     const color = ref('rgba(255, 69, 0, 0.68)')
-
+    const colors = reactive({
+      primary: '#fff'
+    })
     const predefineColors = ref([
       '#ff4500',
       '#ff8c00',
@@ -68,23 +77,33 @@ export default defineComponent({
     const opened = computed(() => store.getters['appModule/getSidebarState'])
     const device = computed(() => store.getters['appModule/getDeviceState'])
     const withoutAnimation = computed(() => store.getters['appModule/getSidebarAnimation'])
-
+    const originalStylesheetCount = computed(() => document.styleSheets.length || -1)
     const classObj = computed(() => ({
       hideSidebar: !opened.value,
       openSidebar: opened.value,
       withoutAnimation: withoutAnimation.value,
       mobile: device.value === 'mobile'
     }))
-    // 将这个颜色设置为主题颜色；
-    const handleChangeTheme = () => {
-      console.log('color', color.value)
+    /**
+     * @description 切换主题
+     */
+    const submitForm = (primary: string) => {
+      // visible.value = false
+      colors.primary = primary
+      Object.assign(colors, generateColors(primary))
+      // canDownload.value = true
+      writeNewStyle(originalStylesheetCount.value, originalStyle.value, colors)
     }
+    getIndexStyle().then((data: any) => {
+      originalStyle.value = getStyleTemplate(data)
+    })
     return {
       color,
       predefineColors,
       classObj,
-      handleChangeTheme,
+      submitForm,
       showSetting,
+      ...toRefs(colors),
       ...toRefs(reactiveData)
     }
   }
@@ -104,10 +123,6 @@ export default defineComponent({
     position: fixed;
     top: 0;
   }
-  // .main-container {
-  //   // overflow: scroll;
-  //   // height: 100%;
-  // }
 }
 .drawer-bg {
   background: #000;

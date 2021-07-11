@@ -1,65 +1,65 @@
 <template>
   <div class="navbar">
-    <hamburger id="Hamburger" :is-active="opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-    <breadcrumb class="breadcrumb-container" />
-    <div class="right-menu">
-      <search></search>
-      <div id="Message">
-        <el-dropdown>
-          <el-badge :value="messageNum" :max="99" class="message-badge" type="danger">
-            <el-button class="message">
-              <i class="el-icon-message-solid"></i>
-            </el-button>
-          </el-badge>
+    <el-header height="50px" >
+      <hamburger id="Hamburger" :is-active="opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+      <breadcrumb class="breadcrumb-container" />
+      <div class="right-menu">
+        <search></search>
+        <div id="Message">
+          <el-dropdown>
+            <el-badge :value="messageNum" :max="99" class="message-badge" type="danger">
+              <el-button class="message">
+                <i class="el-icon-message-solid"></i>
+              </el-button>
+            </el-badge>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="a">mike 回复了你的邮件</el-dropdown-item>
+                <el-dropdown-item command="b">您有5个新任务</el-dropdown-item>
+                <el-dropdown-item command="c">您已经和Jone成为了好友</el-dropdown-item>
+                <el-dropdown-item command="d">项目验收通知</el-dropdown-item>
+                <el-dropdown-item command="e" divided>新会议通知</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+        <el-button id="fullScreen" class="full-screen">
+          <el-tooltip content="全屏浏览" effect="dark" placement="left">
+            <i v-show="fullScreen == false" class="el-icon-full-screen" @click="toShowFullScreen()"></i>
+          </el-tooltip>
+          <el-tooltip content="退出全屏" effect="dark" placement="left">
+            <i v-show="fullScreen == true" class="el-icon-bottom-left" @click="toExitFullScreen()"></i>
+          </el-tooltip>
+        </el-button>
+        <el-dropdown class="avatar-container" trigger="hover">
+          <div class="avatar-wrapper">
+            <el-avatar :src="avatar"></el-avatar>
+            <div class="nickname">{{ nickname }}</div>
+          </div>
           <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="a">mike 回复了你的邮件</el-dropdown-item>
-              <el-dropdown-item command="b">您有5个新任务</el-dropdown-item>
-              <el-dropdown-item command="c">您已经和Jone成为了好友</el-dropdown-item>
-              <el-dropdown-item command="d">项目验收通知</el-dropdown-item>
-              <el-dropdown-item command="e" divided>新会议通知</el-dropdown-item>
+            <el-dropdown-menu class="user-dropdown">
+              <router-link to="/">
+                <el-dropdown-item>首页</el-dropdown-item>
+              </router-link>
+              <router-link to="/personal/personalCenter">
+                <el-dropdown-item>个人中心</el-dropdown-item>
+              </router-link>
+              <router-link to="/personal/personalSetting">
+                <el-dropdown-item>个人设置</el-dropdown-item>
+              </router-link>
+              <el-dropdown-item divided>
+                <span style="display: block" @click="logout">退出登录</span>
+              </el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
       </div>
-      <el-button id="fullScreen" class="full-screen">
-        <el-tooltip content="全屏浏览" effect="dark" placement="left">
-          <i v-show="fullScreen == false" class="el-icon-full-screen" @click="toShowFullScreen()"></i>
-        </el-tooltip>
-        <el-tooltip content="退出全屏" effect="dark" placement="left">
-          <i v-show="fullScreen == true" class="el-icon-bottom-left" @click="toExitFullScreen()"></i>
-        </el-tooltip>
-      </el-button>
-      <el-dropdown class="avatar-container" trigger="hover">
-        <div class="avatar-wrapper">
-          <el-avatar :src="avatar"></el-avatar>
-          <div class="nickname">{{ nickname }}</div>
-        </div>
-        <template #dropdown>
-          <el-dropdown-menu class="user-dropdown">
-            <router-link to="/">
-              <el-dropdown-item>首页</el-dropdown-item>
-            </router-link>
-            <router-link to="/personal/personalCenter">
-              <el-dropdown-item>个人中心</el-dropdown-item>
-            </router-link>
-            <router-link to="/personal/personalSetting">
-              <el-dropdown-item>个人设置</el-dropdown-item>
-            </router-link>
-            <el-dropdown-item divided>
-              <span style="display: block" @click="logout">退出登录</span>
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
-    </div>
+    </el-header>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
-// eslint-disable-next-line import/extensions
 import Hamburger from '@/components/Hamburger/Hamburger.vue'
-// eslint-disable-next-line import/extensions
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Search from '@/components/Search/index.vue'
 import avatar from '@/assets/avatar-default.jpg'
@@ -73,6 +73,12 @@ export default defineComponent({
     Hamburger,
     Breadcrumb,
     Search
+  },
+  props: {
+    primary: {
+      default: '#fff',
+      type: String
+    }
   },
   setup() {
     const router = useRouter()

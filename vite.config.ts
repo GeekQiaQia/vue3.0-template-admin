@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy'
 import { resolve } from 'path';
-
+import styleImport from 'vite-plugin-style-import'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',             // 设开发或生产环境服务的 公共基础路径
@@ -12,6 +12,19 @@ export default defineConfig({
   },
   plugins: [           // 类型： (Plugin | Plugin[])[]  将要用到的插件数组
      vue(),
+     styleImport({
+      libs: [{
+        libraryName: 'element-plus',
+        esModule: true,
+        ensureStyleFile: true,
+        resolveStyle: (name) => {
+          // eslint-disable-next-line no-param-reassign
+          name = name.slice(3)
+          return `element-plus/packages/theme-chalk/src/${name}.scss`;
+        },
+        resolveComponent: (name) => `element-plus/lib/${name}`,
+      }]
+    }),
      legacy({
         targets: ['ie >= 11'],
         additionalLegacyPolyfills: ['regenerator-runtime/runtime']
@@ -50,7 +63,10 @@ export default defineConfig({
       sourceMap:false
     }
   },
-  optimizeDeps:{
-    include: ["vuedraggable"]
+  optimizeDeps: {
+    include: [
+      'element-plus/lib/locale/lang/zh-cn',
+      'element-plus/lib/locale/lang/en'
+    ]
   },
 });
