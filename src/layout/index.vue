@@ -88,10 +88,8 @@ export default defineComponent({
      * @description 切换主题
      */
     const submitForm = (primary: string) => {
-      // visible.value = false
       colors.primary = primary
       Object.assign(colors, generateColors(primary))
-      // canDownload.value = true
       writeNewStyle(originalStylesheetCount.value, originalStyle.value, colors)
     }
     getIndexStyle().then((data: any) => {
