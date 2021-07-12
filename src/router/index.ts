@@ -29,7 +29,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: '登录',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/Login/login.vue'),
+    component: () => import(/* webpackChunkName: "login" */ '@/views/Login/index.vue'),
     meta: {
       title: '登录',
       hidden: true,

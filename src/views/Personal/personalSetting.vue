@@ -127,6 +127,8 @@ import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
 import Service from './api/index'
 
+// eslint-disable-next-line no-unused-vars
+type VoidNoop = (arg0?: Error) => void
 export default defineComponent({
   name: 'PersonalSetting',
   setup() {
@@ -148,13 +150,13 @@ export default defineComponent({
     const updateLoading = ref(false)
 
     // eslint-disable-next-line no-unused-vars
-    const validateMobile = (rule: any, value: string, callback: (arg0: Error | undefined) => void) => {
+    const validateMobile = (rule: any, value: string, callback: VoidNoop) => {
       if (value === '') {
         callback(new Error('手机号码不可为空哦'))
       } else {
         const reg = /^1[3-9]\d{9}$/
         if (reg.test(value)) {
-          callback(undefined)
+          callback()
         } else {
           callback(new Error('请输入正确的手机号码'))
         }

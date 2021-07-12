@@ -21,179 +21,41 @@
         </div>
       </div>
       <div class="login-right">
-        <el-form v-if="showLogin" ref="loginFormRef" :model="loginForm" status-icon :hide-required-asterisk="true" :rules="rules" label-width="100px" class="login-form">
-          <el-form-item label="账号" prop="email">
-            <el-input v-model="loginForm.email" autocomplete="off" placeholder="请输入登录邮箱(admin@outlook.com)"></el-input>
-          </el-form-item>
-          <el-form-item label="密码" prop="password">
-            <el-input v-model="loginForm.password" type="password" autocomplete="off" placeholder="请输入密码(admin)"></el-input>
-          </el-form-item>
-
-          <el-form-item>
-            <div class="btn-container">
-              <el-button type="primary" style="width: 100%" @click="submitForm()">登录</el-button>
-            </div>
-            <div class="operation">
-              <span class="free-register" @click="showLogin = !showLogin">免费注册</span>
-              <span class="forget-password">忘记密码</span>
-            </div>
-          </el-form-item>
-        </el-form>
-        <el-form v-if="!showLogin" ref="registerRef" :model="registerForm" status-icon hide-required-asterisk="true" :rules="rules" label-width="100px" class="login-form">
-          <el-form-item label="邮箱" prop="email">
-            <el-input v-model="registerForm.email" autocomplete="off" placeholder="请输入注册邮箱"></el-input>
-          </el-form-item>
-          <el-form-item label="验证码" prop="capcha">
-            <el-input v-model.number="registerForm.capcha" maxlength="6" autocomplete="off" placeholder="请输入验证码"></el-input>
-          </el-form-item>
-          <el-form-item label="密码" prop="password">
-            <el-input v-model="registerForm.password" type="password" autocomplete="off" placeholder="请输入密码(admin)"></el-input>
-          </el-form-item>
-
-          <el-form-item>
-            <div class="btn-container">
-              <el-button type="primary" style="width: 100%" @click="handleRegister()">完成注册</el-button>
-            </div>
-            <div class="go-login">
-              <span class="to-login" @click="showLogin = !showLogin">已有账号<em>去登陆</em></span>
-            </div>
-          </el-form-item>
-        </el-form>
+        <Login v-if="!showReset" @toResetPwd="handleResetPwd"></Login>
+        <ForgetPassword v-else :show-reset="showReset" @toLogin="handleToLogin"></ForgetPassword>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs } from 'vue'
+import { defineComponent, ref } from 'vue'
 import viteLogo from '@/assets/logo-vite.svg'
 import vueLogo from '@/assets/logo.png'
-import { useRouter, useRoute } from 'vue-router'
-import { ElMessage } from 'element-plus'
-// import { encrypt } from '@/utils/aes'
-import Service from './api/index'
+import Login from './components/loginForm.vue'
+import ForgetPassword from './components/forgetPassword.vue'
 
-interface stateType {
-  loginForm: {
-    email: string
-    password: string
-  }
-  registerForm: {
-    email: string
-    capcha: number | null
-    password: string
-  }
-  showLogin: boolean
-}
 export default defineComponent({
-  name: 'Login',
+  name: 'Index',
+  components: {
+    Login,
+    ForgetPassword
+  },
   setup() {
-    const router = useRouter()
-    const route = useRoute()
-    const loginFormRef = ref()
-    const registerRef = ref()
-
-    const state = reactive<stateType>({
-      loginForm: {
-        email: '',
-        password: ''
-      },
-      registerForm: {
-        email: '',
-        capcha: null,
-        password: ''
-      },
-      showLogin: true
-    })
-
-    const rules = {
-      password: [
-        { required: true, message: '请输入密码', trigger: 'blur' },
-        { min: 5, max: 10, message: '长度在 5 到 10 个字符', trigger: 'blur' }
-      ],
-      email: [
-        { required: true, message: '请输入账号', trigger: 'change' },
-        { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
-      ],
-      capcha: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
+    const showReset = ref(false)
+    const handleResetPwd = () => {
+      // 展示重置密码框
+      showReset.value = true
     }
-
-    // methods
-    /**
-     * @description  用户登录接口
-     *
-     */
-    const submitForm = () => {
-      loginFormRef.value.validate(async (valid: any) => {
-        if (valid) {
-          try {
-            const { email, password } = state.loginForm
-            const data = {
-              email,
-              password
-            }
-            const res = await Service.postLogin(data)
-            const accessToken = res?.data?.accessToken ?? null
-            if (accessToken) {
-              sessionStorage.setItem('auth', 'true')
-              sessionStorage.setItem('accessToken', accessToken)
-              if (route.query.redirect) {
-                const path = route.query.redirect
-                router.push({ path: path as string })
-              } else {
-                router.push('/')
-              }
-            } else {
-              ElMessage({
-                type: 'warning',
-                message: '账号或者密码有误'
-              })
-            }
-          } catch (err) {
-            console.error(err)
-          }
-        }
-        return false
-      })
-    }
-    /**
-     * @description 处理注册接口
-     */
-    const handleRegister = () => {
-      registerRef.value.validate(async (valid: any) => {
-        if (valid) {
-          try {
-            const { email, password, capcha } = state.registerForm
-            const data = {
-              email,
-              capcha,
-              password
-            }
-            Service.postRegister(data).then((res: any) => {
-              console.log(res)
-              ElMessage({
-                type: 'success',
-                message: '模拟注册成功'
-              })
-            })
-          } catch (err) {
-            console.error(err)
-          }
-        }
-      })
-    }
-    const resetForm = () => {
-      loginFormRef.value.resetFields()
+    const handleToLogin = () => {
+      // 展示登录框框
+      showReset.value = false
     }
     return {
+      showReset,
+      handleResetPwd,
+      handleToLogin,
       vueLogo,
-      viteLogo,
-      ...toRefs(state),
-      loginFormRef,
-      registerRef,
-      rules,
-      submitForm,
-      handleRegister,
-      resetForm
+      viteLogo
     }
   }
 })
@@ -264,50 +126,9 @@ export default defineComponent({
             justify-content: center;
             align-items :center;
             padding:30px;
-            .login-form{
-                width:100%;
-                margin: 0 auto;
-            }
-            .go-login{
-              font-size: 12px;
-              cursor: pointer;
-              display:flex;
-              flex-direction:row ;
-              justify-content: center;
-              align-items :center;
-
-               .to-login{
-                  color: #9fa2a8;
-
-                  em{
-                    color: #2878ff;
-                  }
-                }
-            }
-            .operation{
-              font-size: 12px;
-              cursor: pointer;
-              display:flex;
-              flex-direction:row ;
-              justify-content: space-between;
-              align-items :center;
-
-               .free-register{
-
-                  color: #2878ff;
-                }
-                .forget-password{
-                  color: #9fa2a8;
-                }
-            }
 
         }
     }
-    .btn-container{
-      display :flex;
-      flex-direction:row;
-      justify-content :flex-start;
-      align-items :center;
-    }
+
 }
 </style>

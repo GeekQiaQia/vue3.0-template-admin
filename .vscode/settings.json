@@ -1,5 +1,11 @@
 {
     "eslint.format.enable": true,
     "editor.formatOnSave": true,
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    // 以下为stylus配置
+ "stylusSupremacy.insertColons": false, // 是否插入冒号
+ "stylusSupremacy.insertSemicolons": false, // 是否插入分好
+ "stylusSupremacy.insertBraces": false, // 是否插入大括号
+ "stylusSupremacy.insertNewLineAroundImports": false, // import之后是否换行
+ "stylusSupremacy.insertNewLineAroundBlocks": false, // 两个选择器中是否换行
 }

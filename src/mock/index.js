@@ -46,7 +46,7 @@ const getSwiperInfo=()=>({
 Mock.mock('/api/auth/user/login','post',(option) => {
     const {email,password} = JSON.parse(option.body);
     console.log(email,password);
-    if(email==='admin@outlook.com'&&password==='admin'){
+    if(email==='admin@outlook.com'&&password==='123456'){
         return {
             status: 200,
             data:{
@@ -67,11 +67,34 @@ Mock.mock('/api/auth/user/login','post',(option) => {
 Mock.mock('/api/auth/user/register','post',() => ({
         status: 200,
         data:{
-
         },
         success: true,
         message:'成功'
     }));
+// /api/auth/user/reset-password
+Mock.mock('/api/auth/user/reset-password','post',() => ({
+    status: 200,
+    data:{
+    },
+    success: true,
+    message:'成功'
+}));
+//  /api/auth/email/forgot-password
+Mock.mock('/api/auth/email/forgot-password','post',() => ({
+    status: 200,
+    data:{
+    },
+    success: true,
+    message:'成功'
+}));
+// /api/auth/user/reset-password
+Mock.mock('/api/auth/user/reset-password','post',() => ({
+    status: 200,
+    data:{
+    },
+    success: true,
+    message:'成功'
+}));
 
 Mock.mock('/api/setting/basicInfo','post',(option)=>{
     const {email,nickname,desc,mobile} = JSON.parse(option.body);
@@ -83,6 +106,7 @@ Mock.mock('/api/setting/basicInfo','post',(option)=>{
         message:'更新成功'
     }
 });
+
 Mock.mock('/api/personal/tags','get',()=>({
     status: 200,
     data:{
