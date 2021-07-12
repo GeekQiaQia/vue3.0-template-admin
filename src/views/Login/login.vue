@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="login-right">
-        <el-form v-if="showLogin" ref="loginFormRef" :model="loginForm" status-icon hide-required-asterisk="true" :rules="rules" label-width="100px" class="login-form">
+        <el-form v-if="showLogin" ref="loginFormRef" :model="loginForm" status-icon :hide-required-asterisk="true" :rules="rules" label-width="100px" class="login-form">
           <el-form-item label="账号" prop="email">
             <el-input v-model="loginForm.email" autocomplete="off" placeholder="请输入登录邮箱(admin@outlook.com)"></el-input>
           </el-form-item>
@@ -70,7 +70,7 @@ import vueLogo from '@/assets/logo.png'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 // import { encrypt } from '@/utils/aes'
-import Service from './index'
+import Service from './api/index'
 
 interface stateType {
   loginForm: {
