@@ -40,7 +40,7 @@ Give a ⭐️ if this project helped you!
 - [x] 富文本编辑器
 - [x] markdown 编辑器
 - [x] 个人页
-- [x] 登录页
+- [x] 登录/注册页
 - [x] 404 / 403
 - [x] 菜单管理
 - [x] 角色管理
@@ -152,6 +152,10 @@ git merge upstream/main
 <img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/651ae122b9be4114b157cef86bba23a2~tplv-k3u1fbpfcp-watermark.image" width="180px" />
 
 ## 快照 | screen shots
+
+### 登录注册
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/920c97e69ad947ffbada5f030556327e~tplv-k3u1fbpfcp-watermark.image)
 
 ### 全屏功能
 
