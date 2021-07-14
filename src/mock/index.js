@@ -71,6 +71,39 @@ Mock.mock('/api/auth/user/register','post',() => ({
         success: true,
         message:'成功'
     }));
+    // 
+    Mock.mock('/api/auth/permission/routes','post',(option) => {
+    const {roleName} = JSON.parse(option.body);
+        if(roleName==="超级管理员"){
+            return {
+                status: 200,
+                data:{
+                    authedRoutes:['/guide', '/copy','/zip','/role','/menu']
+                },
+                success: true,
+                message:'成功'
+            }
+        }if(roleName==="管理员"){
+            return {
+                status: 200,
+                data:{
+                    authedRoutes:['/guide', '/copy','/zip']
+                },
+                success: true,
+                message:'成功'
+            }
+        }
+        return {
+            status: 200,
+            data:{
+                authedRoutes:[]
+            },
+            success: true,
+            message:'成功'
+        }
+        
+      
+    });
 // /api/auth/user/reset-password
 Mock.mock('/api/auth/user/reset-password','post',() => ({
     status: 200,

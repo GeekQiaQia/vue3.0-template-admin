@@ -4,6 +4,9 @@
       <el-form-item label="角色名称" prop="roleName">
         <el-input v-model="form.roleName" placeholder="请输入角色名称"></el-input>
       </el-form-item>
+      <el-form-item label="备注">
+        <el-input v-model="form.remark" placeholder="请输入备注"></el-input>
+      </el-form-item>
       <el-row class="btn-container">
         <el-button size="mini" type="primary" @click="submitForm()"> <i class="fa fa-plus"> </i> 新增 </el-button>
       </el-row>
@@ -29,7 +32,8 @@ export default defineComponent({
     // 只将响应式数据进行响应式处理
     const state = reactive({
       form: {
-        roleName: ''
+        roleName: '',
+        remark: ''
       },
       loading: false
     })

@@ -1,8 +1,12 @@
 <template>
   <div>
+      <el-alert
+    title="Tips:点击【新增】按钮进行新增角色；点击【编辑】按钮，进行不同角色的菜单授权操作！"
+    type="warning">
+  </el-alert>
     <el-card class="card-ctrl">
       <el-row>
-        <el-col :span="8">
+        <el-col :span="8" style="text-align: left">
           <el-button type="primary" icon="el-icon-plus" size="small" @click="onCreate">新增</el-button>
           <el-button type="success" icon="el-icon-refresh" size="small" @click="onRefresh">刷新</el-button>
         </el-col>
@@ -17,6 +21,8 @@
             <el-tag v-else size="mini" type="danger">未知</el-tag>
           </template>
         </el-table-column>
+        <el-table-column prop="remark" label="备注" align="center"></el-table-column>
+
         <el-table-column label="操作" align="center">
           <template #default="scope">
             <el-tooltip class="item" effect="dark" content="菜单授权" placement="bottom">
@@ -97,8 +103,9 @@ export default defineComponent({
         page: 1
       },
       data: [
-        { roleName: '超级管理员', state: 1 },
-        { roleName: '管理员', state: 1 }
+        { roleName: '超级管理员', remark: '拥有删除和创建等操作的权限', state: 1 },
+        { roleName: '管理员', remark: '拥有创建和权限分配的权限', state: 1 },
+        { roleName: '游客', remark: '只拥有操作部分菜单的权限', state: 1 }
       ],
       loading: false,
       is_search: false,
@@ -130,7 +137,7 @@ export default defineComponent({
     }
     const onCreateSuccess = (val: any) => {
       console.log(val)
-      const newRole = { roleName: val.roleName, state: 1 }
+      const newRole = { roleName: val.roleName, remark: val.remark, state: 1 }
       state.data.push(newRole)
       state.add_visible = false
       fetchData()
@@ -143,11 +150,12 @@ export default defineComponent({
       state.is_search = false
       fetchData()
     }
+    /**
+     * @description 选择点击编辑授权角色；roleName
+    */
     const onEdit = (index: any, row: any) => {
-      // this.$set(this.posted, 'role', row);
       console.log('row', row)
       state.posted.role = row
-      console.log(index, row)
       state.edit_visible = true
     }
     const onDelete = (index: any, row: any) => {

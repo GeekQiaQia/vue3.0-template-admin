@@ -21,8 +21,9 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, toRef, toRefs } from 'vue'
+import { computed, defineComponent, onMounted, watchEffect, reactive, toRef, toRefs } from 'vue'
 import { useStore } from '@/store'
+import Service from './api/index.ts'
 
 interface stateTypes {
   url: String
@@ -33,17 +34,20 @@ interface stateTypes {
     loading: Boolean
     url: String
     data: { key: String; label: String }[]
-    form: { key: String; label: String }[]
+    form: String[]
   }
 }
 export default defineComponent({
+  name:'RolesEdit',
   props: {
     currentRole: {
       type: Object,
       default: () => ({ roleName: '', state: 1 })
     }
   },
-  setup(props) {
+  emits: ['success'],
+  
+  setup(props,{emit}) {
     // 析构获取 props 属性 basePath
     const currentRole = toRef(props, 'currentRole')
     const store = useStore()
@@ -60,9 +64,26 @@ export default defineComponent({
         form: []
       }
     })
+    
     const role = computed(() => currentRole.value.role)
     const routes = computed(() => store.state.permissionModule.routes)
-
+  
+   /**
+     * @description 异步获取已经授权的菜单
+     */
+    const fetchData = async () => {
+      const data={
+        roleName:role.value.roleName
+      }
+      console.log(data);
+      // 后端根据角色名称，查询授权菜单
+      const res=await Service.postAuthPermission(data);
+      if(res?.data){
+        const {authedRoutes} = res.data
+        state.menu.form=authedRoutes
+      }
+      
+    }
     /**
      * @description 异步获取所有的菜单
      */
@@ -76,24 +97,31 @@ export default defineComponent({
             label: i?.meta?.title as String
           })
         }
-      }
+      }      
     }
-    /**
-     * @description 异步获取已经授权的菜单
-     */
-    const fetchData = () => {}
+
+ 
     /**
      * @description 保存当前角色授权菜单
      */
-    const saveData = () => {}
+    const saveData = () => {
+
+      console.log('form is ', state.menu.form)
+      //  省略接口：向后端接口传递已经授权菜单名称；  state.menu.form
+      emit('success');
+    }
     onMounted(() => {
+      // 获取 auth Menu Info 
       fetchMenuData()
     })
+    // 使用watchEffect 监听所用到的变化时做出的副作用反应；
+      watchEffect(()=>{
+      fetchData();
+    });
     return {
       ...toRefs(state),
       role,
       fetchMenuData,
-      fetchData,
       saveData
     }
   }
