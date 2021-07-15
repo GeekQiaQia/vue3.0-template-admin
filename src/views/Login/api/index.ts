@@ -105,6 +105,23 @@ class Service{
       })
     }
 
+    /**
+     * @description POST 查询用户信息
+    */
+
+     static postAuthUserInfo(data: any) {
+      return request({
+        url: '/api/auth/user/userInfo',
+        method: 'POST',
+        json: true,
+        data
+      }).then((res) => {
+        if (res.status === 200) {
+        return Promise.resolve(res)
+        }
+        return Promise.reject(res)
+      })
+    }
 
 }
 export default Service

@@ -46,6 +46,16 @@ const getSwiperInfo=()=>({
 Mock.mock('/api/auth/user/login','post',(option) => {
     const {email,password} = JSON.parse(option.body);
     console.log(email,password);
+    if(email==='super@outlook.com'&&password==='123456'){
+        return {
+            status: 200,
+            data:{
+                accessToken:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjIyODA1MjAxMjhAcXEuY29tIiwic3ViIjo5LCJpYXQiOjE2MjU4MzQ3MTksImV4cCI6MTYyODQyNjcxOX0.YQLVi-zw4XWQEd8Hy2YZGlFaqX8c7xyRPrYuxcFywFE'
+            },
+            success: true,
+            message:'成功'
+        }
+    }
     if(email==='admin@outlook.com'&&password==='123456'){
         return {
             status: 200,
@@ -62,6 +72,36 @@ Mock.mock('/api/auth/user/login','post',(option) => {
             message:'账户或者密码错误'
         }
 });
+// 登录成功，查询用户信息，包括角色
+Mock.mock('/api/auth/user/userInfo','post',(option) => {
+    const {email} = JSON.parse(option.body);
+
+    if(email==='super@outlook.com'){
+        return {
+            status: 200,
+            data:{
+                roleName:'超级管理员'
+            },
+            success: true,
+            message:'成功'
+        }
+    }if(email==='admin@outlook.com'){
+        return {
+            status: 200,
+            data:{
+                roleName:'管理员'
+            },
+            success: true,
+            message:'成功'
+        }
+    }
+        return {
+            status:200,
+            data:null,
+            message:'账户或者密码错误'
+        }
+});
+
 
 
 Mock.mock('/api/auth/user/register','post',() => ({
@@ -71,14 +111,14 @@ Mock.mock('/api/auth/user/register','post',() => ({
         success: true,
         message:'成功'
     }));
-    // 
+    //
     Mock.mock('/api/auth/permission/routes','post',(option) => {
     const {roleName} = JSON.parse(option.body);
         if(roleName==="超级管理员"){
             return {
                 status: 200,
                 data:{
-                    authedRoutes:['/guide', '/copy','/zip','/role','/menu']
+                    authedRoutes:['/guide', '/copy','/zip','/role','/menu','/dashboard','/excel','/table','/form','/qrcode','/dragable','/editor','/upload','/cropper','/personal']
                 },
                 success: true,
                 message:'成功'
@@ -87,7 +127,7 @@ Mock.mock('/api/auth/user/register','post',() => ({
             return {
                 status: 200,
                 data:{
-                    authedRoutes:['/guide', '/copy','/zip']
+                    authedRoutes:['/role','/menu','/dashboard','/personal']
                 },
                 success: true,
                 message:'成功'
@@ -96,13 +136,13 @@ Mock.mock('/api/auth/user/register','post',() => ({
         return {
             status: 200,
             data:{
-                authedRoutes:[]
+                authedRoutes:['/guide', '/copy','/zip','/dashboard','/excel','/table','/form','/qrcode','/dragable','/editor','/upload','/cropper','/personal']
             },
             success: true,
             message:'成功'
         }
-        
-      
+
+
     });
 // /api/auth/user/reset-password
 Mock.mock('/api/auth/user/reset-password','post',() => ({

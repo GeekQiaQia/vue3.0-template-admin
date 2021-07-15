@@ -462,13 +462,12 @@ router.beforeEach((to, from, next) => {
     const flag = tabsOption.findIndex((tab: { route: string }) => tab.route === to.fullPath) > -1
     if (!flag && !to.meta.hidden) {
 
-          store.commit('tabModule/ADD_TAB', { route: to.fullPath, title: to.meta.title,name: to.name })
+      store.commit('tabModule/ADD_TAB', { route: to.fullPath, title: to.meta.title,name: to.name })
 
         }
     store.commit('tabModule/SET_TAB', to.fullPath)
   if(sessionStorage.getItem('auth')){
-    console.log("has authed");
-    next()
+    next();
   }else if(to.path==='/login'){
     console.log("/login");
     next();
@@ -482,4 +481,6 @@ router.beforeEach((to, from, next) => {
 
 
 });
+
+
 export default router;

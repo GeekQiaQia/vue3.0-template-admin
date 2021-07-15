@@ -27,6 +27,13 @@
               </el-descriptions-item>
               <el-descriptions-item>
                 <template #label>
+                  <i class="el-icon-user"></i>
+                  角色:
+                </template>
+                {{ roles }}
+              </el-descriptions-item>
+              <el-descriptions-item>
+                <template #label>
                   <i class="el-icon-chat-dot-round"></i>
                   状态:
                 </template>
@@ -63,9 +70,9 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs, ref, onMounted } from 'vue'
+import { defineComponent, reactive, toRefs, ref, onMounted, computed } from 'vue'
+import { useStore } from '@/store'
 import Service from './api/index'
-
 import fullcalendar from './components/fullCalendar/index.vue'
 
 interface stateType {
@@ -89,7 +96,8 @@ export default defineComponent({
     const formLabelWidth = ref(100)
     const size = ref('medium')
     const showDesc = ref(true)
-
+    const store = useStore()
+    const roles = computed(() => store.state.permissionModule.roles)
     // mothods
     /**
      * @description 关闭tag标签
@@ -133,6 +141,7 @@ export default defineComponent({
       handleInputConfirm,
       ...toRefs(state),
       size,
+      roles,
       showDesc,
       handleClose
     }

@@ -1,9 +1,7 @@
 <template>
   <div>
-      <el-alert
-    title="Tips:点击【新增】按钮进行新增角色；点击【编辑】按钮，进行不同角色的菜单授权操作！"
-    type="warning">
-  </el-alert>
+    <el-alert title="Tips:点击【新增】按钮进行新增角色；点击【编辑】按钮，进行不同角色的菜单授权操作！" type="warning"> </el-alert>
+    <el-alert title="Tips:权限控制体验：【管理员账号为：admin@outlook.com】、【超级管理员账号为：super@outlook.com】" type="info"> </el-alert>
     <el-card class="card-ctrl">
       <el-row>
         <el-col :span="8" style="text-align: left">
@@ -152,7 +150,7 @@ export default defineComponent({
     }
     /**
      * @description 选择点击编辑授权角色；roleName
-    */
+     */
     const onEdit = (index: any, row: any) => {
       console.log('row', row)
       state.posted.role = row

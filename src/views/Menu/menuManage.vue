@@ -169,7 +169,7 @@ export default defineComponent({
         }
       }
     })
-    const routes = computed(() => store.state.permissionModule.routes)
+    const routes = computed(() => store.state.permissionModule.accessRoutes)
 
     const initTableData = () => {
       const result = routes.value.filter((item) => item?.meta?.hidden !== true)

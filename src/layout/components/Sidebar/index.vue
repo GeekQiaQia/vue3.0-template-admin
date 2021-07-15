@@ -39,7 +39,7 @@ export default defineComponent({
     const store = useStore()
     const isCollapse = computed(() => !store.getters['appModule/getSidebarState'])
     const showLogo = computed(() => store.state.settingsModule.sideBarLogo)
-    const routes = computed(() => store.state.permissionModule.routes)
+    const routes = computed(() => store.state.permissionModule.accessRoutes)
     const activeMenu = computed(() => router.currentRoute.value.fullPath)
 
     onMounted(() => {

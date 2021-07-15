@@ -23,7 +23,7 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, watchEffect, reactive, toRef, toRefs } from 'vue'
 import { useStore } from '@/store'
-import Service from './api/index.ts'
+import Service from './api/index'
 
 interface stateTypes {
   url: String
@@ -38,7 +38,7 @@ interface stateTypes {
   }
 }
 export default defineComponent({
-  name:'RolesEdit',
+  name: 'RolesEdit',
   props: {
     currentRole: {
       type: Object,
@@ -46,8 +46,8 @@ export default defineComponent({
     }
   },
   emits: ['success'],
-  
-  setup(props,{emit}) {
+
+  setup(props, { emit }) {
     // 析构获取 props 属性 basePath
     const currentRole = toRef(props, 'currentRole')
     const store = useStore()
@@ -64,25 +64,24 @@ export default defineComponent({
         form: []
       }
     })
-    
+
     const role = computed(() => currentRole.value.role)
+    // 可访问
     const routes = computed(() => store.state.permissionModule.routes)
-  
-   /**
+
+    /**
      * @description 异步获取已经授权的菜单
      */
     const fetchData = async () => {
-      const data={
-        roleName:role.value.roleName
+      const data = {
+        roleName: role.value.roleName
       }
-      console.log(data);
       // 后端根据角色名称，查询授权菜单
-      const res=await Service.postAuthPermission(data);
-      if(res?.data){
-        const {authedRoutes} = res.data
-        state.menu.form=authedRoutes
+      const res = await Service.postAuthPermission(data)
+      if (res?.data) {
+        const { authedRoutes } = res.data
+        state.menu.form = authedRoutes
       }
-      
     }
     /**
      * @description 异步获取所有的菜单
@@ -97,27 +96,25 @@ export default defineComponent({
             label: i?.meta?.title as String
           })
         }
-      }      
+      }
     }
 
- 
     /**
      * @description 保存当前角色授权菜单
      */
     const saveData = () => {
-
       console.log('form is ', state.menu.form)
       //  省略接口：向后端接口传递已经授权菜单名称；  state.menu.form
-      emit('success');
+      emit('success')
     }
     onMounted(() => {
-      // 获取 auth Menu Info 
+      // 获取 auth Menu Info
       fetchMenuData()
     })
     // 使用watchEffect 监听所用到的变化时做出的副作用反应；
-      watchEffect(()=>{
-      fetchData();
-    });
+    watchEffect(() => {
+      fetchData()
+    })
     return {
       ...toRefs(state),
       role,

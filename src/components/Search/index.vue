@@ -28,7 +28,7 @@ export default defineComponent({
     const store = useStore()
     const router = useRouter()
     const fuse = ref()
-    const routes = computed(() => store.state.permissionModule.routes)
+    const routes = computed(() => store.state.permissionModule.accessRoutes)
     const state = reactive<stateType>({
       options: [],
       value: ''
@@ -83,7 +83,6 @@ export default defineComponent({
           }
         }
       }
-      console.log('list is ', list)
       return list
     }
     const handleChange = (val: { path: any }) => {
@@ -95,8 +94,6 @@ export default defineComponent({
       fuse.value = new Fuse(list, config)
     }
     watchEffect(() => {
-      // initFuse()
-      console.log(routes.value)
       const searchList = generateList(routes.value)
       initFuse(searchList)
     })

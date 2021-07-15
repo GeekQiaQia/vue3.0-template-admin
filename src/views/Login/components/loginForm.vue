@@ -2,7 +2,7 @@
   <div class="form-container">
     <el-form v-if="showLogin" ref="loginFormRef" :model="loginForm" status-icon :hide-required-asterisk="true" :rules="rules" label-width="100px" class="login-form">
       <el-form-item label="账号" prop="email">
-        <el-input v-model="loginForm.email" autocomplete="off" placeholder="请输入登录邮箱(admin@outlook.com)"></el-input>
+        <el-input v-model="loginForm.email" autocomplete="off" placeholder="请输入登录邮箱(super@outlook.com)"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="loginForm.password" type="password" autocomplete="off" placeholder="请输入密码(123456)"></el-input>
@@ -52,6 +52,7 @@ import { defineComponent, ref, toRefs, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 // import { encrypt } from '@/utils/aes' // aes 密码加密
+import { useStore } from '@/store'
 import Service from '../api/index'
 
 interface stateType {
@@ -78,6 +79,7 @@ export default defineComponent({
     const route = useRoute()
     const loginFormRef = ref()
     const registerRef = ref()
+    const store = useStore()
 
     const state = reactive<stateType>({
       loginForm: {
@@ -141,6 +143,14 @@ export default defineComponent({
               password
             }
             const res = await Service.postLogin(data)
+            const userInfo = await Service.postAuthUserInfo({ email })
+            // 将角色存储到全局vuex roles
+            if (userInfo.status === 200) {
+              store.dispatch('permissionModule/getPermissonRoles', userInfo.data)
+            }
+            // 先进行异步路由处理
+            store.dispatch('permissionModule/getPermissonRoutes', userInfo.data)
+
             const accessToken = res?.data?.accessToken ?? null
             if (accessToken) {
               sessionStorage.setItem('auth', 'true')

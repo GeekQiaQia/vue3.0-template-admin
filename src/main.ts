@@ -11,7 +11,6 @@ import '@/styles/index.scss'; // global css
 import '@/permission'; // permission control 全局路由守卫
 import 'dayjs/locale/zh-cn'
 
-
 // eslint-disable-next-line import/order
 // import enLocale from 'element-plus/lib/locale/lang/en'
 // eslint-disable-next-line import/order
@@ -26,9 +25,15 @@ import 'element-plus/lib/theme-chalk/index.css';
 
 import '@/mock'
 
+const roles =  localStorage.getItem('role');
 
+if(roles){
 // 在挂载路由之前，先进行异步路由处理
-store.dispatch('permissionModule/getPermissonRoutes');
+store.dispatch('permissionModule/getPermissonRoutes',{roleName:roles});
+}
+
+store.dispatch('permissionModule/getRoutes');
+
 
 // , {
 //     i18n: i18n.global.t,
