@@ -27,7 +27,7 @@
         </el-input>
       </el-form-item>
       <el-form-item label="验证码" prop="capcha">
-        <el-input v-model.number="registerForm.capcha" maxlength="6" autocomplete="off" placeholder="请输入验证码"></el-input>
+        <el-input v-model.number="registerForm.capcha" maxlength="10" autocomplete="off" placeholder="请输入验证码"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="registerForm.password" type="password" autocomplete="off" placeholder="请输入密码"></el-input>
@@ -145,7 +145,7 @@ export default defineComponent({
             const res = await Service.postLogin(data)
             const userInfo = await Service.postAuthUserInfo({ email })
             // 将角色存储到全局vuex roles
-            if (userInfo.status === 200) {
+            if (userInfo.status === 0) {
               store.dispatch('permissionModule/getPermissonRoles', userInfo.data)
             }
             // 先进行异步路由处理
@@ -168,7 +168,10 @@ export default defineComponent({
               })
             }
           } catch (err) {
-            console.error(err)
+            ElMessage({
+              type: 'warning',
+              message: err.message
+            })
           }
         }
         return false
@@ -191,12 +194,15 @@ export default defineComponent({
               console.log(res)
               ElMessage({
                 type: 'success',
-                message: '模拟注册成功'
+                message: '注册成功'
               })
               state.showLogin = true
             })
           } catch (err) {
-            console.error(err)
+            ElMessage({
+              type: 'success',
+              message: err.message
+            })
           }
         }
       })
@@ -212,7 +218,7 @@ export default defineComponent({
         }
         const res = await Service.postCaptcha(data)
         console.log(res)
-        if (res.status === 400) {
+        if (res.status === 0) {
           ElMessage({
             type: 'warning',
             message: res.message

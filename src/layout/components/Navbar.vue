@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <el-header height="50px" >
+    <el-header height="50px">
       <hamburger id="Hamburger" :is-active="opened" class="hamburger-container" @toggleClick="toggleSideBar" />
       <breadcrumb class="breadcrumb-container" />
       <div class="right-menu">
@@ -105,6 +105,8 @@ export default defineComponent({
     const logout = () => {
       // clear()
       sessionStorage.removeItem('auth')
+      sessionStorage.removeItem('accessToken')
+
       router.replace('/login')
     }
     return {

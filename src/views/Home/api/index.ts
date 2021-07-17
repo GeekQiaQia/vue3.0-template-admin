@@ -11,7 +11,7 @@ class Service{
       method: 'get',
       json: true,
     }).then((res) => {
-      if (res.status === 200) {
+      if (res.status === 0) {
       return Promise.resolve(res)
       }
       return Promise.reject(res)

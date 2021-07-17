@@ -81,7 +81,7 @@ export default defineComponent({
         }
         const res = await Service.postForgetPwd(data)
         console.log(res)
-        if (res.status === 400) {
+        if (res.status === 0) {
           ElMessage({
             type: 'warning',
             message: res.message
@@ -112,7 +112,7 @@ export default defineComponent({
             }
             const res = await Service.postResetPwd(data)
             console.log(res)
-            if (res.status === 400) {
+            if (res.status === 0) {
               ElMessage({
                 type: 'warning',
                 message: res.message

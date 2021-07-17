@@ -12,7 +12,7 @@ class Service{
       json: true,
       data
     }).then((res) => {
-      if (res.status === 200) {
+      if (res.status === 0) {
       return Promise.resolve(res)
       }
       return Promise.reject(res)
@@ -29,7 +29,7 @@ class Service{
           json: true,
           data
         }).then((res) => {
-          if (res.status === 200) {
+          if (res.status === 0) {
             return Promise.resolve(res)
           }
           return Promise.reject(res)
@@ -46,7 +46,7 @@ class Service{
       json: true,
       data
     }).then((res) => {
-      if (res.status === 200||res.status === 400) {
+      if (res.status === 0) {
       return Promise.resolve(res)
       }
       return Promise.reject(res)
@@ -63,7 +63,7 @@ class Service{
       json: true,
       data
     }).then((res) => {
-      if (res.status === 200||res.status === 400) {
+      if (res.status === 0) {
       return Promise.resolve(res)
       }
       return Promise.reject(res)
@@ -80,7 +80,7 @@ class Service{
       json: true,
       data
     }).then((res) => {
-      if (res.status === 200||res.status === 400) {
+      if (res.status === 0) {
       return Promise.resolve(res)
       }
       return Promise.reject(res)
@@ -98,7 +98,7 @@ class Service{
         data
       }).then((res) => {
           console.log(res);
-        if (res.status === 200) {
+        if (res.status === 0) {
         return Promise.resolve(res)
         }
         return Promise.reject(res)
@@ -116,7 +116,7 @@ class Service{
         json: true,
         data
       }).then((res) => {
-        if (res.status === 200) {
+        if (res.status === 0) {
         return Promise.resolve(res)
         }
         return Promise.reject(res)

@@ -10,13 +10,13 @@ Mock.setup({
 
 // mock 一组角色数据；
 const genRoles=()=>({
-        status: 200,
+        status: 0,
         data:['super','admin','nomal'],
         message:'成功'
     })
 
 const getSwiperInfo=()=>({
-        status: 200,
+        status: 0,
         data:[{
             name:'vue-next',
             itemSrc:'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c588b8ab65a74d59aa379801136df4e0~tplv-k3u1fbpfcp-watermark.image',
@@ -48,7 +48,7 @@ Mock.mock('/api/auth/user/login','post',(option) => {
     console.log(email,password);
     if(email==='super@outlook.com'&&password==='123456'){
         return {
-            status: 200,
+            status: 0,
             data:{
                 accessToken:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjIyODA1MjAxMjhAcXEuY29tIiwic3ViIjo5LCJpYXQiOjE2MjU4MzQ3MTksImV4cCI6MTYyODQyNjcxOX0.YQLVi-zw4XWQEd8Hy2YZGlFaqX8c7xyRPrYuxcFywFE'
             },
@@ -58,7 +58,7 @@ Mock.mock('/api/auth/user/login','post',(option) => {
     }
     if(email==='admin@outlook.com'&&password==='123456'){
         return {
-            status: 200,
+            status: 0,
             data:{
                 accessToken:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjIyODA1MjAxMjhAcXEuY29tIiwic3ViIjo5LCJpYXQiOjE2MjU4MzQ3MTksImV4cCI6MTYyODQyNjcxOX0.YQLVi-zw4XWQEd8Hy2YZGlFaqX8c7xyRPrYuxcFywFE'
             },
@@ -67,7 +67,7 @@ Mock.mock('/api/auth/user/login','post',(option) => {
         }
     }
         return {
-            status:200,
+            status: 0,
             data:null,
             message:'账户或者密码错误'
         }
@@ -78,7 +78,7 @@ Mock.mock('/api/auth/user/userInfo','post',(option) => {
 
     if(email==='super@outlook.com'){
         return {
-            status: 200,
+            status: 0,
             data:{
                 roleName:'超级管理员'
             },
@@ -87,7 +87,7 @@ Mock.mock('/api/auth/user/userInfo','post',(option) => {
         }
     }if(email==='admin@outlook.com'){
         return {
-            status: 200,
+            status: 0,
             data:{
                 roleName:'管理员'
             },
@@ -96,7 +96,7 @@ Mock.mock('/api/auth/user/userInfo','post',(option) => {
         }
     }
         return {
-            status:200,
+            status: 0,
             data:null,
             message:'账户或者密码错误'
         }
@@ -105,7 +105,7 @@ Mock.mock('/api/auth/user/userInfo','post',(option) => {
 
 
 Mock.mock('/api/auth/user/register','post',() => ({
-        status: 200,
+        status: 0,
         data:{
         },
         success: true,
@@ -116,27 +116,27 @@ Mock.mock('/api/auth/user/register','post',() => ({
     const {roleName} = JSON.parse(option.body);
         if(roleName==="超级管理员"){
             return {
-                status: 200,
+                status: 0,
                 data:{
-                    authedRoutes:['/guide', '/copy','/zip','/role','/menu','/dashboard','/excel','/table','/form','/qrcode','/dragable','/editor','/upload','/cropper','/personal']
+                    authedRoutes:['/dashboard','/guide', '/copy','/zip','/role','/menu','/excel','/table','/form','/qrcode','/dragable','/editor','/upload','/cropper','/personal']
                 },
                 success: true,
                 message:'成功'
             }
         }if(roleName==="管理员"){
             return {
-                status: 200,
+                status: 0,
                 data:{
-                    authedRoutes:['/role','/menu','/dashboard','/personal']
+                    authedRoutes:['/dashboard','/role','/menu','/personal']
                 },
                 success: true,
                 message:'成功'
             }
         }
         return {
-            status: 200,
+            status: 0,
             data:{
-                authedRoutes:['/guide', '/copy','/zip','/dashboard','/excel','/table','/form','/qrcode','/dragable','/editor','/upload','/cropper','/personal']
+                authedRoutes:['/dashboard','/guide', '/copy','/zip','/excel','/table','/form','/qrcode','/dragable','/editor','/upload','/cropper','/personal']
             },
             success: true,
             message:'成功'
@@ -146,7 +146,7 @@ Mock.mock('/api/auth/user/register','post',() => ({
     });
 // /api/auth/user/reset-password
 Mock.mock('/api/auth/user/reset-password','post',() => ({
-    status: 200,
+    status: 0,
     data:{
     },
     success: true,
@@ -154,7 +154,7 @@ Mock.mock('/api/auth/user/reset-password','post',() => ({
 }));
 //  /api/auth/email/forgot-password
 Mock.mock('/api/auth/email/forgot-password','post',() => ({
-    status: 200,
+    status: 0,
     data:{
     },
     success: true,
@@ -162,7 +162,7 @@ Mock.mock('/api/auth/email/forgot-password','post',() => ({
 }));
 // /api/auth/user/reset-password
 Mock.mock('/api/auth/user/reset-password','post',() => ({
-    status: 200,
+    status: 0,
     data:{
     },
     success: true,
@@ -172,7 +172,7 @@ Mock.mock('/api/auth/user/reset-password','post',() => ({
 Mock.mock('/api/setting/basicInfo','post',(option)=>{
     const {email,nickname,desc,mobile} = JSON.parse(option.body);
     return {
-        status: 200,
+        status: 0,
         data:{
             email,nickname,desc,mobile
         },
@@ -181,14 +181,14 @@ Mock.mock('/api/setting/basicInfo','post',(option)=>{
 });
 
 Mock.mock('/api/personal/tags','get',()=>({
-    status: 200,
+    status: 0,
     data:{
         tags:['积极阳光', '专注', '认真负责','花痴']
     },
     message:'成功'
 }));
 Mock.mock('/api/data/world-population','get',()=>({
-        status: 200,
+        status: 0,
         data:{
             dataSets:[
                 {category: "frontEnd",
@@ -275,7 +275,7 @@ Mock.mock('/api/data/world-population','get',()=>({
         message:'更新成功'
     }));
 Mock.mock('/api/personal/tasks','get',()=>({
-        status: 200,
+        status: 0,
         data:{
             tasks:[
 
