@@ -138,18 +138,23 @@ git merge upstream/main
 
 ## 持续升级 | Continuous upgrades
 
-敬请期待...
+- [x] 重构 request.ts 请求，使其灵活可配置化；
+- [x] 使用 AES 加密方式，对密码进行安全加密；
+- [x] 完成换肤切换功能，使用 ElementPlus theme-chalk 实现换肤
+- [x] 重构登录注册页面，完善忘记密码交互以及必填字段校验
+- [x] 设计角色管理，选择不同的角色，授权不同的菜单
+- [x] 根据不同的登录用户角色，展示不同的菜单
+
+## 技术反馈和交流群 | Technical feedback and communication
+
+<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d41b5fec542444b4a28c00135ce27d42~tplv-k3u1fbpfcp-watermark.image" width="180px" />
+<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5bdb53c028bf4dffbb989ade03a47469~tplv-k3u1fbpfcp-watermark.image" width="180px" />
 
 ## 赞助 | Sponsored
 
 开源不易, 有了您的赞助, 我们会做的更好~
 
 <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/04022bcd6f99449ba0f065f470d19458~tplv-k3u1fbpfcp-watermark.image" width="180px" />
-
-## 技术反馈和交流群 | Technical feedback and communication
-
-<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d41b5fec542444b4a28c00135ce27d42~tplv-k3u1fbpfcp-watermark.image" width="180px" />
-<img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/651ae122b9be4114b157cef86bba23a2~tplv-k3u1fbpfcp-watermark.image" width="180px" />
 
 ## 快照 | screen shots
 
