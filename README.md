@@ -47,10 +47,10 @@ Give a ⭐️ if this project helped you!
 - [x] 自定义图标
 - [x] 图片拖拽/裁剪
 - [x] 支持切换主题色:一键换肤
+- [x] 指令权限：v-permisson /全局方法：$permission (参考 tableList.vue)
 
 ## 正在完成功能 | The functionality is being completed
 
-- [x] 权限：v-permisson
 - [x] 可拖拽弹窗
 - [x] 国际化
 - [x] 导航模式切换

@@ -11,7 +11,8 @@ const roles =  localStorage.getItem('role')||'';
 const permissionModule: Module<permissionStateTypes, RootStateTypes> = {
   namespaced: true,
   state: {
-    roles, // 用户包含的权限集合
+    roles, // 用户包含的角色,
+    permissions:[], // 用户指定局部操作权限
     accessRoutes: constantRoutes, // 可访问路由集合
     routes:constantRoutes, // 所有路由集合
     authedRoutes:[]
@@ -31,6 +32,9 @@ const permissionModule: Module<permissionStateTypes, RootStateTypes> = {
       state.authedRoutes = authedRoutes
       localStorage.setItem('authedRoutes',JSON.stringify(authedRoutes));
 
+    },
+    setPermissions:(state:permissionStateTypes,permissions:string[])=>{
+      state.permissions = permissions
     }
   },
   actions: {
@@ -68,8 +72,16 @@ const permissionModule: Module<permissionStateTypes, RootStateTypes> = {
           commit('setAccessRoutes', accessedRoutes);
         });
       })
+    },
+    getPermissions({ commit }){
+        // 后端根据角色名称，查询授权菜单
+        Service.postPermissions({}).then(res=>{
+          const {permissions}=res.data;
+          commit('setPermissions',permissions);
+        })
 
     },
+
     getRoutes({ commit }) {
       // api request
            // 动态添加路由  vue-router4.x 暂时没有addRoutes
@@ -107,6 +119,12 @@ const permissionModule: Module<permissionStateTypes, RootStateTypes> = {
     },
     authedRoutes(state:permissionStateTypes){
       return state.authedRoutes;
+    },
+    getRoles(state:permissionStateTypes){
+      return state.roles;
+    },
+    getPermission(state:permissionStateTypes){
+      return state.permissions;
 
     }
 

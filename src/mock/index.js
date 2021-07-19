@@ -144,6 +144,16 @@ Mock.mock('/api/auth/user/register','post',() => ({
 
 
     });
+
+    Mock.mock('/api/auth/permission/permissions','post',() => ({
+        status: 0,
+        data:{
+            permissions:['test:permission-btn','test:permission-btn2','test:permission-btn3']
+        },
+        success: true,
+        message:'成功'
+    }));
+
 // /api/auth/user/reset-password
 Mock.mock('/api/auth/user/reset-password','post',() => ({
     status: 0,

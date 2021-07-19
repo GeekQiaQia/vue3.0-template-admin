@@ -150,6 +150,7 @@ export default defineComponent({
             }
             // 先进行异步路由处理
             store.dispatch('permissionModule/getPermissonRoutes', userInfo.data)
+            store.dispatch('permissionModule/getPermissions')
 
             const accessToken = res?.data?.accessToken ?? null
             if (accessToken) {

@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import { useStore } from '@/store/index'
 
 export default defineComponent({
@@ -20,6 +20,9 @@ export default defineComponent({
       const height = Math.max(600, clientHeight - 170) // 保证最小值大于600
       store.commit('settingsModule/setTableHeight', height) // 设置tableHeight
     }
+    onMounted(() => {
+      store.dispatch('permissionModule/getPermissions')
+    })
     resizeHeight()
     return {}
   }

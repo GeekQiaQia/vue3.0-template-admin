@@ -3,7 +3,7 @@
 import { createApp } from 'vue';
 import ElementPlus from 'element-plus';
 import locale from 'element-plus/lib/locale/lang/zh-cn'
-
+import {isPermission} from '@/directive/permission'
 import { key, store } from './store/index';
 import router from './router/index';
 import App from './App.vue';
@@ -38,8 +38,11 @@ store.dispatch('permissionModule/getRoutes');
 // , {
 //     i18n: i18n.global.t,
 //   }
+
 // 链式注册插件
 const app = createApp(App).use(store, key).use(router).use(ElementPlus,{locale});
+// 挂载全局方法 isPermission
+app.config.globalProperties.$isPermission=isPermission
 // 现在所有的导航都是异步的，等路由ready以后再进行挂载组件；
 router.isReady().then(() => app.mount('#app'));
 

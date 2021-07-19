@@ -37,6 +37,10 @@
           <el-input v-model="search" size="mini" placeholder="输入姓名字段关键字搜索" />
         </template>
         <template #default="scope">
+          <el-button v-permission="['test:permission-btn3']" size="mini" @click="handleEdit(scope.$index, scope.row)">v-permission </el-button>
+
+          <el-button v-if="$isPermission(['test:permission-btn3'])" size="mini" @click="handleEdit(scope.$index, scope.row)">$isPermission </el-button>
+
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
           <el-popconfirm confirm-button-text="确定" cancel-button-text="取消" icon="el-icon-info" icon-color="red" title="确定删除该条记录吗？" @confirm="handleDelete(scope.$index, scope.row)">
             <template #reference>
@@ -77,9 +81,13 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
+import permission from '@/directive/permission'
 
 export default defineComponent({
   name: 'TableList',
+  directives: {
+    permission
+  },
   setup() {
     // 思考 ref 响应式和 reactive 响应式的区别； 修改对象属性值，是否会刷新数据
 
