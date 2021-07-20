@@ -35,7 +35,7 @@ export default defineConfig({
       '~': resolve(__dirname, './'),
       '@': resolve(__dirname, 'src'),
     },
-    extensions:['.js', '.ts', '.jsx', '.tsx', '.json','.vue'] // 类型： string[] 导入时想要省略的扩展名列表。
+    extensions:['.js', '.ts', '.jsx', '.tsx', '.json','.vue','.mjs'] // 类型： string[] 导入时想要省略的扩展名列表。
   },
   clearScreen:false,
   server: {
