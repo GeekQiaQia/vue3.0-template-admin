@@ -32,7 +32,7 @@ import Navbar from './components/Navbar.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain.vue'
 import RightDrawer from './components/RightSetting/RightDrawer.vue'
-import ThemePick from './components/themePick/index.vue'
+import ThemePick from './components/RightSetting/themePick/index.vue'
 
 export default defineComponent({
   name: 'Layout',
@@ -57,24 +57,11 @@ export default defineComponent({
     const colors = reactive({
       primary: '#fff'
     })
-    const predefineColors = ref([
-      '#ff4500',
-      '#ff8c00',
-      '#ffd700',
-      '#90ee90',
-      '#00ced1',
-      '#1e90ff',
-      '#c71585',
-      'rgba(255, 69, 0, 0.68)',
-      'rgb(255, 120, 0)',
-      'hsv(51, 100, 98)',
-      'hsva(120, 40, 94, 0.5)',
-      'hsl(181, 100%, 37%)',
-      'hsla(209, 100%, 56%, 0.73)',
-      '#c7158577'
-    ])
+
     const showSetting = computed(() => store.state.settingsModule.showSettings)
     const opened = computed(() => store.getters['appModule/getSidebarState'])
+    const hideHeader = computed(() => store.getters['appModule/getHideHeaderState'])
+    console.log(hideHeader.value)
     const device = computed(() => store.getters['appModule/getDeviceState'])
     const withoutAnimation = computed(() => store.getters['appModule/getSidebarAnimation'])
     const originalStylesheetCount = computed(() => document.styleSheets.length || -1)
@@ -96,8 +83,8 @@ export default defineComponent({
       originalStyle.value = getStyleTemplate(data)
     })
     return {
+      hideHeader,
       color,
-      predefineColors,
       classObj,
       submitForm,
       showSetting,
