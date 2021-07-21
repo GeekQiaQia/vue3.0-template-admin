@@ -22,3 +22,5 @@
    const decryptStr = CryptoJS.AES.decrypt(word, key, { mode: CryptoJS.mode.ECB, padding: CryptoJS.pad.Pkcs7 })
    return CryptoJS.enc.Utf8.stringify(decryptStr).toString()
  }
+
+ export default {encrypt ,decrypt}
