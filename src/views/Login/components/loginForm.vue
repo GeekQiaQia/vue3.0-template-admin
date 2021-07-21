@@ -189,7 +189,7 @@ export default defineComponent({
             const data = {
               email,
               capcha,
-              password
+              password: encrypt(password)
             }
             Service.postRegister(data).then((res: any) => {
               console.log(res)
