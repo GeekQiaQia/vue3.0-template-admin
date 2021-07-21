@@ -51,7 +51,7 @@
 import { defineComponent, ref, toRefs, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { encrypt } from '@/utils/aes' // aes 密码加密
+// import { encrypt } from '@/utils/aes' // aes 密码加密
 import { useStore } from '@/store'
 import Service from '../api/index'
 
@@ -140,7 +140,8 @@ export default defineComponent({
             const { email, password } = state.loginForm
             const data = {
               email,
-              password: encrypt(password)
+              password
+              // password: encrypt(password)
             }
             const res = await Service.postLogin(data)
             const userInfo = await Service.postAuthUserInfo({ email })
@@ -189,7 +190,8 @@ export default defineComponent({
             const data = {
               email,
               capcha,
-              password: encrypt(password)
+              password
+              // password: encrypt(password)
             }
             Service.postRegister(data).then((res: any) => {
               console.log(res)
