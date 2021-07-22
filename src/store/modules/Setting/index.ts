@@ -15,14 +15,46 @@ const settingsModule: Module<settingStateTypes, RootStateTypes> = {
     sideBarLogo,
     showSettings,
     tableHeight: 600, // 表格宽度
+    hideHeader:false
 
   },
   mutations: {
     setTableHeight: (state:settingStateTypes, height) => {
       state.tableHeight = height;
     },
-
+    toggleHeader:(state: settingStateTypes)=>{
+      state.hideHeader=!state.hideHeader
   },
-  actions: {},
+  toggleFixedHeader:(state: settingStateTypes)=>{
+    state.fixedHeader=!state.fixedHeader
+  },
+  toggleSidebarLogo:(state: settingStateTypes)=>{
+    state.sideBarLogo=!state.sideBarLogo
+  },
+  },
+  actions: {
+    toToggleHeader({commit}){
+      commit('toggleHeader');
+    },
+    toToggleFixedHeader({commit}){
+      commit('toggleFixedHeader');
+    },
+    toToggleSidebarLogo({commit}){
+      commit('toggleSidebarLogo');
+    }
+  },
+  getters: {
+
+    getHideHeaderState(state:settingStateTypes){
+      return state.hideHeader
+    },
+    getFixedHeaderState(state:settingStateTypes){
+      return state.fixedHeader
+    },
+    getSidebarLogoState(state:settingStateTypes){
+      return state.sideBarLogo
+
+    }
+  },
 };
 export default settingsModule;

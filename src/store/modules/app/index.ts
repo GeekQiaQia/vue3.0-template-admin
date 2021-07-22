@@ -10,7 +10,6 @@ const appModule: Module<appStateTypes, RootStateTypes> = {
       opened: true,
       withoutAnimation: false,
     },
-    hideHeader:false,
     device: 'desktop',
   },
   mutations: {
@@ -23,19 +22,12 @@ const appModule: Module<appStateTypes, RootStateTypes> = {
       } else {
         Cookies.set('sidebarStatus', 0 as Number);
       }
-    },
-    toggleHeader:(state: appStateTypes)=>{
-        state.hideHeader=!state.hideHeader
     }
   },
   actions: {
     toggleSideBar({ commit }) {
       commit('TOGGLE_SIDEBAR');
     },
-    toToggleHeader({commit}){
-      commit('setConfig');
-    }
-
   },
   getters: {
     getSidebarState(state:appStateTypes) {
@@ -46,9 +38,6 @@ const appModule: Module<appStateTypes, RootStateTypes> = {
     },
     getDeviceState(state:appStateTypes) {
       return state.device;
-    },
-    getHideHeaderState(state:appStateTypes){
-      return state.hideHeader
     }
   },
 };
