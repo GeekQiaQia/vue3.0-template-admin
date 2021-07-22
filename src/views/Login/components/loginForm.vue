@@ -141,6 +141,7 @@ export default defineComponent({
             const data = {
               email,
               password
+              // password: encrypt(password)
             }
             const res = await Service.postLogin(data)
             const userInfo = await Service.postAuthUserInfo({ email })
@@ -190,6 +191,7 @@ export default defineComponent({
               email,
               capcha,
               password
+              // password: encrypt(password)
             }
             Service.postRegister(data).then((res: any) => {
               console.log(res)

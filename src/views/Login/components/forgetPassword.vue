@@ -32,8 +32,8 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs, ref } from 'vue'
 import { ElMessage } from 'element-plus'
-import Service from '../api/index'
 // import { encrypt } from '@/utils/aes' // aes 密码加密
+import Service from '../api/index'
 
 interface stateType {
   resetForm: {
@@ -108,6 +108,7 @@ export default defineComponent({
             const data = {
               email,
               password,
+              // password: encrypt(password),
               capcha
             }
             const res = await Service.postResetPwd(data)
