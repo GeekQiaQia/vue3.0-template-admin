@@ -5,7 +5,7 @@ import { resolve } from 'path';
 import styleImport from 'vite-plugin-style-import'
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/vue3.0-template-admin',             // 设开发或生产环境服务的 公共基础路径
+  base: '/vue3.0-template-admin/',             // 设开发或生产环境服务的 公共基础路径
   define: {              // 类型： Record<string, string> 定义全局变量替换方式。每项在开发时会被定义为全局变量，而在构建时则是静态替换。
     'process.platform': null,
     'process.version': null,
