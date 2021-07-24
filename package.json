@@ -88,7 +88,6 @@
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
     "@types/codemirror": "^5.60.0",
-    "@types/crypto-js": "^4.0.2",
     "@types/d3-geo": "^3.0.0",
     "@types/d3-sankey": "^0.11.1",
     "@types/js-cookie": "^2.2.6",
