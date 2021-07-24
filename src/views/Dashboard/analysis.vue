@@ -6,48 +6,26 @@
         >数据可视化主要旨在借助于图形化手段，清晰有效地传达与沟通信息，<el-link type="primary" href="https://g2.antv.vision/zh/examples/">AntV G2 让数据栩栩如生</el-link></span
       >
     </div>
-    <el-row>
-      <el-col :span="24">
-        <div class="indicators">
-          <div class="indicator">
-            <div class="title">访问 UV</div>
-            <div class="measure">
-              <div class="value">2.211</div>
-              <div class="unit">亿</div>
+    <el-card>
+      <el-row :gutter="20" type="flex">
+        <el-col v-for="item in cardItems" :key="item.id" :xs="12" :sm="8" :md="6" :lg="5" :xl="4">
+          <el-card shadow="always" :body-style="{ cursor: 'pointer', padding: '16px', 'background-color': item.background }">
+            <div class="card-info">
+              <div class="info-left">
+                <span class="img-avatar bg-gray-light-o img-avatar-48">
+                  <i :class="item.icon"></i>
+                </span>
+              </div>
+              <div class="info-right">
+                <span class="name font-weight-light">{{ item.itemName }}</span>
+                <h3 class="count">{{ item.itemCount }}</h3>
+              </div>
             </div>
-            <div class="compare">
-              <div class="name">日环比</div>
-              <div class="icon up"></div>
-              <div class="value up">8.9%</div>
-            </div>
-          </div>
-          <div class="indicator">
-            <div class="title">点击 UV</div>
-            <div class="measure">
-              <div class="value">15.2</div>
-              <div class="unit">%</div>
-            </div>
-            <div class="compare">
-              <div class="name">日环比</div>
-              <div class="icon up"></div>
-              <div class="value up">2.3%</div>
-            </div>
-          </div>
-          <div class="indicator">
-            <div class="title">UV 点击率</div>
-            <div class="measure">
-              <div class="value">875</div>
-              <div class="unit">%</div>
-            </div>
-            <div class="compare">
-              <div class="name">日环比</div>
-              <div class="icon down"></div>
-              <div class="value down">1.83%</div>
-            </div>
-          </div>
-        </div>
-      </el-col>
-    </el-row>
+          </el-card>
+        </el-col>
+      </el-row>
+    </el-card>
+
     <el-row>
       <el-col :span="16">
         <el-row>
@@ -96,7 +74,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref, reactive, toRefs } from 'vue'
 import { useInitPlot, useInitBar, useInitChart, useInitIndicator, useInitAge } from './useInitG2'
 
 export default defineComponent({
@@ -110,6 +88,66 @@ export default defineComponent({
     const barRef = ref()
     const indicatorRef = ref()
     const ageRef = ref()
+    const state = reactive({
+      cardItems: [
+        {
+          id: 1,
+          itemName: '我的项目数',
+          name: 'totalNum',
+          itemCount: 25,
+          background: '#bdc6cf',
+          icon: 'el-icon-data-board'
+        },
+        {
+          id: 2,
+          itemName: '在线项目数',
+          name: 'onlineNum',
+          itemCount: 5,
+          background: '#7dc855',
+          icon: 'ic ic-flashlight'
+        },
+        {
+          id: 3,
+          itemName: '草稿项目数',
+          name: 'draftNum',
+          itemCount: 3,
+          background: '#838cc7',
+          icon: 'ic ic-brush'
+        },
+        {
+          id: 4,
+          itemName: '下线项目数',
+          name: 'offlineNum',
+          itemCount: 6,
+          background: '#ffbe0b',
+          icon: 'el-icon-bell'
+        },
+        {
+          id: 5,
+          itemName: '我的模板',
+          name: 'templateNum',
+          itemCount: 10,
+          background: '#358ed7',
+          icon: 'el-icon-wind-power'
+        },
+        {
+          id: 6,
+          itemName: '页面总访问数',
+          name: 'viewsPV',
+          itemCount: 100,
+          background: '#53bbb3',
+          icon: 'ic ic-group'
+        },
+        {
+          id: 7,
+          itemName: '页面独立访问数',
+          name: 'viewsUV',
+          itemCount: 1009,
+          background: '#39add1',
+          icon: 'el-icon-s-data'
+        }
+      ]
+    })
     onMounted(() => {
       useInitPlot(plot1Ref.value, '盈利率')
       useInitPlot(plot2Ref.value, '今日UV')
@@ -129,6 +167,7 @@ export default defineComponent({
       chartRef,
       barRef,
       indicatorRef,
+      ...toRefs(state),
       ageRef
     }
   }
@@ -142,7 +181,53 @@ export default defineComponent({
   .indicators {
   font-family: PingFangSC-Regular;
   display: flex;
+
 }
+
+    .card-info{
+    display :flex;
+    flex-direction:row;
+    justify-content :space-between;
+    align-items :center;
+    padding:5px;
+    .info-left{
+      .bg-gray-light-o {
+       background-color: rgba(0, 20, 35, 0.07);
+    }
+      .img-avatar{
+      display: inline-block !important;
+      width: 64px;
+      height: 64px;
+      line-height: 64px;
+      text-align: center;
+      vertical-align: middle;
+      border-radius: 50%;
+        i{
+           color: white;
+        }
+      }
+      .img-avatar.img-avatar-48 {
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      }
+    }
+    .info-right{
+          .font-weight-light {
+    font-weight: 300!important;
+    }
+
+    .count{
+      color :#ffffff;
+    }
+    .name{
+      color :rgba(255, 255, 255, 0.7);
+      font-size:14px;
+
+    }
+    }
+  }
+
 .indicators .indicator {
   padding: 16px;
 }

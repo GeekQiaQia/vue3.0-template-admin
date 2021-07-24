@@ -162,6 +162,10 @@ git merge upstream/main
 
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/920c97e69ad947ffbada5f030556327e~tplv-k3u1fbpfcp-watermark.image)
 
+### 主题风格
+
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bd27dbaba4f94db88a98468640f3ca00~tplv-k3u1fbpfcp-watermark.image)
+
 ### 全屏功能
 
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/17ee79df049c4536a73177e4ae086650~tplv-k3u1fbpfcp-watermark.image)

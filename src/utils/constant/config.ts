@@ -35,6 +35,18 @@ export const langConfig =  {
         '/zh-CN': '主题色',
         '/en-US': 'Theme color'
       },
+      headerArea:{
+        '/zh-CN': '顶栏',
+        '/en-US': 'Header Area'
+      },
+      sidebarLogo:{
+        '/zh-CN': '侧边栏 logo',
+        '/en-US': 'sidebar logo'
+      },
+      headerFixed:{
+        '/zh-CN': '固定顶栏',
+        '/en-US': 'Header Fixed'
+      },
       switch: {
         '/zh-CN': '切换',
         '/en-US': 'Change'
