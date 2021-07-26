@@ -145,16 +145,16 @@ export default defineComponent({
             }
             const res = await Service.postLogin(data)
             const userInfo = await Service.postAuthUserInfo({ email })
-            // 将角色存储到全局vuex roles
-            if (userInfo.status === 0) {
-              store.dispatch('permissionModule/getPermissonRoles', userInfo.data)
-            }
-            // 先进行异步路由处理
-            store.dispatch('permissionModule/getPermissonRoutes', userInfo.data)
-            store.dispatch('permissionModule/getPermissions')
 
             const accessToken = res?.data?.accessToken ?? null
             if (accessToken) {
+              // 将角色存储到全局vuex roles
+              if (userInfo.status === 0) {
+                store.dispatch('permissionModule/getPermissonRoles', userInfo.data)
+              }
+              // 先进行异步路由处理
+              store.dispatch('permissionModule/getPermissonRoutes', userInfo.data)
+              store.dispatch('permissionModule/getPermissions')
               sessionStorage.setItem('auth', 'true')
               sessionStorage.setItem('accessToken', accessToken)
               if (route.query.redirect) {

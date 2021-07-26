@@ -2,26 +2,31 @@
   <el-breadcrumb class="app-breadcremb" separator-class="el-icon-arrow-right">
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item, index) in levelList" :key="item.path">
-        <span v-if="item.redirect === 'noRedirect' || index == levelList.length - 1" class="no-redirect">{{ item.meta.title }}</span>
-        <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
+        <span v-if="item.redirect === 'noRedirect' || index == levelList.length - 1" class="no-redirect">{{ item.meta.title[lang] }}</span>
+        <a v-else @click.prevent="handleLink(item)">{{ item.meta.title[lang] }}</a>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue'
+import { defineComponent, onMounted, ref, watch, computed } from 'vue'
 import { compile } from 'path-to-regexp'
-import { useRoute, useRouter } from 'vue-router'
+import { RouteLocationMatched, useRoute, useRouter } from 'vue-router'
+import { useStore } from '@/store/index'
 
 export default defineComponent({
   setup() {
     const levelList = ref([] as any)
     const route = useRoute()
     const router = useRouter()
+    const store = useStore()
+
+    const lang = computed(() => store.getters['settingsModule/getLangState'])
+
     // 获取面包屑
     const getBreadcrumb = () => {
       // 只展示路由中设置了meta.title的元素；
-      const matched = route.matched.filter((item) => item.meta && item.meta.title)
+      const matched = route.matched.filter((item: RouteLocationMatched) => item?.meta?.title)
       levelList.value = matched.filter((item) => item.meta && item.meta.title && item.meta.breadcrumb !== false)
     }
 
@@ -48,6 +53,7 @@ export default defineComponent({
     })
     return {
       levelList,
+      lang,
       handleLink
     }
   }

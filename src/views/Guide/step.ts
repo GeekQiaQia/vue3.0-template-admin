@@ -16,6 +16,14 @@ const steps = [
       }
     },
     {
+      element: '#lang',
+      popover: {
+        title: 'Lang Switch',
+        description: '语言切换',
+        position: 'bottom'
+      }
+    },
+    {
         element: '#Message',
         popover: {
           title: 'Message Tip',

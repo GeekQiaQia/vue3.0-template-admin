@@ -29,6 +29,8 @@ export default defineComponent({
     const router = useRouter()
     const fuse = ref()
     const routes = computed(() => store.state.permissionModule.accessRoutes)
+    const lang = computed(() => store.getters['settingsModule/getLangState'])
+
     const state = reactive<stateType>({
       options: [],
       value: ''
@@ -72,7 +74,7 @@ export default defineComponent({
             title: [...prefixTitle]
           }
           if (route?.meta?.title) {
-            data.title = [...data.title, route.meta.title]
+            data.title = [...data.title, route.meta.title[lang.value]]
             list.push(data)
           }
           if (route.children) {
@@ -99,6 +101,7 @@ export default defineComponent({
     })
 
     return {
+      lang,
       handleChange,
       querySearch,
       ...toRefs(state)

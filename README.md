@@ -48,11 +48,11 @@ Give a ⭐️ if this project helped you!
 - [x] 图片拖拽/裁剪
 - [x] 支持切换主题色:一键换肤
 - [x] 指令权限：v-permisson /全局方法：$permission (参考 tableList.vue)
+- [x] 国际化
 
 ## 正在完成功能 | The functionality is being completed
 
 - [x] 可拖拽弹窗
-- [x] 国际化
 - [x] 导航模式切换
 - [x] 内容区域控制
 
@@ -165,6 +165,10 @@ git merge upstream/main
 ### 主题风格
 
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bd27dbaba4f94db88a98468640f3ca00~tplv-k3u1fbpfcp-watermark.image)
+
+### 国际化
+
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d97113bee9994d5891ea4f38f5f6c85b~tplv-k3u1fbpfcp-watermark.image)
 
 ### 全屏功能
 

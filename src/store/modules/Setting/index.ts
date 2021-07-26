@@ -15,7 +15,8 @@ const settingsModule: Module<settingStateTypes, RootStateTypes> = {
     sideBarLogo,
     showSettings,
     tableHeight: 600, // 表格宽度
-    hideHeader:false
+    hideHeader:false,
+    lang:'/zh-CN'
 
   },
   mutations: {
@@ -24,13 +25,16 @@ const settingsModule: Module<settingStateTypes, RootStateTypes> = {
     },
     toggleHeader:(state: settingStateTypes)=>{
       state.hideHeader=!state.hideHeader
-  },
-  toggleFixedHeader:(state: settingStateTypes)=>{
-    state.fixedHeader=!state.fixedHeader
-  },
-  toggleSidebarLogo:(state: settingStateTypes)=>{
-    state.sideBarLogo=!state.sideBarLogo
-  },
+    },
+    toggleFixedHeader:(state: settingStateTypes)=>{
+      state.fixedHeader=!state.fixedHeader
+    },
+    toggleSidebarLogo:(state: settingStateTypes)=>{
+      state.sideBarLogo=!state.sideBarLogo
+    },
+    toggleLang:(state: settingStateTypes,payload:any)=>{
+      state.lang=payload.lang
+    },
   },
   actions: {
     toToggleHeader({commit}){
@@ -41,6 +45,9 @@ const settingsModule: Module<settingStateTypes, RootStateTypes> = {
     },
     toToggleSidebarLogo({commit}){
       commit('toggleSidebarLogo');
+    },
+    toToggleLang({commit},payload){
+      commit('toggleLang',payload);
     }
   },
   getters: {
@@ -53,7 +60,9 @@ const settingsModule: Module<settingStateTypes, RootStateTypes> = {
     },
     getSidebarLogoState(state:settingStateTypes){
       return state.sideBarLogo
-
+    },
+    getLangState(state:settingStateTypes){
+      return state.lang
     }
   },
 };
