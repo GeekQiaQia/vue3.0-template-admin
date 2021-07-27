@@ -51,6 +51,7 @@ export default defineComponent({
     // 析构获取 props 属性 basePath
     const currentRole = toRef(props, 'currentRole')
     const store = useStore()
+    const lang = computed(() => store.getters['settingsModule/getLangState'])
 
     const state = reactive<stateTypes>({
       url: `/role/allow`,
@@ -93,7 +94,7 @@ export default defineComponent({
         if (!i?.meta?.hidden) {
           state.menu.data.push({
             key: i?.path,
-            label: i?.meta?.title as String
+            label: i.meta.title[lang.value] as String
           })
         }
       }
@@ -117,6 +118,7 @@ export default defineComponent({
     })
     return {
       ...toRefs(state),
+      lang,
       role,
       fetchMenuData,
       saveData
