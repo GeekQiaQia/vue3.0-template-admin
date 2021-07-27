@@ -94,7 +94,7 @@ export default defineComponent({
         if (!i?.meta?.hidden) {
           state.menu.data.push({
             key: i?.path,
-            label: i.meta.title[lang.value] as String
+            label: i?.meta?.title[lang.value] as String
           })
         }
       }
