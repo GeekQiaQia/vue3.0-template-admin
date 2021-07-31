@@ -193,14 +193,21 @@ export default defineComponent({
               // password
               password: encrypt(password)
             }
-            Service.postRegister(data).then((res: any) => {
-              console.log(res)
-              ElMessage({
-                type: 'success',
-                message: '注册成功'
+            Service.postRegister(data)
+              .then((res: any) => {
+                console.log(res)
+                ElMessage({
+                  type: 'success',
+                  message: '注册成功'
+                })
+                state.showLogin = true
               })
-              state.showLogin = true
-            })
+              .catch((err) => {
+                ElMessage({
+                  type: 'warning',
+                  message: err.message
+                })
+              })
           } catch (err) {
             ElMessage({
               type: 'success',
@@ -220,7 +227,6 @@ export default defineComponent({
           email
         }
         const res = await Service.postCaptcha(data)
-        console.log(res)
         if (res.status === 0) {
           ElMessage({
             type: 'warning',

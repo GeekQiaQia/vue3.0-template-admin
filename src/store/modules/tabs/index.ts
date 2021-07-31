@@ -13,8 +13,7 @@ const tabModule: Module<tabStateTypes, RootStateTypes> = {
     breadcrumbList:[]
   },
   mutations: {
-    ADD_TAB: (state: tabStateTypes,data:{route:string,name:string,title:{'/zh-CN': String,
-    '/en-US': String}}) => {
+    ADD_TAB: (state: tabStateTypes,data:{route:string,name:string,title:{[key: string]: String}}) => {
       state.tabsOption.push(data);
     },
     DELETE_TAB: (state: tabStateTypes,route:string) => {

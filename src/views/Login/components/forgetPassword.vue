@@ -112,7 +112,6 @@ export default defineComponent({
               capcha
             }
             const res = await Service.postResetPwd(data)
-            console.log(res)
             if (res.status === 0) {
               ElMessage({
                 type: 'warning',
