@@ -1,5 +1,8 @@
 import request from '@/utils/request';
 
+const roleApi={
+  queryAuthedPermission:'/api/auth/permission/routes'
+}
 
 class Service{
   /**
@@ -7,7 +10,7 @@ class Service{
   */
   static postAuthPermission(data: any) {
     return request({
-      url: '/api/auth/permission/routes',
+      url: roleApi.queryAuthedPermission,
       method: 'POST',
       json: true,
       data

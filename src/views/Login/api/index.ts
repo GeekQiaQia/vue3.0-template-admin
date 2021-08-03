@@ -1,5 +1,14 @@
 import request from '@/utils/request';
 
+const loginApi={
+  userLogin: '/api/auth/user/login',
+  userRegister:'/api/auth/user/register',
+  sendCaptcha:'/api/auth/email/sendCaptcha',
+  forgetPassword:'/api/auth/email/forgot-password',
+  resetPassword:`/api/auth/user/reset-password`,
+  permissionRoutes:'/api/auth/permission/routes',
+  userInfo:'/api/auth/user/userInfo'
+}
 
 class Service{
   /**
@@ -7,7 +16,7 @@ class Service{
   */
   static postLogin(data: any) {
     return request({
-      url: '/api/auth/user/login',
+      url: loginApi.userLogin,
       method: 'POST',
       json: true,
       data
@@ -24,7 +33,7 @@ class Service{
   */
       static postRegister(data: any) {
         return request({
-          url: '/api/auth/user/register',
+          url: loginApi.userRegister,
           method: 'POST',
           json: true,
           data
@@ -41,7 +50,7 @@ class Service{
   */
    static postCaptcha(data: any) {
     return request({
-      url: '/api/auth/email/sendCaptcha',
+      url: loginApi.sendCaptcha,
       method: 'POST',
       json: true,
       data
@@ -58,7 +67,7 @@ class Service{
   */
    static postForgetPwd(data: any) {
     return request({
-      url: '/api/auth/email/forgot-password',
+      url: loginApi.forgetPassword,
       method: 'POST',
       json: true,
       data
@@ -75,7 +84,7 @@ class Service{
   */
    static postResetPwd(data: any) {
     return request({
-      url: `/api/auth/user/reset-password`,
+      url: loginApi.resetPassword,
       method: 'POST',
       json: true,
       data
@@ -92,7 +101,7 @@ class Service{
   */
      static postAuthPermission(data: any) {
       return request({
-        url: '/api/auth/permission/routes',
+        url: loginApi.permissionRoutes,
         method: 'POST',
         json: true,
         data
@@ -111,7 +120,7 @@ class Service{
 
      static postAuthUserInfo(data: any) {
       return request({
-        url: '/api/auth/user/userInfo',
+        url: loginApi.userInfo,
         method: 'POST',
         json: true,
         data

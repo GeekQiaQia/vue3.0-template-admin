@@ -1,5 +1,9 @@
 import request from '@/utils/request';
 
+const personalApi={
+ basicInfo:'/api/setting/basicInfo',
+ personalTags:'/api/personal/tags'
+}
 
 class Service{
   /**
@@ -7,7 +11,7 @@ class Service{
   */
   static postSetBasicInfo(data: any) {
     return request({
-      url: '/api/setting/basicInfo',
+      url: personalApi.basicInfo,
       method: 'post',
       json: true,
       data
@@ -24,7 +28,7 @@ class Service{
   */
  static getPersonTags() {
     return request({
-      url: '/api/personal/tags',
+      url: personalApi.personalTags,
       method: 'get',
       json: true,
     }).then((res) => {
