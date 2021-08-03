@@ -74,7 +74,7 @@ type VoidNoop = (arg0?: Error) => void
 export default defineComponent({
   name: 'LoginForm',
   emits: ['toResetPwd'],
-  setup(props, { emit }) {
+  setup(_props, { emit }) {
     const router = useRouter()
     const route = useRoute()
     const loginFormRef = ref()
