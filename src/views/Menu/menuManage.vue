@@ -10,7 +10,7 @@
           <el-table v-loading="loading" :data="data" stripe class="table">
             <el-table-column label="菜单名称" align="center">
               <template #default="scope">
-                <span>{{ scope.row.meta.title }}</span>
+                <span>{{ scope.row.meta.title[lang] }}</span>
               </template>
             </el-table-column>
             <!-- <el-table-column prop="state" label="菜单状态" align="center">
@@ -122,6 +122,8 @@ export default defineComponent({
   components: { MenuNew, MenuEdit },
   setup() {
     const store = useStore()
+    const lang = computed(() => store.getters['settingsModule/getLangState'])
+
     const state = reactive<stateTypes>({
       url: {
         c: '/menu/add',
@@ -225,6 +227,7 @@ export default defineComponent({
     return {
       ...toRefs(state),
       onError,
+      lang,
       onAddSuccess,
       onEditSuccess,
       onDelete,

@@ -1,13 +1,19 @@
 import request from '@/utils/request';
 
+const permissionApi={
+  queryAuthedPermission: '/api/auth/permission/routes',
+  queryPermissions:'/api/auth/permission/permissions'
+}
+
+
 
 class Service{
   /**
-   * @description POST 保存授权菜单权限
+   * @description POST 查询授权菜单权限
   */
   static postAuthPermission(data: any) {
     return request({
-      url: '/api/auth/permission/routes',
+      url: permissionApi.queryAuthedPermission,
       method: 'POST',
       json: true,
       data
@@ -20,11 +26,11 @@ class Service{
   }
 
 /**
-   * @description POST 保存授权菜单权限
+   * @description POST 查询授权菜单权限
   */
  static postPermissions(data: any) {
   return request({
-    url: '/api/auth/permission/permissions',
+    url: permissionApi.queryPermissions,
     method: 'POST',
     json: true,
     data

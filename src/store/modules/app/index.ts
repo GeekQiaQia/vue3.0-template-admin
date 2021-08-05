@@ -22,13 +22,12 @@ const appModule: Module<appStateTypes, RootStateTypes> = {
       } else {
         Cookies.set('sidebarStatus', 0 as Number);
       }
-    },
+    }
   },
   actions: {
     toggleSideBar({ commit }) {
       commit('TOGGLE_SIDEBAR');
     },
-
   },
   getters: {
     getSidebarState(state:appStateTypes) {
@@ -39,7 +38,7 @@ const appModule: Module<appStateTypes, RootStateTypes> = {
     },
     getDeviceState(state:appStateTypes) {
       return state.device;
-    },
+    }
   },
 };
 export default appModule;

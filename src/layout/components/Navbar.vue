@@ -5,6 +5,7 @@
       <breadcrumb class="breadcrumb-container" />
       <div class="right-menu">
         <search></search>
+        <lang-switch></lang-switch>
         <div id="Message">
           <el-dropdown>
             <el-badge :value="messageNum" :max="99" class="message-badge" type="danger">
@@ -24,10 +25,10 @@
           </el-dropdown>
         </div>
         <el-button id="fullScreen" class="full-screen">
-          <el-tooltip content="全屏浏览" effect="dark" placement="left">
+          <el-tooltip :content="langConfig.header.fullScreen[lang]" effect="dark" placement="left">
             <i v-show="fullScreen == false" class="el-icon-full-screen" @click="toShowFullScreen()"></i>
           </el-tooltip>
-          <el-tooltip content="退出全屏" effect="dark" placement="left">
+          <el-tooltip :content="langConfig.header.exitFullScreen[lang]" effect="dark" placement="left">
             <i v-show="fullScreen == true" class="el-icon-bottom-left" @click="toExitFullScreen()"></i>
           </el-tooltip>
         </el-button>
@@ -39,16 +40,16 @@
           <template #dropdown>
             <el-dropdown-menu class="user-dropdown">
               <router-link to="/">
-                <el-dropdown-item>首页</el-dropdown-item>
+                <el-dropdown-item>{{ langConfig.header.user.homePage[lang] }}</el-dropdown-item>
               </router-link>
               <router-link to="/personal/personalCenter">
-                <el-dropdown-item>个人中心</el-dropdown-item>
+                <el-dropdown-item>{{ langConfig.header.user.personalCenter[lang] }}</el-dropdown-item>
               </router-link>
               <router-link to="/personal/personalSetting">
-                <el-dropdown-item>个人设置</el-dropdown-item>
+                <el-dropdown-item>{{ langConfig.header.user.personalSetting[lang] }}</el-dropdown-item>
               </router-link>
               <el-dropdown-item divided>
-                <span style="display: block" @click="logout">退出登录</span>
+                <span style="display: block" @click="logout">{{ langConfig.header.user.logout[lang] }}</span>
               </el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -62,17 +63,20 @@ import { defineComponent, computed, ref } from 'vue'
 import Hamburger from '@/components/Hamburger/Hamburger.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Search from '@/components/Search/index.vue'
+import LangSwitch from '@/components/LangSwitch/index.vue'
 import avatar from '@/assets/avatar-default.jpg'
 import { useRouter } from 'vue-router'
 import { toFullScreen, exitFullScreen } from '@/utils/screen'
 import { useStore } from '@/store/index'
+import { langConfig } from '@/utils/constant/config'
 
 export default defineComponent({
   name: 'Navbar',
   components: {
     Hamburger,
     Breadcrumb,
-    Search
+    Search,
+    LangSwitch
   },
   props: {
     primary: {
@@ -84,12 +88,13 @@ export default defineComponent({
     const router = useRouter()
     const store = useStore()
     const opened = computed(() => store.getters['appModule/getSidebarState'])
-    const nickname = computed(() => JSON.parse(localStorage.getItem('userInfo') as string)?.userName ?? '极客恰恰')
     const fullScreen = ref(false)
     const messageNum = computed(() => store.getters['messageModule/getMessageNum'])
+    const lang = computed((): string => store.getters['settingsModule/getLangState'])
+    const nickname = computed(() => JSON.parse(localStorage.getItem('userInfo') as string)?.userName ?? '极客恰恰')
+
     // methods
     const toggleSideBar = () => {
-      console.log('into toggleSideBar')
       store.dispatch('appModule/toggleSideBar')
     }
 
@@ -109,6 +114,7 @@ export default defineComponent({
 
       router.replace('/login')
     }
+
     return {
       messageNum,
       toShowFullScreen,
@@ -117,9 +123,11 @@ export default defineComponent({
       exitFullScreen,
       fullScreen,
       nickname,
+      lang,
       avatar,
       toggleSideBar,
       opened,
+      langConfig,
       logout
     }
   }
@@ -166,6 +174,7 @@ export default defineComponent({
     &:focus {
       outline: none;
     }
+
     .message-badge {
       .is-fixed {
         top: 12px !important;

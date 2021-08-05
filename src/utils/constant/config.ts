@@ -28,12 +28,50 @@ export const langConfig =  {
       help: {
         '/zh-CN': '帮助',
         '/en-US': 'Help'
+      },
+      fullScreen:{
+        '/zh-CN': '全屏预览',
+        '/en-US': 'Full Screen'
+      },
+      exitFullScreen:{
+        '/zh-CN': '退出全屏',
+        '/en-US': 'Exit FullScreen'
+      },
+      user:{
+        homePage:{
+          '/zh-CN': '首页',
+          '/en-US': 'HomePage'
+        },
+        personalCenter:{
+          '/zh-CN': '个人中心',
+          '/en-US': 'Personal Center'
+        },
+        personalSetting:{
+          '/zh-CN': '个人设置',
+          '/en-US': 'Personal Setting'
+        },
+        logout:{
+          '/zh-CN': '退出登录',
+          '/en-US': 'Logout'
+        },
       }
     },
     form: {
       theme: {
         '/zh-CN': '主题色',
         '/en-US': 'Theme color'
+      },
+      headerArea:{
+        '/zh-CN': '顶栏',
+        '/en-US': 'Header Area'
+      },
+      sidebarLogo:{
+        '/zh-CN': '侧边栏 logo',
+        '/en-US': 'sidebar logo'
+      },
+      headerFixed:{
+        '/zh-CN': '固定顶栏',
+        '/en-US': 'Header Fixed'
       },
       switch: {
         '/zh-CN': '切换',

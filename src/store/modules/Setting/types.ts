@@ -4,5 +4,6 @@ export default interface settingStateTypes {
   sideBarLogo: Boolean
   showSettings: Boolean
   tableHeight:Number
-// eslint-disable-next-line semi
+  hideHeader:boolean
+  lang:String
 }

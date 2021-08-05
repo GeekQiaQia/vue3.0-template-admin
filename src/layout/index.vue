@@ -6,15 +6,22 @@
     <Sidebar class="sidebar-container" />
     <div class="main-container">
       <!--Navbar-->
-      <div :class="{ 'fixed-header': fixedHeader }">
+      <div :class="{ 'fixed-header': fixedHeader, 'hide-header': hideHeader }">
         <navbar :primary="primary" />
       </div>
       <!--AppMain-->
       <AppMain />
-
+      <!--RightDrawer-->
       <RightDrawer v-if="showSetting">
         <div class="setting-item">
+          <div class="setting-draw-title">主题风格</div>
+
           <theme-pick @submit="submitForm"></theme-pick>
+          <div class="divider"></div>
+        </div>
+        <div class="setting-item">
+          <div class="setting-draw-title">内容区域</div>
+          <content-area @change="handleHeaderChange" @fixedHeader="handleFixedHeaderChange" @sidebarLogo="handleSidebarLogoChange"></content-area>
           <div class="divider"></div>
         </div>
       </RightDrawer>
@@ -32,7 +39,8 @@ import Navbar from './components/Navbar.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain.vue'
 import RightDrawer from './components/RightSetting/RightDrawer.vue'
-import ThemePick from './components/themePick/index.vue'
+import ThemePick from './components/RightSetting/themePick/index.vue'
+import ContentArea from './components/RightSetting/contentArea/index.vue'
 
 export default defineComponent({
   name: 'Layout',
@@ -41,40 +49,22 @@ export default defineComponent({
     Sidebar,
     AppMain,
     RightDrawer,
-    ThemePick
+    ThemePick,
+    ContentArea
   },
   setup() {
     const { getIndexStyle } = useFiles()
     const store = useStore()
     const originalStyle = ref('')
-
-    // eslint-disable-next-line no-console
-    console.log(store)
-    const reactiveData = reactive({
-      fixedHeader: computed(() => store?.state?.settingsModule?.fixedHeader)
-    })
-    const color = ref('rgba(255, 69, 0, 0.68)')
     const colors = reactive({
       primary: '#fff'
     })
-    const predefineColors = ref([
-      '#ff4500',
-      '#ff8c00',
-      '#ffd700',
-      '#90ee90',
-      '#00ced1',
-      '#1e90ff',
-      '#c71585',
-      'rgba(255, 69, 0, 0.68)',
-      'rgb(255, 120, 0)',
-      'hsv(51, 100, 98)',
-      'hsva(120, 40, 94, 0.5)',
-      'hsl(181, 100%, 37%)',
-      'hsla(209, 100%, 56%, 0.73)',
-      '#c7158577'
-    ])
+
     const showSetting = computed(() => store.state.settingsModule.showSettings)
     const opened = computed(() => store.getters['appModule/getSidebarState'])
+    const hideHeader = computed(() => store.getters['settingsModule/getHideHeaderState'])
+    const fixedHeader = computed(() => store.getters['settingsModule/getFixedHeaderState'])
+
     const device = computed(() => store.getters['appModule/getDeviceState'])
     const withoutAnimation = computed(() => store.getters['appModule/getSidebarAnimation'])
     const originalStylesheetCount = computed(() => document.styleSheets.length || -1)
@@ -84,6 +74,26 @@ export default defineComponent({
       withoutAnimation: withoutAnimation.value,
       mobile: device.value === 'mobile'
     }))
+    /**
+     * @description 切换内容显示
+     */
+    const handleHeaderChange = () => {
+      // 改变state
+      store.dispatch('settingsModule/toToggleHeader')
+    }
+    /**
+     * @description 是否固定头部
+     */
+
+    const handleFixedHeaderChange = () => {
+      // 改变state
+      store.dispatch('settingsModule/toToggleFixedHeader')
+    }
+    const handleSidebarLogoChange = () => {
+      // 改变state
+      store.dispatch('settingsModule/toToggleSidebarLogo')
+    }
+
     /**
      * @description 切换主题
      */
@@ -96,13 +106,15 @@ export default defineComponent({
       originalStyle.value = getStyleTemplate(data)
     })
     return {
-      color,
-      predefineColors,
+      hideHeader,
+      fixedHeader,
+      handleHeaderChange,
+      handleFixedHeaderChange,
+      handleSidebarLogoChange,
       classObj,
       submitForm,
       showSetting,
-      ...toRefs(colors),
-      ...toRefs(reactiveData)
+      ...toRefs(colors)
     }
   }
 })
@@ -148,7 +160,7 @@ export default defineComponent({
     display: flex;
     clear: both;
     min-width: 100%;
-    margin: 24px 0;
+    margin: 10px 0;
 
     box-sizing: border-box;
     padding: 0px;
@@ -159,7 +171,9 @@ export default defineComponent({
     line-height: 1.5715;
   }
 }
-
+.hide-header {
+  display: none;
+}
 .fixed-header {
   position: fixed;
   top: 0;

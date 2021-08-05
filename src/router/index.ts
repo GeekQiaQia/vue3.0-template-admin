@@ -11,7 +11,10 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/home',
     meta: {
-      title: '首页',
+      title:{
+        '/zh-CN': '首页',
+        '/en-US': 'Home Page'
+      },
       icon: 'el-icon-s-home',
     },
     children: [
@@ -20,7 +23,10 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         name: 'home',
         component: () => import(/* webpackChunkName: "home" */ '@/views/Home/home.vue'),
         meta: {
-          title: '首页',
+          title:{
+            '/zh-CN': '首页',
+            '/en-US': 'Home Page'
+          },
           icon: 'home',
         },
       },
@@ -31,7 +37,10 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     name: '登录',
     component: () => import(/* webpackChunkName: "login" */ '@/views/Login/index.vue'),
     meta: {
-      title: '登录',
+      title:{
+        '/zh-CN': '登录',
+        '/en-US': 'Login'
+      },
       hidden: true,
     },
   },
@@ -40,13 +49,19 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     name: 'NoFound',
     component: () => import(/* webpackChunkName: "noFound" */ '@/views/noFound.vue'),
     meta: {
-      title: '404',
+      title:{
+        '/zh-CN': '404',
+        '/en-US': '404'
+      },
       hidden: true,
     },
   },
   { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import(/* webpackChunkName: "noFound" */ '@/views/noFound.vue'),
     meta: {
-    title: 'not-found',
+      title:{
+        '/zh-CN': '未找到',
+        '/en-US': 'NOT FOUND'
+      },
     hidden: true,
   }, },
 ];
@@ -58,7 +73,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/guide/guide',
     meta: {
-      title: '引导页',
+      title:{
+        '/zh-CN': '引导页',
+        '/en-US': 'Guide Page'
+      },
       icon: 'el-icon-guide',
     },
     children: [
@@ -67,7 +85,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'guide',
         component: () => import('@/views/Guide/index.vue'),
         meta: {
-          title: '引导',
+          title:{
+            '/zh-CN': '引导',
+            '/en-US': 'Guide'
+          },
           icon: 'el-icon-guide',
         },
       }
@@ -78,7 +99,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/dashboard/workplace',
     meta: {
-      title: 'Dashboard',
+      title:{
+        '/zh-CN': '仪表盘',
+        '/en-US': 'Dashboard'
+      },
       icon: 'el-icon-data-analysis',
     },
     children: [
@@ -87,7 +111,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'workplace',
         component: () => import(/* webpackChunkName: "richText" */ '@/views/Dashboard/workplace.vue'),
         meta: {
-          title: '工作台',
+          title:{
+            '/zh-CN': '工作台',
+            '/en-US': 'Workplace'
+          },
           icon: 'home',
         },
       },
@@ -96,7 +123,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'analysis',
         component: () => import(/* webpackChunkName: "richText" */ '@/views/Dashboard/analysis.vue'),
         meta: {
-          title: '分析页',
+          title:{
+            '/zh-CN': '分析页',
+            '/en-US': 'Analysis Page'
+          },
           icon: 'home',
         },
       },
@@ -107,7 +137,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/copy/copyText',
     meta: {
-      title: '复制文本',
+      title:{
+        '/zh-CN': '复制文本',
+        '/en-US': 'Copy Text'
+      },
       icon: 'el-icon-edit-outline',
     },
     children: [
@@ -116,7 +149,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'copyText',
         component: () => import( '@/views/CopyText/index.vue'),
         meta: {
-          title: '复制文本',
+          title:{
+            '/zh-CN': '复制文本',
+            '/en-US': 'Copy Text'
+          },
           icon: 'home',
         },
       },
@@ -127,7 +163,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/excel/uploadExcel',
     meta: {
-      title: 'Excel',
+      title:{
+        '/zh-CN': 'Excel',
+        '/en-US': 'Excel'
+      },
       icon: 'el-icon-edit-outline',
     },
     children: [
@@ -136,7 +175,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'uploadExcel',
         component: () => import( '@/views/Excel/uploadExcel.vue'),
         meta: {
-          title: '上传excel',
+          title:{
+            '/zh-CN': '上传excel',
+            '/en-US': 'Upload Excel'
+          },
           icon: 'home',
         },
       },
@@ -145,7 +187,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'exportExcel',
         component: () => import( '@/views/Excel/exportExcel.vue'),
         meta: {
-          title: '导出excel',
+          title:{
+            '/zh-CN': '导出excel',
+            '/en-US': 'Export Excel'
+          },
           icon: 'home',
         },
       },
@@ -156,7 +201,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/zip/exportZip',
     meta: {
-      title: 'Zip',
+      title:{
+        '/zh-CN': 'Zip',
+        '/en-US': 'Zip'
+      },
       icon: 'el-icon-folder',
     },
     children: [
@@ -165,7 +213,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'exportZip',
         component: () => import( '@/views/Zip/exportZip.vue'),
         meta: {
-          title: '导出zip',
+          title:{
+            '/zh-CN': '导出zip',
+            '/en-US': 'Export Zip'
+          },
           icon: 'el-icon-folder',
         },
       },
@@ -176,7 +227,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/table/tableList',
     meta: {
-      title: '列表页',
+      title:{
+        '/zh-CN': '列表页',
+        '/en-US': 'Table Page'
+      },
       icon: 'el-icon-folder-opened',
     },
     children: [
@@ -185,7 +239,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'tableList',
         component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Table/tableList.vue'),
         meta: {
-          title: '表格',
+          title:{
+            '/zh-CN': '表格',
+            '/en-US': 'Table'
+          },
           icon: 'el-icon-folder-opened',
 
         },
@@ -198,7 +255,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/form/formInfo',
     meta: {
-      title: '表单页',
+      title:{
+        '/zh-CN': '表单页',
+        '/en-US': 'Form Page'
+      },
       icon: 'el-icon-s-grid',
     },
     children: [
@@ -207,7 +267,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'formInfo',
         component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Form/formInfo.vue'),
         meta: {
-          title: '基础表单',
+          title:{
+            '/zh-CN': '基础表单',
+            '/en-US': 'Basic Form'
+          },
           icon: 'el-icon-s-grid',
 
         },
@@ -217,7 +280,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'stepForm',
         component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Form/stepForm.vue'),
         meta: {
-          title: '分步表单',
+          title:{
+            '/zh-CN': '分步表单',
+            '/en-US': 'Step Form'
+          },
           icon: 'el-icon-s-grid',
 
         },
@@ -227,7 +293,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'advanceForm',
         component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Form/advanceForm.vue'),
         meta: {
-          title: '高级表单',
+          title:{
+            '/zh-CN': '高级表单',
+            '/en-US': 'Advance Form'
+          },
           icon: 'el-icon-s-grid',
 
         },
@@ -239,7 +308,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/qrcode/qrcodeGen',
     meta: {
-      title: '二维码',
+      title:{
+        '/zh-CN': '二维码',
+        '/en-US': 'QRCode'
+      },
       icon: 'el-icon-c-scale-to-original',
     },
     children: [
@@ -248,7 +320,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'qrcodeGen',
         component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/qrcode/qrcodeGen.vue'),
         meta: {
-          title: '二维码',
+          title:{
+            '/zh-CN': '二维码',
+            '/en-US': 'QRCode'
+          },
           icon: 'el-icon-c-scale-to-original',
         },
       }
@@ -259,7 +334,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/dragable/dragableComponent',
     meta: {
-      title: '拖拽组件',
+      title:{
+        '/zh-CN': '拖拽组件',
+        '/en-US': 'Dragable Component'
+      },
       icon: 'el-icon-s-promotion',
     },
     children: [
@@ -268,7 +346,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'dragableComponent',
         component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/dragable/dragableComponent.vue'),
         meta: {
-          title: '拖拽组件',
+          title:{
+            '/zh-CN': '拖拽组件',
+            '/en-US': 'Dragable Component'
+          },
           icon: 'el-icon-s-promotion',
         },
       }
@@ -279,7 +360,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/Editor/editorComponent',
     meta: {
-      title: '编辑器组件',
+      title:{
+        '/zh-CN': '编辑器组件',
+        '/en-US': 'Editor Component'
+      },
       icon: 'el-icon-edit',
     },
     children: [
@@ -288,7 +372,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'markdownEditor',
         component: () => import( '@/views/Editor/markdownEditor.vue'),
         meta: {
-          title: 'markdown编辑器',
+          title:{
+            '/zh-CN': 'Markdown编辑器',
+            '/en-US': 'Markdown Editor'
+          },
           icon: 'el-icon-edit',
         },
       },
@@ -297,7 +384,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'richEditor',
         component: () => import( '@/views/Editor/richEditor.vue'),
         meta: {
-          title: '富文本编辑器',
+          title:{
+            '/zh-CN': '富文本编辑器',
+            '/en-US': 'Rich Editor'
+          },
           icon: 'el-icon-edit',
         },
       },
@@ -306,7 +396,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'jsonEditor',
         component: () => import( '@/views/Editor/jsonEditor.vue'),
         meta: {
-          title: 'json编辑器',
+          title:{
+            '/zh-CN': 'Json 编辑器',
+            '/en-US': 'Json Editor'
+          },
           icon: 'el-icon-edit',
         },
       }
@@ -338,7 +431,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/upload/uploadFile',
     meta: {
-      title: '文件上传',
+      title:{
+        '/zh-CN': '文件上传',
+        '/en-US': 'File Upload'
+      },
       icon: 'el-icon-upload',
     },
     children: [
@@ -347,7 +443,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'uploadFile',
         component: () => import(/* webpackChunkName: "richText" */ '@/views/Upload/uplodFile.vue'),
         meta: {
-          title: '文件上传',
+          title:{
+            '/zh-CN': '文件上传',
+            '/en-US': 'File Upload'
+          },
           icon: 'home',
         },
       },
@@ -358,7 +457,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/cropper/cropFile',
     meta: {
-      title: '图片裁剪',
+      title:{
+        '/zh-CN': '图片裁剪',
+        '/en-US': 'Crop Image'
+      },
       icon: 'ic ic-tailor',
     },
     children: [
@@ -367,7 +469,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'cropFile',
         component: () => import(/* webpackChunkName: "richText" */ '@/views/Cropper/cropFile.vue'),
         meta: {
-          title: '图片裁剪',
+          title:{
+            '/zh-CN': '图片裁剪',
+            '/en-US': 'Crop Image'
+          },
           icon: 'ic ic-tailor',
         },
       },
@@ -378,7 +483,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/Menu/menuEdit',
     meta: {
-      title: '菜单管理',
+      title:{
+        '/zh-CN': '菜单管理',
+        '/en-US': 'Menu Manage'
+      },
       icon: 'ic ic-other',
     },
     children: [
@@ -387,7 +495,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'menuEdit',
         component: () => import(/* @/views/Menu/menuManage.vueichText" */ '@/views/Menu/menuManage.vue'),
         meta: {
-          title: '菜单管理',
+          title:{
+            '/zh-CN': '菜单管理',
+            '/en-US': 'Menu Manage'
+          },
           icon: 'ic ic-other',
         },
       },
@@ -398,7 +509,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/Role/roleManage',
     meta: {
-      title: '角色管理',
+      title:{
+        '/zh-CN': '角色管理',
+        '/en-US': 'Role Manage'
+      },
       icon: 'ic ic-other',
     },
     children: [
@@ -407,7 +521,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'roleManage',
         component: () => import(/* @/views/Menu/menuManage.vueichText" */ '@/views/Role/rolesManage.vue'),
         meta: {
-          title: '角色管理',
+          title:{
+            '/zh-CN': '角色管理',
+            '/en-US': 'Role Manage'
+          },
           icon: 'ic ic-other',
         },
       },
@@ -418,7 +535,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     component: layout,
     redirect: '/personal/personalCenter',
     meta: {
-      title: '个人页',
+      title:{
+        '/zh-CN': '个人页',
+        '/en-US': 'Personal Page'
+      },
       icon: 'el-icon-user-solid',
     },
     children: [
@@ -427,7 +547,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'personalCenter',
         component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Personal/personalCenter.vue'),
         meta: {
-          title: '个人中心',
+          title:{
+            '/zh-CN': '个人中心',
+            '/en-US': 'PersonalCenter'
+          },
           icon: 'el-icon-user-solid',
 
         },
@@ -437,7 +560,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         name: 'personalSetting',
         component: () => import(/* webpackChunkName: "personalSetting" */ '@/views/Personal/personalSetting.vue'),
         meta: {
-          title: '个人设置',
+          title:{
+            '/zh-CN': '个人设置',
+            '/en-US': 'PersonalSetting'
+          },
           icon: 'el-icon-user-solid',
 
         },

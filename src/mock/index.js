@@ -46,7 +46,7 @@ const getSwiperInfo=()=>({
 Mock.mock('/api/auth/user/login','post',(option) => {
     const {email,password} = JSON.parse(option.body);
     console.log(email,password);
-    if(email==='super@outlook.com'&&password==='123456'){
+    if(email==='super@outlook.com'&&password==='1zsJJYx5/srrQaMycn5MYA=='){
         return {
             status: 0,
             data:{
@@ -56,7 +56,7 @@ Mock.mock('/api/auth/user/login','post',(option) => {
             message:'成功'
         }
     }
-    if(email==='admin@outlook.com'&&password==='123456'){
+    if(email==='admin@outlook.com'&&password==='1zsJJYx5/srrQaMycn5MYA=='){
         return {
             status: 0,
             data:{

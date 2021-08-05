@@ -51,7 +51,7 @@
 import { defineComponent, ref, toRefs, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
-// import { encrypt } from '@/utils/aes' // aes 密码加密
+import { encrypt } from '@/utils/aes' // aes 密码加密
 import { useStore } from '@/store'
 import Service from '../api/index'
 
@@ -74,7 +74,7 @@ type VoidNoop = (arg0?: Error) => void
 export default defineComponent({
   name: 'LoginForm',
   emits: ['toResetPwd'],
-  setup(props, { emit }) {
+  setup(_props, { emit }) {
     const router = useRouter()
     const route = useRoute()
     const loginFormRef = ref()
@@ -140,20 +140,21 @@ export default defineComponent({
             const { email, password } = state.loginForm
             const data = {
               email,
-              password
+              // password
+              password: encrypt(password)
             }
             const res = await Service.postLogin(data)
             const userInfo = await Service.postAuthUserInfo({ email })
-            // 将角色存储到全局vuex roles
-            if (userInfo.status === 0) {
-              store.dispatch('permissionModule/getPermissonRoles', userInfo.data)
-            }
-            // 先进行异步路由处理
-            store.dispatch('permissionModule/getPermissonRoutes', userInfo.data)
-            store.dispatch('permissionModule/getPermissions')
 
             const accessToken = res?.data?.accessToken ?? null
             if (accessToken) {
+              // 将角色存储到全局vuex roles
+              if (userInfo.status === 0) {
+                store.dispatch('permissionModule/getPermissonRoles', userInfo.data)
+              }
+              // 先进行异步路由处理
+              store.dispatch('permissionModule/getPermissonRoutes', userInfo.data)
+              store.dispatch('permissionModule/getPermissions')
               sessionStorage.setItem('auth', 'true')
               sessionStorage.setItem('accessToken', accessToken)
               if (route.query.redirect) {
@@ -189,16 +190,24 @@ export default defineComponent({
             const data = {
               email,
               capcha,
-              password
+              // password
+              password: encrypt(password)
             }
-            Service.postRegister(data).then((res: any) => {
-              console.log(res)
-              ElMessage({
-                type: 'success',
-                message: '注册成功'
+            Service.postRegister(data)
+              .then((res: any) => {
+                console.log(res)
+                ElMessage({
+                  type: 'success',
+                  message: '注册成功'
+                })
+                state.showLogin = true
               })
-              state.showLogin = true
-            })
+              .catch((err) => {
+                ElMessage({
+                  type: 'warning',
+                  message: err.message
+                })
+              })
           } catch (err) {
             ElMessage({
               type: 'success',
@@ -218,7 +227,6 @@ export default defineComponent({
           email
         }
         const res = await Service.postCaptcha(data)
-        console.log(res)
         if (res.status === 0) {
           ElMessage({
             type: 'warning',
