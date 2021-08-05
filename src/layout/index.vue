@@ -74,6 +74,14 @@ export default defineComponent({
       withoutAnimation: withoutAnimation.value,
       mobile: device.value === 'mobile'
     }))
+
+    // watch route
+    // watch(route, () => {
+    //     if (this.device === 'mobile' && this.sidebar.opened) {
+    //         store.dispatch('app/closeSideBar', { withoutAnimation: false })
+    //       }
+    //   })
+
     /**
      * @description 切换内容显示
      */
