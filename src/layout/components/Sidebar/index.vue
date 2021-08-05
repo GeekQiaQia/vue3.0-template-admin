@@ -80,9 +80,8 @@ export default defineComponent({
 })
 </script>
 <style lang="stylus" scoped>
-.el-menu-vertical:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
-  text-align:left;
-}
+.el-menu-vertical:not(.el-menu--collapse)
+  width 200px
+  min-height 400px
+  text-align left
 </style>
