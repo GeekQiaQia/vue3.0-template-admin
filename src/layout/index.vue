@@ -30,11 +30,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, computed, toRefs, ref } from 'vue'
+import { defineComponent, reactive, computed, toRefs, ref, watchEffect } from 'vue'
 import { useStore } from '@/store/index'
 
 import { generateColors, writeNewStyle, getStyleTemplate } from '@/utils'
 import { useFiles } from '@/hooks/useFiles'
+import useResize from '@/hooks/useResize'
 import Navbar from './components/Navbar.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain.vue'
@@ -54,6 +55,7 @@ export default defineComponent({
   },
   setup() {
     const { getIndexStyle } = useFiles()
+    useResize()
     const store = useStore()
     const originalStyle = ref('')
     const colors = reactive({
@@ -74,13 +76,15 @@ export default defineComponent({
       withoutAnimation: withoutAnimation.value,
       mobile: device.value === 'mobile'
     }))
-
-    // watch route
-    // watch(route, () => {
-    //     if (this.device === 'mobile' && this.sidebar.opened) {
-    //         store.dispatch('app/closeSideBar', { withoutAnimation: false })
-    //       }
-    //   })
+    /**
+     * @description 监听device && opend
+     * */
+    watchEffect(() => {
+      console.log('sss into mobile ')
+      if (device.value === 'mobile' && opened.value) {
+        store.dispatch('appModule/closeSideBar', { withoutAnimation: false })
+      }
+    })
 
     /**
      * @description 切换内容显示
