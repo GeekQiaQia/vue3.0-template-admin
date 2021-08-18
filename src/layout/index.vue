@@ -1,5 +1,7 @@
 <template>
   <div :class="classObj" class="app-wrapper">
+    <div v-if="device === 'mobile' && opened" class="drawer-bg" @click="handleClickOutside" />
+
     <!--backtop-->
     <el-backtop target=".app-wrapper" :visibility-height="100"></el-backtop>
 
@@ -80,11 +82,14 @@ export default defineComponent({
      * @description 监听device && opend
      * */
     watchEffect(() => {
-      console.log('sss into mobile ')
-      if (device.value === 'mobile' && opened.value) {
+      if (device.value === 'mobile') {
         store.dispatch('appModule/closeSideBar', { withoutAnimation: false })
       }
     })
+
+    const handleClickOutside = () => {
+      store.dispatch('appModule/closeSideBar', { withoutAnimation: false })
+    }
 
     /**
      * @description 切换内容显示
@@ -118,8 +123,11 @@ export default defineComponent({
       originalStyle.value = getStyleTemplate(data)
     })
     return {
+      opened,
+      device,
       hideHeader,
       fixedHeader,
+      handleClickOutside,
       handleHeaderChange,
       handleFixedHeaderChange,
       handleSidebarLogoChange,
