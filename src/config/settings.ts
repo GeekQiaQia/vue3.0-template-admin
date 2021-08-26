@@ -15,6 +15,7 @@ const defaultSetting = {
    * @description whether show the rightPanel // 设置中心
   */
   showSettings: true,
+  showsettings: false.
 };
 
 export default defaultSetting;
