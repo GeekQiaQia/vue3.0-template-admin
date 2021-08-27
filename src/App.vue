@@ -9,7 +9,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, computed } from 'vue'
 import { useStore } from '@/store/index'
-import ElConfigProvider from 'element-plus'
+import { ElConfigProvider } from 'element-plus'
 import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
 import enLocale from 'element-plus/lib/locale/lang/en'
 
@@ -33,7 +33,6 @@ export default defineComponent({
     resizeHeight()
     const locale = computed(() => {
       const langState = store.getters['settingsModule/getLangState']
-      console.log(langState)
       const local = langState === '/zh-CN' ? zhLocale : enLocale
       return local
     })
