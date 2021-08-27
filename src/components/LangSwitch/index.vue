@@ -1,24 +1,13 @@
 <template>
   <ul id="lang" class="lang-switch">
-    <li
-      class="header-lang"
-      :class="{ 'is-active': lang === '/zh-CN' }"
-      @click="handleSwitchLang('/zh-CN')"
-    >中文</li>
+    <li class="header-lang" :class="{ 'is-active': lang === '/zh-CN' }" @click="handleSwitchLang('/zh-CN')">中文</li>
     <span>/</span>
-    <li
-      class="header-lang"
-      :class="{ 'is-active': lang === '/en-US' }"
-      @click="handleSwitchLang('/en-US')"
-    >En</li>
+    <li class="header-lang" :class="{ 'is-active': lang === '/en-US' }" @click="handleSwitchLang('/en-US')">En</li>
   </ul>
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store/index'
-// import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
-// import enLocale from 'element-plus/lib/locale/lang/en'
-// import { use, setLocale } from 'element-plus/lib/locale'
 
 export default defineComponent({
   setup() {
@@ -26,14 +15,6 @@ export default defineComponent({
 
     const lang = computed(() => {
       const langState = store.getters['settingsModule/getLangState']
-      console.log(langState)
-      // const local = langState === '/zh-CN' ? zhLocale : enLocale
-      // console.log(import.meta.env.DEV)
-      // if (import.meta.env.DEV) {
-      //   setLocale(local)
-      // } else {
-      //   use(local)
-      // }
       return langState
     })
     /**

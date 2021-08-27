@@ -2,7 +2,7 @@ import { useFetch } from './useFetch'
 
 export const useFiles = () => {
   const getFontFiles = async (fontFiles) => {
-    const fonts = await Promise.all(fontFiles.map(font => useFetch(`//unpkg.com/element-plus/packages/theme-chalk/fonts/${font}`, true)))
+    const fonts = await Promise.all(fontFiles.map(font => useFetch(`//unpkg.com/element-plus/theme-chalk/fonts/${font}`, true)))
     return fonts
   }
 
@@ -12,7 +12,7 @@ export const useFiles = () => {
   }
 
   const getSeparatedStyles = async () => {
-    const {data} = await useFetch('//unpkg.com/element-plus/packages/theme-chalk/')
+    const {data} = await useFetch('//unpkg.com/element-plus/theme-chalk')
     const styles = data.match(/href="[\w-]+\.css"/g).map(str => str.split('"')[1])
     const files = await Promise.all(styles.map(file => useFetch(`//unpkg.com/element-plus/packages/theme-chalk/${file}`)))
     return files
