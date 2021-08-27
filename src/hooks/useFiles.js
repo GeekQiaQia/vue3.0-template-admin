@@ -7,7 +7,7 @@ export const useFiles = () => {
   }
 
   const getIndexStyle = async () => {
-    const { data } = await useFetch('//unpkg.com/element-plus/dist/index.css')
+    const { data } = await useFetch('//unpkg.com/element-plus/theme-chalk/index.css')
     return data
   }
 

@@ -1,21 +1,13 @@
 <template>
   <div class="home-container page-container">
     <div>
-      <h2>空表，用于测试Element Plus语言切换是否正确</h2>
+      <h2>{{ langConfig.home.internationTip[lang] }}</h2>
       <el-table></el-table>
-      <br />
-      <br />
-      <br />
     </div>
 
     <el-carousel :interval="4000" indicator-position="outside">
       <el-carousel-item v-for="item in swiperItems" :key="item">
-        <img
-          class="vue-element-plus-logo"
-          :alt="item.name"
-          :src="item.itemSrc"
-          @click="handleClickImg(item.targetLink)"
-        />
+        <img class="vue-element-plus-logo" :alt="item.name" :src="item.itemSrc" @click="handleClickImg(item.targetLink)" />
       </el-carousel-item>
     </el-carousel>
     <div class="top-container">
@@ -25,10 +17,7 @@
         <el-link type="primary" href="https://www.vitejs.net/guide/">Vite2.x +</el-link>
         <el-link type="success" href="https://v3.cn.vuejs.org/">Vue3.x +</el-link>
         <el-link type="warning" href="https://www.tslang.cn/">TypeScript +</el-link>
-        <el-link
-          type="danger"
-          href="https://element-plus.gitee.io/#/zh-CN/component/link"
-        >Element Plus</el-link>
+        <el-link type="danger" href="https://element-plus.gitee.io/#/zh-CN/component/link">Element Plus</el-link>
       </div>
     </div>
     <div class="word-cloud-wrapper">
@@ -43,11 +32,13 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from 'vue'
+import { defineComponent, onMounted, computed, reactive, toRefs } from 'vue'
 import logo from '@/assets/logo.png'
 import DataSet from '@antv/data-set'
 import { Chart, registerShape, ShapeAttrs, Util } from '@antv/g2'
 import { Datum, ShapeInfo } from 'node_modules/@antv/g2/lib/interface'
+import { useStore } from '@/store/index'
+import { langConfig } from '@/utils/constant/config'
 import Service from './api/index'
 
 export default defineComponent({
@@ -78,7 +69,8 @@ export default defineComponent({
         }
       ]
     })
-
+    const store = useStore()
+    const lang = computed((): string => store.getters['settingsModule/getLangState'])
     const getTextAttrs = (cfg: ShapeInfo): ShapeAttrs => ({
       ...cfg.defaultStyle,
       ...cfg.style,
@@ -179,6 +171,8 @@ export default defineComponent({
       getWords()
     })
     return {
+      lang,
+      langConfig,
       handleClickImg,
       ...toRefs(state),
       logo
