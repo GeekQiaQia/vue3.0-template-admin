@@ -50,7 +50,7 @@
 <script lang="ts">
 import { defineComponent, ref, toRefs, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { ElMessage } from 'element-plus/lib/components/message'
 import { encrypt } from '@/utils/aes' // aes 密码加密
 import { useStore } from '@/store'
 import Service from '../api/index'

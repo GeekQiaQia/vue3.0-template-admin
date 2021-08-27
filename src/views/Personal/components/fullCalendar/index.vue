@@ -15,7 +15,7 @@ import FullCalendar, { CalendarOptions, EventApi, DateSelectArg, EventClickArg }
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import { ElMessageBox, ElMessage } from 'element-plus'
+import { ElMessageBox, ElMessage } from 'element-plus/lib/components'
 import { INITIAL_EVENTS, createEventId } from './event-utils'
 
 export default defineComponent({
