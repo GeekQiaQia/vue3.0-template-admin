@@ -31,7 +31,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, ref } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage } from 'element-plus/lib/components/message'
 import { encrypt } from '@/utils/aes' // aes 密码加密
 import Service from '../api/index'
 

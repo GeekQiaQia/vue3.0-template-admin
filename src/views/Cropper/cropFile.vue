@@ -107,7 +107,7 @@
 import { defineComponent, ref } from 'vue'
 import VueCropper from 'vue-cropperjs'
 import 'cropperjs/dist/cropper.css'
-import { ElMessage } from 'element-plus'
+import { ElMessage } from 'element-plus/lib/components/message'
 
 export default defineComponent({
   name: 'Crop',

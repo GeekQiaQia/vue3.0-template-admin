@@ -1,5 +1,5 @@
 import Clipboard from 'clipboard'
-import { ElMessage } from 'element-plus'
+import { ElMessage } from 'element-plus/lib/components/message'
 
 declare type optionsType= {successTip:string, failedTip:string}
 declare type eventType={ target: string | Element  }
