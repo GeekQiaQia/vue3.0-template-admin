@@ -1,6 +1,7 @@
 <template>
   <div class="rightDrawer">
-    <el-drawer v-model="openDrawer" size="20%" :modal-append-to-body="false" :with-header="false">
+  <!-- :modal-append-to-body="false"  -->
+    <el-drawer v-model="openDrawer" size="20%" :with-header="false">
       <div class="slot-body">
         <slot />
       </div>

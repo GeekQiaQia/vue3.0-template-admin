@@ -23,7 +23,7 @@ import 'dayjs/locale/zh-cn'
 // 3、挂载 elementPlus UI;
 
 // ElementPlus 样式通过CDN的方式引入来加样式文件，提高应用加载速度；
-import 'element-plus/lib/theme-chalk/index.css';
+import 'element-plus/theme-chalk/index.css';
 import '@/mock'
 
 const roles =  localStorage.getItem('role');
