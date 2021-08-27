@@ -4,7 +4,7 @@
       <el-form-item label="邮箱" prop="email">
         <el-input v-model="resetForm.email" autocomplete="off" placeholder="请输入注册邮箱">
           <template #append>
-            <el-button @click="handleGetCaptcha">获取验证码</el-button>
+            <el-button :disabled="sendingCode" @click="handleGetCaptcha">{{ codeText }}</el-button>
           </template>
         </el-input>
       </el-form-item>
@@ -31,8 +31,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, ref } from 'vue'
-import { ElMessage } from 'element-plus/lib/components/message'
-import { encrypt } from '@/utils/aes' // aes 密码加密
+import { ElMessage } from 'element-plus'
 import Service from '../api/index'
 
 interface stateType {
@@ -66,34 +65,59 @@ export default defineComponent({
         checkPass: ''
       }
     })
+    const sendingCode = ref(false)
+    const codeText = ref('获取验证码')
     const handleToLogin = () => {
       emit('toLogin')
     }
-
+    // 短验已发送状态
+    const getCodeSucces = () => {
+      let countDown = 60
+      sendingCode.value = true
+      const interval = setInterval(() => {
+        if (countDown > 0) {
+          codeText.value = `已发送(${countDown}s)`
+          countDown -= 1
+        } else {
+          clearInterval(interval)
+          sendingCode.value = false
+          codeText.value = '获取验证码'
+        }
+      }, 1000)
+    }
     /**
      * @description 获取验证码
      */
-    const handleGetCaptcha = async () => {
+    const handleGetCaptcha = async (): Promise<boolean> => {
       try {
         const { email } = state.resetForm
+        if (!email) {
+          ElMessage({
+            type: 'warning',
+            message: '请输入注册邮箱'
+          })
+          return false
+        }
         const data = {
           email
         }
         const res = await Service.postForgetPwd(data)
-        console.log(res)
         if (res.status === 0) {
-          ElMessage({
-            type: 'warning',
-            message: res.message
-          })
-        } else {
           ElMessage({
             type: 'success',
             message: res.message
           })
+          getCodeSucces()
+          return true
         }
+        ElMessage({
+          type: 'warning',
+          message: res.message
+        })
+        return false
       } catch (err) {
         console.error(err)
+        return false
       }
     }
     /**
@@ -107,11 +131,11 @@ export default defineComponent({
             const { email, password, capcha } = state.resetForm
             const data = {
               email,
-              // password,
-              password: encrypt(password),
+              password,
               capcha
             }
             const res = await Service.postResetPwd(data)
+            console.log(res)
             if (res.status === 0) {
               ElMessage({
                 type: 'warning',
@@ -167,6 +191,8 @@ export default defineComponent({
     return {
       ...toRefs(state),
       rules,
+      sendingCode,
+      codeText,
       resetRef,
       handleGetCaptcha,
       handleToLogin,
