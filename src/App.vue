@@ -1,16 +1,23 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+  <el-config-provider :locale="locale">
+    <div id="app">
+      <router-view></router-view>
+    </div>
+  </el-config-provider>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent, onMounted, computed } from 'vue'
 import { useStore } from '@/store/index'
+import { ElConfigProvider } from 'element-plus'
+import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
+import enLocale from 'element-plus/lib/locale/lang/en'
 
 export default defineComponent({
   name: 'App',
-  components: {},
+  components: {
+    ElConfigProvider
+  },
   setup() {
     const store = useStore()
     // methods
@@ -24,7 +31,15 @@ export default defineComponent({
       store.dispatch('permissionModule/getPermissions')
     })
     resizeHeight()
-    return {}
+    const locale = computed(() => {
+      const langState = store.getters['settingsModule/getLangState']
+      console.log(langState)
+      const local = langState === '/zh-CN' ? zhLocale : enLocale
+      return local
+    })
+    return {
+      locale
+    }
   }
   // watch: {
   //   $route(to, from) {

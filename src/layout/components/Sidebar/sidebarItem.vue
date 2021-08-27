@@ -7,14 +7,21 @@
         <template #title>{{ item.meta.title[lang] }}</template>
       </el-menu-item>
     </template>
-    <el-submenu v-else ref="subMenu" :index="item.path" popper-append-to-body>
+    <el-sub-menu v-else ref="subMenu" :index="item.path" popper-append-to-body>
       <template #title>
         <i :class="item.meta.icon"></i>
         <span>{{ item.meta.title[lang] }}</span>
       </template>
       <!--children 进行递归调用自身组件-->
-      <sidebar-item v-for="child in item.children" :key="child.path" :is-nest="true" :item="child" :base-path="child.path" class="nest-menu" />
-    </el-submenu>
+      <sidebar-item
+        v-for="child in item.children"
+        :key="child.path"
+        :is-nest="true"
+        :item="child"
+        :base-path="child.path"
+        class="nest-menu"
+      />
+    </el-sub-menu>
   </div>
 </template>
 <script lang="ts">
