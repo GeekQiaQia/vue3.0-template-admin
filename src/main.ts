@@ -21,8 +21,9 @@ import 'dayjs/locale/zh-cn'
 // 1、挂载vuex
 // 2、挂载路由
 // 3、挂载 elementPlus UI;
-import 'element-plus/lib/theme-chalk/index.css';
 
+// ElementPlus 样式通过CDN的方式引入来加样式文件，提高应用加载速度；
+import 'element-plus/theme-chalk/index.css';
 import '@/mock'
 
 const roles =  localStorage.getItem('role');

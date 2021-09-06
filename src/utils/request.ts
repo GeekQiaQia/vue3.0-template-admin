@@ -1,5 +1,5 @@
 import Axios, { Method ,ResponseType,AxiosResponse} from 'axios'
-import { ElMessage } from 'element-plus'
+import { ElMessage } from 'element-plus/lib/components/message'
 
 interface axiosData {
   url:string

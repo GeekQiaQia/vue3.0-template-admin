@@ -1,5 +1,10 @@
 <template>
   <div class="home-container page-container">
+    <div>
+      <h2>{{ langConfig.home.internationTip[lang] }}</h2>
+      <el-table></el-table>
+    </div>
+
     <el-carousel :interval="4000" indicator-position="outside">
       <el-carousel-item v-for="item in swiperItems" :key="item">
         <img class="vue-element-plus-logo" :alt="item.name" :src="item.itemSrc" @click="handleClickImg(item.targetLink)" />
@@ -27,11 +32,13 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from 'vue'
+import { defineComponent, onMounted, computed, reactive, toRefs } from 'vue'
 import logo from '@/assets/logo.png'
 import DataSet from '@antv/data-set'
 import { Chart, registerShape, ShapeAttrs, Util } from '@antv/g2'
 import { Datum, ShapeInfo } from 'node_modules/@antv/g2/lib/interface'
+import { useStore } from '@/store/index'
+import { langConfig } from '@/utils/constant/config'
 import Service from './api/index'
 
 export default defineComponent({
@@ -62,7 +69,8 @@ export default defineComponent({
         }
       ]
     })
-
+    const store = useStore()
+    const lang = computed((): string => store.getters['settingsModule/getLangState'])
     const getTextAttrs = (cfg: ShapeInfo): ShapeAttrs => ({
       ...cfg.defaultStyle,
       ...cfg.style,
@@ -163,6 +171,8 @@ export default defineComponent({
       getWords()
     })
     return {
+      lang,
+      langConfig,
       handleClickImg,
       ...toRefs(state),
       logo
@@ -172,84 +182,66 @@ export default defineComponent({
 </script>
 
 <style scoped lang="stylus">
-.home-container {
-  background: #f0f5fa;
-   .top-container{
-      width:90%;
-      margin:0px auto;
-      .title{
-
-        margin-left: 4.06%;
-        font-size: 2.714em;
-        color: #000;
-        margin-bottom: 0;
-        font-weight: 500;
-        position: relative;
-        height: -webkit-min-content;
-        height: min-content;
-        cursor: pointer;
-        text-align :left;
-      }
-    }
-  .word-cloud-wrapper{
-    width:100%;
-    height:800px;
-    display: flex;
-    margin: 50px auto auto;
-    position: relative;
-    flex-direction: column;
-    padding: 0;
-    background: #f0f5fa;
-    overflow-x: hidden;
-    transition: all .3s;
-
-      .right-bottom{
-    background:linear-gradient(130deg, #6a91ff 40%, #615edd);
-    width: 100%;
-    height: 80%;
-    right: 0;
-    margin-top: 48px;
-    position: absolute;
-  }
-  .word-sets{
-    width: 95.8%;
-    height: 100%;
-    margin-left: 0;
-    margin-bottom: 5%;
-    position: relative;
-    .sets-module{
-      background: #fff;
-      width: 100%;
-      height: 85%;
-      position: relative;
-      box-shadow: -5px 5px 15px rgba(0,0,0,.1);
-      overflow: hidden;
-    }
-  }
-  }
-
-  .page-title{
-  }
-  .vue-element-plus-logo {
-    width:100%;
-    max-width:750px;
-    height:100%;
-    cursor :pointer;
-  }
-   .el-carousel__item h3 {
-    color: #475669;
-    font-size: 18px;
-    opacity: 0.75;
-    line-height: 300px;
-    margin: 0;
-  }
-
-  .el-carousel__item:nth-child(2n) {
-    background-color:white;
-  }
-
-  .el-carousel__item:nth-child(2n+1) {
-    background-color:white;
-  }
-}
+.home-container
+  background #f0f5fa
+  .top-container
+    width 90%
+    margin 0px auto
+    .title
+      margin-left 4.06%
+      font-size 2.714em
+      color #000
+      margin-bottom 0
+      font-weight 500
+      position relative
+      height -webkit-min-content
+      height min-content
+      cursor pointer
+      text-align left
+  .word-cloud-wrapper
+    width 100%
+    height 800px
+    display flex
+    margin 50px auto auto
+    position relative
+    flex-direction column
+    padding 0
+    background #f0f5fa
+    overflow-x hidden
+    transition all 0.3s
+    .right-bottom
+      background linear-gradient(130deg, #6a91ff 40%, #615edd)
+      width 100%
+      height 80%
+      right 0
+      margin-top 48px
+      position absolute
+    .word-sets
+      width 95.8%
+      height 100%
+      margin-left 0
+      margin-bottom 5%
+      position relative
+      .sets-module
+        background #fff
+        width 100%
+        height 85%
+        position relative
+        box-shadow -5px 5px 15px rgba(0, 0, 0, 0.1)
+        overflow hidden
+  .page-title, .vue-element-plus-logo
+    width 100%
+    max-width 750px
+    height 100%
+    cursor pointer
+  .el-carousel__item h3
+    color #475669
+    font-size 18px
+    opacity 0.75
+    line-height 300px
+    margin 0
+  .el-carousel__item:nth-child(2n)
+    background-color white
+  .el-carousel__item:nth-child(2n+1)
+    background-color white
 </style>

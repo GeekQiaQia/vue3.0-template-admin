@@ -26,7 +26,7 @@
       </el-row>
     </el-card>
 
-    <el-row>
+    <el-row style="margin: 15px">
       <el-col :span="16">
         <el-row>
           <el-col :span="6"> 经营状况 </el-col>
