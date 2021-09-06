@@ -156,7 +156,7 @@ git merge upstream/main
 ## 技术反馈和交流群 | Technical feedback and communication
 
 <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d41b5fec542444b4a28c00135ce27d42~tplv-k3u1fbpfcp-watermark.image" width="180px" />
-<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8f030f4847fa4341978f2990f1b293fa~tplv-k3u1fbpfcp-watermark.image" width="180px" />
+<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ae40a313b7cc48329104f733b104bc1f~tplv-k3u1fbpfcp-watermark.image" width="180px" />
 
 ## 赞助 | Sponsored
 
