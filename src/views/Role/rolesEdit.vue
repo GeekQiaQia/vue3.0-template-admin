@@ -127,20 +127,13 @@ export default defineComponent({
 })
 </script>
 <style lang="stylus" scoped>
-.btns {
-  text-align: right;
-}
-
-.el-transfer {
-  display: inline-block;
-  text-align: left;
-}
-
-.transfer {
-  text-align: center;
-}
-
-.card-header {
-  text-align: left;
-}
+.btns
+  text-align right
+.el-transfer
+  display inline-block
+  text-align left
+.transfer
+  text-align center
+.card-header
+  text-align left
 </style>

@@ -140,6 +140,9 @@ git merge upstream/main
 
      git push // push stage commit
 
+     # 如果没有识别git cz 命令需要全局安装
+      npm install -g commitizen
+
 ## 持续升级 | Continuous upgrades
 
 - [x] 重构 request.ts 请求，使其灵活可配置化；
@@ -152,7 +155,7 @@ git merge upstream/main
 ## 技术反馈和交流群 | Technical feedback and communication
 
 <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d41b5fec542444b4a28c00135ce27d42~tplv-k3u1fbpfcp-watermark.image" width="180px" />
-<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1da74919252447c7b0f4c45faec92182~tplv-k3u1fbpfcp-watermark.image" width="180px" />
+<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ae40a313b7cc48329104f733b104bc1f~tplv-k3u1fbpfcp-watermark.image" width="180px" />
 
 ## 赞助 | Sponsored
 
