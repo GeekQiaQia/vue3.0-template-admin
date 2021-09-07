@@ -30,8 +30,13 @@ export default defineComponent({
     RichEditor
   },
   setup() {
-    const editorValue = ref() // 富文本引用
+    const editorValue = ref('默认数据') // 富文本引用
     const richHtml = ref() // 富文本内容；
+
+    setTimeout(() => {
+      // 3秒后设置数据为'3秒后的数据'
+      editorValue.value = '3秒后的数据'
+    }, 3000)
 
     /**
      * @description  获取接收最新文本
@@ -47,27 +52,26 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="stylus" scoped>
-.editorWrapper{
-    margin-top:20px;
-    :deep .w-e-text-container{
-      text-align :left;
-    }
-    .info{
-      text-align: left;
-      padding-left: 20px;
-      margin-bottom: 20px;
-      font-size: 12px;
-    }
-    .section{
-      display:flex;
-      flex-direction:row;
-      justify-content: flex-start;
-      align-items :center;
-    }
-     .el-row {
-       margin-bottom: 20px;
-     }
-
+<style lang="scss" scoped>
+.editorWrapper {
+  margin-top: 20px;
+  :deep .w-e-text-container {
+    text-align: left;
+  }
+  .info {
+    text-align: left;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
+  .section {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .el-row {
+    margin-bottom: 20px;
+  }
 }
 </style>
