@@ -588,13 +588,13 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const tabsOption = store.getters['tabModule/getTabsOption']
     // 判断当前路由中是否已经入栈
-    const flag = tabsOption.findIndex((tab: { route: string }) => tab.route === to.fullPath) > -1
+    const flag = tabsOption.findIndex((tab: { route: string }) => tab.route === to.path) > -1
     if (!flag && !to.meta.hiddenTab) {
 
-      store.commit('tabModule/ADD_TAB', { route: to.fullPath, title: to.meta.title,name: to.name })
+      store.commit('tabModule/ADD_TAB', { route: to.path, title: to.meta.title,name: to.name })
 
         }
-    store.commit('tabModule/SET_TAB', to.fullPath)
+    store.commit('tabModule/SET_TAB', to.path)
   if(sessionStorage.getItem('auth')){
     next();
   }else if(to.path==='/login'){
