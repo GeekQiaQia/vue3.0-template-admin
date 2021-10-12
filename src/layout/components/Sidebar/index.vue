@@ -2,7 +2,14 @@
   <div :class="{ 'has-logo': showLogo }">
     <logo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu :router="true" :unique-opened="false" :default-active="activeMenu" class="el-menu-vertical" :collapse="isCollapse" background-color="#545c64" text-color="#fff">
+      <el-menu
+        :router="true"
+        :unique-opened="false"
+        :default-active="activeMenu"
+        class="el-menu-vertical"
+        :collapse="isCollapse"
+        background-color="#545c64"
+        text-color="#fff">
         <!--递归路由对象-->
         <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
