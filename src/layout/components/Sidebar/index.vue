@@ -17,8 +17,12 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
-import { useRouter } from 'vue-router'
+import {
+  computed,
+  defineComponent,
+  onMounted,
+} from 'vue'
+import { useRoute } from 'vue-router'
 import { isExternal } from '@/utils/validate'
 import sidebarItem from '@/layout/components/Sidebar/sidebarItem.vue'
 import logo from './Logo.vue'
@@ -30,13 +34,20 @@ export default defineComponent({
     sidebarItem
   },
   setup() {
-    const router = useRouter()
+    const route = useRoute()
 
     const store = useStore()
     const isCollapse = computed(() => !store.getters['appModule/getSidebarState'])
     const showLogo = computed(() => store.state.settingsModule.sideBarLogo)
     const routes = computed(() => store.state.permissionModule.accessRoutes)
-    const activeMenu = computed(() => router.currentRoute.value.fullPath)
+    const activeMenu = computed(() => store.getters['tabModule/getCurrentIndex'])
+
+    onMounted(() => {
+      const routePath = route.path
+
+      store.commit('tabModule/SET_TAB',routePath)
+    })
+
     // methods
     // eslint-disable-next-line consistent-return
     const resolvePath = (routePath: string) => {
