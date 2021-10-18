@@ -555,7 +555,6 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/en-US': 'PersonalCenter'
           },
           icon: 'el-icon-user-solid',
-
         },
       },
       {
@@ -568,13 +567,36 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/en-US': 'PersonalSetting'
           },
           icon: 'el-icon-user-solid',
-
         },
       },
     ],
   },
-
-
+  {
+    path: '/projectboard',
+    component: layout,
+    redirect: '/projectboard/manage',
+    meta: {
+      title:{
+        '/zh-CN': '项目看板',
+        '/en-US': 'Project Board'
+      },
+      icon: 'el-icon-folder-opened',
+    },
+    children: [
+      {
+        path: '/projectboard/manage',
+        name: 'roleManage',
+        component: () => import(/* webpackChunkName: "projectBoard" */ '@/views/projectBoard/index.vue'),
+        meta: {
+          title:{
+            '/zh-CN': '项目看板',
+            '/en-US': 'Project Board'
+          },
+          icon: 'el-icon-folder-opened',
+        },
+      },
+    ]
+  },
 ];
 
 const router = createRouter({
