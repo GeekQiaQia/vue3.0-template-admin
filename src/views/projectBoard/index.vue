@@ -11,70 +11,27 @@
       </div>
 
       <div class="board__project-list">
-        <div class="board__project-item">
+        <div
+          v-for="(item, index) in data"
+          :key="index"
+          class="board__project-item">
           <el-card>
             <el-row>
               <el-col :span="5">
                 <el-avatar
                   class="board__project-avatar"
                   :size="90">
-                  user
+                  {{ item.projectName.substr(0, 1)}}
                 </el-avatar>
               </el-col>
 
               <el-col
                 :span="18"
                 style="margin-left: 6px; color: #7a848d">
-                <p>项目名称：后台管理系统</p>
-                <p>总负责人：xxx</p>
-                <p>开发耗时：16h</p>
-                <p>项目状态：发布</p>
-              </el-col>
-            </el-row>
-          </el-card>
-        </div>
-
-        <div class="board__project-item">
-          <el-card>
-            <el-row>
-              <el-col :span="5">
-                <el-avatar
-                  class="board__project-avatar"
-                  :size="90">
-                  user
-                </el-avatar>
-              </el-col>
-
-              <el-col
-                :span="18"
-                style="margin-left: 6px; color: #7a848d">
-                <p>项目名称：后台管理系统</p>
-                <p>总负责人：xxx</p>
-                <p>开发耗时：16h</p>
-                <p>项目状态：发布</p>
-              </el-col>
-            </el-row>
-          </el-card>
-        </div>
-
-        <div class="board__project-item">
-          <el-card>
-            <el-row>
-              <el-col :span="5">
-                <el-avatar
-                  class="board__project-avatar"
-                  :size="90">
-                  user
-                </el-avatar>
-              </el-col>
-
-              <el-col
-                :span="18"
-                style="margin-left: 6px; color: #7a848d">
-                <p>项目名称：后台管理系统</p>
-                <p>总负责人：xxx</p>
-                <p>开发耗时：16h</p>
-                <p>项目状态：发布</p>
+                <p>项目名称：{{ item.projectName }}</p>
+                <p>总负责人：{{ item.principal }}</p>
+                <p>开发耗时：{{ item.timeConsuming }}</p>
+                <p>项目状态: {{ item.status }}</p>
               </el-col>
             </el-row>
           </el-card>
@@ -90,7 +47,16 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+  import { ref } from 'vue'
+  import ProjectStore from './store/index'
+
+  const {
+    getProjectInfo,
+    data
+  } = ProjectStore()
+
+  // 数据初始化
+  getProjectInfo()
 
 </script>
 
