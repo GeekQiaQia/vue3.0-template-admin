@@ -47,6 +47,7 @@ const getProjectInfo = {
     status: 0,
     message:'成功',
     data:[{
+        projectId: 1,
         projectName: '后台管理系统',
         principal: '张三',
         timeConsuming: '83小时',
@@ -68,6 +69,7 @@ const getProjectInfo = {
             taskStatus: 3 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
         }]
     },{
+        projectId: 2,
         projectName: '学生管理系统',
         principal: '老王',
         timeConsuming: '83小时',
@@ -89,6 +91,7 @@ const getProjectInfo = {
             taskStatus: 3 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
         }]
     },{
+        projectId: 3,
         projectName: '成绩管理系统',
         principal: '王五',
         timeConsuming: '83小时',

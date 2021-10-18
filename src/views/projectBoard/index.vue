@@ -14,7 +14,9 @@
         <div
           v-for="(item, index) in data"
           :key="index"
-          class="board__project-item">
+          class="board__project-item"
+          :class="{ 'board__project-item--active': target.projectId === item.projectId}"
+          @click="onClickProject(item)">
           <el-card>
             <el-row>
               <el-col :span="5">
@@ -43,12 +45,27 @@
       <div class="board__detail-title">
         项目详情
       </div>
+
+      <el-card class="board__detail-content">
+        <div
+          v-if="!target.projectId"
+          class="board__detail-empty">
+          请选择项目
+        </div>
+
+        <div
+          v-else>
+          项目名称：{{ target.projectName }}
+        </div>
+      </el-card>
     </div>
   </div>
 </template>
 <script setup lang="ts">
   import { ref } from 'vue'
   import ProjectStore from './store/index'
+
+  const target = ref({})
 
   const {
     getProjectInfo,
@@ -57,6 +74,10 @@
 
   // 数据初始化
   getProjectInfo()
+
+  function onClickProject(project: any) {
+    target.value = project
+  }
 
 </script>
 
@@ -90,13 +111,14 @@
 
     &-item {
       width: 50%;
-      width: calc(50% - 60px);
+      width: calc(50% - 200px);
       margin-bottom: 30px;
-      margin-left: 30px;
+      margin-left: 100px;
       cursor: pointer;
+      border: 1px solid transparent;
 
       &--active {
-        border: 1px solid #2799c1;
+        border-color: #2799c1;
         border-radius: 4px;
       }
     }
@@ -104,6 +126,7 @@
     &-avatar {
       font-size: 20px;
       background: #7d9fe3;
+      font-weight: bold;
     }
   }
 
@@ -113,6 +136,18 @@
     &-title {
       font-size: 18px;
       font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    &-empty {
+      color: #d3d0d0;
+      min-height: 200px;
+      line-height: 200px;
+      text-align: center;
+    }
+
+    &-content {
+      min-height: 60px;
     }
   }
 }

@@ -2,7 +2,7 @@ import request from '@/utils/request';
 import { ref, Ref } from 'vue'
 
 // 任务数据类型
-interface TaskListData {
+export interface TaskListData {
   taskName: string,
   developTime: string,
   developMember: string,
@@ -10,7 +10,7 @@ interface TaskListData {
 }
 
 // 项目数据类型
-interface ProjectData{
+export interface ProjectData{
   projectName: string
   principal: string
   timeConsuming: string
@@ -19,7 +19,7 @@ interface ProjectData{
 }
 
 export default () => {
-  let data: Ref<Array<ProjectData>> = ref([])
+  const data: Ref<Array<ProjectData>> = ref([])
 
   // 初始化函数
   function getProjectInfo() {
