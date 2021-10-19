@@ -39,7 +39,7 @@
             size="mini"
             type="success"
             icon="el-icon-check"
-            @click="handleSave()"
+            @click="handleSave(scope.$index, scope.row)"
           >保存</el-button>
 
           <el-button
@@ -75,11 +75,12 @@ defineProps<{
   status: Map<string, {text: string, type: string}>
 }>()
 
-function handleSave() {
-
+function handleEdit(index: number, row: TaskListData) {
+  // eslint-disable-next-line no-console
+  console.log(index, row)
 }
 
-function handleEdit() {
+function handleSave() {
 
 }
 
@@ -90,6 +91,6 @@ function handleDelete() {
 
 <style lang="stylus" scoped>
 .task-table {
-  margin-top: 36px;
+  margin-top: 16px;
 }
 </style>

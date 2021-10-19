@@ -41,41 +41,35 @@
       <div class="board__detail-title">项目详情</div>
 
       <el-card class="board__detail-wrap">
-        <div v-if="!target.projectId" class="board__detail-empty">请选择项目</div>
+        <div v-if="!target.projectId" class="board__detail-empty">请选择项目，查看项目详情！！！</div>
 
         <div class="board__detail-content" v-else>
           <div class="board__detail-head">
             <el-row>
               <el-col :span="5">
-                <span class="board__detail-name">项目名称</span>
-                ：{{ target.projectName }}
+                <span class="board__detail-name">项目名称</span>：{{ target.projectName }}
               </el-col>
 
               <el-col :span="5">
-                <span class="board__detail-name">负责人</span>
-                ：{{ target.principal }}
+                <span class="board__detail-name">负责人</span>：{{ target.principal }}
               </el-col>
 
               <el-col :span="5">
-                <span class="board__detail-name">开发工时</span>
-                ：{{ target.timeConsuming }}
+                <span class="board__detail-name">开发工时</span>：{{ target.timeConsuming }}
               </el-col>
 
               <el-col :span="5">
-                <span class="board__detail-name">项目状态</span>
-                ：{{ target.status }}
+                <span class="board__detail-name">项目状态</span>：{{ target.status }}
               </el-col>
             </el-row>
 
             <el-row class="board__detail-task">
               <el-col :span="5">
-                <span class="board__detail-name">任务总数</span>
-                ：{{ target.taskList.length }}
+                <span class="board__detail-name">任务总数</span>：{{ target.taskList.length }}
               </el-col>
 
               <el-col :span="18">
-                <span class="board__detail-name">任务进度</span>
-：
+                <span class="board__detail-name">任务进度</span>：
                 <template v-for="(item, index) of generate(target.taskList)" :key="index">
                   <el-tag
                     class="board__detail-tag"
@@ -84,6 +78,28 @@
                 </template>
               </el-col>
             </el-row>
+          </div>
+
+          <el-divider />
+
+          <div class="board__detail-search">
+            <el-form :inline="true" :model="formInline">
+              <el-form-item label="开发人">
+                <el-input v-model="formInline.developMember" placeholder="请输入开发人"></el-input>
+              </el-form-item>
+              <el-form-item label="任务状态">
+                <el-select v-model="formInline.taskStatus" placeholder="选择任务状态">
+                  <el-option label="准备阶段" :value="1"></el-option>
+                  <el-option label="开发中" :value="2"></el-option>
+                  <el-option label="开发完成" :value="3"></el-option>
+                  <el-option label="测试阶段" :value="4"></el-option>
+                  <el-option label="待发布" :value="5"></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="onSearch">查询</el-button>
+              </el-form-item>
+            </el-form>
           </div>
 
           <div class="board__detail-table">
@@ -99,9 +115,16 @@
 </template>
 <script setup lang="ts">
 import _ from 'lodash'
-import { ref, Ref, computed } from 'vue'
+import { ref, Ref, computed, watch, reactive } from 'vue';
 import ProjectStore, { ProjectData, TaskListData } from './store/index'
 import TaskTable from './task-table.vue'
+import Driver from 'driver.js';
+import Search from '@/components/Search/index.vue';
+
+const formInline = reactive({
+  taskStatus: '',
+  developMember: ''
+})
 
 const STATUS_MAP = new Map([
   ['1', {
@@ -110,7 +133,7 @@ const STATUS_MAP = new Map([
   }],
   ['2', {
     text: '开发中',
-    type: 'danger',
+    type: '',
   }],
   ['3', {
     text: '开发完成',
@@ -126,16 +149,8 @@ const STATUS_MAP = new Map([
   }]
 ])
 
+// 具体的项目
 const target: Ref<ProjectData> = ref({} as ProjectData)
-
-const tableData: any = computed(() => {
-  return _.map(target.value.taskList, task => {
-    return {
-      ...task,
-      edit: false
-    }
-  })
-})
 
 const {
   getProjectInfo,
@@ -145,10 +160,22 @@ const {
 // 数据初始化
 getProjectInfo()
 
+// 表格的数据
+const tableData: any = computed(() => {
+  return _.map(target.value.taskList, task => {
+    return {
+      ...task,
+      edit: false
+    }
+  })
+})
+
+// 点击具体项目
 function onClickProject(project: ProjectData) {
   target.value = project
 }
 
+// 聚合项目中的任务状态数量
 function generate(taskList: Array<TaskListData>) {
   const data = _.countBy(taskList, (item) => item.taskStatus)
 
@@ -160,6 +187,12 @@ function generate(taskList: Array<TaskListData>) {
       count: value,
     }
   })
+}
+
+// 搜索
+function onSearch() {
+  // eslint-disable-next-line no-console
+  console.log('search!')
 }
 
 </script>
@@ -220,6 +253,11 @@ function generate(taskList: Array<TaskListData>) {
 
     &-head {
       color: #706e6e;
+    }
+
+    &-search {
+      margin-top: 60px;
+      text-align: left;
     }
 
     &-title {
