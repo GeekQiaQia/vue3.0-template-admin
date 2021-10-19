@@ -10,7 +10,8 @@ export interface TaskListData {
 }
 
 // 项目数据类型
-export interface ProjectData{
+export interface ProjectData {
+  projectId: string,
   projectName: string
   principal: string
   timeConsuming: string

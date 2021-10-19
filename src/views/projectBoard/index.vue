@@ -6,30 +6,26 @@
     </div>
 
     <div class="board__project">
-      <div class="board__project-title">
-        项目概览
-      </div>
+      <div class="board__project-title">项目概览</div>
 
       <div class="board__project-list">
         <div
           v-for="(item, index) in data"
           :key="index"
           class="board__project-item"
-          :class="{ 'board__project-item--active': target.projectId === item.projectId}"
-          @click="onClickProject(item)">
+          :class="{ 'board__project-item--active': target.projectId === item.projectId }"
+          @click="onClickProject(item)"
+        >
           <el-card>
             <el-row>
               <el-col :span="5">
                 <el-avatar
                   class="board__project-avatar"
-                  :size="90">
-                  {{ item.projectName.substr(0, 1)}}
-                </el-avatar>
+                  :size="90"
+                >{{ item.projectName.substr(0, 1) }}</el-avatar>
               </el-col>
 
-              <el-col
-                :span="18"
-                style="margin-left: 6px; color: #7a848d">
+              <el-col :span="18" style="margin-left: 6px; color: #7a848d">
                 <p>项目名称：{{ item.projectName }}</p>
                 <p>总负责人：{{ item.principal }}</p>
                 <p>开发耗时：{{ item.timeConsuming }}</p>
@@ -42,42 +38,129 @@
     </div>
 
     <div class="board__detail">
-      <div class="board__detail-title">
-        项目详情
-      </div>
+      <div class="board__detail-title">项目详情</div>
 
-      <el-card class="board__detail-content">
-        <div
-          v-if="!target.projectId"
-          class="board__detail-empty">
-          请选择项目
-        </div>
+      <el-card class="board__detail-wrap">
+        <div v-if="!target.projectId" class="board__detail-empty">请选择项目</div>
 
-        <div
-          v-else>
-          项目名称：{{ target.projectName }}
+        <div class="board__detail-content" v-else>
+          <div class="board__detail-head">
+            <el-row>
+              <el-col :span="5">
+                <span class="board__detail-name">项目名称</span>
+                ：{{ target.projectName }}
+              </el-col>
+
+              <el-col :span="5">
+                <span class="board__detail-name">负责人</span>
+                ：{{ target.principal }}
+              </el-col>
+
+              <el-col :span="5">
+                <span class="board__detail-name">开发工时</span>
+                ：{{ target.timeConsuming }}
+              </el-col>
+
+              <el-col :span="5">
+                <span class="board__detail-name">项目状态</span>
+                ：{{ target.status }}
+              </el-col>
+            </el-row>
+
+            <el-row class="board__detail-task">
+              <el-col :span="5">
+                <span class="board__detail-name">任务总数</span>
+                ：{{ target.taskList.length }}
+              </el-col>
+
+              <el-col :span="18">
+                <span class="board__detail-name">任务进度</span>
+：
+                <template v-for="(item, index) of generate(target.taskList)" :key="index">
+                  <el-tag
+                    class="board__detail-tag"
+                    :type="item.type"
+                  >{{ item.text }}: {{ item.count }}</el-tag>
+                </template>
+              </el-col>
+            </el-row>
+          </div>
+
+          <div class="board__detail-table">
+            <task-table
+              :data="tableData"
+              :status="STATUS_MAP"
+            />
+          </div>
         </div>
       </el-card>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import ProjectStore from './store/index'
+import _ from 'lodash'
+import { ref, Ref, computed } from 'vue'
+import ProjectStore, { ProjectData, TaskListData } from './store/index'
+import TaskTable from './task-table.vue'
 
-  const target = ref({})
+const STATUS_MAP = new Map([
+  ['1', {
+    text: '准备阶段',
+    type: 'info',
+  }],
+  ['2', {
+    text: '开发中',
+    type: 'danger',
+  }],
+  ['3', {
+    text: '开发完成',
+    type: 'success',
+  }],
+  ['4', {
+    text: '测试阶段',
+    type: 'danger',
+  }],
+  ['5', {
+    text: '待发布',
+    type: 'warning',
+  }]
+])
 
-  const {
-    getProjectInfo,
-    data
-  } = ProjectStore()
+const target: Ref<ProjectData> = ref({} as ProjectData)
 
-  // 数据初始化
-  getProjectInfo()
+const tableData: any = computed(() => {
+  return _.map(target.value.taskList, task => {
+    return {
+      ...task,
+      edit: false
+    }
+  })
+})
 
-  function onClickProject(project: any) {
-    target.value = project
-  }
+const {
+  getProjectInfo,
+  data
+} = ProjectStore()
+
+// 数据初始化
+getProjectInfo()
+
+function onClickProject(project: ProjectData) {
+  target.value = project
+}
+
+function generate(taskList: Array<TaskListData>) {
+  const data = _.countBy(taskList, (item) => item.taskStatus)
+
+  return _.map(Object.entries(data), ([key, value]) => {
+    const result = STATUS_MAP.get(key)
+
+    return {
+      ...result,
+      count: value,
+    }
+  })
+}
 
 </script>
 
@@ -111,11 +194,13 @@
 
     &-item {
       width: 50%;
-      width: calc(50% - 200px);
+      width: calc(50% - 100px);
       margin-bottom: 30px;
-      margin-left: 100px;
+      margin-left: 50px;
       cursor: pointer;
       border: 1px solid transparent;
+      max-width: 700px;
+      min-width: 500px;
 
       &--active {
         border-color: #2799c1;
@@ -133,6 +218,10 @@
   &__detail {
     text-align: left;
 
+    &-head {
+      color: #706e6e;
+    }
+
     &-title {
       font-size: 18px;
       font-weight: bold;
@@ -141,13 +230,24 @@
 
     &-empty {
       color: #d3d0d0;
-      min-height: 200px;
       line-height: 200px;
       text-align: center;
     }
 
-    &-content {
-      min-height: 60px;
+    &-wrap {
+      min-height: 200px;
+    }
+
+    &-name {
+      font-weight: bold;
+    }
+
+    &-tag {
+      margin-left: 16px;
+    }
+
+    &-task {
+      margin-top: 30px;
     }
   }
 }
