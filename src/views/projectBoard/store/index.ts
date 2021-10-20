@@ -1,4 +1,5 @@
 import request from '@/utils/request';
+import _ from 'lodash'
 import { ref, Ref } from 'vue'
 
 // 任务数据类型
@@ -35,8 +36,18 @@ export default () => {
     })
   }
 
+  function updatedProjectInfo(projectId: string, taskListIndex: number, task: TaskListData) {
+    const targetProjectIndex = _.findIndex(data.value, ['projectId', projectId])
+    const targetTaskList = data.value[targetProjectIndex].taskList
+
+    data.value[targetProjectIndex].taskList = _.map(targetTaskList, (item: TaskListData, index: number) => {
+      return index === taskListIndex ? task : item
+    })
+  }
+
   return {
     data,
-    getProjectInfo
+    getProjectInfo,
+    updatedProjectInfo
   }
 }

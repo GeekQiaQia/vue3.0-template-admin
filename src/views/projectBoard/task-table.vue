@@ -46,7 +46,7 @@
             v-else
             size="mini"
             icon="el-icon-edit"
-            @click="handleEdit()"
+            @click="handleEdit(scope.$index, scope.row)"
           >编辑</el-button>
           <el-popconfirm
             confirm-button-text="确定"
@@ -75,13 +75,24 @@ defineProps<{
   status: Map<string, {text: string, type: string}>
 }>()
 
+const emit = defineEmits(['updateTask', 'modifyProjectEdit'])
+
+// 将任务修改为可编辑
 function handleEdit(index: number, row: TaskListData) {
   // eslint-disable-next-line no-console
   console.log(index, row)
+
+  emit('modifyProjectEdit', index, true)
 }
 
-function handleSave() {
+// 修改任务后，保存
+function handleSave(index: number, row: TaskListData) {
+  // eslint-disable-next-line no-console
+  console.log(index, row)
 
+   emit('updateTask', index, row)
+
+   emit('modifyProjectEdit', index, false)
 }
 
 function handleDelete() {

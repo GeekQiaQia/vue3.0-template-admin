@@ -106,6 +106,8 @@
             <task-table
               :data="tableData"
               :status="STATUS_MAP"
+              @updateTask="updateTask"
+              @modifyProjectEdit="modifyProjectEdit"
             />
           </div>
         </div>
@@ -118,8 +120,6 @@ import _ from 'lodash'
 import { ref, Ref, computed, watch, reactive } from 'vue';
 import ProjectStore, { ProjectData, TaskListData } from './store/index'
 import TaskTable from './task-table.vue'
-import Driver from 'driver.js';
-import Search from '@/components/Search/index.vue';
 
 const formInline = reactive({
   taskStatus: '',
@@ -153,22 +153,16 @@ const STATUS_MAP = new Map([
 const target: Ref<ProjectData> = ref({} as ProjectData)
 
 const {
+  data,
   getProjectInfo,
-  data
+  updatedProjectInfo,
 } = ProjectStore()
 
 // 数据初始化
 getProjectInfo()
 
 // 表格的数据
-const tableData: any = computed(() => {
-  return _.map(target.value.taskList, task => {
-    return {
-      ...task,
-      edit: false
-    }
-  })
-})
+const tableData: any = computed(() => target.value.taskList)
 
 // 点击具体项目
 function onClickProject(project: ProjectData) {
@@ -193,6 +187,30 @@ function generate(taskList: Array<TaskListData>) {
 function onSearch() {
   // eslint-disable-next-line no-console
   console.log('search!')
+}
+
+// 修改项目任务的编辑状态
+// 编辑的状态很hack， 这个属性需要结合后台的业务进行理解
+function modifyProjectEdit($index: number, edit: boolean) {
+  const list = _.get(target, 'value.taskList') || []
+
+  target.value.taskList =  _.map(list, (task: TaskListData, index: number) => {
+    if ($index === index) {
+      return {
+        ...task,
+        edit,
+      }
+    }
+
+    return task
+  })
+}
+
+// 更新项目的具体任务详情
+function updateTask($index: number, task: TaskListData) {
+  const projectId = target.value.projectId
+
+  updatedProjectInfo(projectId, $index, task)
 }
 
 </script>
