@@ -1,1 +1,0 @@
-import{r as s}from"./index.704b63ee.js";const e="/api/setting/basicInfo",t="/api/personal/tags";class o{static postSetBasicInfo(t){return s({url:e,method:"post",json:!0,data:t}).then((s=>0===s.status?Promise.resolve(s):Promise.reject(s)))}static getPersonTags(){return s({url:t,method:"get",json:!0}).then((s=>0===s.status?Promise.resolve(s):Promise.reject(s)))}}export{o as S};
