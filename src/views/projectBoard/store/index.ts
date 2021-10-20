@@ -36,6 +36,7 @@ export default () => {
     })
   }
 
+  // 更新指定数据
   function updatedProjectInfo(projectId: string, taskListIndex: number, task: TaskListData) {
     const targetProjectIndex = _.findIndex(data.value, ['projectId', projectId])
     const targetTaskList = data.value[targetProjectIndex].taskList
@@ -45,9 +46,31 @@ export default () => {
     })
   }
 
+  // 新增指定项目的任务
+  function addProjectTask(projectId: string, task: TaskListData) {
+    const targetProjectIndex = _.findIndex(data.value, ['projectId', projectId])
+
+    data.value[targetProjectIndex].taskList.push(task)
+  }
+
+  // 删除某个任务
+  function deleteTask(projectId: string, taskListIndex: number) {
+    const targetProjectIndex = _.findIndex(data.value, ['projectId', projectId])
+
+    data.value[targetProjectIndex].taskList.splice(taskListIndex, 1)
+  }
+
+  // 获取具体项目的任务列表
+  function getProjectDetail(projectId: string) {
+    return _.find(data.value, (item) => item.projectId === projectId)
+  }
+
   return {
     data,
     getProjectInfo,
-    updatedProjectInfo
+    updatedProjectInfo,
+    addProjectTask,
+    deleteTask,
+    getProjectDetail
   }
 }

@@ -24,7 +24,14 @@
 
       <el-table-column prop="taskStatus" label="任务状态">
         <template #default="scope">
-          <el-input v-if="scope.row.edit" v-model="scope.row.taskStatus"></el-input>
+          <el-select v-if="scope.row.edit" v-model="scope.row.taskStatus" placeholder="选择任务状态">
+            <el-option label="准备阶段" :value="1"></el-option>
+            <el-option label="开发中" :value="2"></el-option>
+            <el-option label="开发完成" :value="3"></el-option>
+            <el-option label="测试阶段" :value="4"></el-option>
+            <el-option label="待发布" :value="5"></el-option>
+          </el-select>
+
           <el-tag
             v-else
             :type="status.get(`${scope.row.taskStatus}`)?.type"
@@ -54,7 +61,7 @@
             icon="el-icon-info"
             icon-color="red"
             title="确定删除该条记录吗？"
-            @confirm="handleDelete()"
+            @confirm="handleDelete(scope.$index, scope.row)"
           >
             <template #reference>
               <el-button size="mini" icon="el-icon-delete" type="danger">删除</el-button>
@@ -63,26 +70,35 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <div class="task-table__add">
+      <el-button @click="handleAddRecord">+ 新增任务</el-button>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
 import _ from 'lodash'
 import { computed } from 'vue'
 import { TaskListData } from './store/index'
+import { key } from '../../store/index';
 
+/*
+* @param data 表格的数据
+* @param status 任务的状态
+*/
 defineProps<{
   data: Array<TaskListData>
   status: Map<string, {text: string, type: string}>
 }>()
 
-const emit = defineEmits(['updateTask', 'modifyProjectEdit'])
+const emit = defineEmits(['updateTask', 'modifyTaskEdit', 'addProjectTask', 'deleteProjectTask'])
 
 // 将任务修改为可编辑
 function handleEdit(index: number, row: TaskListData) {
   // eslint-disable-next-line no-console
   console.log(index, row)
 
-  emit('modifyProjectEdit', index, true)
+  emit('modifyTaskEdit', index, true)
 }
 
 // 修改任务后，保存
@@ -92,16 +108,27 @@ function handleSave(index: number, row: TaskListData) {
 
    emit('updateTask', index, row)
 
-   emit('modifyProjectEdit', index, false)
+   emit('modifyTaskEdit', index, false)
 }
 
-function handleDelete() {
+// 删除任务
+function handleDelete(index: number, row: TaskListData) {
+  emit('deleteProjectTask', index)
+}
 
+// 新增一条空的任务
+function handleAddRecord() {
+  emit('addProjectTask')
 }
 </script>
 
 <style lang="stylus" scoped>
 .task-table {
   margin-top: 16px;
+
+  &__add {
+    margin-top: 16px;
+    text-align: center;
+  }
 }
 </style>

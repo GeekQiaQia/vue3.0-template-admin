@@ -85,10 +85,22 @@
           <div class="board__detail-search">
             <el-form :inline="true" :model="formInline">
               <el-form-item label="开发人">
-                <el-input v-model="formInline.developMember" placeholder="请输入开发人"></el-input>
+                <el-select
+                  clearable
+                  v-model="formInline.developMember"
+                  placeholder="选择任务开发者">
+                  <el-option
+                    v-for="(member, index) of developMember"
+                    :key="index"
+                    :label="member"
+                    :value="member" />
+                </el-select>
               </el-form-item>
               <el-form-item label="任务状态">
-                <el-select v-model="formInline.taskStatus" placeholder="选择任务状态">
+                <el-select
+                  clearable
+                  v-model="formInline.taskStatus"
+                  placeholder="选择任务状态">
                   <el-option label="准备阶段" :value="1"></el-option>
                   <el-option label="开发中" :value="2"></el-option>
                   <el-option label="开发完成" :value="3"></el-option>
@@ -107,7 +119,9 @@
               :data="tableData"
               :status="STATUS_MAP"
               @updateTask="updateTask"
-              @modifyProjectEdit="modifyProjectEdit"
+              @modifyTaskEdit="modifyTaskEdit"
+              @addProjectTask="handleAddProjectTask"
+              @deleteProjectTask="handleDeleteTask"
             />
           </div>
         </div>
@@ -156,13 +170,32 @@ const {
   data,
   getProjectInfo,
   updatedProjectInfo,
+  addProjectTask,
+  deleteTask,
+  getProjectDetail
 } = ProjectStore()
 
 // 数据初始化
 getProjectInfo()
+  .then(() => {
+    target.value = data.value[0] // 默认选中第一个项目
+  })
 
 // 表格的数据
-const tableData: any = computed(() => target.value.taskList)
+const tableData: Array<TaskListData> = ref([] as Array<TaskListData>)
+
+// 任务所有的开发者
+const developMember: Array<string> = computed(() => {
+  const result = _.map(target.value.taskList, (task) => {
+    return task.developMember
+  })
+
+  return _.uniq(result)
+})
+
+watch(() => target.value, (newValue) => {
+  tableData.value = newValue.taskList
+})
 
 // 点击具体项目
 function onClickProject(project: ProjectData) {
@@ -186,12 +219,50 @@ function generate(taskList: Array<TaskListData>) {
 // 搜索
 function onSearch() {
   // eslint-disable-next-line no-console
-  console.log('search!')
+  console.log('search!', formInline)
+
+  const taskStatus = formInline.taskStatus
+  const developMember = formInline.developMember
+
+  if (taskStatus && developMember) {
+    tableData.value = _.map(target.value.taskList, (task) => {
+      if (task.developMember === developMember && task.taskStatus === taskStatus) {
+        return task
+      }
+    })
+    .filter(_ => _)
+
+    return
+  }
+
+  if (taskStatus) {
+    tableData.value = _.map(target.value.taskList, (task) => {
+      if (task.taskStatus === taskStatus) {
+        return task
+      }
+    })
+    .filter(_ => _)
+
+    return
+  }
+
+  if (developMember) {
+    tableData.value = _.map(target.value.taskList, (task) => {
+      if (task.developMember === developMember) {
+        return task
+      }
+    })
+    .filter(_ => _)
+
+    return
+  }
+
+  // 空状态筛选，返回全部数据
+  tableData.value = target.value.taskList
 }
 
-// 修改项目任务的编辑状态
-// 编辑的状态很hack， 这个属性需要结合后台的业务进行理解
-function modifyProjectEdit($index: number, edit: boolean) {
+// 修改项目任务的编辑状态 编辑的状态很hack， 这个属性需要结合后台的业务进行理解
+function modifyTaskEdit($index: number, edit: boolean) {
   const list = _.get(target, 'value.taskList') || []
 
   target.value.taskList =  _.map(list, (task: TaskListData, index: number) => {
@@ -213,6 +284,30 @@ function updateTask($index: number, task: TaskListData) {
   updatedProjectInfo(projectId, $index, task)
 }
 
+// 新增任务
+function handleAddProjectTask() {
+  const projectId = target.value.projectId
+
+  const task = {
+    taskName: '',
+    developTime: '',
+    developMember: '',
+    taskStatus: '',
+    edit: true
+  }
+
+  addProjectTask(projectId, task)
+
+  // 添加数据后，需要获取新的项目，触发watch，更新任务列表
+  target.value = getProjectDetail(projectId)
+}
+
+// 删除任务
+function handleDeleteTask($index: number) {
+  const projectId = target.value.projectId
+
+  deleteTask(projectId, $index)
+}
 </script>
 
 <style lang="stylus" scoped>
