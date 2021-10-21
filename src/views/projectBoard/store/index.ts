@@ -39,11 +39,8 @@ export default () => {
   // 更新指定数据
   function updatedProjectInfo(projectId: string, taskListIndex: number, task: TaskListData) {
     const targetProjectIndex = _.findIndex(data.value, ['projectId', projectId])
-    const targetTaskList = data.value[targetProjectIndex].taskList
 
-    data.value[targetProjectIndex].taskList = _.map(targetTaskList, (item: TaskListData, index: number) => {
-      return index === taskListIndex ? task : item
-    })
+    data.value[targetProjectIndex].taskList.splice(taskListIndex, 1, task)
   }
 
   // 新增指定项目的任务
@@ -60,6 +57,23 @@ export default () => {
     data.value[targetProjectIndex].taskList.splice(taskListIndex, 1)
   }
 
+  // 修改任务的可编辑状态
+  function modifyTaskEdit(projectId: string, taskListIndex: number, edit: boolean = false) {
+    const targetProjectIndex = _.findIndex(data.value, ['projectId', projectId])
+    const targetTaskList = data.value[targetProjectIndex].taskList
+
+    data.value[targetProjectIndex].taskList =  _.map(targetTaskList, (task: TaskListData, index: number) => {
+      if (taskListIndex === index) {
+        return {
+          ...task,
+          edit,
+        }
+      }
+  
+      return task
+    })
+  }
+
   // 获取具体项目的任务列表
   function getProjectDetail(projectId: string) {
     return _.find(data.value, (item) => item.projectId === projectId)
@@ -71,6 +85,7 @@ export default () => {
     updatedProjectInfo,
     addProjectTask,
     deleteTask,
-    getProjectDetail
+    getProjectDetail,
+    modifyTaskEdit
   }
 }

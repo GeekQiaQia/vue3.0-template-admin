@@ -119,7 +119,7 @@
               :data="tableData"
               :status="STATUS_MAP"
               @updateTask="updateTask"
-              @modifyTaskEdit="modifyTaskEdit"
+              @modifyTaskEdit="handleModifyTaskEdit"
               @addProjectTask="handleAddProjectTask"
               @deleteProjectTask="handleDeleteTask"
             />
@@ -136,7 +136,7 @@ import ProjectStore, { ProjectData, TaskListData } from './store/index'
 import TaskTable from './task-table.vue'
 
 const formInline = reactive({
-  taskStatus: '',
+  taskStatus: null,
   developMember: ''
 })
 
@@ -166,13 +166,17 @@ const STATUS_MAP = new Map([
 // 具体的项目
 const target: Ref<ProjectData> = ref({} as ProjectData)
 
+// 表格的数据
+const tableData: Ref<Array<TaskListData>> = ref([])
+
 const {
   data,
   getProjectInfo,
   updatedProjectInfo,
   addProjectTask,
   deleteTask,
-  getProjectDetail
+  getProjectDetail,
+  modifyTaskEdit
 } = ProjectStore()
 
 // 数据初始化
@@ -181,20 +185,18 @@ getProjectInfo()
     target.value = data.value[0] // 默认选中第一个项目
   })
 
-// 表格的数据
-const tableData: Array<TaskListData> = ref([] as Array<TaskListData>)
+watch(() => target.value, (newValue) => {
+  tableData.value = newValue.taskList
+}, { deep: true })
 
 // 任务所有的开发者
-const developMember: Array<string> = computed(() => {
+const developMember = computed(() => {
   const result = _.map(target.value.taskList, (task) => {
     return task.developMember
   })
+  .filter(_ => _)
 
   return _.uniq(result)
-})
-
-watch(() => target.value, (newValue) => {
-  tableData.value = newValue.taskList
 })
 
 // 点击具体项目
@@ -225,34 +227,40 @@ function onSearch() {
   const developMember = formInline.developMember
 
   if (taskStatus && developMember) {
-    tableData.value = _.map(target.value.taskList, (task) => {
+    const result = _.map(target.value.taskList, (task) => {
       if (task.developMember === developMember && task.taskStatus === taskStatus) {
         return task
       }
     })
     .filter(_ => _)
 
+    tableData.value = result as Array<TaskListData>
+
     return
   }
 
   if (taskStatus) {
-    tableData.value = _.map(target.value.taskList, (task) => {
+    const result = _.map(target.value.taskList, (task) => {
       if (task.taskStatus === taskStatus) {
         return task
       }
     })
     .filter(_ => _)
 
+    tableData.value = result as Array<TaskListData>
+
     return
   }
 
   if (developMember) {
-    tableData.value = _.map(target.value.taskList, (task) => {
+    const result = _.map(target.value.taskList, (task) => {
       if (task.developMember === developMember) {
         return task
       }
     })
     .filter(_ => _)
+
+    tableData.value = result as Array<TaskListData>
 
     return
   }
@@ -262,19 +270,12 @@ function onSearch() {
 }
 
 // 修改项目任务的编辑状态 编辑的状态很hack， 这个属性需要结合后台的业务进行理解
-function modifyTaskEdit($index: number, edit: boolean) {
-  const list = _.get(target, 'value.taskList') || []
+function handleModifyTaskEdit($index: number, edit: boolean) {
+  const projectId = target.value.projectId
 
-  target.value.taskList =  _.map(list, (task: TaskListData, index: number) => {
-    if ($index === index) {
-      return {
-        ...task,
-        edit,
-      }
-    }
-
-    return task
-  })
+  // 修改状态后，在拉取新的数据
+  modifyTaskEdit(projectId, $index, edit)
+  target.value = getProjectDetail(projectId) as ProjectData
 }
 
 // 更新项目的具体任务详情
@@ -292,14 +293,11 @@ function handleAddProjectTask() {
     taskName: '',
     developTime: '',
     developMember: '',
-    taskStatus: '',
+    taskStatus: 1,
     edit: true
   }
 
   addProjectTask(projectId, task)
-
-  // 添加数据后，需要获取新的项目，触发watch，更新任务列表
-  target.value = getProjectDetail(projectId)
 }
 
 // 删除任务
