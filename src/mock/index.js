@@ -43,6 +43,98 @@ const getSwiperInfo=()=>({
           message:'成功'
     })
 
+const getProjectInfo = {
+    status: 0,
+    message:'成功',
+    data:[{
+        projectId: '1',
+        projectName: '后台管理系统',
+        principal: '张三',
+        timeConsuming: '20小时',
+        status: '开发中',
+        taskList: [{
+            taskName: '导航栏开发',
+            developTime: '3工时',
+            developMember: '李四',
+            taskStatus: 1 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        },{
+            taskName: '内容页开发',
+            developTime: '8工时',
+            developMember: '王五',
+            taskStatus: 2 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        },{
+            taskName: '侧边栏开发',
+            developTime: '9工时',
+            developMember: '赵六',
+            taskStatus: 3 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        },{
+            taskName: '侧边栏开发',
+            developTime: '9工时',
+            developMember: '赵六',
+            taskStatus: 3 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        },{
+            taskName: '侧边栏开发',
+            developTime: '9工时',
+            developMember: '赵六',
+            taskStatus: 4 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        },{
+            taskName: '侧边栏开发',
+            developTime: '9工时',
+            developMember: '赵六',
+            taskStatus: 5 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        }]
+    },{
+        projectId: '2',
+        projectName: '学生管理系统',
+        principal: '老王',
+        timeConsuming: '27小时',
+        status: '开发中',
+        taskList: [{
+            taskName: '导航栏开发',
+            developTime: '10工时',
+            developMember: '李四',
+            taskStatus: 1 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        },{
+            taskName: '内容页开发',
+            developTime: '8工时',
+            developMember: '王五',
+            taskStatus: 2 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        },{
+            taskName: '侧边栏开发',
+            developTime: '9工时',
+            developMember: '赵六',
+            taskStatus: 2 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        },{
+            taskName: '侧边栏开发',
+            developTime: '9工时',
+            developMember: '赵六',
+            taskStatus: 4 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        }]
+    },{
+        projectId: '3',
+        projectName: '成绩管理系统',
+        principal: '王五',
+        timeConsuming: '40小时',
+        status: '开发中',
+        taskList: [{
+            taskName: '导航栏开发',
+            developTime: '13工时',
+            developMember: '李四',
+            taskStatus: 1 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        },{
+            taskName: '内容页开发',
+            developTime: '18工时',
+            developMember: '王五',
+            taskStatus: 2 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        },{
+            taskName: '侧边栏开发',
+            developTime: '9工时',
+            developMember: '赵六',
+            taskStatus: 3 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+        }]
+    }],
+}
+
 Mock.mock('/api/auth/user/login','post',(option) => {
     const {email,password} = JSON.parse(option.body);
     console.log(email,password);
@@ -118,7 +210,7 @@ Mock.mock('/api/auth/user/register','post',() => ({
             return {
                 status: 0,
                 data:{
-                    authedRoutes:['/dashboard','/guide', '/copy','/zip','/role','/menu','/excel','/table','/form','/qrcode','/dragable','/editor','/upload','/cropper','/personal']
+                    authedRoutes:['/dashboard','/guide', '/copy','/zip','/role','/menu','/excel','/table','/form','/qrcode','/dragable','/editor','/upload','/cropper','/personal', '/projectboard']
                 },
                 success: true,
                 message:'成功'
@@ -300,3 +392,4 @@ Mock.mock('/api/auth/roles','get',genRoles);
 Mock.mock('/api/home/swiperInfo','get',getSwiperInfo);
 
 
+Mock.mock('/api/project/list', 'get', getProjectInfo);
