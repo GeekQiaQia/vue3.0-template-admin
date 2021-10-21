@@ -210,7 +210,7 @@ Mock.mock('/api/auth/user/register','post',() => ({
             return {
                 status: 0,
                 data:{
-                    authedRoutes:['/dashboard','/guide', '/copy','/zip','/role','/menu','/excel','/table','/form','/qrcode','/dragable','/editor','/upload','/cropper','/personal', '/projectboard']
+                    authedRoutes:['/dashboard','/guide', '/copy','/zip','/role','/menu', '/projectboard', '/excel','/table','/form','/qrcode','/dragable','/editor','/upload','/cropper','/personal']
                 },
                 success: true,
                 message:'成功'

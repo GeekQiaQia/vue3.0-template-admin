@@ -534,6 +534,32 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: '/projectboard',
+    component: layout,
+    redirect: '/projectboard/manage',
+    meta: {
+      title:{
+        '/zh-CN': '项目看板',
+        '/en-US': 'Project Board'
+      },
+      icon: 'el-icon-folder-opened',
+    },
+    children: [
+      {
+        path: '/projectboard/manage',
+        name: 'roleManage',
+        component: () => import(/* webpackChunkName: "projectBoard" */ '@/views/projectBoard/index.vue'),
+        meta: {
+          title:{
+            '/zh-CN': '项目看板',
+            '/en-US': 'Project Board'
+          },
+          icon: 'el-icon-folder-opened',
+        },
+      },
+    ]
+  },
+  {
     path: '/personal',
     component: layout,
     redirect: '/personal/personalCenter',
@@ -570,32 +596,6 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         },
       },
     ],
-  },
-  {
-    path: '/projectboard',
-    component: layout,
-    redirect: '/projectboard/manage',
-    meta: {
-      title:{
-        '/zh-CN': '项目看板',
-        '/en-US': 'Project Board'
-      },
-      icon: 'el-icon-folder-opened',
-    },
-    children: [
-      {
-        path: '/projectboard/manage',
-        name: 'roleManage',
-        component: () => import(/* webpackChunkName: "projectBoard" */ '@/views/projectBoard/index.vue'),
-        meta: {
-          title:{
-            '/zh-CN': '项目看板',
-            '/en-US': 'Project Board'
-          },
-          icon: 'el-icon-folder-opened',
-        },
-      },
-    ]
   },
 ];
 
