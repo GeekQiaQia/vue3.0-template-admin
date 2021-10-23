@@ -70,7 +70,7 @@
 
               <el-col :span="18">
                 <span class="board__detail-name">任务进度</span>：
-                <template v-for="(item, index) of generate(target.taskList)" :key="index">
+                <template v-for="(item, index) of taskStatusList" :key="index">
                   <el-tag
                     class="board__detail-tag"
                     :type="item.type"
@@ -184,6 +184,20 @@ watch(() => target.value, (newValue) => {
   tableData.value = newValue.taskList
 }, { deep: true })
 
+const taskStatusList = computed(() => {
+  // 聚合项目中的任务状态数量
+  const data = _.countBy(target.value.taskList, (item) => item.taskStatus)
+
+  return _.map(Object.entries(data), ([key, value]) => {
+    const result = STATUS_MAP.get(key)
+
+    return {
+      ...result,
+      count: value,
+    }
+  })
+})
+
 // 任务所有的开发者
 const developMember = computed(() => {
   const result = _.map(target.value.taskList, (task) => {
@@ -197,20 +211,6 @@ const developMember = computed(() => {
 // 点击具体项目
 function onClickProject(project: ProjectData) {
   target.value = project
-}
-
-// 聚合项目中的任务状态数量
-function generate(taskList: Array<TaskListData>) {
-  const data = _.countBy(taskList, (item) => item.taskStatus)
-
-  return _.map(Object.entries(data), ([key, value]) => {
-    const result = STATUS_MAP.get(key)
-
-    return {
-      ...result,
-      count: value,
-    }
-  })
 }
 
 // 搜索
