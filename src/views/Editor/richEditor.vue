@@ -55,7 +55,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .editorWrapper {
   margin-top: 20px;
-  :deep .w-e-text-container {
+  :deep(.w-e-text-container) {
     text-align: left;
   }
   .info {
