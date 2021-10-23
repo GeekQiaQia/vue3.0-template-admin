@@ -301,50 +301,58 @@ export default defineComponent({
 <style lang="stylus" scoped>
 .form-container{
   width:100%;
-   :deep .el-input-group__append, .el-input-group__prepend{
-      padding:0px 7px;
+
+  :deep(.el-input-group__append) {
+    padding:0px 7px;
+  }
+
+  :deep(.el-input-group__prepend) {
+    padding:0px 7px;
+  }
+
+  .login-form{
+    width:100%;
+    margin: 0 auto;
+  }
+  .go-login{
+    font-size: 12px;
+    cursor: pointer;
+    display:flex;
+    flex-direction:row ;
+    justify-content: center;
+    align-items :center;
+
+    .to-login{
+      color: #9fa2a8;
+
+      em{
+        color: #2878ff;
+      }
     }
-    .login-form{
-         width:100%;
-         margin: 0 auto;
-     }
-     .go-login{
-       font-size: 12px;
-       cursor: pointer;
-       display:flex;
-       flex-direction:row ;
-       justify-content: center;
-       align-items :center;
+  }
 
-        .to-login{
-           color: #9fa2a8;
+  .operation{
+    font-size: 12px;
+    cursor: pointer;
+    display:flex;
+    flex-direction:row ;
+    justify-content: space-between;
+    align-items :center;
 
-           em{
-             color: #2878ff;
-           }
-         }
-     }
-     .operation{
-       font-size: 12px;
-       cursor: pointer;
-       display:flex;
-       flex-direction:row ;
-       justify-content: space-between;
-       align-items :center;
+    .free-register{
+        color: #2878ff;
+      }
 
-        .free-register{
-
-           color: #2878ff;
-         }
-         .forget-password{
-           color: #9fa2a8;
-         }
-        .btn-container{
-          display :flex;
-          flex-direction:row;
-          justify-content :flex-start;
-          align-items :center;
-        }
-     }
+      .forget-password{
+        color: #9fa2a8;
+      }
+      
+      .btn-container{
+        display :flex;
+        flex-direction:row;
+        justify-content :flex-start;
+        align-items :center;
+      }
+    }
   }
 </style>

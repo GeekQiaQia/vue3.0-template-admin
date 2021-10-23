@@ -47,7 +47,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .editor-container {
-  :deep .w-e-text-container {
+  :deep(.w-e-text-container){
     text-align: left;
   }
 }
