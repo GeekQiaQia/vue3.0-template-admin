@@ -206,7 +206,7 @@ export default defineComponent({
 .form-container{
 
     width:100%
-    :deep .el-input-group__append, .el-input-group__prepend{
+    &:deep (.el-input-group__append, .el-input-group__prepend){
       padding:0px 7px;
     }
     .login-form{

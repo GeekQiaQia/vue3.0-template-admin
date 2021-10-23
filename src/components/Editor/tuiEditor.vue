@@ -41,11 +41,11 @@ export default defineComponent({
 </script>
 <style lang="stylus" scoped>
 
-:deep .ProseMirror {
+&:deep (.ProseMirror) {
   text-align :left;
 }
 
-:deep .toastui-editor-contents{
+&:deep (.toastui-editor-contents){
   text-align :left;
 }
 </style>
