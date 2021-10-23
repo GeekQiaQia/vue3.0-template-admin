@@ -131,7 +131,7 @@
 </template>
 <script setup lang="ts">
 import _ from 'lodash'
-import { ref, Ref, computed, watch, reactive } from 'vue';
+import { ref, Ref, toRefs, computed, watch, reactive } from 'vue';
 import ProjectStore, { ProjectData, TaskListData } from './store/index'
 import TaskTable from './task-table.vue'
 
@@ -163,15 +163,11 @@ const STATUS_MAP = new Map([
   }]
 ])
 
-// 具体的项目
-const target: Ref<ProjectData> = ref({} as ProjectData)
-
 // 表格的数据
 const tableData: Ref<Array<TaskListData>> = ref([])
 
 const {
-  data,
-  getProjectInfo,
+  store,
   updatedProjectInfo,
   addProjectTask,
   deleteTask,
@@ -179,11 +175,10 @@ const {
   modifyTaskEdit
 } = ProjectStore()
 
-// 数据初始化
-getProjectInfo()
-  .then(() => {
-    target.value = data.value[0] // 默认选中第一个项目
-  })
+const {
+  data, // 所有项目的数据
+  target // 选中的目标项目
+} = toRefs(store)
 
 watch(() => target.value, (newValue) => {
   tableData.value = newValue.taskList
