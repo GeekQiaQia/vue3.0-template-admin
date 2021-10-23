@@ -56,7 +56,7 @@ export default defineConfig({
   },
    // https://www.vitejs.net/config/#build-commonjsoptions
    build:{
-    chunkSizeWarningLimit: 1500,
+    chunkSizeWarningLimit: 2000,
     commonjsOptions:{
       ignoreDynamicRequires:false, // Default: false
       transformMixedEsModules:true,
@@ -67,7 +67,7 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if(id.includes('node_modules')) {
-            return id.toString().split('node_modules')[1].split('/')[0].toString()
+            return id.toString().split('node_modules/')[1].split('/')[0].toString()
           }
         }
       }
