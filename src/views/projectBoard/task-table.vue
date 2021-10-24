@@ -105,9 +105,10 @@ function handleSave(index: number, row: TaskListData) {
   // eslint-disable-next-line no-console
   console.log(index, row)
 
-   emit('updateTask', index, row)
-
-   emit('modifyTaskEdit', index, false)
+   emit('updateTask', index, {
+     ...row,
+     edit: false
+   })
 }
 
 // 删除任务
