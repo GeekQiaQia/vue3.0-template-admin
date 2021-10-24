@@ -101,11 +101,11 @@
                   clearable
                   v-model="formInline.taskStatus"
                   placeholder="选择任务状态">
-                  <el-option label="准备阶段" :value="1"></el-option>
-                  <el-option label="开发中" :value="2"></el-option>
-                  <el-option label="开发完成" :value="3"></el-option>
-                  <el-option label="测试阶段" :value="4"></el-option>
-                  <el-option label="待发布" :value="5"></el-option>
+                  <el-option label="准备阶段" value="preparation"></el-option>
+                  <el-option label="开发中" value="development"></el-option>
+                  <el-option label="开发完成" value="completed"></el-option>
+                  <el-option label="测试阶段" value="test"></el-option>
+                  <el-option label="待发布" value="released"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item>
@@ -141,23 +141,23 @@ const formInline = reactive({
 })
 
 const STATUS_MAP = new Map([
-  ['1', {
+  ['preparation', {
     text: '准备阶段',
     type: 'info',
   }],
-  ['2', {
+  ['development', {
     text: '开发中',
     type: '',
   }],
-  ['3', {
+  ['completed', {
     text: '开发完成',
     type: 'success',
   }],
-  ['4', {
+  ['test', {
     text: '测试阶段',
     type: 'danger',
   }],
-  ['5', {
+  ['released', {
     text: '待发布',
     type: 'warning',
   }]
@@ -171,7 +171,6 @@ const {
   updatedProjectInfo,
   addProjectTask,
   deleteTask,
-  getProjectDetail,
   modifyTaskEdit
 } = ProjectStore()
 
@@ -265,19 +264,17 @@ function onSearch() {
 }
 
 // 修改项目任务的编辑状态 编辑的状态很hack， 这个属性需要结合后台的业务进行理解
-function handleModifyTaskEdit($index: number, edit: boolean) {
+function handleModifyTaskEdit($taskId: number, edit: boolean) {
   const projectId = target.value.projectId
 
-  // 修改状态后，在拉取新的数据
-  modifyTaskEdit(projectId, $index, edit)
-  target.value = getProjectDetail(projectId) as ProjectData
+  modifyTaskEdit(projectId, $taskId, edit)
 }
 
 // 更新项目的具体任务详情
-function updateTask($index: number, task: TaskListData) {
+function updateTask($taskId: number, task: TaskListData) {
   const projectId = target.value.projectId
 
-  updatedProjectInfo(projectId, $index, task)
+  updatedProjectInfo(projectId, $taskId, task)
 }
 
 // 新增任务
@@ -288,18 +285,19 @@ function handleAddProjectTask() {
     taskName: '',
     developTime: '',
     developMember: '',
-    taskStatus: 1,
-    edit: true
+    taskStatus: 'preparation',
+    edit: true,
+    taskId: Date.now(),
   }
 
   addProjectTask(projectId, task)
 }
 
 // 删除任务
-function handleDeleteTask($index: number) {
+function handleDeleteTask($taskId: number) {
   const projectId = target.value.projectId
 
-  deleteTask(projectId, $index)
+  deleteTask(projectId, $taskId)
 }
 </script>
 

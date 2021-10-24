@@ -25,11 +25,11 @@
       <el-table-column prop="taskStatus" label="任务状态">
         <template #default="scope">
           <el-select v-if="scope.row.edit" v-model="scope.row.taskStatus" placeholder="选择任务状态">
-            <el-option label="准备阶段" :value="1"></el-option>
-            <el-option label="开发中" :value="2"></el-option>
-            <el-option label="开发完成" :value="3"></el-option>
-            <el-option label="测试阶段" :value="4"></el-option>
-            <el-option label="待发布" :value="5"></el-option>
+            <el-option label="准备阶段" value="preparation"></el-option>
+            <el-option label="开发中" value="development"></el-option>
+            <el-option label="开发完成" value="completed"></el-option>
+            <el-option label="测试阶段" value="test"></el-option>
+            <el-option label="待发布" value="released"></el-option>
           </el-select>
 
           <el-tag
@@ -46,14 +46,14 @@
             size="mini"
             type="success"
             icon="el-icon-check"
-            @click="handleSave(scope.$index, scope.row)"
+            @click="handleSave(scope.row)"
           >保存</el-button>
 
           <el-button
             v-else
             size="mini"
             icon="el-icon-edit"
-            @click="handleEdit(scope.$index, scope.row)"
+            @click="handleEdit(scope.row)"
           >编辑</el-button>
           <el-popconfirm
             confirm-button-text="确定"
@@ -61,7 +61,7 @@
             icon="el-icon-info"
             icon-color="red"
             title="确定删除该条记录吗？"
-            @confirm="handleDelete(scope.$index, scope.row)"
+            @confirm="handleDelete(scope.row)"
           >
             <template #reference>
               <el-button size="mini" icon="el-icon-delete" type="danger">删除</el-button>
@@ -93,27 +93,31 @@ defineProps<{
 const emit = defineEmits(['updateTask', 'modifyTaskEdit', 'addProjectTask', 'deleteProjectTask'])
 
 // 将任务修改为可编辑
-function handleEdit(index: number, row: TaskListData) {
+function handleEdit(row: TaskListData) {
   // eslint-disable-next-line no-console
-  console.log(index, row)
+  console.log(row)
+  const taskId = row.taskId
 
-  emit('modifyTaskEdit', index, true)
+  emit('modifyTaskEdit', taskId, true)
 }
 
 // 修改任务后，保存
-function handleSave(index: number, row: TaskListData) {
+function handleSave(row: TaskListData) {
   // eslint-disable-next-line no-console
-  console.log(index, row)
+  console.log(row)
+  const taskId = row.taskId
 
-   emit('updateTask', index, {
+   emit('updateTask', taskId, {
      ...row,
      edit: false
    })
 }
 
 // 删除任务
-function handleDelete(index: number, row: TaskListData) {
-  emit('deleteProjectTask', index)
+function handleDelete(row: TaskListData) {
+  const taskId = row.taskId
+
+  emit('deleteProjectTask', taskId)
 }
 
 // 新增一条空的任务
