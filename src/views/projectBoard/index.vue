@@ -80,50 +80,57 @@
             </el-row>
           </div>
 
-          <el-divider />
+          <el-tabs
+            v-model="mode"
+            type="card"
+            @tab-click="handleClick">
+            <el-tab-pane label="表格模式" name="table">
+              <div class="board__detail-search">
+                <el-form :inline="true" :model="formInline">
+                  <el-form-item label="开发人">
+                    <el-select
+                      clearable
+                      v-model="formInline.developMember"
+                      placeholder="选择任务开发者">
+                      <el-option
+                        v-for="(member, index) of developMember"
+                        :key="index"
+                        :label="member"
+                        :value="member" />
+                    </el-select>
+                  </el-form-item>
+                  <el-form-item label="任务状态">
+                    <el-select
+                      clearable
+                      v-model="formInline.taskStatus"
+                      placeholder="选择任务状态">
+                      <el-option label="准备阶段" value="preparation"></el-option>
+                      <el-option label="开发中" value="development"></el-option>
+                      <el-option label="开发完成" value="completed"></el-option>
+                      <el-option label="测试阶段" value="test"></el-option>
+                      <el-option label="待发布" value="released"></el-option>
+                    </el-select>
+                  </el-form-item>
+                  <el-form-item>
+                    <el-button type="primary" @click="onSearch">查询</el-button>
+                  </el-form-item>
+                </el-form>
+              </div>
 
-          <div class="board__detail-search">
-            <el-form :inline="true" :model="formInline">
-              <el-form-item label="开发人">
-                <el-select
-                  clearable
-                  v-model="formInline.developMember"
-                  placeholder="选择任务开发者">
-                  <el-option
-                    v-for="(member, index) of developMember"
-                    :key="index"
-                    :label="member"
-                    :value="member" />
-                </el-select>
-              </el-form-item>
-              <el-form-item label="任务状态">
-                <el-select
-                  clearable
-                  v-model="formInline.taskStatus"
-                  placeholder="选择任务状态">
-                  <el-option label="准备阶段" value="preparation"></el-option>
-                  <el-option label="开发中" value="development"></el-option>
-                  <el-option label="开发完成" value="completed"></el-option>
-                  <el-option label="测试阶段" value="test"></el-option>
-                  <el-option label="待发布" value="released"></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item>
-                <el-button type="primary" @click="onSearch">查询</el-button>
-              </el-form-item>
-            </el-form>
-          </div>
+              <div class="board__detail-table">
+                <task-table
+                  :data="tableData"
+                  :status="STATUS_MAP"
+                  @updateTask="updateTask"
+                  @modifyTaskEdit="handleModifyTaskEdit"
+                  @addProjectTask="handleAddProjectTask"
+                  @deleteProjectTask="handleDeleteTask"
+                />
+              </div>
+            </el-tab-pane>
 
-          <div class="board__detail-table">
-            <task-table
-              :data="tableData"
-              :status="STATUS_MAP"
-              @updateTask="updateTask"
-              @modifyTaskEdit="handleModifyTaskEdit"
-              @addProjectTask="handleAddProjectTask"
-              @deleteProjectTask="handleDeleteTask"
-            />
-          </div>
+            <el-tab-pane label="列表模式" name="column">列表</el-tab-pane>
+          </el-tabs>
         </div>
       </el-card>
     </div>
@@ -165,6 +172,8 @@ const STATUS_MAP = new Map([
 
 // 表格的数据
 const tableData: Ref<Array<TaskListData>> = ref([])
+
+const mode: Ref<string> = ref('table')
 
 const {
   store,
@@ -299,6 +308,24 @@ function handleDeleteTask($taskId: number) {
 
   deleteTask(projectId, $taskId)
 }
+
+// 模式切换点击
+function handleClick(tab: any) {
+  switch (tab.paneName) {
+    case 'table':
+      // newpage logType:10042
+      console.log('表格形式')
+
+      break
+    case '列表形式':
+      console.log('列表形式')
+
+      break
+    default:
+      break
+  }
+}
+
 </script>
 
 <style lang="stylus" scoped>
@@ -357,10 +384,11 @@ function handleDeleteTask($taskId: number) {
 
     &-head {
       color: #706e6e;
+      margin-bottom: 30px;
     }
 
     &-search {
-      margin-top: 60px;
+      margin-top: 30px;
       text-align: left;
     }
 
