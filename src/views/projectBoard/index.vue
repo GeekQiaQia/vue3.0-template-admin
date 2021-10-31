@@ -130,7 +130,8 @@
             </el-tab-pane>
 
             <el-tab-pane label="列表模式" name="column">
-              <task-column />
+              <task-column
+                :target="target"/>
             </el-tab-pane>
           </el-tabs>
         </div>

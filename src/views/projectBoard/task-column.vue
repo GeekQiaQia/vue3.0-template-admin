@@ -56,11 +56,23 @@
 <script setup lang="ts">
 import _ from 'lodash'
 import Sortable from 'sortablejs'
-import { ref, Ref, onMounted, onUnmounted } from 'vue'
+import { ref, Ref, onMounted, onUnmounted, computed } from 'vue'
+import { ProjectData } from './store/index'
 
-defineProps()
+const props = defineProps<{
+  target: ProjectData
+}>()
 
 const emit = defineEmits()
+
+const task = computed(() => {
+  // 聚合项目中的任务状态数量
+  return _.groupBy(props.target.taskList, (item) => item.taskStatus)
+})
+
+const taskStatus = computed(() => {
+  return Object.keys(task.value)
+})
 
 const column: Ref<HTMLDivElement> = ref({} as HTMLDivElement)
 const column1: Ref<HTMLDivElement> = ref({} as HTMLDivElement)
