@@ -157,7 +157,7 @@ git merge upstream/main
 
 <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d41b5fec542444b4a28c00135ce27d42~tplv-k3u1fbpfcp-watermark.image" width="180px" />
 
-<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8222ba7cb2504f5c9f8e4bfdd1f0535e~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
+<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d730bcd26505412c865e6a2228922e95~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
 
 ## 赞助 | Sponsored
 
