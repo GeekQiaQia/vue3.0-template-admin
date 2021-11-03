@@ -310,35 +310,41 @@ const getProjectInfo = {
         timeConsuming: '20小时',
         status: '开发中',
         taskList: [{
+            taskId: 1,
             taskName: '导航栏开发',
             developTime: '3工时',
             developMember: '李四',
-            taskStatus: 1 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'preparation' // preparation: 准备阶段，development : 开发中， completed: 开发完成， test：测试阶段，released： 待发布
         },{
+            taskId: 2,
             taskName: '内容页开发',
             developTime: '8工时',
             developMember: '王五',
-            taskStatus: 2 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'development'
         },{
+            taskId: 3,
             taskName: '侧边栏开发',
             developTime: '9工时',
             developMember: '赵六',
-            taskStatus: 3 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'completed'
         },{
+            taskId: 4,
             taskName: '侧边栏开发',
             developTime: '9工时',
             developMember: '赵六',
-            taskStatus: 3 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'completed'
         },{
+            taskId: 5,
             taskName: '侧边栏开发',
             developTime: '9工时',
             developMember: '赵六',
-            taskStatus: 4 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'test'
         },{
+            taskId: 6,
             taskName: '侧边栏开发',
             developTime: '9工时',
             developMember: '赵六',
-            taskStatus: 5 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'released'
         }]
     },{
         projectId: '2',
@@ -347,25 +353,29 @@ const getProjectInfo = {
         timeConsuming: '27小时',
         status: '开发中',
         taskList: [{
+            taskId: 7,
             taskName: '导航栏开发',
             developTime: '10工时',
             developMember: '李四',
-            taskStatus: 1 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'preparation' // preparation: 准备阶段，development : 开发中， completed: 开发完成， test：测试阶段，released： 待发布
         },{
+            taskId: 8,
             taskName: '内容页开发',
             developTime: '8工时',
             developMember: '王五',
-            taskStatus: 2 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'development'
         },{
+            taskId: 9,
             taskName: '侧边栏开发',
             developTime: '9工时',
             developMember: '赵六',
-            taskStatus: 2 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'completed'
         },{
+            taskId: 10,
             taskName: '侧边栏开发',
             developTime: '9工时',
             developMember: '赵六',
-            taskStatus: 4 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'test'
         }]
     },{
         projectId: '3',
@@ -374,20 +384,23 @@ const getProjectInfo = {
         timeConsuming: '40小时',
         status: '开发中',
         taskList: [{
+            taskId: 11,
             taskName: '导航栏开发',
             developTime: '13工时',
             developMember: '李四',
-            taskStatus: 1 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'preparation' // preparation: 准备阶段，development : 开发中， completed: 开发完成， test：测试阶段，released： 待发布
         },{
+            taskId: 12,
             taskName: '内容页开发',
             developTime: '18工时',
             developMember: '王五',
-            taskStatus: 2 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'development'
         },{
+            taskId: 13,
             taskName: '侧边栏开发',
             developTime: '9工时',
             developMember: '赵六',
-            taskStatus: 3 // 1: 准备阶段，2: 开发中， 3: 开发完成， 4：测试阶段，5： 待发布
+            taskStatus: 'completed'
         }]
     }],
 }

@@ -4,10 +4,11 @@ import { reactive } from 'vue';
 
 // 任务数据类型
 export interface TaskListData {
+  taskId: number,
   taskName: string,
   developTime: string,
   developMember: string,
-  taskStatus: number
+  taskStatus: string
 }
 
 // 项目数据类型
@@ -47,33 +48,50 @@ export default () => {
   getProjectInfo()
 
   // 更新指定数据
-  function updatedProjectInfo(projectId: string, taskListIndex: number, task: TaskListData) {
+  function updatedProjectInfo(projectId: string, $taskId: number, newTask: TaskListData) {
     const targetProjectIndex = _.findIndex(store.data, ['projectId', projectId])
+    const targetList = store.data[targetProjectIndex].taskList
+    
+    const newList = _.map(targetList, (task: TaskListData, index: number) => {
+      if (task.taskId === $taskId) {
+        return newTask
+      }
+  
+      return task
+    })
 
-    store.data[targetProjectIndex].taskList.splice(taskListIndex, 1, task)
+    store.data[targetProjectIndex].taskList = newList
   }
 
   // 新增指定项目的任务
   function addProjectTask(projectId: string, task: TaskListData) {
     const targetProjectIndex = _.findIndex(store.data, ['projectId', projectId])
+    const targetList = store.data[targetProjectIndex].taskList
 
-    store.data[targetProjectIndex].taskList.push(task)
+    store.data[targetProjectIndex].taskList = _.concat(targetList, task, [])
   }
 
   // 删除某个任务
-  function deleteTask(projectId: string, taskListIndex: number) {
+  function deleteTask(projectId: string, $taskId: number) {
     const targetProjectIndex = _.findIndex(store.data, ['projectId', projectId])
+    const targetList = store.data[targetProjectIndex].taskList
 
-    store.data[targetProjectIndex].taskList.splice(taskListIndex, 1)
+    const newList = _.map(targetList, (task: TaskListData, index: number) => {
+      if (task.taskId !== $taskId) {
+        return task
+      }
+    }).filter(_ => _)
+
+    store.data[targetProjectIndex].taskList = newList as Array<TaskListData>
   }
 
   // 修改任务的可编辑状态
-  function modifyTaskEdit(projectId: string, taskListIndex: number, edit: boolean = false) {
+  function modifyTaskEdit(projectId: string, $taskId: number, edit: boolean = false) {
     const targetProjectIndex = _.findIndex(store.data, ['projectId', projectId])
-    const targetTaskList = store.data[targetProjectIndex].taskList
+    const targetList = store.data[targetProjectIndex].taskList
 
-    store.data[targetProjectIndex].taskList =  _.map(targetTaskList, (task: TaskListData, index: number) => {
-      if (taskListIndex === index) {
+    const newList = _.map(targetList, (task: TaskListData, index: number) => {
+      if (task.taskId === $taskId) {
         return {
           ...task,
           edit,
@@ -82,6 +100,8 @@ export default () => {
   
       return task
     })
+
+    store.data[targetProjectIndex].taskList = newList
   }
 
   // 获取具体项目的任务列表
