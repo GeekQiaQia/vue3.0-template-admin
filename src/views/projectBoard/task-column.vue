@@ -1,13 +1,17 @@
 <template>
   <div class="task-column">
-    <el-card class="task-column__item">
+    <el-card
+      v-for="status in taskStatus"
+      class="task-column__item">
       <div class="task-column__head">
         <div class="task-column__num">
-          <div class="task-column__num-count">3</div>
+          <div class="task-column__num-count">
+            {{ task[status].length || 0 }}
+          </div>
         </div>
 
         <div class="task-column__type">
-          准备阶段
+          {{ statusMap.get(status)?.text || '未定义' }}
         </div>
 
         <div class="task-column__add">
@@ -15,39 +19,9 @@
         </div>
       </div>
 
-      <div ref="column" data-item="ready">
-        <template v-for="item in dataList">
-          <el-input
-            class="task-column__content"
-            v-model="item.task"
-            readonly
-            placeholder="请输入内容"></el-input>
-        </template>
-      </div>
-    </el-card>
-
-    <el-card class="task-column__item">
-      <div class="task-column__head">
-        <div class="task-column__num">
-          <div class="task-column__num-count">3</div>
-        </div>
-
-        <div class="task-column__type">
-          开发中
-        </div>
-
-        <div class="task-column__add">
-          +
-        </div>
-      </div>
-
-      <div ref="column1" data-item="develop">
-        <template v-for="item in dataList">
-          <el-input
-            class="task-column__content"
-            v-model="item.task"
-            readonly
-            placeholder="请输入内容"></el-input>
+      <div :id="status" :data-item="status">
+        <template v-for="item in task[status]">
+          <div class="task-column__content"> {{ item.taskName }}</div>
         </template>
       </div>
     </el-card>
@@ -61,6 +35,7 @@ import { ProjectData } from './store/index'
 
 const props = defineProps<{
   target: ProjectData
+  statusMap: Map<string, { text: string, type: string }>
 }>()
 
 const emit = defineEmits()
@@ -74,39 +49,29 @@ const taskStatus = computed(() => {
   return Object.keys(task.value)
 })
 
-const column: Ref<HTMLDivElement> = ref({} as HTMLDivElement)
-const column1: Ref<HTMLDivElement> = ref({} as HTMLDivElement)
-let listSortable: Sortable
-let listSortable1: Sortable
-
-const dataList = ref([
-  { id: '1', task: 'task1：可拖拽组件开发' },
-  { id: '2', task: 'task2：监控页面开发' },
-  { id: '3', task: 'task3：低代码平台开发' }
-])
+const sortTableInstance: Ref<Array<Sortable>> = ref([])
 
 onMounted(() => {
-  listSortable = new Sortable(column.value, {
-    group: "name",
-    animation: 150,
-    onAdd: (event) => {
-      console.log(event.from.dataset.item)
-      console.log(event.to.dataset.item)
-    }
-  })
+  for (let i = 0; i < taskStatus.value.length; i ++) {
+    const dom = document.getElementById(taskStatus.value[i])!
 
-  listSortable1 = new Sortable(column1.value, {
-    group: "name",
-    animation: 150,
-    onAdd: (event) => {
-      console.log(event.from.dataset.item)
-      console.log(event.to.dataset.item)
-    }
-  })
+    const instance = new Sortable(dom, {
+      group: "task",
+      animation: 150,
+      onAdd: (event) => {
+        console.log(event.from.dataset.item)
+        console.log(event.to.dataset.item)
+      }
+    })
+
+    sortTableInstance.value.push(instance)
+  }
 })
 
 onUnmounted(() => {
-  listSortable.destroy()
+  _.forEach(sortTableInstance.value, instance => {
+    instance.destroy()
+  })
 })
 
 </script>
@@ -114,17 +79,19 @@ onUnmounted(() => {
 <style lang="stylus" scoped>
 .task-column {
   display: flex;
+  overflow-y: scroll;
 
   :deep(.el-card__body) {
     padding: 0 6px;
   }
 
   > div {
-    width: 260px;
+    width: 270px;
     border: 1px solid #dddada;
     margin: 0 10px;
     height: 100vh;
     min-height: 600px;
+    min-width: 220px;
   }
 
   &__head {
@@ -165,6 +132,9 @@ onUnmounted(() => {
 
   &__content {
     margin-bottom: 6px;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    padding: 10px 6px;
   }
 }
 </style>

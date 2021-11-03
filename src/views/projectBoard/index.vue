@@ -131,6 +131,7 @@
 
             <el-tab-pane label="列表模式" name="column">
               <task-column
+                :statusMap="STATUS_MAP"
                 :target="target"/>
             </el-tab-pane>
           </el-tabs>
