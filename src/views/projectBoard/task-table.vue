@@ -49,12 +49,7 @@
             @click="handleSave(scope.row)"
           >保存</el-button>
 
-          <el-button
-            v-else
-            size="mini"
-            icon="el-icon-edit"
-            @click="handleEdit(scope.row)"
-          >编辑</el-button>
+          <el-button v-else size="mini" icon="el-icon-edit" @click="handleEdit(scope.row)">编辑</el-button>
           <el-popconfirm
             confirm-button-text="确定"
             cancel-button-text="取消"
@@ -87,7 +82,7 @@ import { TaskListData } from './store/index'
 */
 defineProps<{
   data: Array<TaskListData>
-  status: Map<string, {text: string, type: string}>
+  status: Map<string, { text: string, type: string }>
 }>()
 
 const emit = defineEmits(['updateTask', 'modifyTaskEdit', 'addProjectTask', 'deleteProjectTask'])
@@ -107,10 +102,10 @@ function handleSave(row: TaskListData) {
   console.log(row)
   const taskId = row.taskId
 
-   emit('updateTask', taskId, {
-     ...row,
-     edit: false
-   })
+  emit('updateTask', taskId, {
+    ...row,
+    edit: false
+  })
 }
 
 // 删除任务

@@ -129,7 +129,10 @@
               </div>
             </el-tab-pane>
 
-            <el-tab-pane label="列表模式" name="column">列表</el-tab-pane>
+            <el-tab-pane label="列表模式" name="column">
+              <task-column
+                :target="target"/>
+            </el-tab-pane>
           </el-tabs>
         </div>
       </el-card>
@@ -141,6 +144,7 @@ import _ from 'lodash'
 import { ref, Ref, toRefs, computed, watch, reactive } from 'vue';
 import ProjectStore, { ProjectData, TaskListData } from './store/index'
 import TaskTable from './task-table.vue'
+import TaskColumn from './task-column.vue'
 
 const formInline = reactive({
   taskStatus: null,
@@ -173,7 +177,7 @@ const STATUS_MAP = new Map([
 // 表格的数据
 const tableData: Ref<Array<TaskListData>> = ref([])
 
-const mode: Ref<string> = ref('table')
+const mode: Ref<string> = ref('column')
 
 const {
   store,
@@ -317,7 +321,7 @@ function handleClick(tab: any) {
       console.log('表格形式')
 
       break
-    case '列表形式':
+    case 'column':
       console.log('列表形式')
 
       break
