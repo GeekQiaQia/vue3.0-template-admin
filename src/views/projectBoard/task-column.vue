@@ -19,10 +19,19 @@
         </div>
       </div>
 
-      <div :id="status" :data-item="status">
-        <template v-for="item in task[status]">
-          <div class="task-column__content"> {{ item.taskName }}</div>
-        </template>
+      <div
+        v-for="item in task[status]"
+        :id="status"
+        :data-taskStatus="status"
+        :data-taskId="item.taskId">
+        <div class="task-column__content">
+          <p>{{ item.taskName }}</p>
+
+          <div class="task-column__content-detail">
+            <span>负责人：{{ item.developMember || '-' }}</span>
+            <span class="task-column__content-time">工时：{{ item.developTime || '-' }}</span>
+          </div>
+        </div>
       </div>
     </el-card>
   </div>
@@ -38,7 +47,7 @@ const props = defineProps<{
   statusMap: Map<string, { text: string, type: string }>
 }>()
 
-const emit = defineEmits()
+const emit = defineEmits(['moveTask'])
 
 const task = computed(() => {
   // 聚合项目中的任务状态数量
@@ -59,8 +68,11 @@ onMounted(() => {
       group: "task",
       animation: 150,
       onAdd: (event) => {
-        console.log(event.from.dataset.item)
-        console.log(event.to.dataset.item)
+        const from = event.from.dataset.taskstatus
+        const to = event.to.dataset.taskstatus
+        const taskId = Number(event.from.dataset.taskid)
+
+        emit('moveTask', from, to, taskId)
       }
     })
 
@@ -135,6 +147,17 @@ onUnmounted(() => {
     border-radius: 6px;
     border: 1px solid #eee;
     padding: 10px 6px;
+    color: #706e6e;
+
+    &-detail {
+      font-size: 12px;
+      margin-top: 16px;
+      text-align: right;
+    }
+
+    &-time {
+      margin-left: 16px;
+    }
   }
 }
 </style>

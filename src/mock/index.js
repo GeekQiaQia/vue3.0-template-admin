@@ -323,25 +323,25 @@ const getProjectInfo = {
             taskStatus: 'development'
         },{
             taskId: 3,
-            taskName: '侧边栏开发',
+            taskName: '侧边栏开发3',
             developTime: '9工时',
             developMember: '赵六',
             taskStatus: 'completed'
         },{
             taskId: 4,
-            taskName: '侧边栏开发',
+            taskName: '侧边栏开发4',
             developTime: '9工时',
             developMember: '赵六',
             taskStatus: 'completed'
         },{
             taskId: 5,
-            taskName: '侧边栏开发',
+            taskName: '侧边栏开发5',
             developTime: '9工时',
             developMember: '赵六',
             taskStatus: 'test'
         },{
             taskId: 6,
-            taskName: '侧边栏开发',
+            taskName: '侧边栏开发6',
             developTime: '9工时',
             developMember: '赵六',
             taskStatus: 'released'

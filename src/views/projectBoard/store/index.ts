@@ -109,12 +109,33 @@ export default () => {
     return _.find(store.data, (item) => item.projectId === projectId)
   }
 
+  // 修改目标项目的任务列表类型
+  function moveTask(from: string, to: string, taskId: number) {
+    const taskList = _.map(store.target.taskList, task => {
+      if (task.taskId === taskId) {
+        task.taskStatus = to
+      }
+
+      return task
+    })
+
+    const result = {
+      ...store.target,
+      taskList,
+    }
+
+    store.target = result
+
+    console.log(store.target.taskList, 'move')
+  }
+
   return {
     store,
     updatedProjectInfo,
     addProjectTask,
     deleteTask,
     getProjectDetail,
-    modifyTaskEdit
+    modifyTaskEdit,
+    moveTask
   }
 }

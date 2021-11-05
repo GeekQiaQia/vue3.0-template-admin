@@ -132,7 +132,8 @@
             <el-tab-pane label="列表模式" name="column">
               <task-column
                 :statusMap="STATUS_MAP"
-                :target="target"/>
+                :target="target"
+                @moveTask="onMoveTask"/>
             </el-tab-pane>
           </el-tabs>
         </div>
@@ -185,7 +186,8 @@ const {
   updatedProjectInfo,
   addProjectTask,
   deleteTask,
-  modifyTaskEdit
+  modifyTaskEdit,
+  moveTask
 } = ProjectStore()
 
 const {
@@ -329,6 +331,12 @@ function handleClick(tab: any) {
     default:
       break
   }
+}
+
+function onMoveTask(from: string, to: string, taskId: number) {
+
+  //会修改目标项目里的任务情况
+  moveTask(from, to, taskId)
 }
 
 </script>
