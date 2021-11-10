@@ -7,7 +7,7 @@ const appModule: Module<appStateTypes, RootStateTypes> = {
   namespaced: true,
   state: {
     sidebar: {
-      opened: true,
+      opened: Cookies.get('sidebarStatus') ? !!(Cookies.get('sidebarStatus')) : true,
       withoutAnimation: false,
     },
     device: 'desktop',
@@ -16,6 +16,7 @@ const appModule: Module<appStateTypes, RootStateTypes> = {
     toggle_sidebar: (state: appStateTypes) => {
       // eslint-disable-next-line no-console
       state.sidebar.opened = !state.sidebar.opened;
+
       state.sidebar.withoutAnimation = false;
       if (state.sidebar.opened) {
         Cookies.set('sidebarStatus', 1 as Number);

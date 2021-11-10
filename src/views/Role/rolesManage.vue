@@ -14,8 +14,8 @@
         <el-table-column prop="roleName" label="角色名称" align="center"></el-table-column>
         <el-table-column prop="state" label="角色状态" align="center">
           <template #default="scope">
-            <el-tag v-if="scope.row.state === 0" size="mini" type="info"><i class="ic ic-lock"></i> 锁定</el-tag>
-            <el-tag v-else-if="scope.row.state === 1" size="mini" type="success">正常</el-tag>
+            <el-tag v-if="scope.row.state == 0" size="mini" type="info"><i class="ic ic-lock"></i> 锁定</el-tag>
+            <el-tag v-else-if="scope.row.state == 1" size="mini" type="success">正常</el-tag>
             <el-tag v-else size="mini" type="danger">未知</el-tag>
           </template>
         </el-table-column>
@@ -26,8 +26,8 @@
             <el-tooltip class="item" effect="dark" content="菜单授权" placement="bottom">
               <el-button circle plain type="primary" icon="el-icon-edit" size="small" @click="onEdit(scope.$index, scope.row)"></el-button>
             </el-tooltip>
-            <el-tooltip class="item" effect="dark" content="删除" placement="bottom">
-              <el-button v-if="scope.row.state != 0" circle plain type="danger" icon="el-icon-minus" size="small" @click="onDelete(scope.$index, scope.row)"> </el-button>
+            <el-tooltip v-if="scope.row.state != 0" class="item" effect="dark" content="删除" placement="bottom">
+              <el-button circle plain type="danger" icon="el-icon-minus" size="small" @click="onDelete(scope.$index, scope.row)"> </el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -57,7 +57,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, computed } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus/lib/components'
 import RoleEdit from './rolesEdit.vue'
 import RoleNew from './rolesNew.vue'
 
@@ -101,8 +101,8 @@ export default defineComponent({
         page: 1
       },
       data: [
-        { roleName: '超级管理员', remark: '拥有删除和创建等操作的权限', state: 1 },
-        { roleName: '管理员', remark: '拥有创建和权限分配的权限', state: 1 },
+        { roleName: '超级管理员', remark: '拥有删除和创建等操作的权限', state: 0 },
+        { roleName: '管理员', remark: '拥有创建和权限分配的权限', state: 0 },
         { roleName: '游客', remark: '只拥有操作部分菜单的权限', state: 1 }
       ],
       loading: false,

@@ -27,7 +27,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
             '/zh-CN': '首页',
             '/en-US': 'Home Page'
           },
-          icon: 'home',
+          icon: 'el-icon-s-home',
         },
       },
     ],
@@ -42,6 +42,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         '/en-US': 'Login'
       },
       hidden: true,
+      hiddenTab: true,
     },
   },
   {
@@ -54,6 +55,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         '/en-US': '404'
       },
       hidden: true,
+      hiddenTab: true,
     },
   },
   { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import(/* webpackChunkName: "noFound" */ '@/views/noFound.vue'),
@@ -62,7 +64,8 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         '/zh-CN': '未找到',
         '/en-US': 'NOT FOUND'
       },
-    hidden: true,
+      hidden: true,
+      hiddenTab: true,
   }, },
 ];
 
@@ -153,7 +156,7 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/zh-CN': '复制文本',
             '/en-US': 'Copy Text'
           },
-          icon: 'home',
+          icon: 'el-icon-edit-outline',
         },
       },
     ],
@@ -447,7 +450,7 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/zh-CN': '文件上传',
             '/en-US': 'File Upload'
           },
-          icon: 'home',
+          icon: 'el-icon-upload',
         },
       },
     ],
@@ -531,6 +534,32 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: '/projectboard',
+    component: layout,
+    redirect: '/projectboard/manage',
+    meta: {
+      title:{
+        '/zh-CN': '项目看板',
+        '/en-US': 'Project Board'
+      },
+      icon: 'el-icon-folder-opened',
+    },
+    children: [
+      {
+        path: '/projectboard/manage',
+        name: 'roleManage',
+        component: () => import(/* webpackChunkName: "projectBoard" */ '@/views/projectBoard/index.vue'),
+        meta: {
+          title:{
+            '/zh-CN': '项目看板',
+            '/en-US': 'Project Board'
+          },
+          icon: 'el-icon-folder-opened',
+        },
+      },
+    ]
+  },
+  {
     path: '/personal',
     component: layout,
     redirect: '/personal/personalCenter',
@@ -552,7 +581,6 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/en-US': 'PersonalCenter'
           },
           icon: 'el-icon-user-solid',
-
         },
       },
       {
@@ -565,13 +593,10 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/en-US': 'PersonalSetting'
           },
           icon: 'el-icon-user-solid',
-
         },
       },
     ],
   },
-
-
 ];
 
 const router = createRouter({
@@ -585,13 +610,13 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const tabsOption = store.getters['tabModule/getTabsOption']
     // 判断当前路由中是否已经入栈
-    const flag = tabsOption.findIndex((tab: { route: string }) => tab.route === to.fullPath) > -1
-    if (!flag && !to.meta.hidden) {
+    const flag = tabsOption.findIndex((tab: { route: string }) => tab.route === to.path) > -1
+    if (!flag && !to.meta.hiddenTab) {
 
-      store.commit('tabModule/ADD_TAB', { route: to.fullPath, title: to.meta.title,name: to.name })
+      store.commit('tabModule/ADD_TAB', { route: to.path, title: to.meta.title,name: to.name })
 
         }
-    store.commit('tabModule/SET_TAB', to.fullPath)
+    store.commit('tabModule/SET_TAB', to.path)
   if(sessionStorage.getItem('auth')){
     next();
   }else if(to.path==='/login'){

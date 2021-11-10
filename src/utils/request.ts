@@ -1,16 +1,16 @@
-import Axios, { Method ,ResponseType,AxiosResponse} from 'axios'
-import { ElMessage } from 'element-plus'
+import Axios, { Method, ResponseType, AxiosResponse } from 'axios'
+import { ElMessage } from 'element-plus/lib/components/message'
 
 interface axiosData {
-  url:string
-  method:Method
-  headers?:any
-  json:boolean
-  contentType?:string
-  data?:any
-  params?:any
-  timeout?:number
-  responseType?:ResponseType
+  url: string
+  method: Method
+  headers?: any
+  json: boolean
+  contentType?: string
+  data?: any
+  params?: any
+  timeout?: number
+  responseType?: ResponseType
 }
 
 // const baseURL = 'http://www.mock.com'
@@ -29,8 +29,8 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.interceptors.request.use(
   (config) => {
     if (sessionStorage.getItem("accessToken")) {
-      config.headers.Authorization = `Bearer ${ sessionStorage.getItem("accessToken")}`;
-  }
+      config.headers.Authorization = `Bearer ${sessionStorage.getItem("accessToken")}`;
+    }
     return config;
   },
   (err) => Promise.reject(err)
@@ -61,7 +61,7 @@ axios.interceptors.response.use(
  * @param {object}  datas  //token在datas中
  *
  */
- export default function request(arr:axiosData) {
+export default function request(arr: axiosData) {
   return new Promise<any>((resolve, reject) => {
     // arr = requestValidate(arr)
     axios({
@@ -75,14 +75,14 @@ axios.interceptors.response.use(
         'content-type': arr.contentType
           ? arr.contentType
           : arr.json
-          ? 'application/json; charset=UTF-8'
-          : 'application/x-www-form-urlencoded; charset=UTF-8'
+            ? 'application/json; charset=UTF-8'
+            : 'application/x-www-form-urlencoded; charset=UTF-8'
       },
       params: arr.params || '',
       data: arr.data || '',
       responseType: arr.responseType || 'json'
     })
-      .then((response:AxiosResponse<any>) => {
+      .then((response: AxiosResponse<any>) => {
         /**
          * response格式
          *

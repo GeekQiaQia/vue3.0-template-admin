@@ -59,24 +59,24 @@ export default defineComponent({
 </script>
 <style lang="stylus" scoped>
 .editorWrapper{
-       margin-top:20px;
-
-    .info{
-        text-align: left;
+  margin-top:20px;
+  
+  .info{
+    text-align: left;
     padding-left: 20px;
     margin-bottom: 20px;
     font-size: 12px;
-    }
-    .section{
-      display:flex;
-      flex-direction:row;
-      justify-content: flex-start;
-      align-items :center;
-    }
-     .el-row {
-       margin-bottom: 20px;
-     }
+  }
 
+  .section{
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-start;
+    align-items :center;
+  }
 
+  .el-row {
+    margin-bottom: 20px;
+  }
 }
 </style>

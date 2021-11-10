@@ -53,7 +53,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage } from 'element-plus/lib/components/message'
 import { useReadRawData } from './useReadExcel'
 // import upload from './components/upload.vue'
 

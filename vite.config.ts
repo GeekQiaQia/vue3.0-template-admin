@@ -11,8 +11,8 @@ export default defineConfig({
     'process.version': null,
   },
   plugins: [           // 类型： (Plugin | Plugin[])[]  将要用到的插件数组
-     vue(),
-     styleImport({
+    vue(),
+    styleImport({
       libs: [{
         libraryName: 'element-plus',
         esModule: true,
@@ -25,19 +25,19 @@ export default defineConfig({
         resolveComponent: (name) => `element-plus/lib/${name}`,
       }]
     }),
-     legacy({
-        targets: ['ie >= 11'],
-        additionalLegacyPolyfills: ['regenerator-runtime/runtime']
-      })
+    legacy({
+      targets: ['ie >= 11'],
+      additionalLegacyPolyfills: ['regenerator-runtime/runtime']
+    })
   ],
   resolve: {          // 类型：Record<string, string> | Array<{ find: string | RegExp, replacement: string }> 将会被传递到 @rollup/plugin-alias 作为它的 entries。
     alias: {
       '~': resolve(__dirname, './'),
       '@': resolve(__dirname, 'src'),
     },
-    extensions:['.js', '.ts', '.jsx', '.tsx', '.json','.vue','.mjs'] // 类型： string[] 导入时想要省略的扩展名列表。
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.mjs'] // 类型： string[] 导入时想要省略的扩展名列表。
   },
-  clearScreen:false,
+  clearScreen: false,
   server: {
     hmr: { overlay: false }, // 禁用或配置 HMR 连接 设置 server.hmr.overlay 为 false 可以禁用服务器错误遮罩层
 
@@ -54,14 +54,23 @@ export default defineConfig({
       }
     },
   },
-   // https://www.vitejs.net/config/#build-commonjsoptions
-   build:{
-    commonjsOptions:{
-      ignoreDynamicRequires:false, // Default: false
-      transformMixedEsModules:true,
-      brotliSize:false, // 禁用会提高大型项目的构建性能。
-      sourceMap:false
-    }
+  // https://www.vitejs.net/config/#build-commonjsoptions
+  build: {
+    chunkSizeWarningLimit: 1500, // chunk 大小警告的限制（以 kbs 为单位）
+    commonjsOptions: {
+      ignoreDynamicRequires: false, // Default: false
+      transformMixedEsModules: true,
+      sourceMap: false
+    },
+    // rollupOptions: {
+    //   output: {
+    //     manualChunks(id) {  // https://rollupjs.org/guide/en/#outputmanualchunks
+    //       if (id.includes('node_modules')) {
+    //         return id.toString().split('node_modules/')[1].split('/')[0].toString()
+    //       }
+    //     }
+    //   }
+    // }
   },
   optimizeDeps: {
     include: [

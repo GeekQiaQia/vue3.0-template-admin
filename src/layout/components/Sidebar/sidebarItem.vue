@@ -2,19 +2,26 @@
   <div v-if="!item.meta.hidden" class="menu-wrapper">
     <!--only on child show el-menu -->
     <template v-if="hasOneShowingChild(item.children, item)">
-      <el-menu-item :key="item.path" :index="item.path" :route="item.path">
-        <i :class="item.meta.icon"></i>
-        <template #title>{{ item.meta.title[lang] }}</template>
+      <el-menu-item :key="onlyOneChild.path" :index="onlyOneChild.path" :route="onlyOneChild.path">
+        <i :class="onlyOneChild.meta.icon"></i>
+        <template #title>{{ onlyOneChild.meta.title[lang] }}</template>
       </el-menu-item>
     </template>
-    <el-submenu v-else ref="subMenu" :index="item.path" popper-append-to-body>
+    <el-sub-menu v-else ref="subMenu" :index="item.path" popper-append-to-body>
       <template #title>
-        <i :class="item.meta.icon"></i>
+        <i :data-index='item.path' :class="item.meta.icon"></i>
         <span>{{ item.meta.title[lang] }}</span>
       </template>
       <!--children 进行递归调用自身组件-->
-      <sidebar-item v-for="child in item.children" :key="child.path" :is-nest="true" :item="child" :base-path="child.path" class="nest-menu" />
-    </el-submenu>
+      <sidebar-item
+        v-for="child in item.children"
+        :key="child.path"
+        :is-nest="true"
+        :item="child"
+        :base-path="child.path"
+        class="nest-menu"
+      />
+    </el-sub-menu>
   </div>
 </template>
 <script lang="ts">
@@ -89,7 +96,6 @@ export default defineComponent({
         onlyOneChild.value = { ...parent, noShowingChildren: true }
         return true
       }
-      // }
 
       return false
     }

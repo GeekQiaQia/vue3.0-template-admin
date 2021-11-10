@@ -22,7 +22,7 @@
       <el-form-item label="邮箱" prop="email">
         <el-input v-model="registerForm.email" autocomplete="off" placeholder="请输入注册邮箱">
           <template #append>
-            <el-button @click="handleGetCaptcha">获取验证码</el-button>
+            <el-button :disabled="sendingCode" @click="handleGetCaptcha">{{ codeText }}</el-button>
           </template>
         </el-input>
       </el-form-item>
@@ -50,7 +50,7 @@
 <script lang="ts">
 import { defineComponent, ref, toRefs, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { ElMessage } from 'element-plus/lib/components/message'
 import { encrypt } from '@/utils/aes' // aes 密码加密
 import { useStore } from '@/store'
 import Service from '../api/index'
@@ -80,7 +80,8 @@ export default defineComponent({
     const loginFormRef = ref()
     const registerRef = ref()
     const store = useStore()
-
+    const sendingCode = ref(false)
+    const codeText = ref('获取验证码')
     const state = reactive<stateType>({
       loginForm: {
         email: '',
@@ -129,6 +130,7 @@ export default defineComponent({
     }
 
     // methods
+
     /**
      * @description  用户登录接口
      *
@@ -195,12 +197,18 @@ export default defineComponent({
             }
             Service.postRegister(data)
               .then((res: any) => {
-                console.log(res)
-                ElMessage({
-                  type: 'success',
-                  message: '注册成功'
-                })
-                state.showLogin = true
+                if (res.status === 0) {
+                  ElMessage({
+                    type: 'success',
+                    message: '注册成功'
+                  })
+                  state.showLogin = true
+                } else {
+                  ElMessage({
+                    type: 'warning',
+                    message: res.message
+                  })
+                }
               })
               .catch((err) => {
                 ElMessage({
@@ -210,7 +218,7 @@ export default defineComponent({
               })
           } catch (err) {
             ElMessage({
-              type: 'success',
+              type: 'error',
               message: err.message
             })
           }
@@ -218,28 +226,55 @@ export default defineComponent({
       })
     }
     /**
+     * @description 获取验证码状态
+     */
+    const getCodeSucces = () => {
+      let countDown = 60
+      sendingCode.value = true
+      const interval = setInterval(() => {
+        if (countDown > 0) {
+          codeText.value = `已发送(${countDown}s)`
+          countDown -= 1
+        } else {
+          clearInterval(interval)
+          sendingCode.value = false
+          codeText.value = '获取验证码'
+        }
+      }, 1000)
+    }
+    /**
      * @description 获取验证码
      */
-    const handleGetCaptcha = async () => {
+    const handleGetCaptcha = async (): Promise<boolean> => {
       try {
         const { email } = state.registerForm
+        if (!email) {
+          ElMessage({
+            type: 'warning',
+            message: '请输入注册邮箱'
+          })
+          return false
+        }
         const data = {
           email
         }
         const res = await Service.postCaptcha(data)
         if (res.status === 0) {
           ElMessage({
-            type: 'warning',
-            message: res.message
-          })
-        } else {
-          ElMessage({
             type: 'success',
             message: res.message
           })
+          getCodeSucces()
+          return true
         }
+        ElMessage({
+          type: 'warning',
+          message: res.message
+        })
+        return false
       } catch (err) {
         console.error(err)
+        return false
       }
     }
     /**
@@ -252,6 +287,8 @@ export default defineComponent({
       ...toRefs(state),
       loginFormRef,
       registerRef,
+      sendingCode,
+      codeText,
       rules,
       submitForm,
       handleRegister,
@@ -264,50 +301,58 @@ export default defineComponent({
 <style lang="stylus" scoped>
 .form-container{
   width:100%;
-   :deep .el-input-group__append, .el-input-group__prepend{
-      padding:0px 7px;
+
+  :deep(.el-input-group__append) {
+    padding:0px 7px;
+  }
+
+  :deep(.el-input-group__prepend) {
+    padding:0px 7px;
+  }
+
+  .login-form{
+    width:100%;
+    margin: 0 auto;
+  }
+  .go-login{
+    font-size: 12px;
+    cursor: pointer;
+    display:flex;
+    flex-direction:row ;
+    justify-content: center;
+    align-items :center;
+
+    .to-login{
+      color: #9fa2a8;
+
+      em{
+        color: #2878ff;
+      }
     }
-    .login-form{
-         width:100%;
-         margin: 0 auto;
-     }
-     .go-login{
-       font-size: 12px;
-       cursor: pointer;
-       display:flex;
-       flex-direction:row ;
-       justify-content: center;
-       align-items :center;
+  }
 
-        .to-login{
-           color: #9fa2a8;
+  .operation{
+    font-size: 12px;
+    cursor: pointer;
+    display:flex;
+    flex-direction:row ;
+    justify-content: space-between;
+    align-items :center;
 
-           em{
-             color: #2878ff;
-           }
-         }
-     }
-     .operation{
-       font-size: 12px;
-       cursor: pointer;
-       display:flex;
-       flex-direction:row ;
-       justify-content: space-between;
-       align-items :center;
+    .free-register{
+        color: #2878ff;
+      }
 
-        .free-register{
-
-           color: #2878ff;
-         }
-         .forget-password{
-           color: #9fa2a8;
-         }
-        .btn-container{
-          display :flex;
-          flex-direction:row;
-          justify-content :flex-start;
-          align-items :center;
-        }
-     }
+      .forget-password{
+        color: #9fa2a8;
+      }
+      
+      .btn-container{
+        display :flex;
+        flex-direction:row;
+        justify-content :flex-start;
+        align-items :center;
+      }
+    }
   }
 </style>

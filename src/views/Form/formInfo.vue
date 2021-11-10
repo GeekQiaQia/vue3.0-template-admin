@@ -11,7 +11,6 @@
             <template #header>
               <div class="card-header">
                 <el-button class="button" type="text" @click="handleBack"><i class="el-icon-arrow-left" />返回</el-button>
-
                 <span>表单信息</span>
                 <div></div>
               </div>
@@ -138,33 +137,23 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-.FormInfo{
-    margin-top:20px;
-    .demo-ruleForm{
-        text-align :left;
-    }
-    .info{
-        text-align: left;
-    padding-left: 20px;
-    margin-bottom: 20px;
-    font-size: 12px;
-    }
-     .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-  }
-
-  .text {
-    font-size: 14px;
-  }
-
-  .item {
-    margin-bottom: 18px;
-  }
-
-  .box-card {
-    width:100%;
-  }
-}
+.FormInfo
+  margin-top 20px
+  .demo-ruleForm
+    text-align left
+  .info
+    text-align left
+    padding-left 20px
+    margin-bottom 20px
+    font-size 12px
+  .card-header
+    display flex
+    justify-content space-between
+    align-items center
+  .text
+    font-size 14px
+  .item
+    margin-bottom 18px
+  .box-card
+    width 100%
 </style>

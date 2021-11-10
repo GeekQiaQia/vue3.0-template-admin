@@ -1,4 +1,4 @@
-import { ElMessage } from 'element-plus'
+import { ElMessage } from 'element-plus/lib/components/message'
 
   function toFullScreen(){
     const elem = document.body;

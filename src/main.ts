@@ -11,18 +11,12 @@ import '@/styles/index.scss'; // global css
 import '@/permission'; // permission control 全局路由守卫
 import 'dayjs/locale/zh-cn'
 
-// eslint-disable-next-line import/order
-// import enLocale from 'element-plus/lib/locale/lang/en'
-// eslint-disable-next-line import/order
-// import zhLocale from 'element-plus/lib/locale/lang/zh-CN'
-
-// eslint-disable-next-line import/order
-// import { createI18n } from 'vue-i18n'
 // 1、挂载vuex
 // 2、挂载路由
 // 3、挂载 elementPlus UI;
-import 'element-plus/lib/theme-chalk/index.css';
 
+// ElementPlus 样式通过CDN的方式引入来加样式文件，提高应用加载速度；
+import 'element-plus/theme-chalk/index.css';
 import '@/mock'
 
 const roles =  localStorage.getItem('role');
@@ -33,11 +27,6 @@ store.dispatch('permissionModule/getPermissonRoutes',{roleName:roles});
 }
 
 store.dispatch('permissionModule/getRoutes');
-
-
-// , {
-//     i18n: i18n.global.t,
-//   }
 
 // 链式注册插件
 const app = createApp(App).use(store, key).use(router).use(ElementPlus,{locale});

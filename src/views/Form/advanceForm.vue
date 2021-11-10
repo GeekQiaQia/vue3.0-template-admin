@@ -135,7 +135,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { ElMessage } from 'element-plus/lib/components/message'
 
 export default defineComponent({
   name: 'AdvanceForm',
