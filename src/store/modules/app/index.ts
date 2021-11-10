@@ -13,7 +13,7 @@ const appModule: Module<appStateTypes, RootStateTypes> = {
     device: 'desktop',
   },
   mutations: {
-    TOGGLE_SIDEBAR: (state: appStateTypes) => {
+    toggle_sidebar: (state: appStateTypes) => {
       // eslint-disable-next-line no-console
       state.sidebar.opened = !state.sidebar.opened;
       state.sidebar.withoutAnimation = false;
@@ -22,12 +22,26 @@ const appModule: Module<appStateTypes, RootStateTypes> = {
       } else {
         Cookies.set('sidebarStatus', 0 as Number);
       }
+    },
+    close_sidebar:(state, withoutAnimation)=>{
+      Cookies.set('sidebarStatus', 0 as Number)
+      state.sidebar.opened = false
+      state.sidebar.withoutAnimation = withoutAnimation
+    },
+    toggle_device: (state, device) => {
+      state.device = device
     }
   },
   actions: {
     toggleSideBar({ commit }) {
-      commit('TOGGLE_SIDEBAR');
+      commit('toggle_sidebar');
     },
+    closeSideBar({commit},{widthoutAnimation}){
+      commit('close_sidebar',widthoutAnimation);
+    },
+    toggleDevice({ commit }, device) {
+      commit('toggle_device', device)
+    }
   },
   getters: {
     getSidebarState(state:appStateTypes) {
