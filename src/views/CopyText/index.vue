@@ -86,7 +86,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted, onUnmounted, reactive, toRefs } from 'vue'
 import ClipboardJS from 'clipboard'
-import { ElMessage } from 'element-plus/lib/components/message'
+import { ElMessage } from 'element-plus'
 import clipboard from '@/utils/clipboard' // use clipboard directly
 import clip from '@/directive/clipboard/clipboard'
 
