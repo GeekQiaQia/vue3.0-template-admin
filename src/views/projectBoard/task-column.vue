@@ -1,17 +1,18 @@
 <template>
   <div class="task-column">
     <el-card
-      v-for="status in taskStatus"
+      v-for="status of statusMap"
       class="task-column__item">
       <div class="task-column__head">
         <div class="task-column__num">
           <div class="task-column__num-count">
-            {{ task[status].length || 0 }}
+            <!-- 需要动态的得到个数 -->
+            <!-- {{ dynamicTask[status[0]].length || 0 }} -->
           </div>
         </div>
 
         <div class="task-column__type">
-          {{ statusMap.get(status)?.text || '未定义' }}
+          {{ status[1]?.text || '未定义' }}
         </div>
 
         <div class="task-column__add">
@@ -20,16 +21,18 @@
       </div>
 
       <div
-        v-for="item in task[status]"
-        :id="status"
-        :data-taskStatus="status"
-        :data-taskId="item.taskId">
-        <div class="task-column__content">
-          <p>{{ item.taskName }}</p>
+        v-for="item in staticTask[status[0]]">
+        <div
+          :data-taskStatus="status[0]"
+          :data-taskId="item.taskId"
+          :id="item.taskId">
+          <div class="task-column__content">
+            <p>{{ item.taskName }}</p>
 
-          <div class="task-column__content-detail">
-            <span>负责人：{{ item.developMember || '-' }}</span>
-            <span class="task-column__content-time">工时：{{ item.developTime || '-' }}</span>
+            <div class="task-column__content-detail">
+              <span>负责人：{{ item.developMember || '-' }}</span>
+              <span class="task-column__content-time">工时：{{ item.developTime || '-' }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -49,20 +52,23 @@ const props = defineProps<{
 
 const emit = defineEmits(['moveTask'])
 
-const task = computed(() => {
-  // 聚合项目中的任务状态数量
-  return _.groupBy(props.target.taskList, (item) => item.taskStatus)
-})
+// 聚合项目中的任务状态
+// 这部分不能直接根据taskList进行计算，不然页面里会同时出现两个元素
+// 一个是拖拽生成的元素，一个是新数据的元素
+const staticTask = _.groupBy(_.cloneDeep(props.target.taskList), (item) => item.taskStatus)
 
-const taskStatus = computed(() => {
-  return Object.keys(task.value)
+// 根据响应式，用来计算任务的数量
+const dynamicTask = computed(() => {
+  return _.groupBy(props.target.taskList, (item) => item.taskStatus)
 })
 
 const sortTableInstance: Ref<Array<Sortable>> = ref([])
 
 onMounted(() => {
-  for (let i = 0; i < taskStatus.value.length; i ++) {
-    const dom = document.getElementById(taskStatus.value[i])!
+  const taskList = props.target.taskList
+
+  for (let i = 0; i < taskList.length; i ++) {
+    const dom = document.getElementById(`${taskList[i].taskId}`)!
 
     const instance = new Sortable(dom, {
       group: "task",
