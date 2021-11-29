@@ -164,6 +164,7 @@ git merge upstream/main
 - [x] 重构登录注册页面，完善忘记密码交互以及必填字段校验
 - [x] 设计角色管理，选择不同的角色，授权不同的菜单
 - [x] 根据不同的登录用户角色，展示不同的菜单
+- [x] 【enhance】 vite 不同环境变量配置
 
 ## 技术反馈和交流群 | Technical feedback and communication
 
