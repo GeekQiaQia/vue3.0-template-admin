@@ -70,6 +70,12 @@ Give a ⭐️ if this project helped you!
 - **wangeditor** [wangeditor 富文本编辑器](https://www.wangeditor.com/doc/)
 - **fullcalendar** [fullcalendar 丰富的日历插件](https://github.com/fullcalendar/fullcalendar-example-projects/tree/master/vue3-typescript)
 
+## 工程化 | Project Tool
+- Git Hook 工具：[husky](https://typicode.github.io/husky/#/) + [lint-staged](https://github.com/okonet/lint-staged)
+- 代码规范：[EditorConfig](http://editorconfig.org) + [Prettier](https://prettier.io/) + [ESLint](https://eslint.org/) + [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript#translation)
+- 提交规范：[Commitizen](http://commitizen.github.io/cz-cli/) + [Commitlint](https://commitlint.js.org/#/)
+
+
 ## 浏览器支持
 
 推荐使用`webkit`内核浏览器
