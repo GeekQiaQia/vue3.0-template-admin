@@ -70,6 +70,12 @@ Give a ⭐️ if this project helped you!
 - **wangeditor** [wangeditor 富文本编辑器](https://www.wangeditor.com/doc/)
 - **fullcalendar** [fullcalendar 丰富的日历插件](https://github.com/fullcalendar/fullcalendar-example-projects/tree/master/vue3-typescript)
 
+## 工程化 | Project Tool
+- Git Hook 工具：[husky](https://typicode.github.io/husky/#/) + [lint-staged](https://github.com/okonet/lint-staged)
+- 代码规范：[EditorConfig](http://editorconfig.org) + [Prettier](https://prettier.io/) + [ESLint](https://eslint.org/) + [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript#translation)
+- 提交规范：[Commitizen](http://commitizen.github.io/cz-cli/) + [Commitlint](https://commitlint.js.org/#/)
+
+
 ## 浏览器支持
 
 推荐使用`webkit`内核浏览器
@@ -164,12 +170,13 @@ git merge upstream/main
 - [x] 重构登录注册页面，完善忘记密码交互以及必填字段校验
 - [x] 设计角色管理，选择不同的角色，授权不同的菜单
 - [x] 根据不同的登录用户角色，展示不同的菜单
+- [x] 【enhance】 vite 不同环境变量配置
 
 ## 技术反馈和交流群 | Technical feedback and communication
 
 <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d41b5fec542444b4a28c00135ce27d42~tplv-k3u1fbpfcp-watermark.image" width="180px" />
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/391334241fcc4120993fd746dd1104f9~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
+<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/249dc6bcba18473fb86e6311567bc27f~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
 
 ## 赞助 | Sponsored
 

@@ -10,7 +10,7 @@
           <el-dropdown>
             <el-badge :value="messageNum" :max="99" class="message-badge" type="danger">
               <el-button class="message">
-                <i class="el-icon-message-solid"></i>
+                <el-icon><bell-filled /></el-icon>
               </el-button>
             </el-badge>
             <template #dropdown>
@@ -69,6 +69,7 @@ import { useRouter } from 'vue-router'
 import { toFullScreen, exitFullScreen } from '@/utils/screen'
 import { useStore } from '@/store/index'
 import { langConfig } from '@/utils/constant/config'
+import { BellFilled } from '@element-plus/icons-vue'
 
 export default defineComponent({
   name: 'Navbar',
@@ -76,7 +77,8 @@ export default defineComponent({
     Hamburger,
     Breadcrumb,
     Search,
-    LangSwitch
+    LangSwitch,
+    BellFilled,
   },
   props: {
     primary: {

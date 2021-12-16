@@ -1,7 +1,16 @@
+/*
+ * @Author: GeekQiaQia
+ * @Date: 2021-11-10 10:32:27
+ * @LastEditTime: 2021-12-14 17:25:50
+ * @LastEditors: GeekQiaQia
+ * @Description:
+ * @FilePath: /vue3.0-template-admin/src/main.ts
+ */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
 import { createApp } from 'vue';
-import ElementPlus from 'element-plus';
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 import locale from 'element-plus/lib/locale/lang/zh-cn'
 import {isPermission} from '@/directive/permission'
 import { key, store } from './store/index';
@@ -10,6 +19,8 @@ import App from './App.vue';
 import '@/styles/index.scss'; // global css
 import '@/permission'; // permission control 全局路由守卫
 import 'dayjs/locale/zh-cn'
+
+
 
 // 1、挂载vuex
 // 2、挂载路由
