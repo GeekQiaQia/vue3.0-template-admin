@@ -547,7 +547,7 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     children: [
       {
         path: '/projectboard/manage',
-        name: 'roleManage',
+        name: 'projectboard',
         component: () => import(/* webpackChunkName: "projectBoard" */ '@/views/projectBoard/index.vue'),
         meta: {
           title:{
