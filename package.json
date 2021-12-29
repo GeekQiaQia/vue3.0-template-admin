@@ -33,7 +33,7 @@
     "@types/lodash": "^4.14.170",
     "@types/marked": "^2.0.3",
     "@types/mockjs": "^1.0.3",
-    "@types/node": "^15.0.1",
+    "@types/node": "^16.11.0",
     "@types/qrcode": "^1.4.0",
     "@types/sortablejs": "^1.10.6",
     "@types/vuedraggable": "^2.24.0",
