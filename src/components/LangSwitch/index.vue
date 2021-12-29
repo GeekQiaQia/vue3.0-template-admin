@@ -1,7 +1,7 @@
 <!--
  * @Author: GeekQiaQia
  * @Date: 2021-11-10 10:32:27
- * @LastEditTime: 2021-12-29 19:16:19
+ * @LastEditTime: 2021-12-29 20:58:24
  * @LastEditors: GeekQiaQia
  * @Description:
  * @FilePath: /vue3.0-template-admin/src/components/LangSwitch/index.vue
@@ -21,9 +21,9 @@
 import { computed, ref } from 'vue'
 import { useStore } from '@/store/index'
 // eslint-disable-next-line no-unused-vars
-import us from '@/assets/images/us.svg'
+import us from '@/assets/images/us.png'
 // eslint-disable-next-line no-unused-vars
-import chinese from '@/assets/images/chinese.svg'
+import chinese from '@/assets/images/chinese.png'
 
 type langType = {
   value: string
