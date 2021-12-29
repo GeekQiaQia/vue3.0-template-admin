@@ -1,7 +1,7 @@
 /*
  * @Author: GeekQiaQia
  * @Date: 2021-11-10 10:32:27
- * @LastEditTime: 2021-12-14 17:40:00
+ * @LastEditTime: 2021-12-29 21:56:23
  * @LastEditors: GeekQiaQia
  * @Description:
  * @FilePath: /vue3.0-template-admin/vite.config.ts
@@ -72,15 +72,6 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         transformMixedEsModules: true,
         sourceMap: false
       },
-      // rollupOptions: {
-      //   output: {
-      //     manualChunks(id) {  // https://rollupjs.org/guide/en/#outputmanualchunks
-      //       if (id.includes('node_modules')) {
-      //         return id.toString().split('node_modules/')[1].split('/')[0].toString()
-      //       }
-      //     }
-      //   }
-      // }
     },
     optimizeDeps: {
       include: [
