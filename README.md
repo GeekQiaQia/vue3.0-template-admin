@@ -120,14 +120,14 @@ git clone https://github.com/GeekQiaQia/vue3.0-template-admin.git
 # 进入项目目录
 cd vue3.0-template-admin
 
-# 安装依赖
-npm install
+# 安装依赖 （推荐yarn）
+npm install  / yarn
 
 # 启动服务
-npm run dev
+npm run dev  / yarn dev
 
 # 打包
-npm run build
+npm run build  / yarn build
 
 
 
@@ -176,7 +176,7 @@ git merge upstream/main
 
 <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d41b5fec542444b4a28c00135ce27d42~tplv-k3u1fbpfcp-watermark.image" width="180px" />
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/249dc6bcba18473fb86e6311567bc27f~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
+<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d527b6635f624a6d814035b6642c6356~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
 
 ## 赞助 | Sponsored
 

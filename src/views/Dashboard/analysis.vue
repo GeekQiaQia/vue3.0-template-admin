@@ -175,7 +175,7 @@ export default defineComponent({
 </script>
 <style lang="stylus" scoped>
 .analysis-info{
-  // background: #100c2a;
+  // background: radial-gradient(farthest-side ellipse at 10% 0, #333867, #17193B);
   color:black;
   padding:0px 20px;
   .indicators {
