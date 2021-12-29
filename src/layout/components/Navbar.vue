@@ -26,10 +26,10 @@
         </div>
         <el-button id="fullScreen" class="full-screen">
           <el-tooltip :content="langConfig.header.fullScreen[lang]" effect="dark" placement="left">
-            <i v-show="fullScreen == false" class="el-icon-full-screen" @click="toShowFullScreen()"></i>
+            <el-icon v-show="fullScreen == false" @click="toShowFullScreen()" ><full-screen /></el-icon>
           </el-tooltip>
           <el-tooltip :content="langConfig.header.exitFullScreen[lang]" effect="dark" placement="left">
-            <i v-show="fullScreen == true" class="el-icon-bottom-left" @click="toExitFullScreen()"></i>
+            <el-icon v-show="fullScreen == true" @click="toExitFullScreen()"><bottom-left /></el-icon>
           </el-tooltip>
         </el-button>
         <el-dropdown class="avatar-container" trigger="hover">
@@ -69,7 +69,7 @@ import { useRouter } from 'vue-router'
 import { toFullScreen, exitFullScreen } from '@/utils/screen'
 import { useStore } from '@/store/index'
 import { langConfig } from '@/utils/constant/config'
-import { BellFilled } from '@element-plus/icons-vue'
+import { BellFilled,FullScreen ,BottomLeft} from '@element-plus/icons-vue'
 
 export default defineComponent({
   name: 'Navbar',
@@ -79,6 +79,8 @@ export default defineComponent({
     Search,
     LangSwitch,
     BellFilled,
+    FullScreen,
+    BottomLeft
   },
   props: {
     primary: {

@@ -1,3 +1,11 @@
+<!--
+ * @Author: GeekQiaQia
+ * @Date: 2021-11-10 10:32:27
+ * @LastEditTime: 2021-12-27 18:18:30
+ * @LastEditors: GeekQiaQia
+ * @Description:
+ * @FilePath: /vue3.0-template-admin/src/layout/components/RightSetting/RightDrawer.vue
+-->
 <template>
   <div class="rightDrawer">
   <!-- :modal-append-to-body="false"  -->
@@ -7,16 +15,21 @@
       </div>
     </el-drawer>
     <div class="rightPanel">
-      <el-button class="handle-button" type="primary" icon="el-icon-setting" :class="{ 'handle-button-close': !openDrawer }" :style="{ top: buttonTop + 'px' }" @click="openDrawer = !openDrawer">
+      <el-button class="handle-button" type="primary"  :class="{ 'handle-button-close': !openDrawer }" :style="{ top: buttonTop + 'px' }" @click="openDrawer = !openDrawer">
+        <el-icon ><Setting /></el-icon>
       </el-button>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { Setting} from '@element-plus/icons-vue'
 
 export default defineComponent({
   name: 'RightDrawer',
+  components:{
+    Setting
+  },
   props: {
     buttonTop: {
       default: 250,
@@ -69,11 +82,6 @@ export default defineComponent({
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
-    i {
-        font-size: 24px;
-        line-height: 48px;
-    }
   }
   .handle-button-close{
     left: -8px;

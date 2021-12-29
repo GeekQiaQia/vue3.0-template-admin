@@ -52,9 +52,10 @@
           <el-button
             v-else
             size="mini"
-            icon="el-icon-edit"
             @click="handleEdit(scope.row)"
-          >编辑</el-button>
+          >
+           <el-icon><edit /></el-icon>
+          编辑</el-button>
           <el-popconfirm
             confirm-button-text="确定"
             cancel-button-text="取消"
@@ -64,7 +65,8 @@
             @confirm="handleDelete(scope.row)"
           >
             <template #reference>
-              <el-button size="mini" icon="el-icon-delete" type="danger">删除</el-button>
+
+              <el-button size="mini"  type="danger"><el-icon><delete-filled /></el-icon>删除</el-button>
             </template>
           </el-popconfirm>
         </template>
@@ -79,6 +81,8 @@
 <script setup lang="ts">
 import _ from 'lodash'
 import { computed } from 'vue'
+import { Edit,DeleteFilled } from '@element-plus/icons-vue'
+
 import { TaskListData } from './store/index'
 
 /*
