@@ -1,3 +1,12 @@
+###
+ # @Author: GeekQiaQia
+ # @Date: 2021-07-21 00:09:24
+ # @LastEditTime: 2021-12-29 14:45:34
+ # @LastEditors: GeekQiaQia
+ # @Description:
+ # @FilePath: /vue3.0-template-admin/.husky/pre-commit
+###
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
-npx lint-staged
+
+eslint --fix ./src --ext .vue,.js,.ts
