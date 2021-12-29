@@ -118,7 +118,7 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/zh-CN': '工作台',
             '/en-US': 'Workplace'
           },
-          icon: 'home',
+          icon: 'el-icon-data-analysis',
         },
       },
       {
@@ -130,7 +130,9 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/zh-CN': '分析页',
             '/en-US': 'Analysis Page'
           },
-          icon: 'home',
+          icon: 'el-icon-data-analysis',
+          hidden: true,
+          hiddenTab: true,
         },
       },
     ],

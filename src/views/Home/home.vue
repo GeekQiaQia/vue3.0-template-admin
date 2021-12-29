@@ -10,7 +10,7 @@
         <img class="vue-element-plus-logo" :alt="item.name" :src="item.itemSrc" @click="handleClickImg(item.targetLink)" />
       </el-carousel-item>
     </el-carousel>
-    <div class="top-container">
+    <!-- <div class="top-container">
       <div class="title">搜索词云</div>
       <div class="page-title">
         <el-link type="info">信息链接:</el-link>
@@ -19,7 +19,7 @@
         <el-link type="warning" href="https://www.tslang.cn/">TypeScript +</el-link>
         <el-link type="danger" href="https://element-plus.gitee.io/#/zh-CN/component/link">Element Plus</el-link>
       </div>
-    </div>
+    </div> -->
     <div class="word-cloud-wrapper">
       <div class="right-bottom"></div>
 
@@ -32,14 +32,16 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, computed, reactive, toRefs } from 'vue'
+import { defineComponent, computed, reactive, toRefs } from 'vue'
+// import DataSet from '@antv/data-set'
+// import { Chart, registerShape, ShapeAttrs, Util } from '@antv/g2'
+// import { Datum, ShapeInfo } from 'node_modules/@antv/g2/lib/interface'
 import logo from '@/assets/logo.png'
-import DataSet from '@antv/data-set'
-import { Chart, registerShape, ShapeAttrs, Util } from '@antv/g2'
-import { Datum, ShapeInfo } from 'node_modules/@antv/g2/lib/interface'
 import { useStore } from '@/store/index'
 import { langConfig } from '@/utils/constant/config'
-import Service from './api/index'
+// import Service from './api/index'
+
+// *** vite 最新版本生产打包bug 暂时屏蔽antv   https://github.com/vitejs/vite/pull/5665 **** //
 
 export default defineComponent({
   name: 'Home',
@@ -71,36 +73,36 @@ export default defineComponent({
     })
     const store = useStore()
     const lang = computed((): string => store.getters['settingsModule/getLangState'])
-    const getTextAttrs = (cfg: ShapeInfo): ShapeAttrs => ({
-      ...cfg.defaultStyle,
-      ...cfg.style,
-      fontSize: (cfg.data as Datum).size,
-      text: (cfg.data as Datum).text,
-      textAlign: 'center',
-      fontFamily: (cfg.data as Datum).font,
-      fill: cfg.color || cfg?.defaultStyle?.stroke,
-      textBaseline: 'alphabetic'
-    })
+    // const getTextAttrs = (cfg: ShapeInfo): ShapeAttrs => ({
+    //   ...cfg.defaultStyle,
+    //   ...cfg.style,
+    //   fontSize: (cfg.data as Datum).size,
+    //   text: (cfg.data as Datum).text,
+    //   textAlign: 'center',
+    //   fontFamily: (cfg.data as Datum).font,
+    //   fill: cfg.color || cfg?.defaultStyle?.stroke,
+    //   textBaseline: 'alphabetic'
+    // })
 
-    // 给point注册一个词云的shape
-    registerShape('point', 'cloud', {
-      draw(cfg, container) {
-        const attrs = getTextAttrs(cfg)
-        const textShape = container.addShape('text', {
-          attrs: {
-            ...attrs,
-            x: cfg?.x,
-            y: cfg?.y
-          }
-        })
-        const data = cfg.data as Datum
+    // // 给point注册一个词云的shape
+    // registerShape('point', 'cloud', {
+    //   draw(cfg, container) {
+    //     const attrs = getTextAttrs(cfg)
+    //     const textShape = container.addShape('text', {
+    //       attrs: {
+    //         ...attrs,
+    //         x: cfg?.x,
+    //         y: cfg?.y
+    //       }
+    //     })
+    //     const data = cfg.data as Datum
 
-        if (data.rotate) {
-          Util.rotate(textShape, (data.rotate * Math.PI) / 180)
-        }
-        return textShape
-      }
-    })
+    //     if (data.rotate) {
+    //       Util.rotate(textShape, (data.rotate * Math.PI) / 180)
+    //     }
+    //     return textShape
+    //   }
+    // })
 
     // methods
     const handleClickImg = (targetUrl: string | undefined) => {
@@ -110,66 +112,66 @@ export default defineComponent({
     // /**
     //  * @description 获取词云
     //  */
-    const getWords = async () => {
-      try {
-        const res = await Service.getWorldPopulation()
-        const { dataSets } = res.data
-        const dv = new DataSet.View().source(dataSets)
-        const range = dv.range('value')
-        const min = range[0]
-        const max = range[1]
-        dv.transform({
-          type: 'tag-cloud',
-          fields: ['x', 'value'],
-          size: [800, 600],
-          font: 'Verdana',
-          padding: 0,
-          timeInterval: 5000, // max execute time
-          rotate() {
-            // eslint-disable-next-line no-bitwise
-            let random = ~~(Math.random() * 4) % 4
-            if (random === 2) {
-              random = 0
-            }
-            return random * 90 // 0, 90, 270
-          },
-          fontSize(d) {
-            if (d.value) {
-              return ((d.value - min) / (max - min)) * (80 - 24) + 24
-            }
-            return 0
-          }
-        })
-        const chart = new Chart({
-          container: 'container',
-          autoFit: false,
-          width: 800,
-          height: 600,
-          padding: 0
-        })
-        chart.data(dv.rows)
-        chart.scale({
-          x: { nice: false },
-          y: { nice: false }
-        })
-        chart.legend(false)
-        chart.axis(false)
-        chart.tooltip({
-          showTitle: false,
-          showMarkers: false
-        })
-        chart.coordinate().reflect('x')
-        chart.point().position('x*y').color('CornflowerBlue').shape('cloud').tooltip('value*category')
-        chart.interaction('element-active')
-        chart.render()
-      } catch (err) {
-        console.error(err)
-      }
-    }
+    // const getWords = async () => {
+    //   try {
+    //     const res = await Service.getWorldPopulation()
+    //     const { dataSets } = res.data
+    //     const dv = new DataSet.View().source(dataSets)
+    //     const range = dv.range('value')
+    //     const min = range[0]
+    //     const max = range[1]
+    //     dv.transform({
+    //       type: 'tag-cloud',
+    //       fields: ['x', 'value'],
+    //       size: [800, 600],
+    //       font: 'Verdana',
+    //       padding: 0,
+    //       timeInterval: 5000, // max execute time
+    //       rotate() {
+    //         // eslint-disable-next-line no-bitwise
+    //         let random = ~~(Math.random() * 4) % 4
+    //         if (random === 2) {
+    //           random = 0
+    //         }
+    //         return random * 90 // 0, 90, 270
+    //       },
+    //       fontSize(d) {
+    //         if (d.value) {
+    //           return ((d.value - min) / (max - min)) * (80 - 24) + 24
+    //         }
+    //         return 0
+    //       }
+    //     })
+    //     const chart = new Chart({
+    //       container: 'container',
+    //       autoFit: false,
+    //       width: 800,
+    //       height: 600,
+    //       padding: 0
+    //     })
+    //     chart.data(dv.rows)
+    //     chart.scale({
+    //       x: { nice: false },
+    //       y: { nice: false }
+    //     })
+    //     chart.legend(false)
+    //     chart.axis(false)
+    //     chart.tooltip({
+    //       showTitle: false,
+    //       showMarkers: false
+    //     })
+    //     chart.coordinate().reflect('x')
+    //     chart.point().position('x*y').color('CornflowerBlue').shape('cloud').tooltip('value*category')
+    //     chart.interaction('element-active')
+    //     chart.render()
+    //   } catch (err) {
+    //     console.error(err)
+    //   }
+    // }
 
-    onMounted(() => {
-      getWords()
-    })
+    // onMounted(() => {
+    //   getWords()
+    // })
     return {
       lang,
       langConfig,
