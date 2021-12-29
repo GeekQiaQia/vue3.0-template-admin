@@ -1,7 +1,7 @@
 <!--
  * @Author: GeekQiaQia
  * @Date: 2021-11-10 10:32:27
- * @LastEditTime: 2021-12-29 18:11:22
+ * @LastEditTime: 2021-12-29 19:16:19
  * @LastEditors: GeekQiaQia
  * @Description:
  * @FilePath: /vue3.0-template-admin/src/components/LangSwitch/index.vue
@@ -73,6 +73,8 @@ const handleSwitchLang = (_lang: string) => {
   float right
   height 100%
   margin-left: 5px
+  vertical-align: middle;
+  line-height: 100%;
   :deep(.el-input__inner) {
     border-radius: 0;
     border: 0;
