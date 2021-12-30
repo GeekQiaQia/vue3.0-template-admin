@@ -218,7 +218,7 @@ git merge upstream/main
 
 #### 分析页
 
-![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c5ff3edaf9f644e6b148acabbada9241~tplv-k3u1fbpfcp-watermark.image)
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6bf206ec2c4f48f5bc6569e24a33bdec~tplv-k3u1fbpfcp-watermark.image?)
 
 ### 复制文本
 
