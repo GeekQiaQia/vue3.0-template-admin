@@ -10,7 +10,7 @@
           <el-dropdown>
             <el-badge :value="messageNum" :max="99" class="message-badge" type="danger">
               <el-button class="message">
-                <i class="el-icon-message-solid"></i>
+                <i class="el-icon-message"></i>
               </el-button>
             </el-badge>
             <template #dropdown>
@@ -60,12 +60,12 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import Hamburger from '@/components/Hamburger/Hamburger.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Search from '@/components/Search/index.vue'
 import LangSwitch from '@/components/LangSwitch/index.vue'
 import avatar from '@/assets/avatar-default.jpg'
-import { useRouter } from 'vue-router'
 import { toFullScreen, exitFullScreen } from '@/utils/screen'
 import { useStore } from '@/store/index'
 import { langConfig } from '@/utils/constant/config'

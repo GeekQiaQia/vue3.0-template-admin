@@ -131,8 +131,8 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/en-US': 'Analysis Page'
           },
           icon: 'el-icon-data-analysis',
-          hidden: true,
-          hiddenTab: true,
+          hidden: false,
+          hiddenTab: false,
         },
       },
     ],

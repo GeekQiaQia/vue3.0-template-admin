@@ -30,8 +30,8 @@
 </template>
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import { useStore } from '@/store/index'
 import { useRouter } from 'vue-router'
+import { useStore } from '@/store/index'
 
 export default defineComponent({
   name: 'AppMain',
