@@ -184,39 +184,36 @@
         <el-card shadow="hover" class="card bg-primary">
           <div class="header-title">
             <h4 class="text-white">AVERAGE SALE SIZE</h4>
-            <div class="dropdown"><i class=" text-white el-icon-more" style="color:whilte"></i></div>
+            <div class="dropdown"><i class="text-white el-icon-more" style="color: whilte"></i></div>
           </div>
-            <div >
-                <div class="text-badge"><span class=" badge badge-danger">-23.47%</span></div>
-                <h3 class="font-nomal text-white">￥156.37</h3>
-                <p class="text-light font-13"> Per sale</p>
-                <el-button type="primary" plain>more <i class="el-icon-arrow-right el-icon--right"></i></el-button>
-            </div>
-          </el-card
-
-      >
-       <el-card  shadow="hover" class="card ">
-         <div class="header-title">
+          <div>
+            <div class="text-badge"><span class="badge badge-danger">-23.47%</span></div>
+            <h3 class="font-nomal text-white">￥156.37</h3>
+            <p class="text-light font-13">Per sale</p>
+            <el-button type="primary" plain>more <i class="el-icon-arrow-right el-icon--right"></i></el-button>
+          </div>
+        </el-card>
+        <el-card shadow="hover" class="card">
+          <div class="header-title">
             <h4 class="text-muted">RECENT ACTIVITY</h4>
             <div class="dropdown"><i class="el-icon-more"></i></div>
           </div>
-          <div style="    height: 128px;
-    overflow: scroll;padding:5px">
-                <el-timeline>
-          <el-timeline-item
-            v-for="(activity, index) in activities"
-            :key="index"
-            :icon="activity.icon"
-            :type="activity.type"
-            :color="activity.color"
-            :size="activity.size"
-            :timestamp="activity.timestamp">
-            {{activity.content}}
-          </el-timeline-item>
-        </el-timeline>
-
+          <div style="height: 128px; overflow: scroll; padding: 5px">
+            <el-timeline>
+              <el-timeline-item
+                v-for="(activity, index) in activities"
+                :key="index"
+                :icon="activity.icon"
+                :type="activity.type"
+                :color="activity.color"
+                :size="activity.size"
+                :timestamp="activity.timestamp"
+              >
+                {{ activity.content }}
+              </el-timeline-item>
+            </el-timeline>
           </div>
-       </el-card>
+        </el-card>
       </el-col>
     </el-row>
   </div>
@@ -306,24 +303,29 @@ const state = reactive<stateTypes>({
     fileType: 'xlsx'
   }
 })
-const activities = [{
-          content: '支持使用图标',
-          timestamp: '2018-04-12 20:46',
-          size: 'large',
-          type: 'primary',
-          icon: 'el-icon-more'
-        }, {
-          content: '支持自定义颜色',
-          timestamp: '2018-04-03 20:46',
-          color: '#0bbd87'
-        }, {
-          content: '支持自定义尺寸',
-          timestamp: '2018-04-03 20:46',
-          size: 'large'
-        }, {
-          content: '默认样式的节点',
-          timestamp: '2018-04-03 20:46'
-        }]
+const activities = [
+  {
+    content: '支持使用图标',
+    timestamp: '2018-04-12 20:46',
+    size: 'large',
+    type: 'primary',
+    icon: 'el-icon-more'
+  },
+  {
+    content: '支持自定义颜色',
+    timestamp: '2018-04-03 20:46',
+    color: '#0bbd87'
+  },
+  {
+    content: '支持自定义尺寸',
+    timestamp: '2018-04-03 20:46',
+    size: 'large'
+  },
+  {
+    content: '默认样式的节点',
+    timestamp: '2018-04-03 20:46'
+  }
+]
 const tableColumn = [
   {
     prop: 'date',
