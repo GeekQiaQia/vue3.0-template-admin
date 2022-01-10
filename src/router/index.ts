@@ -110,18 +110,6 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     },
     children: [
       {
-        path: '/dashboard/workplace',
-        name: 'workplace',
-        component: () => import(/* webpackChunkName: "richText" */ '@/views/Dashboard/workplace.vue'),
-        meta: {
-          title:{
-            '/zh-CN': '工作台',
-            '/en-US': 'Workplace'
-          },
-          icon: 'el-icon-data-analysis',
-        },
-      },
-      {
         path: '/dashboard/analysis',
         name: 'analysis',
         component: () => import(/* webpackChunkName: "richText" */ '@/views/Dashboard/analysis.vue'),
@@ -135,6 +123,18 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
           hiddenTab: false,
         },
       },
+      {
+        path: '/dashboard/workplace',
+        name: 'workplace',
+        component: () => import(/* webpackChunkName: "richText" */ '@/views/Dashboard/workplace.vue'),
+        meta: {
+          title:{
+            '/zh-CN': '工作台',
+            '/en-US': 'Workplace'
+          },
+          icon: 'el-icon-data-analysis',
+        },
+      }
     ],
   },
   {

@@ -1,249 +1,425 @@
 <template>
-  <div class="home-container page-container">
-    <div>
-      <h2>{{ langConfig.home.internationTip[lang] }}</h2>
-      <el-table></el-table>
-    </div>
-
-    <el-carousel :interval="4000" indicator-position="outside">
-      <el-carousel-item v-for="item in swiperItems" :key="item">
-        <img class="vue-element-plus-logo" :alt="item.name" :src="item.itemSrc" @click="handleClickImg(item.targetLink)" />
-      </el-carousel-item>
-    </el-carousel>
-    <!-- <div class="top-container">
-      <div class="title">搜索词云</div>
-      <div class="page-title">
-        <el-link type="info">信息链接:</el-link>
-        <el-link type="primary" href="https://www.vitejs.net/guide/">Vite2.x +</el-link>
-        <el-link type="success" href="https://v3.cn.vuejs.org/">Vue3.x +</el-link>
-        <el-link type="warning" href="https://www.tslang.cn/">TypeScript +</el-link>
-        <el-link type="danger" href="https://element-plus.gitee.io/#/zh-CN/component/link">Element Plus</el-link>
-      </div>
-    </div> -->
-    <div class="word-cloud-wrapper">
-      <div class="right-bottom"></div>
-
-      <div class="word-sets">
-        <div class="sets-module">
-          <div id="container" />
+  <div class="home-container">
+    <el-row style="margin: 15px">
+      <el-col :span="24" class="page-title-box">
+        <h4 class="page-title">CRM</h4>
+        <div class="page-title-right">
+          <div style="margin-right: 10px"><el-date-picker v-model="pickDate" type="date" placeholder="选择日期"> </el-date-picker></div>
         </div>
-      </div>
-    </div>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :md="12" :xl="6"
+        ><el-card shadow="hover" class="card">
+          <el-row>
+            <el-col :span="12" style="text-align: left">
+              <h5 class="text-muted">Campagin</h5>
+              <h3 class="margin-top-1 margin-bottom-1">6,168</h3>
+              <p class="text-muted">
+                <span class="text-success margin-right-1"><i class="el-icon-top"></i>3.66%</span>
+              </p>
+            </el-col>
+            <el-col :span="12" class="flex flex-column flex-end">
+              <div class="e-chart" style="height: 70px; width: 100%">
+                <div ref="Refcampagin" style="width: inherit; height: inherit; min-height: 70px"></div>
+              </div>
+            </el-col>
+          </el-row> </el-card
+      ></el-col>
+      <el-col :md="12" :xl="6"
+        ><el-card shadow="hover" class="card">
+          <el-row>
+            <el-col :span="12" style="text-align: left">
+              <h5 class="text-muted">new Leads</h5>
+              <h3 class="margin-top-1 margin-bottom-1">6,168</h3>
+              <p class="text-muted">
+                <span class="text-success margin-right-1"><i class="el-icon-top"></i>4.66%</span>
+              </p>
+            </el-col>
+            <el-col :span="12" class="flex flex-column flex-end">
+              <div class="e-chart" style="height: 70px; width: 100%">
+                <div ref="RefLeads" style="width: inherit; height: inherit; min-height: 70px"></div>
+              </div>
+            </el-col>
+          </el-row> </el-card
+      ></el-col>
+
+      <el-col :md="12" :xl="6"
+        ><el-card shadow="hover" class="card">
+          <el-row>
+            <el-col :span="12" style="text-align: left">
+              <h5 class="text-muted">Deals</h5>
+              <h3 class="margin-top-1 margin-bottom-1">6,168</h3>
+              <p class="text-muted">
+                <span class="text-danger margin-right-1"><i class="el-icon-top"></i>2.66%</span>
+              </p>
+            </el-col>
+            <el-col :span="12" class="flex flex-column flex-end">
+              <div class="e-chart" style="height: 70px; width: 100%">
+                <div ref="RefDeals" style="width: inherit; height: inherit; min-height: 70px"></div>
+              </div>
+            </el-col>
+          </el-row> </el-card
+      ></el-col>
+
+      <el-col :md="12" :xl="6"
+        ><el-card shadow="hover" class="card">
+          <el-row>
+            <el-col :span="12" style="text-align: left">
+              <h5 class="text-muted">Booked Revenue</h5>
+              <h3 class="margin-top-1 margin-bottom-1">6,168</h3>
+              <p class="text-muted">
+                <span class="text-success margin-right-1"><i class="el-icon-top"></i>5.66%</span>
+              </p>
+            </el-col>
+            <el-col :span="12" class="flex flex-column flex-end">
+              <div class="e-chart" style="height: 70px; width: 100%">
+                <div ref="RefRevenue" style="width: inherit; height: inherit; min-height: 70px"></div>
+              </div>
+            </el-col>
+          </el-row> </el-card
+      ></el-col>
+    </el-row>
+    <el-row>
+      <el-col :xl="10">
+        <el-card shadow="hover" class="card">
+          <div class="header-title">
+            <h4 class="text-muted">CAMPAIGNS</h4>
+            <div class="dropdown"><i class="el-icon-more"></i></div>
+          </div>
+          <div class="e-chart" style="height: 320px; width: 100%">
+            <div ref="RefPolorChart" style="width: inherit; height: inherit"></div>
+          </div>
+          <el-row>
+            <el-col :md="8">
+              <i class="el-icon-position widget-icon bg-light-lighten rounded-circle"></i>
+              <h3 class="font-nomal margin-top-2 margin-bottom-1">1620</h3>
+              <p class="text-muted"><i class="icon total"></i> Total</p>
+            </el-col>
+            <el-col :md="8">
+              <i class="el-icon-s-flag widget-icon bg-light-lighten rounded-circle"></i>
+
+              <h3 class="font-nomal margin-top-2 margin-bottom-1">3216</h3>
+              <p class="text-muted"><i class="icon reached"></i> Reached</p>
+            </el-col>
+            <el-col :md="8">
+              <i class="el-icon-folder-opened widget-icon bg-light-lighten rounded-circle"></i>
+
+              <h3 class="font-nomal margin-top-2 margin-bottom-1">6329</h3>
+              <p class="text-muted"><i class="icon open"></i> Open</p>
+            </el-col>
+          </el-row>
+        </el-card>
+      </el-col>
+      <el-col :xl="14">
+        <el-card shadow="hover" class="card">
+          <div class="header-title">
+            <h4 class="text-muted">Revene</h4>
+            <div class="dropdown"><i class="el-icon-more"></i></div>
+          </div>
+          <div class="chart-bg padding-top-1 padding-bottom-1">
+            <el-row>
+              <el-col :md="12">
+                <p class="text-muted">current week</p>
+                <h2 class="font-nomal text-center">
+                  <small class="text-primary dot bg-primary"></small>
+                  <span>￥23.976</span>
+                </h2>
+              </el-col>
+              <el-col :md="12">
+                <p class="text-muted">previous week</p>
+                <h2 class="font-nomal text-center">
+                  <small class="text-primary dot bg-green"></small>
+                  <span>￥23.976</span>
+                </h2>
+              </el-col>
+            </el-row>
+          </div>
+          <div class="e-chart" style="height: 361px">
+            <div ref="refLineChart" style="width: inherit; height: inherit"></div>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent, computed, reactive, toRefs } from 'vue'
-// import DataSet from '@antv/data-set'
-// import { Chart, registerShape, ShapeAttrs, Util } from '@antv/g2'
-// import { Datum, ShapeInfo } from 'node_modules/@antv/g2/lib/interface'
-import logo from '@/assets/logo.png'
-import { useStore } from '@/store/index'
-import { langConfig } from '@/utils/constant/config'
-// import Service from './api/index'
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue'
 
-// *** vite 最新版本生产打包bug 暂时屏蔽antv   https://github.com/vitejs/vite/pull/5665 **** //
+import { useInitBarChart } from './useInitChart'
+import { useInitPolorChart } from './useInitPolorChart'
+import { useInitGridChart } from './useInitLineChart'
 
-export default defineComponent({
-  name: 'Home',
-  components: {},
-  setup() {
-    const state = reactive({
-      swiperItems: [
-        {
-          name: 'vue-next',
-          itemSrc: 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c588b8ab65a74d59aa379801136df4e0~tplv-k3u1fbpfcp-watermark.image',
-          targetLink: 'https://github.com/vuejs/docs-next-zh-cn'
-        },
-        {
-          name: 'vitejs',
-          itemSrc: 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a7351d2dcd7846158604ac8bd57222b5~tplv-k3u1fbpfcp-watermark.image',
-          targetLink: 'https://github.com/vitejs'
-        },
-        {
-          name: 'element-plus',
-          itemSrc: 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/48a7fd198df44cca9c0dc10a8047bbef~tplv-k3u1fbpfcp-watermark.image',
-          targetLink: 'https://github.com/element-plus/element-plus'
-        },
-        {
-          name: 'tslang',
-          itemSrc: 'https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/610fc57450884ceaae9578689663fe2f~tplv-k3u1fbpfcp-watermark.image',
-          targetLink: 'https://github.com/Microsoft/TypeScript'
-        }
-      ]
-    })
-    const store = useStore()
-    const lang = computed((): string => store.getters['settingsModule/getLangState'])
-    // const getTextAttrs = (cfg: ShapeInfo): ShapeAttrs => ({
-    //   ...cfg.defaultStyle,
-    //   ...cfg.style,
-    //   fontSize: (cfg.data as Datum).size,
-    //   text: (cfg.data as Datum).text,
-    //   textAlign: 'center',
-    //   fontFamily: (cfg.data as Datum).font,
-    //   fill: cfg.color || cfg?.defaultStyle?.stroke,
-    //   textBaseline: 'alphabetic'
-    // })
+const RefDeals = ref()
+const RefRevenue = ref()
+const Refcampagin = ref()
+const RefLeads = ref()
+const RefPolorChart = ref()
+const refLineChart = ref()
 
-    // // 给point注册一个词云的shape
-    // registerShape('point', 'cloud', {
-    //   draw(cfg, container) {
-    //     const attrs = getTextAttrs(cfg)
-    //     const textShape = container.addShape('text', {
-    //       attrs: {
-    //         ...attrs,
-    //         x: cfg?.x,
-    //         y: cfg?.y
-    //       }
-    //     })
-    //     const data = cfg.data as Datum
-
-    //     if (data.rotate) {
-    //       Util.rotate(textShape, (data.rotate * Math.PI) / 180)
-    //     }
-    //     return textShape
-    //   }
-    // })
-
-    // methods
-    const handleClickImg = (targetUrl: string | undefined) => {
-      window.open(targetUrl, '_blank')
-    }
-
-    // /**
-    //  * @description 获取词云
-    //  */
-    // const getWords = async () => {
-    //   try {
-    //     const res = await Service.getWorldPopulation()
-    //     const { dataSets } = res.data
-    //     const dv = new DataSet.View().source(dataSets)
-    //     const range = dv.range('value')
-    //     const min = range[0]
-    //     const max = range[1]
-    //     dv.transform({
-    //       type: 'tag-cloud',
-    //       fields: ['x', 'value'],
-    //       size: [800, 600],
-    //       font: 'Verdana',
-    //       padding: 0,
-    //       timeInterval: 5000, // max execute time
-    //       rotate() {
-    //         // eslint-disable-next-line no-bitwise
-    //         let random = ~~(Math.random() * 4) % 4
-    //         if (random === 2) {
-    //           random = 0
-    //         }
-    //         return random * 90 // 0, 90, 270
-    //       },
-    //       fontSize(d) {
-    //         if (d.value) {
-    //           return ((d.value - min) / (max - min)) * (80 - 24) + 24
-    //         }
-    //         return 0
-    //       }
-    //     })
-    //     const chart = new Chart({
-    //       container: 'container',
-    //       autoFit: false,
-    //       width: 800,
-    //       height: 600,
-    //       padding: 0
-    //     })
-    //     chart.data(dv.rows)
-    //     chart.scale({
-    //       x: { nice: false },
-    //       y: { nice: false }
-    //     })
-    //     chart.legend(false)
-    //     chart.axis(false)
-    //     chart.tooltip({
-    //       showTitle: false,
-    //       showMarkers: false
-    //     })
-    //     chart.coordinate().reflect('x')
-    //     chart.point().position('x*y').color('CornflowerBlue').shape('cloud').tooltip('value*category')
-    //     chart.interaction('element-active')
-    //     chart.render()
-    //   } catch (err) {
-    //     console.error(err)
-    //   }
-    // }
-
-    // onMounted(() => {
-    //   getWords()
-    // })
-    return {
-      lang,
-      langConfig,
-      handleClickImg,
-      ...toRefs(state),
-      logo
-    }
-  }
+onMounted(() => {
+  useInitBarChart(Refcampagin.value)
+  useInitBarChart(RefLeads.value)
+  useInitBarChart(RefRevenue.value)
+  useInitBarChart(RefDeals.value)
+  useInitPolorChart(RefPolorChart.value)
+  useInitGridChart(refLineChart.value)
 })
 </script>
 
 <style scoped lang="stylus">
+
 .home-container
-  background #f0f5fa
-  .top-container
-    width 90%
-    margin 0px auto
-    .title
-      margin-left 4.06%
-      font-size 2.714em
-      color #000
-      margin-bottom 0
-      font-weight 500
-      position relative
-      height -webkit-min-content
-      height min-content
-      cursor pointer
-      text-align left
-  .word-cloud-wrapper
-    width 100%
-    height 800px
-    display flex
-    margin 50px auto auto
-    position relative
-    flex-direction column
-    padding 0
-    background #f0f5fa
-    overflow-x hidden
-    transition all 0.3s
-    .right-bottom
-      background linear-gradient(130deg, #6a91ff 40%, #615edd)
-      width 100%
-      height 80%
-      right 0
-      margin-top 48px
-      position absolute
-    .word-sets
-      width 95.8%
-      height 100%
-      margin-left 0
-      margin-bottom 5%
-      position relative
-      .sets-module
-        background #fff
-        width 100%
-        height 85%
+    color black
+    padding 0px 20px
+    background-color #fafbfe
+
+    .page-title-box{
+      box-sizing border-box
+      display flex
+      flex-direction row
+      justify-content space-between
+      align-items center
+      .page-title{
+        font-size  18px
+        margin  0
+        line-height  85px
+        overflow  hidden
+        white-space: nowrap
+        text-overflow  ellipsis
+        color  inherit
+        font-weight 700
+      }
+      .page-title-right{
+        display flex
+        flex-direction row
+        justify-content space-around
+        align-items center
+      }
+    }
+    :deep(.el-card){
+      margin-bottom 30px
+      margin-right 20px
+    }
+    :deep(.el-card.bg-primary){
+      background-color #46a0fc
+    }
+    :deep(.text-white.el-icon-more){
+      color white
+    }
+    .flex{
+      display flex
+    }
+    .flex-row{
+      flex-direction row
+    }
+    .flex-column{
+      flex-direction column
+    }
+    .flex-end{
+      justify-content flex-end
+    }
+    .card {
+      .data-counter{
+
+      }
+      .padding-top-1{
+        padding-top  10px
+      }
+      .padding-bottom-1{
+        padding-bottom  10px
+      }
+      .margin-bottom-pro{
+        margin-bottom 15px
+      }
+      .margin-right-1{
+        margin-right 10px
+      }
+      .margin-top-1{
+        margin-top 10px
+      }
+      .margin-top-2{
+        margin-top 20px
+      }
+      .margin-bottom-1{
+        margin-bottom 10px
+      }
+      .margin-bottom-2{
+        margin-bottom 20px
+      }
+      .font-nomal{
+        font-weight 400
+      }
+      .text-muted{
+          color #98a6ad
+        }
+        .text-left{
+          text-align left
+        }
+        .text-nowrap{
+          white-space nowrap
+        }
+        .text-success{
+          color #0acf97
+        }
+        .text-danger{
+          color #fa5c7c
+        }
+        .text-primary{
+          color #409eff
+        }
+        .text-light{
+          color #e3eaef
+        }
+        .text-white{
+          color white
+        }
+        .text-center{
+          display flex
+          flex-direction row
+          justify-content center
+          align-items center
+        }
+        .text-badge{
+          margin-top 20px
+          margin-bottom  10px
+        }
+        .font-13{
+          font-size 13px
+        }
+        .badge{
+          display: inline-block;
+          padding: 0.25em 0.4em;
+          font-size: 75%;
+          font-weight: 700;
+          line-height: 1;
+          text-align: center;
+          white-space: nowrap;
+          vertical-align: baseline;
+          border-radius: 0.25rem;
+          -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+          transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+          transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+          transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        }
+        .badge-danger{
+          color #fff
+          background-color #fa5c7c
+        }
+        .btn-link{
+          font-weight 400
+          color #409eff
+          text-decoration none
+          cursor pointer
+        }
+        .bg-primary{
+          background-color #409eff
+        }
+        .bg-green{
+          background-color green
+        }
+        .icon-square{
+          width 12px
+          height 12px
+          display inline-block
+        }
+        .icon{
+          width 14px
+          height 14px
+          display inline-block
+          border-radius 50%
+        }
+        .total{
+          background-color #5572c3
+        }
+        .reached{
+          background-color #93cb79
+        }
+        .open{
+          background-color #f9c761
+        }
+        .red{
+          background-color #ec6769
+        }
+        .green{
+          background-color  #93cb79
+        }
+        .yellow {
+          background-color #f9c761
+        }
+        .deep-blue{
+          background-color #5572c3
+        }
+        .dot{
+          width 12px
+          height 12px
+          display inline-block
+          border-radius 50%
+        }
+        .chart-widget-list p{
+          border-bottom 1px solid #f1f3fa
+          margin-bottom 0.5rem
+          padding-bottom 0.5rem
+          display flex
+          flex-direction row
+          justify-content space-between
+          align-items center
+        }
+      .header-title{
+        display flex
+        flex-direction row
+        justify-content space-between
+        align-items center
+        margin-bottom 5px
+        .dropdown{
+          cursor pointer
+        }
+      }
+      .chart-bg{
+        background-color #f9f9fd
+      }
+      .card-header{
+        display flex
+        flex-direction row
+        justify-content space-between
+        align-items flex-start
+
+      }
+      .rounded-circle{
+        border-radius: 50%!important;
+      }
+      .bg-light-lighten{
+        background-color: rgba(227,234,239,.25)!important;
+      }
+       .widget-icon{
+          color #248fed
+          font-size 20px
+          background-color #7fbdf33b
+          height 40px
+          width 40px
+          text-align: center
+          line-height 40px
+          border-radius 3px
+          display inline-block
+        }
+      .card-middle{
+        display flex
+        flex-direction row
+        justify-content flex-start
+        align-items center
+        color #6c757d
+      }
+      .card-footer{
+        display flex
+        flex-direction row
+        justify-content flex-start
+        align-items center
+      }
+
+      .e-chart{
+        margin auto
         position relative
-        box-shadow -5px 5px 15px rgba(0, 0, 0, 0.1)
-        overflow hidden
-  .page-title, .vue-element-plus-logo
-    width 100%
-    max-width 750px
-    height 100%
-    cursor pointer
-  .el-carousel__item h3
-    color #475669
-    font-size 18px
-    opacity 0.75
-    line-height 300px
-    margin 0
-  .el-carousel__item:nth-child(2n)
-    background-color white
-  .el-carousel__item:nth-child(2n+1)
-    background-color white
+        width 100%
+      }
+    }
 </style>

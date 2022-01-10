@@ -196,7 +196,7 @@ git merge upstream/main
 
 ### 国际化
 
-![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d97113bee9994d5891ea4f38f5f6c85b~tplv-k3u1fbpfcp-watermark.image)
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/024bc719b2484b8780210277379431cc~tplv-k3u1fbpfcp-watermark.image?)
 
 ### 全屏功能
 
@@ -208,7 +208,7 @@ git merge upstream/main
 
 ### 首页
 
-![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e7a8852ae924151acc5e416fb91bf6a~tplv-k3u1fbpfcp-watermark.image)
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bfe5cd938e134a118fc6e9294d0caa30~tplv-k3u1fbpfcp-watermark.image?)
 
 ### Dashboard
 
