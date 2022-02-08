@@ -11,6 +11,7 @@
       </el-col>
     </el-row>
     <el-row>
+      <el-row><el-col><el-button type="success">Add New</el-button></el-col></el-row>
       <el-col :span="24">
         <div class="board">
           <div class="task">
