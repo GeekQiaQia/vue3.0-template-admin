@@ -138,6 +138,32 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: '/dragable',
+    component: layout,
+    redirect: '/dragable/dragableComponent',
+    meta: {
+      title:{
+        '/zh-CN': '拖拽组件',
+        '/en-US': 'Dragable Component'
+      },
+      icon: 'el-icon-s-promotion',
+    },
+    children: [
+      {
+        path: '/dragable/dragableComponent',
+        name: 'dragableComponent',
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/dragable/dragableComponent.vue'),
+        meta: {
+          title:{
+            '/zh-CN': '拖拽组件',
+            '/en-US': 'Dragable Component'
+          },
+          icon: 'el-icon-s-promotion',
+        },
+      }
+    ],
+  },
+  {
     path: '/copy',
     component: layout,
     redirect: '/copy/copyText',
@@ -330,32 +356,6 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/en-US': 'QRCode'
           },
           icon: 'el-icon-c-scale-to-original',
-        },
-      }
-    ],
-  },
-  {
-    path: '/dragable',
-    component: layout,
-    redirect: '/dragable/dragableComponent',
-    meta: {
-      title:{
-        '/zh-CN': '拖拽组件',
-        '/en-US': 'Dragable Component'
-      },
-      icon: 'el-icon-s-promotion',
-    },
-    children: [
-      {
-        path: '/dragable/dragableComponent',
-        name: 'dragableComponent',
-        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/dragable/dragableComponent.vue'),
-        meta: {
-          title:{
-            '/zh-CN': '拖拽组件',
-            '/en-US': 'Dragable Component'
-          },
-          icon: 'el-icon-s-promotion',
         },
       }
     ],
