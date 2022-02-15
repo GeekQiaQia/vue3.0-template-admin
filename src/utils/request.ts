@@ -1,7 +1,7 @@
-import Axios, { Method, ResponseType, AxiosResponse } from 'axios'
-import { ElMessage } from 'element-plus'
+import Axios, { Method, ResponseType, AxiosResponse, AxiosRequestConfig } from 'axios'
+import { ElMessage } from 'element-plus/lib/components/message'
 
-interface axiosData {
+interface IAxiosData {
   url: string
   method: Method
   headers?: any
@@ -27,7 +27,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 // 请求拦截器
 axios.interceptors.request.use(
-  (config) => {
+  (config:AxiosRequestConfig) => {
     if (sessionStorage.getItem("accessToken")) {
       config.headers.Authorization = `Bearer ${sessionStorage.getItem("accessToken")}`;
     }
@@ -38,7 +38,7 @@ axios.interceptors.request.use(
 
 // 响应拦截器
 axios.interceptors.response.use(
-  (res) => res,
+  (res:AxiosResponse) => res,
   (err) => {
     if (err.response && err.response.data) {
       const code = err.response.status
@@ -61,7 +61,7 @@ axios.interceptors.response.use(
  * @param {object}  datas  //token在datas中
  *
  */
-export default function request(arr: axiosData) {
+export default function request(arr: IAxiosData) {
   return new Promise<any>((resolve, reject) => {
     // arr = requestValidate(arr)
     axios({

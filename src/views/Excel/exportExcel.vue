@@ -142,7 +142,6 @@ export default defineComponent({
     const tableRef = ref()
     const formatJson = (filterVal: any[], jsonData: any[]) => jsonData.map((v) => filterVal.map((j) => v[j]))
     const filterArrayProp = (arrayObj: any, prop: string | number) => {
-      console.log(arrayObj)
       const tempArray = []
       for (let i = 0; i < arrayObj.length; i++) {
         tempArray.push(arrayObj[i][prop])

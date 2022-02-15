@@ -174,9 +174,10 @@ git merge upstream/main
 
 ## 技术反馈和交流群 | Technical feedback and communication
 
+
 <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d41b5fec542444b4a28c00135ce27d42~tplv-k3u1fbpfcp-watermark.image" width="180px" />
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d527b6635f624a6d814035b6642c6356~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
+<img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5c9aec542d3949afb2898772f391ae5b~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
 
 ## 赞助 | Sponsored
 
@@ -196,7 +197,7 @@ git merge upstream/main
 
 ### 国际化
 
-![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d97113bee9994d5891ea4f38f5f6c85b~tplv-k3u1fbpfcp-watermark.image)
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/024bc719b2484b8780210277379431cc~tplv-k3u1fbpfcp-watermark.image?)
 
 ### 全屏功能
 
@@ -208,7 +209,7 @@ git merge upstream/main
 
 ### 首页
 
-![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e7a8852ae924151acc5e416fb91bf6a~tplv-k3u1fbpfcp-watermark.image)
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bfe5cd938e134a118fc6e9294d0caa30~tplv-k3u1fbpfcp-watermark.image?)
 
 ### Dashboard
 
@@ -218,7 +219,7 @@ git merge upstream/main
 
 #### 分析页
 
-![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c5ff3edaf9f644e6b148acabbada9241~tplv-k3u1fbpfcp-watermark.image)
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6bf206ec2c4f48f5bc6569e24a33bdec~tplv-k3u1fbpfcp-watermark.image?)
 
 ### 复制文本
 

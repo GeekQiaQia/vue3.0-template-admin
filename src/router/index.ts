@@ -3,7 +3,6 @@ import {
 } from 'vue-router';
 import { store } from '@/store';
 import layout from '../layout/index.vue';
-import homeFilled from '@/components/icons/home-filled.vue'
 // 静态路由
 export const constantRoutes: Array<RouteRecordRaw> = [
 
@@ -111,18 +110,6 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
     },
     children: [
       {
-        path: '/dashboard/workplace',
-        name: 'workplace',
-        component: () => import(/* webpackChunkName: "richText" */ '@/views/Dashboard/workplace.vue'),
-        meta: {
-          title:{
-            '/zh-CN': '工作台',
-            '/en-US': 'Workplace'
-          },
-          icon: 'ic ic-manage-fill',
-        },
-      },
-      {
         path: '/dashboard/analysis',
         name: 'analysis',
         component: () => import(/* webpackChunkName: "richText" */ '@/views/Dashboard/analysis.vue'),
@@ -131,9 +118,49 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/zh-CN': '分析页',
             '/en-US': 'Analysis Page'
           },
-          icon: 'ic ic-computer-fill',
+          icon: 'el-icon-data-analysis',
+          hidden: false,
+          hiddenTab: false,
         },
       },
+      {
+        path: '/dashboard/workplace',
+        name: 'workplace',
+        component: () => import(/* webpackChunkName: "richText" */ '@/views/Dashboard/workplace.vue'),
+        meta: {
+          title:{
+            '/zh-CN': '工作台',
+            '/en-US': 'Workplace'
+          },
+          icon: 'el-icon-data-analysis',
+        },
+      }
+    ],
+  },
+  {
+    path: '/dragable',
+    component: layout,
+    redirect: '/dragable/dragableComponent',
+    meta: {
+      title:{
+        '/zh-CN': '拖拽组件',
+        '/en-US': 'Dragable Component'
+      },
+      icon: 'el-icon-s-promotion',
+    },
+    children: [
+      {
+        path: '/dragable/dragableComponent',
+        name: 'dragableComponent',
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/dragable/dragableComponent.vue'),
+        meta: {
+          title:{
+            '/zh-CN': '拖拽组件',
+            '/en-US': 'Dragable Component'
+          },
+          icon: 'el-icon-s-promotion',
+        },
+      }
     ],
   },
   {
@@ -329,32 +356,6 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/en-US': 'QRCode'
           },
           icon: 'ic ic-qrcode-fill',
-        },
-      }
-    ],
-  },
-  {
-    path: '/dragable',
-    component: layout,
-    redirect: '/dragable/dragableComponent',
-    meta: {
-      title:{
-        '/zh-CN': '拖拽组件',
-        '/en-US': 'Dragable Component'
-      },
-      icon: 'ic ic-workbench-fill',
-    },
-    children: [
-      {
-        path: '/dragable/dragableComponent',
-        name: 'dragableComponent',
-        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/dragable/dragableComponent.vue'),
-        meta: {
-          title:{
-            '/zh-CN': '拖拽组件',
-            '/en-US': 'Dragable Component'
-          },
-          icon: 'ic ic-workbench-fill',
         },
       }
     ],
