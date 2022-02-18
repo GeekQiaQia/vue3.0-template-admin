@@ -1,7 +1,7 @@
 /*
  * @Author: GeekQiaQia
  * @Date: 2021-11-10 10:32:27
- * @LastEditTime: 2022-02-18 15:03:19
+ * @LastEditTime: 2022-02-18 15:08:47
  * @LastEditors: GeekQiaQia
  * @Description:
  * @FilePath: /vue3.0-template-admin/vite.config.ts
@@ -35,7 +35,9 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         resolvers: [ElementPlusResolver()],
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver({
+          importStyle: 'sass',
+        })],
         dts: path.resolve(pathSrc, 'components.d.ts'),
       }),
       legacy({
