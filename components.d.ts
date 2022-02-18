@@ -4,8 +4,6 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Breadcrumb: typeof import('./src/components/Breadcrumb/index.vue')['default']
-    CodeJson: typeof import('./src/components/Editor/codeJson.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
@@ -64,17 +62,8 @@ declare module 'vue' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTransfer: typeof import('element-plus/es')['ElTransfer']
     ElUpload: typeof import('element-plus/es')['ElUpload']
-    Hamburger: typeof import('./src/components/Hamburger/Hamburger.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    HomeFilled: typeof import('./src/components/icons/home-filled.vue')['default']
-    Icon: typeof import('./src/components/icon.vue')['default']
-    LangSwitch: typeof import('./src/components/LangSwitch/index.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
-    RichEditor: typeof import('./src/components/Editor/richEditor.vue')['default']
-    Search: typeof import('./src/components/Search/index.vue')['default']
-    SimpleMarkdown: typeof import('./src/components/Editor/simpleMarkdown.vue')['default']
-    TuiEditor: typeof import('./src/components/Editor/tuiEditor.vue')['default']
-    WorldMap: typeof import('./src/components/WorldMap.vue')['default']
+
   }
 }
 
