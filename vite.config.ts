@@ -1,20 +1,21 @@
 /*
  * @Author: GeekQiaQia
  * @Date: 2021-11-10 10:32:27
- * @LastEditTime: 2022-02-15 20:18:39
+ * @LastEditTime: 2022-02-18 15:03:19
  * @LastEditors: GeekQiaQia
  * @Description:
  * @FilePath: /vue3.0-template-admin/vite.config.ts
  */
-import { ConfigEnv ,loadEnv,UserConfig} from 'vite';
+import { ConfigEnv, loadEnv, UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy'
-import { resolve } from 'path';
+import path,{ resolve} from 'path';
 // elementPlus for vite
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
+const pathSrc = path.resolve(__dirname, 'src')
 const CWD = process.cwd()
 
 // https://cn.vitejs.dev/config/
@@ -26,7 +27,8 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     define: {              // 类型： Record<string, string> 定义全局变量替换方式。每项在开发时会被定义为全局变量，而在构建时则是静态替换。
       'process.platform': null,
       'process.version': null,
-    },
+     },
+
     plugins: [           // 类型： (Plugin | Plugin[])[]  将要用到的插件数组
       vue(),
       AutoImport({
@@ -34,6 +36,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       }),
       Components({
         resolvers: [ElementPlusResolver()],
+        dts: path.resolve(pathSrc, 'components.d.ts'),
       }),
       legacy({
         targets: ['ie >= 11'],
@@ -46,7 +49,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         '@': resolve(__dirname, 'src'),
       },
       extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.mjs'] // 类型： string[] 导入时想要省略的扩展名列表。
-    },
+     },
     clearScreen: false,
     server: {
       hmr: { overlay: false }, // 禁用或配置 HMR 连接 设置 server.hmr.overlay 为 false 可以禁用服务器错误遮罩层
@@ -60,6 +63,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
           target: 'http://106.12.45.247:3000/',
           changeOrigin: true,
           secure: false,
+          // eslint-disable-next-line no-shadow
           rewrite: (path) => path.replace('/api', '')
         }
       },
