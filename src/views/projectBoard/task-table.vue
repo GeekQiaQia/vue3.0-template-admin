@@ -52,9 +52,10 @@
           <el-button
             v-else
             size="mini"
-            icon="el-icon-edit"
             @click="handleEdit(scope.row)"
-          >编辑</el-button>
+          >
+           <el-icon><edit /></el-icon>
+          编辑</el-button>
           <el-popconfirm
             confirm-button-text="确定"
             cancel-button-text="取消"
@@ -64,7 +65,8 @@
             @confirm="handleDelete(scope.row)"
           >
             <template #reference>
-              <el-button size="mini" icon="el-icon-delete" type="danger">删除</el-button>
+
+              <el-button size="mini"  type="danger"><el-icon><delete-filled /></el-icon>删除</el-button>
             </template>
           </el-popconfirm>
         </template>
@@ -77,8 +79,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import _ from 'lodash'
-import { computed } from 'vue'
+import { defineProps,defineEmits} from 'vue'
+import { Edit,DeleteFilled } from '@element-plus/icons-vue'
+
 import { TaskListData } from './store/index'
 
 /*
@@ -94,18 +97,14 @@ const emit = defineEmits(['updateTask', 'modifyTaskEdit', 'addProjectTask', 'del
 
 // 将任务修改为可编辑
 function handleEdit(row: TaskListData) {
-  // eslint-disable-next-line no-console
-  console.log(row)
-  const taskId = row.taskId
+  const {taskId} = row
 
   emit('modifyTaskEdit', taskId, true)
 }
 
 // 修改任务后，保存
 function handleSave(row: TaskListData) {
-  // eslint-disable-next-line no-console
-  console.log(row)
-  const taskId = row.taskId
+  const {taskId} = row
 
    emit('updateTask', taskId, {
      ...row,
@@ -115,7 +114,7 @@ function handleSave(row: TaskListData) {
 
 // 删除任务
 function handleDelete(row: TaskListData) {
-  const taskId = row.taskId
+  const {taskId} = row
 
   emit('deleteProjectTask', taskId)
 }

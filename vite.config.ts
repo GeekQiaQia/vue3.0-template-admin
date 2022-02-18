@@ -1,7 +1,7 @@
 /*
  * @Author: GeekQiaQia
  * @Date: 2021-11-10 10:32:27
- * @LastEditTime: 2021-12-29 22:48:23
+ * @LastEditTime: 2022-02-15 20:18:39
  * @LastEditors: GeekQiaQia
  * @Description:
  * @FilePath: /vue3.0-template-admin/vite.config.ts
@@ -10,7 +10,10 @@ import { ConfigEnv ,loadEnv,UserConfig} from 'vite';
 import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy'
 import { resolve } from 'path';
-import styleImport from 'vite-plugin-style-import'
+// elementPlus for vite
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 const CWD = process.cwd()
 
@@ -26,18 +29,11 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     },
     plugins: [           // 类型： (Plugin | Plugin[])[]  将要用到的插件数组
       vue(),
-      styleImport({
-        libs: [{
-          libraryName: 'element-plus',
-          esModule: true,
-          ensureStyleFile: true,
-          resolveStyle: (name) => {
-            // eslint-disable-next-line no-param-reassign
-            name = name.slice(3)
-            return `element-plus/packages/theme-chalk/src/${name}.scss`;
-          },
-          resolveComponent: (name) => `element-plus/lib/${name}`,
-        }]
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()],
       }),
       legacy({
         targets: ['ie >= 11'],

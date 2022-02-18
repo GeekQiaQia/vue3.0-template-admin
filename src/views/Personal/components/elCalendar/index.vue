@@ -35,7 +35,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, computed, ref, toRefs, onMounted } from 'vue'
-import { ElMessage } from 'element-plus/lib/components/message'
+import { ElMessage } from 'element-plus'
 
 declare type indexType = string | number | symbol
 

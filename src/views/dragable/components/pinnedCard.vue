@@ -10,7 +10,7 @@
             </div>
             <el-tooltip class="item" effect="dark" content="drag to order" placement="right-start">
               <div class="spin handle">
-                <i class="el-icon-s-operation" />
+                <el-icon><operation /></el-icon>
               </div>
             </el-tooltip>
           </div>
@@ -26,12 +26,17 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, ref, onMounted, onUnmounted } from 'vue'
+import { Operation} from '@element-plus/icons-vue'
+
 import Sortable from 'sortablejs'
 
 interface cardInfoType {
   cardInfo: { id: number; imgSrc: string; cardTitle: string; link: string; cardContent: string }[]
 }
 export default defineComponent({
+  components:{
+    Operation
+  },
   setup() {
     let cardSortable: Sortable
     const cardRef = ref()

@@ -8,10 +8,10 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, computed } from 'vue'
-import { useStore } from '@/store/index'
-import { ElConfigProvider } from 'element-plus/lib/components/config-provider'
+import { ElConfigProvider } from 'element-plus'
 import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
 import enLocale from 'element-plus/lib/locale/lang/en'
+import { useStore } from '@/store/index'
 
 export default defineComponent({
   name: 'App',

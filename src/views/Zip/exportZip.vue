@@ -66,7 +66,7 @@ import JSZip from 'jszip'
 // 缺少ts文件声明
 import JSZipUtils from 'jszip-utils'
 import { saveAs } from 'file-saver'
-import { ElMessage, ElNotification } from 'element-plus/lib/components'
+import { ElMessage, ElNotification } from 'element-plus'
 import RichEditor from '@/components/Editor/richEditor.vue'
 
 interface stateType {

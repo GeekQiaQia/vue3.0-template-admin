@@ -28,6 +28,7 @@ Give a ⭐️ if this project helped you!
 
 - [x] Element Plus
 - [x] N+1 多级菜单
+- [x] 日历
 - [x] Dashboard
 - [x] 表格
 - [x] router Tab 选项卡
@@ -221,6 +222,13 @@ git merge upstream/main
 
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6bf206ec2c4f48f5bc6569e24a33bdec~tplv-k3u1fbpfcp-watermark.image?)
 
+### 日历
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/01212329f4d249568e53a672366f2d42~tplv-k3u1fbpfcp-watermark.image?)
+
+### 拖拽组件
+
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ff4332937fb94745aaa16ede4dd70b58~tplv-k3u1fbpfcp-watermark.image?)
+
 ### 复制文本
 
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7272b219e496438898a3fb7d81859087~tplv-k3u1fbpfcp-watermark.image)
@@ -259,9 +267,7 @@ git merge upstream/main
 
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cc192a56d9104cd3b8404b37c024ac76~tplv-k3u1fbpfcp-watermark.image) -->
 
-### 拖拽组件
 
-![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6fa6e9b7f60a440196b6b7b8586dc64f~tplv-k3u1fbpfcp-watermark.image)
 
 ### 菜单管理
 

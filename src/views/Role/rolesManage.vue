@@ -5,8 +5,12 @@
     <el-card class="card-ctrl">
       <el-row>
         <el-col :span="8" style="text-align: left">
-          <el-button type="primary" icon="el-icon-plus" size="small" @click="onCreate">新增</el-button>
-          <el-button type="success" icon="el-icon-refresh" size="small" @click="onRefresh">刷新</el-button>
+          <el-button type="primary"  size="small" @click="onCreate">
+            <el-icon><plus /></el-icon>
+            新增</el-button>
+          <el-button type="success"  size="small" @click="onRefresh">
+            <el-icon><refresh /></el-icon>
+            刷新</el-button>
         </el-col>
       </el-row>
       <br />
@@ -24,10 +28,14 @@
         <el-table-column label="操作" align="center">
           <template #default="scope">
             <el-tooltip class="item" effect="dark" content="菜单授权" placement="bottom">
-              <el-button circle plain type="primary" icon="el-icon-edit" size="small" @click="onEdit(scope.$index, scope.row)"></el-button>
+              <el-button circle plain type="primary" size="small" @click="onEdit(scope.$index, scope.row)">
+                <el-icon><edit /></el-icon>
+              </el-button>
             </el-tooltip>
             <el-tooltip v-if="scope.row.state != 0" class="item" effect="dark" content="删除" placement="bottom">
-              <el-button circle plain type="danger" icon="el-icon-minus" size="small" @click="onDelete(scope.$index, scope.row)"> </el-button>
+              <el-button circle plain type="danger"  size="small" @click="onDelete(scope.$index, scope.row)">
+                <el-icon><minus /></el-icon>
+              </el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -57,7 +65,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, computed } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus/lib/components'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { Edit,Minus,Plus,Refresh} from '@element-plus/icons-vue'
 import RoleEdit from './rolesEdit.vue'
 import RoleNew from './rolesNew.vue'
 
@@ -86,7 +95,11 @@ export default defineComponent({
   name: 'RoleManage',
   components: {
     RoleEdit,
-    RoleNew
+    RoleNew,
+    Edit,
+    Minus,
+    Plus,
+    Refresh
   },
   setup() {
     const state = reactive({

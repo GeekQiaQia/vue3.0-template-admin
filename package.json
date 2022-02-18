@@ -14,8 +14,9 @@
   },
   "dependencies": {
     "@antv/data-set": "^0.11.8",
-    "@antv/g2": "^4.1.19",
+    "@antv/g2": "^4.1.36",
     "@antv/g2plot": "^2.3.24",
+    "@element-plus/icons-vue": "^0.2.4",
     "@fullcalendar/daygrid": "^5.8.0",
     "@fullcalendar/interaction": "^5.8.0",
     "@fullcalendar/timegrid": "^5.8.0",
@@ -39,6 +40,7 @@
     "@types/vuedraggable": "^2.24.0",
     "@vitejs/plugin-legacy": "^1.4.3",
     "@vitejs/plugin-vue": "^1.2.1",
+    "add": "^2.0.6",
     "axios": "^0.21.1",
     "buffer": "^6.0.3",
     "clipboard": "^2.0.4",
@@ -48,7 +50,7 @@
     "dom-to-image": "^2.6.0",
     "driver.js": "^0.9.8",
     "echarts": "^5.1.1",
-    "element-plus": "^1.1.0-beta.7",
+    "element-plus": "^2.0.2",
     "esbuild": "^0.12.15",
     "eslint-import-resolver-webpack": "^0.13.0",
     "file-saver": "^2.0.5",
@@ -73,7 +75,7 @@
     "tinymce": "^5.8.0",
     "vite": "2.6.14",
     "vite-plugin-style-import": "^1.0.1",
-    "vue": "^3.2.4",
+    "vue": "^3.2.26",
     "vue-clipboard2": "^0.3.1",
     "vue-cropperjs": "^5.0.0",
     "vue-qr": "^2.4.0",
@@ -82,7 +84,8 @@
     "vuedraggable": "^2.24.3",
     "vuex": "^4.0.0",
     "wangeditor": "^4.7.2",
-    "xlsx": "^0.17.0"
+    "xlsx": "^0.17.0",
+    "yarn": "^1.22.17"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",
@@ -109,6 +112,8 @@
     "prettier": "^2.2.1",
     "stylus": "^0.54.8",
     "typescript": "^4.3.2",
+    "unplugin-auto-import": "^0.5.5",
+    "unplugin-vue-components": "^0.17.11",
     "vue-tsc": "^0.2.2"
   },
   "config": {

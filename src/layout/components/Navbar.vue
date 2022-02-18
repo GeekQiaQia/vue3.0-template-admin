@@ -6,11 +6,11 @@
       <div class="right-menu">
         <search></search>
         <lang-switch></lang-switch>
-        <div id="Message">
+        <div id="Message" class="right-menu-box">
           <el-dropdown>
             <el-badge :value="messageNum" :max="99" class="message-badge" type="danger">
               <el-button class="message">
-                <i class="el-icon-message"></i>
+                <el-icon><Message /></el-icon>
               </el-button>
             </el-badge>
             <template #dropdown>
@@ -24,14 +24,16 @@
             </template>
           </el-dropdown>
         </div>
-        <el-button id="fullScreen" class="full-screen">
+        <div id="fullScreen" class="right-menu-box">
+        <el-button class="full-screen">
           <el-tooltip :content="langConfig.header.fullScreen[lang]" effect="dark" placement="left">
-            <i v-show="fullScreen == false" class="el-icon-full-screen" @click="toShowFullScreen()"></i>
+            <el-icon v-show="fullScreen == false" @click="toShowFullScreen()" ><full-screen /></el-icon>
           </el-tooltip>
           <el-tooltip :content="langConfig.header.exitFullScreen[lang]" effect="dark" placement="left">
-            <i v-show="fullScreen == true" class="el-icon-bottom-left" @click="toExitFullScreen()"></i>
+            <el-icon v-show="fullScreen == true" @click="toExitFullScreen()"><bottom-left /></el-icon>
           </el-tooltip>
         </el-button>
+        </div>
         <el-dropdown class="avatar-container" trigger="hover">
           <div class="avatar-wrapper">
             <el-avatar :src="avatar"></el-avatar>
@@ -60,6 +62,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
+import { Message,FullScreen ,BottomLeft} from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import Hamburger from '@/components/Hamburger/Hamburger.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
@@ -76,7 +79,10 @@ export default defineComponent({
     Hamburger,
     Breadcrumb,
     Search,
-    LangSwitch
+    LangSwitch,
+    Message,
+    FullScreen,
+    BottomLeft
   },
   props: {
     primary: {
@@ -173,6 +179,12 @@ export default defineComponent({
     display: flex;
     &:focus {
       outline: none;
+    }
+    .right-menu-box{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .message-badge {
