@@ -16,7 +16,7 @@
               <h5 class="text-muted">Campagin</h5>
               <h3 class="margin-top-1 margin-bottom-1">6,168</h3>
               <p class="text-muted">
-                <span class="text-success margin-right-1"><Top/>3.66%</span>
+                <span class="text-success margin-right-1"><Top />3.66%</span>
               </p>
             </el-col>
             <el-col :span="12" class="flex flex-column flex-end">
@@ -33,7 +33,7 @@
               <h5 class="text-muted">new Leads</h5>
               <h3 class="margin-top-1 margin-bottom-1">6,168</h3>
               <p class="text-muted">
-                <span class="text-success margin-right-1"><Top/>4.66%</span>
+                <span class="text-success margin-right-1"><Top />4.66%</span>
               </p>
             </el-col>
             <el-col :span="12" class="flex flex-column flex-end">
@@ -51,7 +51,7 @@
               <h5 class="text-muted">Deals</h5>
               <h3 class="margin-top-1 margin-bottom-1">6,168</h3>
               <p class="text-muted">
-                <span class="text-danger margin-right-1"><Top/>2.66%</span>
+                <span class="text-danger margin-right-1"><Top />2.66%</span>
               </p>
             </el-col>
             <el-col :span="12" class="flex flex-column flex-end">
@@ -69,7 +69,7 @@
               <h5 class="text-muted">Booked Revenue</h5>
               <h3 class="margin-top-1 margin-bottom-1">6,168</h3>
               <p class="text-muted">
-                <span class="text-success margin-right-1"><Top/>5.66%</span>
+                <span class="text-success margin-right-1"><Top />5.66%</span>
               </p>
             </el-col>
             <el-col :span="12" class="flex flex-column flex-end">
@@ -85,25 +85,30 @@
         <el-card shadow="hover" class="card">
           <div class="header-title">
             <h4 class="text-muted">CAMPAIGNS</h4>
-            <div class="dropdown"><MoreFilled/></div>
+            <div class="dropdown"><MoreFilled /></div>
           </div>
           <div class="e-chart" style="height: 320px; width: 100%">
             <div ref="RefPolorChart" style="width: inherit; height: inherit"></div>
           </div>
           <el-row>
-            <el-col :md="8" >
-
-              <div class="icon-container"><i class="widget-icon bg-light-lighten rounded-circle"><Position :size='20' /></i></div>
+            <el-col :md="8">
+              <div class="icon-container">
+                <i class="widget-icon bg-light-lighten rounded-circle"><Position :size="20" /></i>
+              </div>
               <h3 class="font-nomal margin-top-2 margin-bottom-1">1620</h3>
               <p class="text-muted"><i class="icon total"></i> Total</p>
             </el-col>
             <el-col :md="8">
-                <div class="icon-container"><i class=" widget-icon bg-light-lighten rounded-circle"><Flag/></i></div>
+              <div class="icon-container">
+                <i class="widget-icon bg-light-lighten rounded-circle"><Flag /></i>
+              </div>
               <h3 class="font-nomal margin-top-2 margin-bottom-1">3216</h3>
               <p class="text-muted"><i class="icon reached"></i> Reached</p>
             </el-col>
             <el-col :md="8">
-               <div class="icon-container"><i class=" widget-icon bg-light-lighten rounded-circle"><FolderOpened/></i></div>
+              <div class="icon-container">
+                <i class="widget-icon bg-light-lighten rounded-circle"><FolderOpened /></i>
+              </div>
               <h3 class="font-nomal margin-top-2 margin-bottom-1">6329</h3>
               <p class="text-muted"><i class="icon open"></i> Open</p>
             </el-col>
@@ -114,7 +119,7 @@
         <el-card shadow="hover" class="card">
           <div class="header-title">
             <h4 class="text-muted">Revene</h4>
-            <div class="dropdown"><MoreFilled/></div>
+            <div class="dropdown"><MoreFilled /></div>
           </div>
           <div class="chart-bg padding-top-1 padding-bottom-1">
             <el-row>
@@ -144,11 +149,10 @@
 </template>
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { Top ,MoreFilled,Position,Flag,FolderOpened} from '@element-plus/icons-vue'
+import { Top, MoreFilled, Position, Flag, FolderOpened } from '@element-plus/icons-vue'
 import { useInitBarChart } from './useInitChart'
 import { useInitPolorChart } from './useInitPolorChart'
 import { useInitGridChart } from './useInitLineChart'
-
 
 const RefDeals = ref()
 const RefRevenue = ref()
@@ -158,7 +162,6 @@ const RefPolorChart = ref()
 const refLineChart = ref()
 const pickDate = ref('')
 
-
 onMounted(() => {
   useInitBarChart(Refcampagin.value)
   useInitBarChart(RefLeads.value)
@@ -167,8 +170,6 @@ onMounted(() => {
   useInitPolorChart(RefPolorChart.value)
   useInitGridChart(refLineChart.value)
 })
-
-
 </script>
 
 <style scoped lang="stylus">

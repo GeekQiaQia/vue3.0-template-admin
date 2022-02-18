@@ -29,8 +29,12 @@
 
                     <h5 class="margin-top-1 margin-bottom-1">{{ item.title }}</h5>
                     <p class="text-muted margin-bottom-1">
-                      <span class="text-norap margin-right-1"><el-icon><Suitcase/></el-icon> {{ item.tag }}</span>
-                      <span class="text-norap margin-right-1"><el-icon><ChatLineSquare/></el-icon> {{ item.comments }} Comments</span>
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><Suitcase /></el-icon> {{ item.tag }}</span
+                      >
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><ChatLineSquare /></el-icon> {{ item.comments }} Comments</span
+                      >
                     </p>
                     <div class="flex flex-row flex-between">
                       <div class="flex flex-row flex-start align-center">
@@ -59,8 +63,12 @@
 
                     <h5 class="margin-top-1 margin-bottom-1">kanban reafactor</h5>
                     <p class="text-muted margin-bottom-1">
-                 <span class="text-norap margin-right-1"><el-icon><Suitcase/></el-icon> web</span>
-                      <span class="text-norap margin-right-1"><el-icon><ChatLineSquare/></el-icon> 22 Comments</span>
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><Suitcase /></el-icon> web</span
+                      >
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><ChatLineSquare /></el-icon> 22 Comments</span
+                      >
                     </p>
                     <div class="flex flex-row flex-between">
                       <div class="flex flex-row flex-start align-center">
@@ -84,8 +92,12 @@
 
                     <h5 class="margin-top-1 margin-bottom-1">bugfix UI change</h5>
                     <p class="text-muted margin-bottom-1">
-                                     <span class="text-norap margin-right-1"><el-icon><Suitcase/></el-icon> IOS</span>
-                      <span class="text-norap margin-right-1"><el-icon><ChatLineSquare/></el-icon> 28 Comments</span>
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><Suitcase /></el-icon> IOS</span
+                      >
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><ChatLineSquare /></el-icon> 28 Comments</span
+                      >
                     </p>
                     <div class="flex flex-row flex-between">
                       <div class="flex flex-row flex-start align-center">
@@ -114,8 +126,12 @@
 
                     <h5 class="margin-top-1 margin-bottom-1">home page refactor</h5>
                     <p class="text-muted margin-bottom-1">
-                                <span class="text-norap margin-right-1"><el-icon><Suitcase/></el-icon> web</span>
-                      <span class="text-norap margin-right-1"><el-icon><ChatLineSquare/></el-icon> 28 Comments</span>
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><Suitcase /></el-icon> web</span
+                      >
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><ChatLineSquare /></el-icon> 28 Comments</span
+                      >
                     </p>
                     <div class="flex flex-row flex-between">
                       <div class="flex flex-row flex-start align-center">
@@ -139,8 +155,12 @@
 
                     <h5 class="margin-top-1 margin-bottom-1">analysis page refactor</h5>
                     <p class="text-muted margin-bottom-1">
-                        <span class="text-norap margin-right-1"><el-icon><Suitcase/></el-icon> web</span>
-                      <span class="text-norap margin-right-1"><el-icon><ChatLineSquare/></el-icon> 28 Comments</span>
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><Suitcase /></el-icon> web</span
+                      >
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><ChatLineSquare /></el-icon> 28 Comments</span
+                      >
                     </p>
                     <div class="flex flex-row flex-between">
                       <div class="flex flex-row flex-start align-center">
@@ -164,8 +184,12 @@
 
                     <h5 class="margin-top-1 margin-bottom-1">dashboard page refactor</h5>
                     <p class="text-muted margin-bottom-1">
-                             <span class="text-norap margin-right-1"><el-icon><Suitcase/></el-icon> web</span>
-                      <span class="text-norap margin-right-1"><el-icon><ChatLineSquare/></el-icon> 28 Comments</span>
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><Suitcase /></el-icon> web</span
+                      >
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><ChatLineSquare /></el-icon> 28 Comments</span
+                      >
                     </p>
                     <div class="flex flex-row flex-between">
                       <div class="flex flex-row flex-start align-center">
@@ -194,8 +218,12 @@
 
                     <h5 class="margin-top-1 margin-bottom-1">draggable design width sortable</h5>
                     <p class="text-muted margin-bottom-1">
-                      <span class="text-norap margin-right-1"><el-icon><Suitcase/></el-icon> web</span>
-                      <span class="text-norap margin-right-1"><el-icon><ChatLineSquare/></el-icon> 28 Comments</span>
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><Suitcase /></el-icon> web</span
+                      >
+                      <span class="text-norap margin-right-1"
+                        ><el-icon><ChatLineSquare /></el-icon> 28 Comments</span
+                      >
                     </p>
                     <div class="flex flex-row flex-between">
                       <div class="flex flex-row flex-start align-center">
@@ -217,7 +245,7 @@
 
     <div>
       <el-row>
-        <el-col  :span="18">
+        <el-col :span="18">
           <div class="grid-content bg-purple-dark">
             <el-card class="box-card">
               <div style="text-align: left">
@@ -229,17 +257,17 @@
           </div>
         </el-col>
         <el-col :span="6">
-            <el-card class="box-card">
-              <div style="text-align: left">
-                <span>活动列表重新排列场景</span>
-                <el-divider></el-divider>
+          <el-card class="box-card">
+            <div style="text-align: left">
+              <span>活动列表重新排列场景</span>
+              <el-divider></el-divider>
+            </div>
+            <div class="section">
+              <div ref="itemsRef">
+                <div v-for="item in input" :key="item.id" class="external-events" :class="[item.classNames]"><i class="list-circle"></i>{{ item.task }}</div>
               </div>
-              <div class="section">
-                <div ref="itemsRef">
-                      <div v-for="item in input" :key="item.id" class="external-events" :class="[item.classNames]"><i class="list-circle"></i>{{item.task}}</div>
-                </div>
-              </div>
-            </el-card>
+            </div>
+          </el-card>
         </el-col>
       </el-row>
     </div>
@@ -248,20 +276,20 @@
 <script setup lang="ts">
 import { onMounted, ref, onUnmounted, reactive } from 'vue'
 import Sortable from 'sortablejs'
-import { Operation ,Suitcase,ChatLineSquare} from '@element-plus/icons-vue'
+import { Operation, Suitcase, ChatLineSquare } from '@element-plus/icons-vue'
 import pinnedCard from './components/pinnedCard.vue'
 
-let eventGuid=0
+let eventGuid = 0
 /**
  * @description 事件Uid
-*/
-const createEventId=()=> String(eventGuid++)
+ */
+const createEventId = () => String(eventGuid++)
 
 interface taskType {
   [key: string]: { id: number; priority: number; date: string; title: string; tag: string; comments: number; avatar: string; name: string }[]
 }
 interface taskRefType {
-  [key: string]:any
+  [key: string]: any
 }
 
 const itemsRef = ref()
@@ -319,12 +347,12 @@ const task = reactive<taskType>({
 const taskRef = reactive<taskRefType>({})
 
 const input = ref([
-  { id: createEventId(), task: 'task1：可拖拽组件开发' ,classNames:'bg-success' },
-  { id: createEventId(), task: 'task2：监控页面开发' ,classNames:'bg-info'},
-  { id: createEventId(), task: 'task3：低代码平台开发' ,classNames:'bg-warning'},
-  { id: createEventId(), task: 'task4：低代码平台开发' ,classNames:'bg-dark'},
-  { id: createEventId(), task: 'task5：低代码平台开发' ,classNames:'bg-danger'},
-  { id: createEventId(), task: 'task6：低代码平台开发' ,classNames:'bg-success'},
+  { id: createEventId(), task: 'task1：可拖拽组件开发', classNames: 'bg-success' },
+  { id: createEventId(), task: 'task2：监控页面开发', classNames: 'bg-info' },
+  { id: createEventId(), task: 'task3：低代码平台开发', classNames: 'bg-warning' },
+  { id: createEventId(), task: 'task4：低代码平台开发', classNames: 'bg-dark' },
+  { id: createEventId(), task: 'task5：低代码平台开发', classNames: 'bg-danger' },
+  { id: createEventId(), task: 'task6：低代码平台开发', classNames: 'bg-success' }
 ])
 
 onMounted(() => {

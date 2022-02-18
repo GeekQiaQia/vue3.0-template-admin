@@ -23,7 +23,7 @@
                 <h3>37,258</h3>
               </div>
               <div class="card-footer text-muted">
-                <span class="text-success margin-right-1"><Top/>6.28%</span>
+                <span class="text-success margin-right-1"><Top />6.28%</span>
                 <span class="text-nowrap">since last week </span>
               </div>
             </el-card>
@@ -32,13 +32,13 @@
             <el-card shadow="hover" class="card">
               <div class="card-header">
                 <h5 class="text-muted">Orders</h5>
-                <i class=" widget-icon"><GoodsFilled /></i>
+                <i class="widget-icon"><GoodsFilled /></i>
               </div>
               <div class="card-middle margin-top-2 margin-bottom-2">
                 <h3>3,258</h3>
               </div>
               <div class="card-footer text-muted">
-                <span class="text-danger margin-right-1"><Top/>2.28%</span>
+                <span class="text-danger margin-right-1"><Top />2.28%</span>
                 <span class="text-nowrap">since last week </span>
               </div>
             </el-card>
@@ -50,13 +50,13 @@
               <div class="card-header">
                 <h5 class="text-muted">Revenue</h5>
 
-                 <i class=" widget-icon"><Coin /></i>
+                <i class="widget-icon"><Coin /></i>
               </div>
               <div class="card-middle margin-top-2 margin-bottom-2">
                 <h3>￥3,258</h3>
               </div>
               <div class="card-footer text-muted">
-                <span class="text-danger margin-right-1"><Top/>3.28%</span>
+                <span class="text-danger margin-right-1"><Top />3.28%</span>
                 <span class="text-nowrap">since last week </span>
               </div>
             </el-card>
@@ -65,14 +65,13 @@
             <el-card shadow="hover" class="card">
               <div class="card-header">
                 <h5 class="text-muted">Growth</h5>
-                 <i class=" widget-icon"><DataLine /></i>
-
+                <i class="widget-icon"><DataLine /></i>
               </div>
               <div class="card-middle margin-top-2 margin-bottom-2">
                 <h3>+ 20.48%</h3>
               </div>
               <div class="card-footer text-muted">
-                <span class="text-success margin-right-1"><Top/>5.28%</span>
+                <span class="text-success margin-right-1"><Top />5.28%</span>
                 <span class="text-nowrap">since last week </span>
               </div>
             </el-card>
@@ -83,7 +82,7 @@
         <el-card shadow="hover" class="card">
           <div class="header-title">
             <h4 class="text-muted">products</h4>
-            <div class="dropdown"><MoreFilled/></div>
+            <div class="dropdown"><MoreFilled /></div>
           </div>
           <div style="height: 300px" class="e-chart">
             <div ref="refProduct" style="width: inherit; height: inherit"></div>
@@ -96,7 +95,7 @@
         <el-card shadow="hover" class="card">
           <div class="header-title">
             <h4 class="text-muted">Revene</h4>
-            <div class="dropdown"><MoreFilled/></div>
+            <div class="dropdown"><MoreFilled /></div>
           </div>
           <div class="chart-bg padding-top-1 padding-bottom-1">
             <el-row>
@@ -125,7 +124,7 @@
         <el-card shadow="hover" class="card">
           <div class="header-title">
             <h4 class="text-muted">Revene by Location</h4>
-            <div class="dropdown"><MoreFilled/></div>
+            <div class="dropdown"><MoreFilled /></div>
           </div>
           <div class="margin-top-2 margin-bottom-2">
             <div id="world-map-markers" style="height: 224px">
@@ -159,7 +158,7 @@
         <el-card shadow="hover" class="card">
           <div class="header-title">
             <h4 class="text-muted">TOTAL SALES</h4>
-            <div class="dropdown"><MoreFilled/></div>
+            <div class="dropdown"><MoreFilled /></div>
           </div>
           <div class="e-chart" style="height: 201px; width: 100%">
             <!-- <div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
@@ -186,7 +185,7 @@
         <el-card shadow="hover" class="card bg-primary">
           <div class="header-title">
             <h4 class="text-white">AVERAGE SALE SIZE</h4>
-            <div class="dropdown"><MoreFilled class="text-white " style="color: whilte"/></div>
+            <div class="dropdown"><MoreFilled class="text-white" style="color: whilte" /></div>
           </div>
           <div>
             <div class="text-badge"><span class="badge badge-danger">-23.47%</span></div>
@@ -198,7 +197,7 @@
         <el-card shadow="hover" class="card">
           <div class="header-title">
             <h4 class="text-muted">RECENT ACTIVITY</h4>
-            <div class="dropdown"><MoreFilled/></div>
+            <div class="dropdown"><MoreFilled /></div>
           </div>
           <div style="height: 128px; overflow: scroll; padding: 5px">
             <el-timeline>
@@ -222,7 +221,7 @@
 </template>
 <script setup lang="ts">
 import { onMounted, ref, reactive } from 'vue'
-import { Top ,MoreFilled,ShoppingCartFull,Refresh,Search,GoodsFilled,Coin,DataLine} from '@element-plus/icons-vue'
+import { Top, MoreFilled, ShoppingCartFull, Refresh, Search, GoodsFilled, Coin, DataLine } from '@element-plus/icons-vue'
 
 import XLSX from 'xlsx'
 import { useInitChart } from './useInitEcharts'

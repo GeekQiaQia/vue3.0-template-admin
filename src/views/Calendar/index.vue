@@ -1,7 +1,7 @@
 <!--
  * @Author: GeekQiaQia
  * @Date: 2022-02-17 11:46:16
- * @LastEditTime: 2022-02-18 12:14:57
+ * @LastEditTime: 2022-02-18 14:08:34
  * @LastEditors: GeekQiaQia
  * @Description:
  * @FilePath: /vue3.0-template-admin/src/views/Calendar/index.vue
@@ -28,60 +28,52 @@
                 <br />
                 <p class="text-muted text-left">Drag and drop your event or click in the calendar</p>
               </div>
-              <div ref="containerRef" >
-                     <div v-for="item in taskList"  :key="item.id" class="external-events" :class="[item.classNames]"><i class="list-circle"></i>{{item.title}}</div>
-
+              <div ref="containerRef">
+                <div v-for="item in taskList" :key="item.id" class="external-events" :class="[item.classNames]"><i class="list-circle"></i>{{ item.title }}</div>
               </div>
-              <div style="text-align:left"><el-checkbox v-model="checked" label="remove after drop" size="large"></el-checkbox></div>
-              <div style="text-align:left"><el-checkbox v-model="togglechecked" label="weekends toggle" size="large" @change="handleWeekendsToggle"></el-checkbox></div>
-
-
+              <div style="text-align: left"><el-checkbox v-model="checked" label="remove after drop" size="large"></el-checkbox></div>
+              <div style="text-align: left"><el-checkbox v-model="togglechecked" label="weekends toggle" size="large" @change="handleWeekendsToggle"></el-checkbox></div>
             </el-col>
             <el-col :span="18">
-               <FullCalendar
-                    class='demo-app-calendar'
-                    :options='calendarOptions'
-                >
-                    <template #eventContent='arg'>
-                    <b>{{ arg.timeText }}</b>
-                    <i>{{ arg.event.title }}</i>
-                    </template>
-                </FullCalendar>
+              <FullCalendar class="demo-app-calendar" :options="calendarOptions">
+                <template #eventContent="arg">
+                  <b>{{ arg.timeText }}</b>
+                  <i>{{ arg.event.title }}</i>
+                </template>
+              </FullCalendar>
             </el-col>
           </el-row>
         </el-card>
       </el-col>
     </el-row>
-     <el-dialog v-model="dialogFormVisible" title="添加事项"  width="450px">
-    <el-form ref="ruleFormRef"  :model="form"    :rules="rules" >
-      <el-form-item label="请输入事项" :label-width="formLabelWidth" prop="title">
-        <el-input v-model="form.title" autocomplete="off" style="width:189.5px"></el-input>
-      </el-form-item>
-      <el-form-item label="选择事项颜色" :label-width="formLabelWidth" prop="className">
-        <el-select v-model="form.className" placeholder="Please select category color">
-          <el-option label="Success" value="bg-success"></el-option>
-          <el-option label="Danger" value="bg-danger"></el-option>
-          <el-option label="Info" value="bg-info"></el-option>
-          <el-option label="Warning" value="bg-warning"></el-option>
-          <el-option label="Dark" value="bg-dark"></el-option>
-        </el-select>
-      </el-form-item>
-    </el-form>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">关闭</el-button>
-        <el-button type="primary" @click="handleSaveCategory(ruleFormRef)"
-          >保存</el-button
-        >
-      </span>
-    </template>
-  </el-dialog>
+    <el-dialog v-model="dialogFormVisible" title="添加事项" width="450px">
+      <el-form ref="ruleFormRef" :model="form" :rules="rules">
+        <el-form-item label="请输入事项" :label-width="formLabelWidth" prop="title">
+          <el-input v-model="form.title" autocomplete="off" style="width: 189.5px"></el-input>
+        </el-form-item>
+        <el-form-item label="选择事项颜色" :label-width="formLabelWidth" prop="className">
+          <el-select v-model="form.className" placeholder="Please select category color">
+            <el-option label="Success" value="bg-success"></el-option>
+            <el-option label="Danger" value="bg-danger"></el-option>
+            <el-option label="Info" value="bg-info"></el-option>
+            <el-option label="Warning" value="bg-warning"></el-option>
+            <el-option label="Dark" value="bg-dark"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">关闭</el-button>
+          <el-button type="primary" @click="handleSaveCategory(ruleFormRef)">保存</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 <script setup lang="ts">
 import { Refresh, Search, CirclePlus } from '@element-plus/icons-vue'
 import '@fullcalendar/core/vdom' // solve problem with Vite
-import  FullCalendar,{ CalendarOptions, EventApi, DateSelectArg, EventClickArg } from '@fullcalendar/vue3'
+import FullCalendar, { CalendarOptions, EventApi, DateSelectArg, EventClickArg } from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin, { Draggable, DropArg } from '@fullcalendar/interaction'
@@ -91,53 +83,52 @@ import type { ElForm } from 'element-plus'
 import { INITIAL_EVENTS, createEventId } from './event-utils'
 
 type FormInstance = InstanceType<typeof ElForm>
-type task= {
-    title: string;
-    classNames: string;
-    id: string;
+type task = {
+  title: string
+  classNames: string
+  id: string
 }
 interface ITaskList {
-   [index:number]:task
+  [index: number]: task
 }
 // eslint-disable-next-line no-unused-vars
 let currentEvents: EventApi[]
 
 const containerRef = ref()
 // const calendarRef = ref()
-const pickDate=ref('')
-const checked=ref(false)
-const togglechecked=ref(false)
-const dialogFormVisible=ref(false);
-const formLabelWidth=ref(120)
+const pickDate = ref('')
+const checked = ref(false)
+const togglechecked = ref(false)
+const dialogFormVisible = ref(false)
+const formLabelWidth = ref(120)
 const ruleFormRef = ref<FormInstance>()
 const form = reactive({
   title: '',
-  className: 'bg-success',
+  className: 'bg-success'
 })
-const rules=reactive({
-     title: [
+const rules = reactive({
+  title: [
     {
       required: true,
       message: 'Please input event title',
-      trigger: 'blur',
-    },
+      trigger: 'blur'
+    }
   ],
-  className:[
-      {
+  className: [
+    {
       required: true,
       message: 'Please select category color',
-      trigger: 'blur',
-    },
+      trigger: 'blur'
+    }
   ]
-});
-const taskList=reactive<ITaskList>([
-    {title:'meet manger',classNames:'bg-danger',id:createEventId()},
-    {title:'interview for front-end',classNames:'bg-success',id:createEventId()},
-    {title:'studying',classNames:'bg-info',id:createEventId()},
-    {title:'dead line ',classNames:'bg-warning',id:createEventId()},
-    {title:'go to sleep',classNames:'bg-dark',id:createEventId()},
-
-]);
+})
+const taskList = reactive<ITaskList>([
+  { title: 'meet manger', classNames: 'bg-danger', id: createEventId() },
+  { title: 'interview for front-end', classNames: 'bg-success', id: createEventId() },
+  { title: 'studying', classNames: 'bg-info', id: createEventId() },
+  { title: 'dead line ', classNames: 'bg-warning', id: createEventId() },
+  { title: 'go to sleep', classNames: 'bg-dark', id: createEventId() }
+])
 
 /**
  * @description 选中某天处理事件
@@ -162,28 +153,26 @@ const handleDateSelect = (selectInfo: DateSelectArg) => {
 /**
  * @description 创建事件框
  *
-*/
-const  handleCreateEvent=()=>{
-    dialogFormVisible.value=true;
+ */
+const handleCreateEvent = () => {
+  dialogFormVisible.value = true
 }
 /**
  * @description 保存事项
  *
-*/
-const handleSaveCategory=(formEl: FormInstance | undefined)=>{
-     if (!formEl) return
+ */
+const handleSaveCategory = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
   // eslint-disable-next-line consistent-return
   formEl.validate((valid) => {
     if (valid) {
-     taskList.push({id:createEventId(),title:form.title,classNames:form.className});
-    dialogFormVisible.value = false
+      taskList.push({ id: createEventId(), title: form.title, classNames: form.className })
+      dialogFormVisible.value = false
     } else {
       console.log('error submit!')
       return false
     }
   })
-
-
 }
 
 /**
@@ -229,13 +218,13 @@ const calendarOptions = reactive({
     right: 'dayGridMonth,timeGridWeek,timeGridDay'
   },
   droppable: true,
-   drop(info:DropArg) {
-      if (checked.value) {
-        // if so, remove the element from the "Draggable Events" list
-        // eslint-disable-next-line no-unused-expressions
-        info.draggedEl.parentNode.removeChild(info.draggedEl);
-      }
-    },
+  drop(info: DropArg) {
+    if (checked.value) {
+      // if so, remove the element from the "Draggable Events" list
+      // eslint-disable-next-line no-unused-expressions
+      info.draggedEl.parentNode.removeChild(info.draggedEl)
+    }
+  },
   initialView: 'dayGridMonth',
   initialEvents: INITIAL_EVENTS, // 可选项，可以从远程接口返回初始化数据
   editable: true,
@@ -263,10 +252,10 @@ onMounted(() => {
   new Draggable(containerRef.value, {
     itemSelector: '.external-events',
     eventData(eventEl) {
-        const className=eventEl.className.split(' ')[1]
+      const className = eventEl.className.split(' ')[1]
       return {
         title: eventEl.innerText,
-        classNames:[className]
+        classNames: [className]
       }
     }
   })

@@ -69,13 +69,15 @@
                 </el-table-column>
                 <el-table-column label="操作" width="200">
                   <template #default="scope">
-                    <el-button v-if="scope.row.edit" size="medium" type="success" plain  @click="handleSave(scope.$index, scope.row)">
+                    <el-button v-if="scope.row.edit" size="medium" type="success" plain @click="handleSave(scope.$index, scope.row)">
                       <el-icon><check /></el-icon>
-                      保存</el-button>
+                      保存</el-button
+                    >
 
-                    <el-button v-else v-clip:copy="`姓名:${scope.row.name},详细地址:${scope.row.address}`" size="medium" type="info"  plain>
+                    <el-button v-else v-clip:copy="`姓名:${scope.row.name},详细地址:${scope.row.address}`" size="medium" type="info" plain>
                       <el-icon><copy-document /></el-icon>
-                      复制</el-button>
+                      复制</el-button
+                    >
                   </template>
                 </el-table-column>
               </el-table>
@@ -91,13 +93,13 @@
 import { defineComponent, ref, onMounted, onUnmounted, reactive, toRefs } from 'vue'
 import ClipboardJS from 'clipboard'
 import { ElMessage } from 'element-plus'
-import { Check,CopyDocument} from '@element-plus/icons-vue'
+import { Check, CopyDocument } from '@element-plus/icons-vue'
 import clipboard from '@/utils/clipboard' // use clipboard directly
 import clip from '@/directive/clipboard/clipboard'
 
 export default defineComponent({
   name: 'RichText',
-  components: {Check,CopyDocument},
+  components: { Check, CopyDocument },
   directives: {
     clip
   },
