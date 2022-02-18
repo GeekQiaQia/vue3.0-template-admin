@@ -118,7 +118,7 @@ Mock.mock('/api/auth/user/register','post',() => ({
             return {
                 status: 0,
                 data:{
-                    authedRoutes:['/dashboard','/guide', '/dragable','/copy','/zip','/role','/menu', '/projectboard', '/excel','/table','/form','/qrcode','/editor','/upload','/cropper','/personal']
+                    authedRoutes:['/dashboard','/guide', '/dragable','/calendar','/copy','/zip','/role','/menu', '/projectboard', '/excel','/table','/form','/qrcode','/editor','/upload','/cropper','/personal']
                 },
                 success: true,
                 message:'成功'
@@ -136,7 +136,7 @@ Mock.mock('/api/auth/user/register','post',() => ({
         return {
             status: 0,
             data:{
-                authedRoutes:['/dashboard','/guide','/dragable', '/copy','/zip','/excel','/table','/form','/qrcode','/editor','/upload','/cropper','/personal']
+                authedRoutes:['/dashboard','/guide','/dragable', '/calendar','/copy','/zip','/excel','/table','/form','/qrcode','/editor','/upload','/cropper','/personal']
             },
             success: true,
             message:'成功'

@@ -105,8 +105,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue'
-import  avatar from '@/assets/avatar-default.jpg'
 import * as Echarts from 'echarts'
+import  avatar from '@/assets/avatar-default.jpg'
 
 export default defineComponent({
   name: 'Workplace',
@@ -250,7 +250,9 @@ export default defineComponent({
 </script>
 <style lang="stylus" scoped>
 .workplace-container{
-   margin:20px;
+    color black
+    padding 0px 20px
+    background-color #fafbfe
  .board{
     width:100%;
     height:130px;

@@ -146,7 +146,7 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
         '/zh-CN': '拖拽组件',
         '/en-US': 'Dragable Component'
       },
-      icon: 'el-icon-s-promotion',
+      icon: 'ic ic-flip-fill',
     },
     children: [
       {
@@ -158,7 +158,33 @@ export const asyncRoutes:Array<RouteRecordRaw> = [
             '/zh-CN': '拖拽组件',
             '/en-US': 'Dragable Component'
           },
-          icon: 'el-icon-s-promotion',
+          icon: 'ic ic-flip-fill',
+        },
+      }
+    ],
+  },
+  {
+    path: '/calendar',
+    component: layout,
+    redirect: '/calendar/index',
+    meta: {
+      title:{
+        '/zh-CN': '日历',
+        '/en-US': 'Calendar'
+      },
+      icon: 'ic ic-workbench',
+    },
+    children: [
+      {
+        path: '/calendar/index',
+        name: 'Calendar',
+        component: () => import(/* webpackChunkName: "personalCenter" */ '@/views/Calendar/index.vue'),
+        meta: {
+          title:{
+            '/zh-CN': '日历',
+            '/en-US': 'Calendar'
+          },
+          icon: 'ic ic-workbench',
         },
       }
     ],

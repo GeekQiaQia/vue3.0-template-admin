@@ -91,9 +91,9 @@
 import { defineComponent, ref, onMounted, onUnmounted, reactive, toRefs } from 'vue'
 import ClipboardJS from 'clipboard'
 import { ElMessage } from 'element-plus'
+import { Check,CopyDocument} from '@element-plus/icons-vue'
 import clipboard from '@/utils/clipboard' // use clipboard directly
 import clip from '@/directive/clipboard/clipboard'
-import { Check,CopyDocument} from '@element-plus/icons-vue'
 
 export default defineComponent({
   name: 'RichText',
