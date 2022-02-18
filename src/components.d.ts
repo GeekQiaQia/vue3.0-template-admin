@@ -3,6 +3,7 @@
 // Read more: https://github.com/vuejs/vue-next/pull/3399
 
 declare module 'vue' {
+
   export interface GlobalComponents {
     Breadcrumb: typeof import('./components/Breadcrumb/index.vue')['default']
     CodeJson: typeof import('./components/Editor/codeJson.vue')['default']
