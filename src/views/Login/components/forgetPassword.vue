@@ -31,7 +31,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, ref } from 'vue'
-import { ElMessage } from 'element-plus/lib/components/message'
+import { ElMessage } from 'element-plus'
 import { encrypt } from '@/utils/aes' // aes 密码加密
 import Service from '../api/index'
 
@@ -209,7 +209,7 @@ export default defineComponent({
   :deep(.el-input-group__append) {
     padding:0px 7px;
   }
-  
+
   :deep(.el-input-group__prepend) {
     padding:0px 7px;
   }
@@ -218,7 +218,7 @@ export default defineComponent({
     width:100%;
     margin: 0 auto;
   }
-  
+
   .go-login{
     font-size: 12px;
     cursor: pointer;

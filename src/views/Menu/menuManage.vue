@@ -69,9 +69,9 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs, computed } from 'vue'
-import { useStore } from '@/store'
-import { ElMessage, ElMessageBox } from 'element-plus/lib/components'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { RouteRecordRaw } from 'vue-router'
+import { useStore } from '@/store'
 import MenuNew from './menuNew.vue'
 import MenuEdit from './menuEdits.vue'
 

@@ -1,5 +1,5 @@
 import Axios, { Method, ResponseType, AxiosResponse, AxiosRequestConfig } from 'axios'
-import { ElMessage } from 'element-plus/lib/components/message'
+import { ElMessage } from 'element-plus'
 
 interface IAxiosData {
   url: string
@@ -27,18 +27,18 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 // 请求拦截器
 axios.interceptors.request.use(
-  (config:AxiosRequestConfig) => {
-    if (sessionStorage.getItem("accessToken")) {
-      config.headers.Authorization = `Bearer ${sessionStorage.getItem("accessToken")}`;
+  (config: AxiosRequestConfig) => {
+    if (sessionStorage.getItem('accessToken')) {
+      config.headers.Authorization = `Bearer ${sessionStorage.getItem('accessToken')}`
     }
-    return config;
+    return config
   },
   (err) => Promise.reject(err)
 )
 
 // 响应拦截器
 axios.interceptors.response.use(
-  (res:AxiosResponse) => res,
+  (res: AxiosResponse) => res,
   (err) => {
     if (err.response && err.response.data) {
       const code = err.response.status
@@ -69,14 +69,9 @@ export default function request(arr: IAxiosData) {
       url: arr.url,
       method: arr.method || 'POST',
       headers: {
-
         // 'Authorization': arr.token || '',
         // eslint-disable-next-line no-nested-ternary
-        'content-type': arr.contentType
-          ? arr.contentType
-          : arr.json
-            ? 'application/json; charset=UTF-8'
-            : 'application/x-www-form-urlencoded; charset=UTF-8'
+        'content-type': arr.contentType ? arr.contentType : arr.json ? 'application/json; charset=UTF-8' : 'application/x-www-form-urlencoded; charset=UTF-8'
       },
       params: arr.params || '',
       data: arr.data || '',
@@ -97,10 +92,7 @@ export default function request(arr: IAxiosData) {
         const responseStatus = `${response.status}`
         // 状态码2开头的处理逻辑
         if (responseStatus.charAt(0) === '2') {
-          if (
-            response.data.code === '1' ||
-            response.data.code === 'err_9999'
-          ) {
+          if (response.data.code === '1' || response.data.code === 'err_9999') {
             ElMessage({
               type: 'error',
               message: response.data.message

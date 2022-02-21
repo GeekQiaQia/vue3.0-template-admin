@@ -122,7 +122,7 @@
   </div>
 </template>
 <script lang="ts">
-import { ElMessage } from 'element-plus/lib/components/message'
+import { ElMessage } from 'element-plus'
 import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
 import Service from './api/index'

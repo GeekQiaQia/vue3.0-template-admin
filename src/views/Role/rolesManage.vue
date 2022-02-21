@@ -57,7 +57,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, computed } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus/lib/components'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import RoleEdit from './rolesEdit.vue'
 import RoleNew from './rolesNew.vue'
 
