@@ -1,0 +1,1 @@
+!function(){var e=document.createElement("style");e.innerHTML=".el-checkbox-group{font-size:0}\n",document.head.appendChild(e),System.register([],(function(){"use strict";return{execute:function(){}}}))}();
