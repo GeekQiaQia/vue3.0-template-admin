@@ -19,7 +19,7 @@
     </div>
 
     <el-table id="tableId" ref="tableRef" :data="tableData" border highlight-current-row style="width: 100%">
-      <el-table-column v-for="item in tableColumn" :key="item.prop" :fixed="item.fixed" :prop="item.prop" :label="item.label" > </el-table-column>
+      <el-table-column v-for="item in tableColumn" :key="item.prop" :fixed="item.fixed" :prop="item.prop" :label="item.label"> </el-table-column>
     </el-table>
   </div>
 </template>

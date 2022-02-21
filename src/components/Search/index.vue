@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs, computed, ref, watchEffect } from 'vue'
 import Fuse from 'fuse.js'
-import { resolve } from 'path'
+import path from 'path-browserify';
 import { useRouter } from 'vue-router'
 import { Search} from '@element-plus/icons-vue'
 import { useStore } from '@/store'
@@ -75,7 +75,7 @@ export default defineComponent({
         // skip hidden router
         if (!route?.meta?.hidden) {
           const data: dataType = {
-            path: resolve(basePath, route.path),
+            path: path.resolve(basePath, route.path),
             title: [...prefixTitle]
           }
           if (route?.meta?.title) {

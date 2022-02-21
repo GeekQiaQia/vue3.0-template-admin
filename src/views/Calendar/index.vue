@@ -1,10 +1,10 @@
 <!--
  * @Author: GeekQiaQia
  * @Date: 2022-02-17 11:46:16
- * @LastEditTime: 2022-02-18 14:08:34
+ * @LastEditTime: 2022-02-21 17:52:13
  * @LastEditors: GeekQiaQia
  * @Description:
- * @FilePath: /vue3.0-template-admin/src/views/Calendar/index.vue
+ * @FilePath: /test-vue3/src/views/Calendar/index.vue
 -->
 <template>
   <div class="calendar-info">
@@ -276,6 +276,7 @@ onMounted(() => {
     flex-direction row
     justify-content space-between
     align-items center
+    color #6c757d
     .page-title{
       font-size  18px
       margin  0

@@ -1,66 +1,64 @@
-<template>
-  <div>
-    <h1>{{ msg }}</h1>
+<!--
+ * @Author: GeekQiaQia
+ * @Date: 2022-02-18 16:13:43
+ * @LastEditTime: 2022-02-21 20:16:07
+ * @LastEditors: GeekQiaQia
+ * @Description:
+ * @FilePath: /vue3.0-template-admin/src/components/HelloWorld.vue
+-->
+<script setup lang="ts">
+import { ref, defineProps } from 'vue'
+import { ElMessage } from 'element-plus'
 
-    <p>
-      Recommended IDE setup:
-      <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-      +
-      <a href="https://marketplace.visualstudio.com/items?itemName=octref.vetur" target="_blank"> Vetur </a>
-      or
-      <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-      (if using
-      <code>&lt;script setup&gt;</code>)
-    </p>
+defineProps<{ msg: string }>()
 
-    <p>See <code>README.md</code> for more information.</p>
+const count = ref(0)
+const input = ref('element-plus')
 
-    <p>
-      <a href="https://vitejs.dev/guide/features.html" target="_blank"> Vite Docs </a>
-      |
-      <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
-    </p>
+const curDate = ''
 
-    <button @click="count++">count is: {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test hot module replacement.
-    </p>
-  </div>
-</template>
-
-<script lang="ts">
-import { ref, defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'HelloWorld',
-  props: {
-    msg: {
-      type: String,
-      required: true
-    }
-  },
-  setup: () => {
-    const count = ref(0)
-    return { count }
-  }
-})
+const toast = () => {
+  ElMessage.success('Hello')
+}
 </script>
 
-<style scoped>
-a {
-  color: #42b983;
-}
+<template>
+  <h1>{{ msg }}</h1>
 
-label {
-  margin: 0 0.5em;
-  font-weight: bold;
-}
+  <p>
+    See
+    <a href="https://element-plus.org" target="_blank">element-plus</a> for more information.
+  </p>
 
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
-}
-</style>
+  <!-- example components -->
+  <el-button @click="toast">El Message</el-button>
+  <el-button type="primary" @click="count++">count is: {{ count }}</el-button>
+  <el-button type="success" @click="count++">count is: {{ count }}</el-button>
+  <el-button type="warning" @click="count++">count is: {{ count }}</el-button>
+  <el-button type="danger" @click="count++">count is: {{ count }}</el-button>
+  <el-button type="info" @click="count++">count is: {{ count }}</el-button>
+  <br />
+  <el-input v-model="input" style="width: 200px; margin: 20px" />
+  <el-tag>Tag 1</el-tag>
+
+  <br />
+  <el-date-picker v-model="curDate" type="date" placeholder="Pick a day"></el-date-picker>
+
+  <p>For example, we can custom primary color to 'green'.</p>
+
+  <p>
+    Edit
+    <code>components/HelloWorld.vue</code> to test components.
+  </p>
+  <p>
+    Edit
+    <code>styles/element/var.scss</code> to test scss variables.
+  </p>
+
+  <p>
+    Full Example:
+    <a href="https://github.com/element-plus/element-plus-vite-starter" target="_blank">element-plus-vite-starter</a>
+    | On demand Example:
+    <a href="https://github.com/element-plus/unplugin-element-plus" target="_blank">unplugin-element-plus/examples/vite</a>
+  </p>
+</template>

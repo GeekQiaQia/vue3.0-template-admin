@@ -346,7 +346,7 @@ export default defineComponent({
       .forget-password{
         color: #9fa2a8;
       }
-      
+
       .btn-container{
         display :flex;
         flex-direction:row;

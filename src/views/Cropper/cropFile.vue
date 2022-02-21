@@ -19,21 +19,6 @@
         <div class="text" @click.prevent="handleReset">重做</div>
         <div class="text" @click.prevent="handleShot">快照</div>
 
-        <!-- <el-tooltip content="重做" placement="top" effect="light">
-          <div class="operator" @click.prevent="handleReset">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="_2Xy1u button-icon">
-              <path
-                d="M9.6 10.5h9.2l-4.2-4.2c-.4-.4-.4-1.1 0-1.5.4-.4 1.1-.4 1.5 0l5.7 5.7.2.2c.2.2.3.5.3.7 0 .3-.1.5-.3.7l-.2.2-5.8 5.9c-.4.4-1.1.4-1.5 0s-.4-1.1 0-1.5l4.2-4.2H9.6c-3.2 0-5.8 2.6-5.8 5.8v.2c0 .6-.4 1-1 1s-1-.4-1-1v-.2c-.1-4.3 3.5-7.8 7.8-7.8z"
-              ></path>
-            </svg>
-          </div>
-        </el-tooltip> -->
-        <!-- <el-tooltip content="快照" placement="top" effect="light">
-          <div class="operator" @click.prevent="handleReset">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="_2Xy1u button-icon"><circle cx="16.5" cy="7.5" r="1.5"></circle><path d="M12 10c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0-2c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"></path><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"></path></svg>
-          </div>
-        </el-tooltip> -->
-
         <el-tooltip content="缩小" placement="top" effect="light">
           <div class="operator" @click.prevent="handleZoom(-0.2)">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="2" class=""><rect width="12" height="2" x="6" y="11" fill-rule="evenodd" rx="1" transform="translate(-6 -11)"></rect></svg>
