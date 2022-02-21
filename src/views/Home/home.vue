@@ -169,6 +169,7 @@ onMounted(() => {
 
 <style scoped lang="stylus">
 
+
 .home-container
     color black
     padding 0px 20px
