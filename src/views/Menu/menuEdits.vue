@@ -2,7 +2,7 @@
   <div v-loading="loading" class="new">
     <el-form ref="formRef" :model="form" :rules="rules" label-position="right" label-width="100px">
       <el-form-item label="菜单名称" prop="meta.title">
-        <el-input v-model="form.meta.title" placeholder="请输入菜单名称"></el-input>
+        <el-input v-model="form.meta.title[lang] " placeholder="请输入菜单名称"></el-input>
       </el-form-item>
       <el-form-item label="菜单图标" prop="meta.icon">
         <el-input v-model="form.meta.icon" placeholder="请选择菜单图标" style="width: 60%"> </el-input>
@@ -24,7 +24,9 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs, toRef } from 'vue'
+import { defineComponent, reactive, ref, toRefs, toRef,computed } from 'vue'
+import { useStore } from '@/store'
+
 import Icons from '@/components/icon.vue'
 
 const Reg = /^(\/[a-zA-Z][0-9a-zA-Z]+)+$/
@@ -54,6 +56,9 @@ export default defineComponent({
     // url: this.$store.state.server + '/menu/add',
     // 析构获取 props 属性 basePath
     const currentMenu = toRef(props, 'currentMenu')
+    const store = useStore()
+    const lang = computed(() => store.getters['settingsModule/getLangState'])
+
     console.log(currentMenu)
     const rules = {
       'meta.title': [
@@ -102,6 +107,7 @@ export default defineComponent({
       ...toRefs(state),
       formRef,
       rules,
+      lang,
       onSuccess,
       submitForm,
       handleClickChoose

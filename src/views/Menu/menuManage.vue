@@ -4,8 +4,13 @@
       <el-row>
         <el-col>
           <el-col>
-            <el-button type="primary" icon="el-icon-plus" size="small" @click="onCreate">新增</el-button>
-            <el-button type="success" icon="el-icon-refresh" size="small" @click="onRefresh">刷新</el-button>
+            <el-button type="primary"  size="small" @click="onCreate">
+            <el-icon><plus /></el-icon>
+              新增</el-button>
+            <el-button type="success"  size="small" @click="onRefresh">
+            <el-icon><refresh /></el-icon>
+
+              刷新</el-button>
           </el-col>
           <el-table v-loading="loading" :data="data" stripe class="table">
             <el-table-column label="菜单名称" align="center">
@@ -34,10 +39,14 @@
               <template #default="scope">
                 <template v-if="scope.row.state != 0">
                   <el-tooltip class="item" effect="dark" content="修改" placement="bottom">
-                    <el-button circle plain type="primary" icon="el-icon-edit" size="mini" @click="onEdit(scope.$index, scope.row)"> </el-button>
+                    <el-button circle plain type="primary"  size="mini" @click="onEdit(scope.$index, scope.row)">
+                  <el-icon><edit /></el-icon>
+                    </el-button>
                   </el-tooltip>
                   <el-tooltip class="item" effect="dark" content="删除" placement="bottom">
-                    <el-button circle plain type="danger" icon="el-icon-minus" size="mini" @click="onDelete(scope.$index, scope.row)"> </el-button>
+                    <el-button circle plain type="danger"  size="mini" @click="onDelete(scope.$index, scope.row)">
+                    <el-icon><minus /></el-icon>
+                    </el-button>
                   </el-tooltip>
                 </template>
               </template>
@@ -62,7 +71,7 @@
     <el-dialog v-model="addVisible" width="632px" title="新增菜单">
       <menu-new @success="onAddSuccess"></menu-new>
     </el-dialog>
-    <el-dialog v-model="editVisible" center width="632px" :title="posted.menu.meta.title">
+    <el-dialog v-model="editVisible" center width="632px" :title="posted.menu.meta.title[lang]">
       <menu-edit :current-menu="posted.menu" @success="onEditSuccess"></menu-edit>
     </el-dialog>
   </div>
@@ -70,6 +79,8 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { Edit,Minus,Plus,Refresh} from '@element-plus/icons-vue'
+
 import { RouteRecordRaw } from 'vue-router'
 import { useStore } from '@/store'
 import MenuNew from './menuNew.vue'
@@ -119,7 +130,7 @@ interface stateTypes {
 }
 export default defineComponent({
   name: 'Menu',
-  components: { MenuNew, MenuEdit },
+  components: { MenuNew, MenuEdit ,Plus,Refresh,Edit,Minus},
   setup() {
     const store = useStore()
     const lang = computed(() => store.getters['settingsModule/getLangState'])
@@ -175,6 +186,7 @@ export default defineComponent({
 
     const initTableData = () => {
       const result = routes.value.filter((item) => item?.meta?.hidden !== true)
+      console.log("result",result);
       state.data = result
     }
     /**

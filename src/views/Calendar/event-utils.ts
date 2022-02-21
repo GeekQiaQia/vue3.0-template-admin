@@ -1,3 +1,11 @@
+/*
+ * @Author: GeekQiaQia
+ * @Date: 2022-02-18 10:33:47
+ * @LastEditTime: 2022-02-18 10:33:47
+ * @LastEditors: GeekQiaQia
+ * @Description:
+ * @FilePath: /vue3.0-template-admin/src/views/Calendar/event-utils.ts
+ */
 import { EventInput } from '@fullcalendar/vue3'
 
 // 事件Uid初始化

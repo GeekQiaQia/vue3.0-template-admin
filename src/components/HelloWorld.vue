@@ -1,15 +1,8 @@
-<!--
- * @Author: GeekQiaQia
- * @Date: 2022-02-18 16:13:43
- * @LastEditTime: 2022-02-21 20:16:07
- * @LastEditors: GeekQiaQia
- * @Description:
- * @FilePath: /vue3.0-template-admin/src/components/HelloWorld.vue
--->
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
+import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 
+// eslint-disable-next-line no-undef
 defineProps<{ msg: string }>()
 
 const count = ref(0)

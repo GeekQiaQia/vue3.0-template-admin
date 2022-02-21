@@ -8,6 +8,7 @@ declare module 'vue' {
     CodeJson: typeof import('./components/Editor/codeJson.vue')['default']
     Hamburger: typeof import('./components/Hamburger/Hamburger.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    HomeFilled: typeof import('./components/icons/home-filled.vue')['default']
     Icon: typeof import('./components/icon.vue')['default']
     LangSwitch: typeof import('./components/LangSwitch/index.vue')['default']
     RichEditor: typeof import('./components/Editor/richEditor.vue')['default']

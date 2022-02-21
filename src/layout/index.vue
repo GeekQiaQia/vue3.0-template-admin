@@ -1,10 +1,10 @@
 <!--
  * @Author: GeekQiaQia
  * @Date: 2022-02-21 13:45:30
- * @LastEditTime: 2022-02-21 20:37:28
+ * @LastEditTime: 2022-02-21 15:24:34
  * @LastEditors: GeekQiaQia
- * @Description:
- * @FilePath: /vue3.0-template-admin/src/layout/index.vue
+ * @Description: 
+ * @FilePath: /test-vue3/src/layout/index.vue
 -->
 <template>
   <div :class="classObj" class="app-wrapper">
@@ -26,6 +26,7 @@
       UP
       </div>
     </el-backtop> -->
+
 
     <Sidebar class="sidebar-container" />
     <div class="main-container">

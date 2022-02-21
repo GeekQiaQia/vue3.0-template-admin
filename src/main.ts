@@ -1,10 +1,10 @@
 /*
  * @Author: GeekQiaQia
  * @Date: 2022-02-18 16:13:43
- * @LastEditTime: 2022-02-21 20:34:30
+ * @LastEditTime: 2022-02-21 17:43:37
  * @LastEditors: GeekQiaQia
  * @Description:
- * @FilePath: /vue3.0-template-admin/src/main.ts
+ * @FilePath: /test-vue3/src/main.ts
  */
 import { createApp } from 'vue'
 import locale from 'element-plus/lib/locale/lang/zh-cn'
