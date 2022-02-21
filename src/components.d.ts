@@ -6,13 +6,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     Breadcrumb: typeof import('./components/Breadcrumb/index.vue')['default']
     CodeJson: typeof import('./components/Editor/codeJson.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElCard: typeof import('element-plus/es')['ElCard']
-    ElCol: typeof import('element-plus/es')['ElCol']
-    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
-    ElDivider: typeof import('element-plus/es')['ElDivider']
-    ElLink: typeof import('element-plus/es')['ElLink']
-    ElRow: typeof import('element-plus/es')['ElRow']
     Hamburger: typeof import('./components/Hamburger/Hamburger.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     Icon: typeof import('./components/icon.vue')['default']
