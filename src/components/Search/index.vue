@@ -2,7 +2,7 @@
   <div id="Serach" class="search-container">
     <el-select v-model="value" :remote-method="querySearch" filterable default-first-option remote placeholder="请输入关键字搜索" @change="handleChange">
       <template #prefix>
-        <i class="el-input__icon el-icon-search"></i>
+        <el-icon class="el-input__icon"><search /></el-icon>
       </template>
       <el-option v-for="{ item } in options" :key="item.path" :value="item" :label="item.title.join(' > ')"> </el-option>
     </el-select>
@@ -11,9 +11,10 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs, computed, ref, watchEffect } from 'vue'
 import Fuse from 'fuse.js'
-import { resolve } from 'path'
-import { useStore } from '@/store'
+import path from 'path-browserify'
 import { useRouter } from 'vue-router'
+import { Search } from '@element-plus/icons-vue'
+import { useStore } from '@/store'
 
 interface dataType {
   path: string
@@ -24,6 +25,9 @@ interface stateType {
   value: string
 }
 export default defineComponent({
+  components: {
+    Search
+  },
   setup() {
     const store = useStore()
     const router = useRouter()
@@ -70,7 +74,7 @@ export default defineComponent({
         // skip hidden router
         if (!route?.meta?.hidden) {
           const data: dataType = {
-            path: resolve(basePath, route.path),
+            path: path.resolve(basePath, route.path),
             title: [...prefixTitle]
           }
           if (route?.meta?.title) {

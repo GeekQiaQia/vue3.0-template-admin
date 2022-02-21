@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 import { Module } from 'vuex';
-import router, { constantRoutes, asyncRoutes } from '@/router';
 import { RouteRecordRaw } from 'vue-router';
+import router, { constantRoutes, asyncRoutes } from '@/router';
 import permissionStateTypes from './types';
 import RootStateTypes from '../../types';
 import Service from './api'

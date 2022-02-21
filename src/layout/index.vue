@@ -1,9 +1,31 @@
+<!--
+ * @Author: GeekQiaQia
+ * @Date: 2022-02-21 13:45:30
+ * @LastEditTime: 2022-02-21 20:37:28
+ * @LastEditors: GeekQiaQia
+ * @Description:
+ * @FilePath: /vue3.0-template-admin/src/layout/index.vue
+-->
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device === 'mobile' && opened" class="drawer-bg" @click="handleClickOutside" />
 
     <!--backtop-->
-    <el-backtop target=".app-wrapper" :visibility-height="100"></el-backtop>
+    <!-- <el-backtop target=".app-wrapper" :visibility-height="100">
+      <div
+      style="
+        height: 100%;
+        width: 100%;
+        background-color: #f2f5f6;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+        text-align: center;
+        line-height: 40px;
+        color: #1989fa;
+      "
+    >
+      UP
+      </div>
+    </el-backtop> -->
 
     <Sidebar class="sidebar-container" />
     <div class="main-container">

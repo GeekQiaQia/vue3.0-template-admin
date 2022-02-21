@@ -83,7 +83,7 @@ export default defineComponent({
   :deep(.CodeMirror) {
     height: auto;
     min-height: 300px;
-    
+
     .CodeMirror-code {
       text-align :left;
     }

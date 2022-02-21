@@ -1,3 +1,11 @@
+<!--
+ * @Author: GeekQiaQia
+ * @Date: 2022-02-21 18:03:30
+ * @LastEditTime: 2022-02-21 18:05:52
+ * @LastEditors: GeekQiaQia
+ * @Description:
+ * @FilePath: /test-vue3/src/layout/components/RightSetting/themePick/index.vue
+-->
 <template>
   <el-form ref="formRef" :model="colors" class="theme-form" label-position="left" label-width="70px">
     <el-form-item :label="langConfig.form.theme[lang]" prop="primary">
@@ -22,6 +30,7 @@ export default defineComponent({
       default: '/zh-CN'
     }
   },
+  emits: ['submit'],
   setup() {
     const formRef = ref(null)
     const colors = reactive({

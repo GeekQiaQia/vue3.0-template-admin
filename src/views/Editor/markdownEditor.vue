@@ -1,3 +1,11 @@
+<!--
+ * @Author: GeekQiaQia
+ * @Date: 2022-02-21 17:07:07
+ * @LastEditTime: 2022-02-21 17:37:37
+ * @LastEditors: GeekQiaQia
+ * @Description:
+ * @FilePath: /test-vue3/src/views/Editor/markdownEditor.vue
+-->
 <template>
   <div class="editorWrapper">
     <div class="info">
@@ -18,19 +26,6 @@
           </div>
         </el-col>
       </el-row>
-      <el-row>
-        <el-col :offset="1" :span="22">
-          <div class="grid-content bg-purple-dark">
-            <el-card class="box-card">
-              <div style="text-align: left">
-                <span>超简单的markdown编辑器</span>
-                <el-divider></el-divider>
-              </div>
-              <simpleMD> </simpleMD>
-            </el-card>
-          </div>
-        </el-col>
-      </el-row>
     </div>
   </div>
 </template>
@@ -38,11 +33,9 @@
 import { defineComponent, reactive, ref, toRefs } from 'vue'
 
 import tuiEditor from '@/components/Editor/tuiEditor.vue'
-import simpleMD from '@/components/Editor/simpleMarkdown.vue'
 
 export default defineComponent({
   components: {
-    simpleMD,
     tuiEditor
   },
   setup() {
@@ -60,7 +53,7 @@ export default defineComponent({
 <style lang="stylus" scoped>
 .editorWrapper{
   margin-top:20px;
-  
+
   .info{
     text-align: left;
     padding-left: 20px;

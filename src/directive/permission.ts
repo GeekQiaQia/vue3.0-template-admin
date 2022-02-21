@@ -1,17 +1,25 @@
-import {store} from '@/store'
+/*
+ * @Author: GeekQiaQia
+ * @Date: 2022-02-21 16:36:16
+ * @LastEditTime: 2022-02-21 17:39:51
+ * @LastEditors: GeekQiaQia
+ * @Description:
+ * @FilePath: /test-vue3/src/directive/permission.ts
+ */
+import { store } from '../store'
 
 // eslint-disable-next-line no-unused-vars
 type VoidNoop = (arg0: any) => any
 // 权限指令
 export default {
-    mounted(el: { parentNode: { removeChild: VoidNoop} }, binding:any) {
+  mounted(el: { parentNode: { removeChild: VoidNoop } }, binding: any) {
     const { value } = binding
     const permissions = store.getters['permissionModule/getPermission']
     if (value && value instanceof Array && value.length > 0) {
       const permissionRoles = value
 
       const hasPermission = permissions.some((role: any) => permissionRoles.includes(role))
-      console.log("value is",hasPermission);
+      console.log('value is', hasPermission)
 
       if (!hasPermission) {
         // eslint-disable-next-line no-unused-expressions
@@ -40,7 +48,6 @@ export function isPermission(value: string | any[]) {
     }
     return true
   }
-    console.error(`need roles! Like v-permission="['admin','editor']"`)
-    return false
-
+  console.error(`need roles! Like v-permission="['admin','editor']"`)
+  return false
 }

@@ -346,13 +346,13 @@ export default defineComponent({
       .forget-password{
         color: #9fa2a8;
       }
-      
-      .btn-container{
+    }
+    .btn-container{
+        width:100%;
         display :flex;
         flex-direction:row;
         justify-content :flex-start;
         align-items :center;
       }
-    }
   }
 </style>

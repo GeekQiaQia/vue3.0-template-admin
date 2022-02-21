@@ -13,11 +13,11 @@
 
 <script lang="ts">
 // eslint-disable-next-line import/extensions
+import { defineComponent } from 'vue'
 import img404 from '@/assets/noFound/404.png'
 // eslint-disable-next-line import/extensions
 import img404Cloud from '@/assets/noFound/404_cloud.png'
 
-import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'NoFound',

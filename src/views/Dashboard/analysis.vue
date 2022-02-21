@@ -411,6 +411,7 @@ onMounted(() => {
     flex-direction row
     justify-content space-between
     align-items center
+    color #6c757d
     .page-title{
       font-size  18px
       margin  0
