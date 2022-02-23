@@ -1,7 +1,7 @@
 {
   "name": "element-plus-vite-starter",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.1.1",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
