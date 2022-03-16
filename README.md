@@ -178,12 +178,7 @@ git merge upstream/main
 
 <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d41b5fec542444b4a28c00135ce27d42~tplv-k3u1fbpfcp-watermark.image" width="180px" />
 
-<<<<<<< HEAD
 <img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2e24dd83c4694927b9a8678ee1d250cb~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
-=======
-<img  alt="image" src="https://user-images.githubusercontent.com/12525636/156907837-ea8aab3d-b1e0-472e-a46d-ef494b409abd.png" width="180px" >
-
->>>>>>> 7d3fed1a4c530a768cc3183d090dfc990cc12f68
 
 ## 赞助 | Sponsored
 
