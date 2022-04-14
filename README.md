@@ -193,15 +193,15 @@ git merge upstream/main
 
 ## 技术反馈和交流群 | Technical feedback and communication
 
-<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d41b5fec542444b4a28c00135ce27d42~tplv-k3u1fbpfcp-watermark.image" width="180px" />
+<img src="./src/assets/images/owner.png" width="180px" />
 
-<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a9eae48103fe4cd48f466362e00dcffe~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
+<img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0a302db673a04ce7adfd82745e481ad4~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
 
 ## 赞助 | Sponsored
 
 开源不易, 有了您的赞助, 我们会做的更好~
 
-<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/04022bcd6f99449ba0f065f470d19458~tplv-k3u1fbpfcp-watermark.image" width="180px" />
+<img src="./src/assets/images/zan.png" width="180px" />
 
 ## 快照 | screen shots
 
