@@ -90,7 +90,8 @@ Give a ⭐️ if this project helped you!
 
 - [h5-Dooring - H5-Dooring 是一款功能强大，专业可靠的 H5 可视化页面配置解决方案](https://github.com/MrXujiang/h5-Dooring)
 - [Blink - 一款自定义的生成故障艺术动画的组件库](https://github.com/MrXujiang/blink)
-- [frontend-developer-roadmap | 一个能提高开发者工作效率的前端 js 库汇总](https://github.com/MrXujiang/frontend-developer-roadmap) -[generator-admin-cli | vue3.0-admin-cli 中后台脚手架](https://github.com/GeekQiaQia/generator-admin-cli)
+- [frontend-developer-roadmap | 一个能提高开发者工作效率的前端 js 库汇总](https://github.com/MrXujiang/frontend-developer-roadmap)
+- [generator-admin-cli | vue3.0-admin-cli 中后台脚手架](https://github.com/GeekQiaQia/generator-admin-cli)
 
 ## 🤝 贡献 | Contributing
 
@@ -110,7 +111,7 @@ Contributions, issues and feature requests are welcome!.
 您也可以使用脚手架搭建最简洁的启动项目
 
 You can also use scaffolding to build the simplest startup project
-
+- [generator-admin-cli | vue3.0-admin-cli 中后台脚手架](https://github.com/GeekQiaQia/generator-admin-cli)
 ```bash
 npm install -g yo
 npm install -g generator-vue3-admin-cli
