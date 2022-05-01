@@ -1,10 +1,10 @@
 <!--
  * @Author: GeekQiaQia
  * @Date: 2022-02-18 16:13:43
- * @LastEditTime: 2022-02-21 14:28:20
+ * @LastEditTime: 2022-04-28 11:14:35
  * @LastEditors: GeekQiaQia
- * @Description: 
- * @FilePath: /test-vue3/src/App.vue
+ * @Description:
+ * @FilePath: /github/vue3.0-template-admin/src/App.vue
 -->
 <template>
    <el-config-provider :locale="locale">
