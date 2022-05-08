@@ -69,6 +69,7 @@ Give a ⭐️ if this project helped you!
 - **mockjs** [mockjs 模拟和交互数据](http://mockjs.com/)
 - **wangeditor** [wangeditor 富文本编辑器](https://www.wangeditor.com/doc/)
 - **fullcalendar** [fullcalendar 丰富的日历插件](https://github.com/fullcalendar/fullcalendar-example-projects/tree/master/vue3-typescript)
+- **driverJS** [轻量级 driverJS 新用户引导](https://kamranahmed.info/driver.js/)
 
 ## 工程化 | Project Tool
 
@@ -111,7 +112,9 @@ Contributions, issues and feature requests are welcome!.
 您也可以使用脚手架搭建最简洁的启动项目
 
 You can also use scaffolding to build the simplest startup project
+
 - [generator-admin-cli | vue3.0-admin-cli 中后台脚手架](https://github.com/GeekQiaQia/generator-admin-cli)
+
 ```bash
 npm install -g yo
 npm install -g generator-vue3-admin-cli
@@ -196,7 +199,7 @@ git merge upstream/main
 
 <img src="./src/assets/images/owner.png" width="180px" />
 
-<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2ff631ae266e4d1b9cf30b00a2d3fb43~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
+<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c97ef4260a74429299f16015d5f839d3~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
 
 ## 赞助 | Sponsored
 
