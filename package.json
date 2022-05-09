@@ -11,7 +11,11 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{vue,js,ts}": "eslint --fix"
+    "*.{vue,js,ts}": [
+      "eslint --fix",
+      "npx prettier --write ./src  ",
+      "git add ."
+    ]
   },
   "dependencies": {
     "@element-plus/icons-vue": "^0.2.7",
