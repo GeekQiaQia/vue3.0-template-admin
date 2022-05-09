@@ -4,39 +4,36 @@
   </component>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { isExternal } from '@/utils/validate.js';
+import { defineComponent } from 'vue'
+import { isExternal } from '@/utils/validate.js'
 
 export default defineComponent({
   props: {
     to: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   setup() {
     // methods
-    const linkProps = (url:string) => {
+    const linkProps = (url: string) => {
       if (isExternal(url)) {
         return {
           is: 'a',
           href: url,
           target: '_blank',
-          rel: 'noopener',
-        };
+          rel: 'noopener'
+        }
       }
       return {
         is: 'router-link',
-        to: url,
-      };
-    };
+        to: url
+      }
+    }
     return {
-      linkProps,
-
-    };
-  },
-});
+      linkProps
+    }
+  }
+})
 </script>
-<style lang="stylus" scoped>
-
-</style>
+<style lang="stylus" scoped></style>

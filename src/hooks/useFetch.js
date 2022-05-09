@@ -10,10 +10,7 @@ export const useFetch = async (url, isBlob) => {
       if (client.readyState !== 4) return
       if (client.status === 200) {
         const urlArr = client.responseURL.split('/')
-        resolve(
-          data.value = client.response,
-          address.value = urlArr[urlArr.length - 1]
-        )
+        resolve((data.value = client.response), (address.value = urlArr[urlArr.length - 1]))
       } else {
         reject(new Error(client.statusText))
       }

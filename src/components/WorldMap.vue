@@ -2002,8 +2002,7 @@
     <div class="jvectormap-zoomout">−</div>
   </div>
 </template>
-<script>
-</script>
+<script></script>
 <style lang="stylus" scoped>
 .jvectormap-container{
     svg{

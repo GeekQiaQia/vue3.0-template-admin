@@ -11,11 +11,10 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs, computed, ref, watchEffect } from 'vue'
 import Fuse from 'fuse.js'
-import path from 'path-browserify';
+import path from 'path-browserify'
 import { useRouter } from 'vue-router'
-import { Search} from '@element-plus/icons-vue'
+import { Search } from '@element-plus/icons-vue'
 import { useStore } from '@/store'
-
 
 interface dataType {
   path: string
@@ -26,7 +25,7 @@ interface stateType {
   value: string
 }
 export default defineComponent({
-  components:{
+  components: {
     Search
   },
   setup() {

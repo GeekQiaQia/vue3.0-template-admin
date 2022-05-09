@@ -2,7 +2,7 @@
   <div v-loading="loading" class="new">
     <el-form ref="formRef" :model="form" :rules="rules" label-position="right" label-width="100px">
       <el-form-item label="菜单名称" prop="meta.title">
-        <el-input v-model="form.meta.title[lang] " placeholder="请输入菜单名称"></el-input>
+        <el-input v-model="form.meta.title[lang]" placeholder="请输入菜单名称"></el-input>
       </el-form-item>
       <el-form-item label="菜单图标" prop="meta.icon">
         <el-input v-model="form.meta.icon" placeholder="请选择菜单图标" style="width: 60%"> </el-input>
@@ -24,7 +24,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs, toRef,computed } from 'vue'
+import { defineComponent, reactive, ref, toRefs, toRef, computed } from 'vue'
 import { useStore } from '@/store'
 
 import Icons from '@/components/icon.vue'

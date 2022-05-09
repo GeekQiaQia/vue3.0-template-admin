@@ -27,7 +27,6 @@
       </div>
     </el-backtop> -->
 
-
     <Sidebar class="sidebar-container" />
     <div class="main-container">
       <!--Navbar-->

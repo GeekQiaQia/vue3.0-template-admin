@@ -1,9 +1,5 @@
 import { generateColors } from './color'
 import { writeNewStyle } from './writeNewStyle'
-import {getStyleTemplate} from './getStyleTemplate'
+import { getStyleTemplate } from './getStyleTemplate'
 
-export {
-  generateColors,
-  writeNewStyle,
-  getStyleTemplate
-}
+export { generateColors, writeNewStyle, getStyleTemplate }

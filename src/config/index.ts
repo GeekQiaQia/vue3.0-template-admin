@@ -1,3 +1,3 @@
-import * as defaultSetting from './settings';
+import * as defaultSetting from './settings'
 
-export default defaultSetting;
+export default defaultSetting

@@ -4,13 +4,15 @@
       <el-row>
         <el-col>
           <el-col>
-            <el-button type="primary"  size="small" @click="onCreate">
-            <el-icon><plus /></el-icon>
-              新增</el-button>
-            <el-button type="success"  size="small" @click="onRefresh">
-            <el-icon><refresh /></el-icon>
+            <el-button type="primary" size="small" @click="onCreate">
+              <el-icon><plus /></el-icon>
+              新增</el-button
+            >
+            <el-button type="success" size="small" @click="onRefresh">
+              <el-icon><refresh /></el-icon>
 
-              刷新</el-button>
+              刷新</el-button
+            >
           </el-col>
           <el-table v-loading="loading" :data="data" stripe class="table">
             <el-table-column label="菜单名称" align="center">
@@ -39,13 +41,13 @@
               <template #default="scope">
                 <template v-if="scope.row.state != 0">
                   <el-tooltip class="item" effect="dark" content="修改" placement="bottom">
-                    <el-button circle plain type="primary"  size="mini" @click="onEdit(scope.$index, scope.row)">
-                  <el-icon><edit /></el-icon>
+                    <el-button circle plain type="primary" size="mini" @click="onEdit(scope.$index, scope.row)">
+                      <el-icon><edit /></el-icon>
                     </el-button>
                   </el-tooltip>
                   <el-tooltip class="item" effect="dark" content="删除" placement="bottom">
-                    <el-button circle plain type="danger"  size="mini" @click="onDelete(scope.$index, scope.row)">
-                    <el-icon><minus /></el-icon>
+                    <el-button circle plain type="danger" size="mini" @click="onDelete(scope.$index, scope.row)">
+                      <el-icon><minus /></el-icon>
                     </el-button>
                   </el-tooltip>
                 </template>
@@ -79,7 +81,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { Edit,Minus,Plus,Refresh} from '@element-plus/icons-vue'
+import { Edit, Minus, Plus, Refresh } from '@element-plus/icons-vue'
 
 import { RouteRecordRaw } from 'vue-router'
 import { useStore } from '@/store'
@@ -130,7 +132,7 @@ interface stateTypes {
 }
 export default defineComponent({
   name: 'Menu',
-  components: { MenuNew, MenuEdit ,Plus,Refresh,Edit,Minus},
+  components: { MenuNew, MenuEdit, Plus, Refresh, Edit, Minus },
   setup() {
     const store = useStore()
     const lang = computed(() => store.getters['settingsModule/getLangState'])
@@ -186,7 +188,7 @@ export default defineComponent({
 
     const initTableData = () => {
       const result = routes.value.filter((item) => item?.meta?.hidden !== true)
-      console.log("result",result);
+      console.log('result', result)
       state.data = result
     }
     /**

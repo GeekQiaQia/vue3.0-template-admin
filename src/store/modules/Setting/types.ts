@@ -3,7 +3,7 @@ export default interface settingStateTypes {
   fixedHeader: Boolean
   sideBarLogo: Boolean
   showSettings: Boolean
-  tableHeight:Number
-  hideHeader:boolean
-  lang:String
+  tableHeight: Number
+  hideHeader: boolean
+  lang: String
 }

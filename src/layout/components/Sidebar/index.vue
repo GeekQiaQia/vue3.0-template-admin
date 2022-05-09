@@ -2,14 +2,7 @@
   <div :class="{ 'has-logo': showLogo }">
     <logo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu
-        :router="true"
-        :unique-opened="false"
-        :default-active="activeMenu"
-        class="el-menu-vertical"
-        :collapse="isCollapse"
-        background-color="#545c64"
-        text-color="#fff">
+      <el-menu :router="true" :unique-opened="false" :default-active="activeMenu" class="el-menu-vertical" :collapse="isCollapse" background-color="#545c64" text-color="#fff">
         <!--递归路由对象-->
         <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
@@ -17,11 +10,7 @@
   </div>
 </template>
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  onMounted,
-} from 'vue'
+import { computed, defineComponent, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { isExternal } from '@/utils/validate'
 import sidebarItem from '@/layout/components/Sidebar/sidebarItem.vue'
@@ -45,7 +34,7 @@ export default defineComponent({
     onMounted(() => {
       const routePath = route.path
 
-      store.commit('tabModule/SET_TAB',routePath)
+      store.commit('tabModule/SET_TAB', routePath)
     })
 
     // methods

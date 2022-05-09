@@ -1,3 +1,11 @@
+<!--
+ * @Author: GeekQiaQia
+ * @Date: 2022-03-06 11:18:28
+ * @LastEditTime: 2022-05-09 20:03:35
+ * @LastEditors: GeekQiaQia
+ * @Description:
+ * @FilePath: /vue3.0-template-admin/src/views/Guide/index.vue
+-->
 <template>
   <div id="guide-info" class="guide-container">
     <div class="info">

@@ -25,14 +25,14 @@
           </el-dropdown>
         </div>
         <div id="fullScreen" class="right-menu-box">
-        <el-button class="full-screen">
-          <el-tooltip :content="langConfig.header.fullScreen[lang]" effect="dark" placement="left">
-            <el-icon v-show="fullScreen == false" @click="toShowFullScreen()" ><full-screen /></el-icon>
-          </el-tooltip>
-          <el-tooltip :content="langConfig.header.exitFullScreen[lang]" effect="dark" placement="left">
-            <el-icon v-show="fullScreen == true" @click="toExitFullScreen()"><bottom-left /></el-icon>
-          </el-tooltip>
-        </el-button>
+          <el-button class="full-screen">
+            <el-tooltip :content="langConfig.header.fullScreen[lang]" effect="dark" placement="left">
+              <el-icon v-show="fullScreen == false" @click="toShowFullScreen()"><full-screen /></el-icon>
+            </el-tooltip>
+            <el-tooltip :content="langConfig.header.exitFullScreen[lang]" effect="dark" placement="left">
+              <el-icon v-show="fullScreen == true" @click="toExitFullScreen()"><bottom-left /></el-icon>
+            </el-tooltip>
+          </el-button>
         </div>
         <el-dropdown class="avatar-container" trigger="hover">
           <div class="avatar-wrapper">
@@ -62,7 +62,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
-import { Message,FullScreen ,BottomLeft} from '@element-plus/icons-vue'
+import { Message, FullScreen, BottomLeft } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import Hamburger from '@/components/Hamburger/Hamburger.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
@@ -180,7 +180,7 @@ export default defineComponent({
     &:focus {
       outline: none;
     }
-    .right-menu-box{
+    .right-menu-box {
       display: flex;
       flex-direction: column;
       justify-content: center;

@@ -5,12 +5,14 @@
     <el-card class="card-ctrl">
       <el-row>
         <el-col :span="8" style="text-align: left">
-          <el-button type="primary"  size="small" @click="onCreate">
+          <el-button type="primary" size="small" @click="onCreate">
             <el-icon><plus /></el-icon>
-            新增</el-button>
-          <el-button type="success"  size="small" @click="onRefresh">
+            新增</el-button
+          >
+          <el-button type="success" size="small" @click="onRefresh">
             <el-icon><refresh /></el-icon>
-            刷新</el-button>
+            刷新</el-button
+          >
         </el-col>
       </el-row>
       <br />
@@ -33,7 +35,7 @@
               </el-button>
             </el-tooltip>
             <el-tooltip v-if="scope.row.state != 0" class="item" effect="dark" content="删除" placement="bottom">
-              <el-button circle plain type="danger"  size="small" @click="onDelete(scope.$index, scope.row)">
+              <el-button circle plain type="danger" size="small" @click="onDelete(scope.$index, scope.row)">
                 <el-icon><minus /></el-icon>
               </el-button>
             </el-tooltip>
@@ -66,7 +68,7 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { Edit,Minus,Plus,Refresh} from '@element-plus/icons-vue'
+import { Edit, Minus, Plus, Refresh } from '@element-plus/icons-vue'
 import RoleEdit from './rolesEdit.vue'
 import RoleNew from './rolesNew.vue'
 

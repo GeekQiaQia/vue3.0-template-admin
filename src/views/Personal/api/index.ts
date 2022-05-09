@@ -1,14 +1,14 @@
-import request from '@/utils/request';
+import request from '@/utils/request'
 
-const personalApi={
- basicInfo:'/api/setting/basicInfo',
- personalTags:'/api/personal/tags'
+const personalApi = {
+  basicInfo: '/api/setting/basicInfo',
+  personalTags: '/api/personal/tags'
 }
 
-class Service{
+class Service {
   /**
    * @description POST 设置基本信息
-  */
+   */
   static postSetBasicInfo(data: any) {
     return request({
       url: personalApi.basicInfo,
@@ -17,30 +17,26 @@ class Service{
       data
     }).then((res) => {
       if (res.status === 0) {
-      return Promise.resolve(res)
+        return Promise.resolve(res)
       }
       return Promise.reject(res)
     })
   }
 
-/**
+  /**
    * @description Get 获取tags
-  */
- static getPersonTags() {
+   */
+  static getPersonTags() {
     return request({
       url: personalApi.personalTags,
       method: 'get',
-      json: true,
+      json: true
     }).then((res) => {
       if (res.status === 0) {
-      return Promise.resolve(res)
+        return Promise.resolve(res)
       }
       return Promise.reject(res)
     })
   }
-
-
 }
 export default Service
-
-

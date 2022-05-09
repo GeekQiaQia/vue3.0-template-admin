@@ -5,22 +5,22 @@
  * return { String} 返回值
  *
  */
- import CryptoES  from 'crypto-es'
+import CryptoES from 'crypto-es'
 
- const keyStr = 'eSEdSfdED==WGDH'
- // 加密
- export function encrypt(word:string) {
-   const key = CryptoES .enc.Utf8.parse(keyStr)
-   const srcs = CryptoES .enc.Utf8.parse(word)
-   const encrypted = CryptoES .AES.encrypt(srcs, key, { mode: CryptoES .mode.ECB, padding: CryptoES .pad.Pkcs7 })
-   return encrypted.toString()
- }
+const keyStr = 'eSEdSfdED==WGDH'
+// 加密
+export function encrypt(word: string) {
+  const key = CryptoES.enc.Utf8.parse(keyStr)
+  const srcs = CryptoES.enc.Utf8.parse(word)
+  const encrypted = CryptoES.AES.encrypt(srcs, key, { mode: CryptoES.mode.ECB, padding: CryptoES.pad.Pkcs7 })
+  return encrypted.toString()
+}
 
- // 解密
- export function decrypt(word:string) {
-   const key = CryptoES .enc.Utf8.parse(keyStr)
-   const decryptStr = CryptoES .AES.decrypt(word, key, { mode: CryptoES .mode.ECB, padding: CryptoES .pad.Pkcs7 })
-   return CryptoES .enc.Utf8.stringify(decryptStr).toString()
- }
+// 解密
+export function decrypt(word: string) {
+  const key = CryptoES.enc.Utf8.parse(keyStr)
+  const decryptStr = CryptoES.AES.decrypt(word, key, { mode: CryptoES.mode.ECB, padding: CryptoES.pad.Pkcs7 })
+  return CryptoES.enc.Utf8.stringify(decryptStr).toString()
+}
 
- export default {encrypt ,decrypt}
+export default { encrypt, decrypt }

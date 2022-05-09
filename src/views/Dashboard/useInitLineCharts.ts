@@ -7,36 +7,22 @@
  * @FilePath: /vue3.0-template-admin/src/views/Dashboard/useInitLineCharts.ts
  */
 
-import * as echarts from 'echarts/core';
-import {
-  TitleComponent,
-  ToolboxComponent,
-  TooltipComponent,
-  GridComponent,
-  LegendComponent
-} from 'echarts/components';
-import { LineChart } from 'echarts/charts';
-import { CanvasRenderer } from 'echarts/renderers';
+import * as echarts from 'echarts/core'
+import { TitleComponent, ToolboxComponent, TooltipComponent, GridComponent, LegendComponent } from 'echarts/components'
+import { LineChart } from 'echarts/charts'
+import { CanvasRenderer } from 'echarts/renderers'
 
-echarts.use([
-  TitleComponent,
-  ToolboxComponent,
-  TooltipComponent,
-  GridComponent,
-  LegendComponent,
-  LineChart,
-  CanvasRenderer
-]);
+echarts.use([TitleComponent, ToolboxComponent, TooltipComponent, GridComponent, LegendComponent, LineChart, CanvasRenderer])
 
-let option;
+let option
 
-export const useInitLineChart = (chartDom:HTMLElement|undefined) => {
-    // var chartDom = document.getElementById('main');
-const myChart = echarts.init(chartDom as HTMLElement);
+export const useInitLineChart = (chartDom: HTMLElement | undefined) => {
+  // var chartDom = document.getElementById('main');
+  const myChart = echarts.init(chartDom as HTMLElement)
 
-option = {
+  option = {
     title: {
-    //   text: 'Stacked Line'
+      //   text: 'Stacked Line'
     },
     tooltip: {
       trigger: 'axis'
@@ -79,12 +65,10 @@ option = {
         data: [220, 182, 191, 234, 290, 330, 310]
       }
     ]
-  };
+  }
 
   // eslint-disable-next-line no-unused-expressions
-  option && myChart.setOption(option);
-
+  option && myChart.setOption(option)
 }
 
-
-export default {useInitLineChart}
+export default { useInitLineChart }

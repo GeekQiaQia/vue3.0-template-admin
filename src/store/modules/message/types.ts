@@ -1,3 +1,3 @@
 export default interface messageStateTypes {
-    messageNum:number
-  }
+  messageNum: number
+}

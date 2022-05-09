@@ -1,11 +1,9 @@
-import { Module } from 'vuex';
-import defaultSetting from '@/config';
-import settingStateTypes from './types';
-import RootStateTypes from '../../types';
+import { Module } from 'vuex'
+import defaultSetting from '@/config'
+import settingStateTypes from './types'
+import RootStateTypes from '../../types'
 
-const {
-  title, fixedHeader, sideBarLogo, showSettings,
-} = defaultSetting.default;
+const { title, fixedHeader, sideBarLogo, showSettings } = defaultSetting.default
 // create a new Store Modules.
 const settingsModule: Module<settingStateTypes, RootStateTypes> = {
   namespaced: true,
@@ -15,55 +13,53 @@ const settingsModule: Module<settingStateTypes, RootStateTypes> = {
     sideBarLogo,
     showSettings,
     tableHeight: 600, // 表格宽度
-    hideHeader:false,
-    lang:'/zh-CN'
-
+    hideHeader: false,
+    lang: '/zh-CN'
   },
   mutations: {
-    setTableHeight: (state:settingStateTypes, height) => {
-      state.tableHeight = height;
+    setTableHeight: (state: settingStateTypes, height) => {
+      state.tableHeight = height
     },
-    toggleHeader:(state: settingStateTypes)=>{
-      state.hideHeader=!state.hideHeader
+    toggleHeader: (state: settingStateTypes) => {
+      state.hideHeader = !state.hideHeader
     },
-    toggleFixedHeader:(state: settingStateTypes)=>{
-      state.fixedHeader=!state.fixedHeader
+    toggleFixedHeader: (state: settingStateTypes) => {
+      state.fixedHeader = !state.fixedHeader
     },
-    toggleSidebarLogo:(state: settingStateTypes)=>{
-      state.sideBarLogo=!state.sideBarLogo
+    toggleSidebarLogo: (state: settingStateTypes) => {
+      state.sideBarLogo = !state.sideBarLogo
     },
-    toggleLang:(state: settingStateTypes,payload:any)=>{
-      state.lang=payload.lang
-    },
+    toggleLang: (state: settingStateTypes, payload: any) => {
+      state.lang = payload.lang
+    }
   },
   actions: {
-    toToggleHeader({commit}){
-      commit('toggleHeader');
+    toToggleHeader({ commit }) {
+      commit('toggleHeader')
     },
-    toToggleFixedHeader({commit}){
-      commit('toggleFixedHeader');
+    toToggleFixedHeader({ commit }) {
+      commit('toggleFixedHeader')
     },
-    toToggleSidebarLogo({commit}){
-      commit('toggleSidebarLogo');
+    toToggleSidebarLogo({ commit }) {
+      commit('toggleSidebarLogo')
     },
-    toToggleLang({commit},payload){
-      commit('toggleLang',payload);
+    toToggleLang({ commit }, payload) {
+      commit('toggleLang', payload)
     }
   },
   getters: {
-
-    getHideHeaderState(state:settingStateTypes){
+    getHideHeaderState(state: settingStateTypes) {
       return state.hideHeader
     },
-    getFixedHeaderState(state:settingStateTypes){
+    getFixedHeaderState(state: settingStateTypes) {
       return state.fixedHeader
     },
-    getSidebarLogoState(state:settingStateTypes){
+    getSidebarLogoState(state: settingStateTypes) {
       return state.sideBarLogo
     },
-    getLangState(state:settingStateTypes){
+    getLangState(state: settingStateTypes) {
       return state.lang
     }
-  },
-};
-export default settingsModule;
+  }
+}
+export default settingsModule

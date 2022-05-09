@@ -10,7 +10,9 @@
           <el-card class="box-card">
             <template #header>
               <div class="card-header">
-                <el-button class="button" type="text" @click="handleBack"><el-icon><arrow-left /></el-icon>返回</el-button>
+                <el-button class="button" type="text" @click="handleBack"
+                  ><el-icon><arrow-left /></el-icon>返回</el-button
+                >
 
                 <span>表单信息</span>
                 <div></div>
@@ -57,20 +59,18 @@
               </el-table-column>
               <el-table-column label="操作" width="200">
                 <template #default="scope">
-
-                  <el-button v-if="scope.row.edit" size="mini" type="success"  @click="handleSave(scope.$index, scope.row)"><el-icon><check /></el-icon>保存</el-button>
-
-                  <el-button v-else size="mini"  @click="handleEdit(scope.$index, scope.row)"><el-icon><edit /></el-icon>编辑</el-button>
-                  <el-popconfirm
-                    confirm-button-text="确定"
-                    cancel-button-text="取消"
-                    :icon="InfoFilled"
-                    icon-color="red"
-                    title="确定删除该条记录吗？"
-                    @confirm="handleDelete(scope.$index, scope.row)"
+                  <el-button v-if="scope.row.edit" size="mini" type="success" @click="handleSave(scope.$index, scope.row)"
+                    ><el-icon><check /></el-icon>保存</el-button
                   >
+
+                  <el-button v-else size="mini" @click="handleEdit(scope.$index, scope.row)"
+                    ><el-icon><edit /></el-icon>编辑</el-button
+                  >
+                  <el-popconfirm confirm-button-text="确定" cancel-button-text="取消" :icon="InfoFilled" icon-color="red" title="确定删除该条记录吗？" @confirm="handleDelete(scope.$index, scope.row)">
                     <template #reference>
-                      <el-button size="mini"  type="danger"> <el-icon><delete-filled /></el-icon> 删除</el-button>
+                      <el-button size="mini" type="danger">
+                        <el-icon><delete-filled /></el-icon> 删除</el-button
+                      >
                     </template>
                   </el-popconfirm>
                 </template>
@@ -137,12 +137,15 @@
 import { defineComponent, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { Edit,DeleteFilled ,Check,ArrowLeft} from '@element-plus/icons-vue'
+import { Edit, DeleteFilled, Check, ArrowLeft } from '@element-plus/icons-vue'
 
 export default defineComponent({
   name: 'AdvanceForm',
-  components:{
-    Edit,DeleteFilled,Check,ArrowLeft
+  components: {
+    Edit,
+    DeleteFilled,
+    Check,
+    ArrowLeft
   },
   setup() {
     const router = useRouter()

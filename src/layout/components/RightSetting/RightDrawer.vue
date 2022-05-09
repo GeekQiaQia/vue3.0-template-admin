@@ -8,26 +8,26 @@
 -->
 <template>
   <div class="rightDrawer">
-  <!-- :modal-append-to-body="false"  -->
+    <!-- :modal-append-to-body="false"  -->
     <el-drawer v-model="openDrawer" size="20%" :with-header="false">
       <div class="slot-body">
         <slot />
       </div>
     </el-drawer>
     <div class="rightPanel">
-      <el-button class="handle-button" type="primary"  :class="{ 'handle-button-close': !openDrawer }" :style="{ top: buttonTop + 'px' }" @click="openDrawer = !openDrawer">
-        <el-icon ><Setting /></el-icon>
+      <el-button class="handle-button" type="primary" :class="{ 'handle-button-close': !openDrawer }" :style="{ top: buttonTop + 'px' }" @click="openDrawer = !openDrawer">
+        <el-icon><Setting /></el-icon>
       </el-button>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { Setting} from '@element-plus/icons-vue'
+import { Setting } from '@element-plus/icons-vue'
 
 export default defineComponent({
   name: 'RightDrawer',
-  components:{
+  components: {
     Setting
   },
   props: {
