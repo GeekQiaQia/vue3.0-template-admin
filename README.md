@@ -13,7 +13,6 @@ Element-plus:
 <a href="https://www.npmjs.org/package/element-plus">
 <img src="https://img.shields.io/npm/v/element-plus.svg">
 </a>
-
 </p>
 
 - 💪 Vue 3.0 Composition API
@@ -199,7 +198,7 @@ git merge upstream/main
 
 <img src="./src/assets/images/owner.png" width="180px" />
 
-<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c97ef4260a74429299f16015d5f839d3~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
+<img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/240e94cce1ae4a01b3090e2fc47bd46d~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
 
 ## 赞助 | Sponsored
 
