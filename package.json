@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.1.1",
   "scripts": {
+    "preinstall": "npx only-allow yarn",
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
@@ -53,6 +54,7 @@
     "lodash": "^4.17.21",
     "marked": "^4.0.12",
     "mockjs": "^1.1.0",
+    "only-allow": "^1.1.0",
     "path": "^0.12.7",
     "path-browserify": "^1.0.1",
     "path-to-regexp": "^6.2.0",
