@@ -13,6 +13,8 @@ import legacy from '@vitejs/plugin-legacy'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import OptimizationPersist from 'vite-plugin-optimize-persist'
+import PkgConfig from 'vite-plugin-package-config'
 
 const pathSrc = path.resolve(__dirname, 'src')
 
@@ -45,6 +47,8 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       }
     },
     plugins: [
+      PkgConfig(),
+      OptimizationPersist(),
       vue(),
       AutoImport({
         resolvers: [ElementPlusResolver()]
