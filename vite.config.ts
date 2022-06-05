@@ -1,7 +1,7 @@
 /*
  * @Author: GeekQiaQia
  * @Date: 2022-02-18 16:13:43
- * @LastEditTime: 2022-02-22 15:02:10
+ * @LastEditTime: 2022-06-05 19:32:19
  * @LastEditors: GeekQiaQia
  * @Description:
  * @FilePath: /vue3.0-template-admin/vite.config.ts
@@ -10,13 +10,14 @@ import path from 'path'
 import { ConfigEnv, loadEnv, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import legacy from '@vitejs/plugin-legacy'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import OptimizationPersist from 'vite-plugin-optimize-persist'
-import PkgConfig from 'vite-plugin-package-config'
+// 去掉分包按需引入的方式、开发体验不好；您可根据需要体验按需引入方式；
+// import AutoImport from 'unplugin-auto-import/vite'
+// import Components from 'unplugin-vue-components/vite'
+// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+// import OptimizationPersist from 'vite-plugin-optimize-persist'
+// import PkgConfig from 'vite-plugin-package-config'
 
-const pathSrc = path.resolve(__dirname, 'src')
+// const pathSrc = path.resolve(__dirname, 'src')
 
 const CWD = process.cwd()
 
@@ -47,20 +48,21 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       }
     },
     plugins: [
-      PkgConfig(),
-      OptimizationPersist(),
+      // PkgConfig(),
+      // OptimizationPersist(),
       vue(),
-      AutoImport({
-        resolvers: [ElementPlusResolver()]
-      }),
-      Components({
-        resolvers: [
-          ElementPlusResolver({
-            importStyle: 'sass'
-          })
-        ],
-        dts: path.resolve(pathSrc, 'components.d.ts')
-      }),
+      // AutoImport({
+      //   // 去掉分包按需引入的方式、开发体验不好；您可根据需要体验按需引入方式；
+      //   resolvers: [ElementPlusResolver()]
+      // }),
+      // Components({
+      //   resolvers: [
+      //     ElementPlusResolver({
+      //       importStyle: 'sass'
+      //     })
+      //   ],
+      //   dts: path.resolve(pathSrc, 'components.d.ts')
+      // }),
       legacy({
         targets: ['ie >= 11'],
         additionalLegacyPolyfills: ['regenerator-runtime/runtime']
