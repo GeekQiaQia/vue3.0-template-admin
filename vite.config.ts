@@ -1,7 +1,7 @@
 /*
  * @Author: GeekQiaQia
  * @Date: 2022-02-18 16:13:43
- * @LastEditTime: 2022-06-05 19:32:19
+ * @LastEditTime: 2022-06-05 20:17:00
  * @LastEditors: GeekQiaQia
  * @Description:
  * @FilePath: /vue3.0-template-admin/vite.config.ts
@@ -10,7 +10,7 @@ import path from 'path'
 import { ConfigEnv, loadEnv, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import legacy from '@vitejs/plugin-legacy'
-// 去掉分包按需引入的方式、开发体验不好；您可根据需要体验按需引入方式；
+// Tips 去掉分包按需引入的方式、开发体验不好；您可根据需要体验按需引入方式；
 // import AutoImport from 'unplugin-auto-import/vite'
 // import Components from 'unplugin-vue-components/vite'
 // import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
@@ -52,7 +52,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       // OptimizationPersist(),
       vue(),
       // AutoImport({
-      //   // 去掉分包按需引入的方式、开发体验不好；您可根据需要体验按需引入方式；
+      //   //Tips 去掉分包按需引入的方式、开发体验不好；您可根据需要体验按需引入方式；
       //   resolvers: [ElementPlusResolver()]
       // }),
       // Components({
