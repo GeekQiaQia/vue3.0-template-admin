@@ -8,6 +8,7 @@
 import CryptoES from 'crypto-es'
 
 const keyStr = 'eSEdSfdED==WGDH'
+
 // 加密
 export function encrypt(word: string) {
   const key = CryptoES.enc.Utf8.parse(keyStr)

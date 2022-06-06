@@ -1,3 +1,12 @@
+<!--
+ * @Author: GeekQiaQia
+ * @Date: 2022-02-21 20:18:20
+ * @LastEditTime: 2022-06-06 17:18:20
+ * @LastEditors: GeekQiaQia
+ * @Description:
+ * @FilePath: /vue3.0-template-admin/devNote.md
+-->
+
 # 开发笔记-常见问题：
 
 编辑器：vscode；
