@@ -1,3 +1,11 @@
+/*
+ * @Author: GeekQiaQia
+ * @Date: 2022-02-21 21:07:08
+ * @LastEditTime: 2022-06-21 15:46:26
+ * @LastEditors: GeekQiaQia
+ * @Description:
+ * @FilePath: /vue3.0-template-admin/src/directive/clipboard/clipboard.ts
+ */
 import ClipBoard from 'clipboard'
 
 if (!ClipBoard) {
@@ -18,6 +26,7 @@ export default {
   // called before bound element's parent component is mounted
   beforeMount() {},
   // called when bound element's parent component is mounted
+
   mounted(el: elType, binding: any) {
     const targetEl = el
     const clipboard: ClipBoard = new ClipBoard(targetEl, {
@@ -34,6 +43,7 @@ export default {
       // eslint-disable-next-line no-unused-expressions
       callback && callback(e)
     })
+
     clipboard.on('error', (e: ClipBoard.Event) => {
       console.log(e)
       const callback = el.vClipFailure
