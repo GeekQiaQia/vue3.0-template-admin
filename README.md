@@ -197,7 +197,7 @@ git merge upstream/main
 
 <img src="./src/assets/images/owner.png" width="180px" />
 
-<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1feee4d32cd24bc5a5de4134d843d660~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
+<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/16ba686ca17945b58449ef1f719fcc32~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
 
 ## 赞助 | Sponsored
 
