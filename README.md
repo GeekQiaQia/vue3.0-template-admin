@@ -197,9 +197,10 @@ git merge upstream/main
 
 <img src="./src/assets/images/owner.png" width="180px" />
 
-<img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dd0ee8aeeafb40798f6088dacad9290e~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
+<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/20ff38830efd4ee1813087da6e73dbfe~tplv-k3u1fbpfcp-watermark.image?" width="180px" />
 
-## 赞助 | Sponsored
+
+
 
 开源不易, 有了您的赞助, 我们会做的更好~
 
