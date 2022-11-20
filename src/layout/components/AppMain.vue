@@ -1,3 +1,11 @@
+<!--
+ * @Author: GeekQiaQia
+ * @Date: 2022-02-21 21:07:08
+ * @LastEditTime: 2022-11-20 15:50:59
+ * @LastEditors: GeekQiaQia
+ * @Description:
+ * @FilePath: /vue3.0-template-admin/src/layout/components/AppMain.vue
+-->
 <template>
   <section class="app-main">
     <el-tabs id="Tabs" v-model="currentIndex" type="card" closable @tab-click="clickTab" @tab-remove="removeTab">
@@ -11,7 +19,7 @@
 
     <router-view v-if="!$route.meta.keepAlive" v-slot="{ Component }">
       <transition name="fade" mode="out-in">
-        <keep-alive>
+        <keep-alive :include="$route.name">
           <component :is="Component" :key="$route.path" />
         </keep-alive>
       </transition>
