@@ -9,7 +9,8 @@
 <template>
   <section class="app-main">
     <el-tabs id="Tabs" v-model="currentIndex" type="card" closable @tab-click="clickTab" @tab-remove="removeTab">
-      <el-tab-pane v-for="item in tabsOption" :key="item.route" :closable="item.route !== '/home'" :label="item.title[lang]" :name="item.route" />
+      <el-tab-pane v-for="item in tabsOption" :key="item.route" :closable="item.route !== '/home'"
+        :label="item.title[lang]" :name="item.route" />
     </el-tabs>
     <router-view v-if="$route.meta.keepAlive" v-slot="{ Component }">
       <transition name="fade" mode="out-in">
@@ -19,7 +20,7 @@
 
     <router-view v-if="!$route.meta.keepAlive" v-slot="{ Component }">
       <transition name="fade" mode="out-in">
-        <keep-alive :include="$route.name">
+        <keep-alive :include="$route.path">
           <component :is="Component" :key="$route.path" />
         </keep-alive>
       </transition>
@@ -86,7 +87,8 @@ export default defineComponent({
   overflow: hidden;
   background-color: white;
 }
-.fixed-header + .app-main {
+
+.fixed-header+.app-main {
   padding-top: 50px;
 }
 </style>
