@@ -91,7 +91,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import VueCropper from 'vue-cropperjs'
-import 'cropperjs/dist/cropper.css'
+// import 'cropperjs/dist/cropper.css'
 import { ElMessage } from 'element-plus'
 
 export default defineComponent({

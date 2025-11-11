@@ -65,7 +65,10 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       }
     },
     optimizeDeps: {
-      include: ['element-plus/lib/locale/lang/zh-cn', 'element-plus/lib/locale/lang/en']
+      include: [
+        'element-plus/es/locale/lang/zh-cn',
+        'element-plus/es/locale/lang/en'
+      ]
     }
     // https://www.vitejs.net/config/#build-commonjsoptions
   }

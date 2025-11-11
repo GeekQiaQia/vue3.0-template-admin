@@ -10,7 +10,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import '@fullcalendar/core/vdom' // solve problem with Vite
+// import '@fullcalendar/core/vdom' // solve problem with Vite
 import FullCalendar, { CalendarOptions, EventApi, DateSelectArg, EventClickArg } from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'

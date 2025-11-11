@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.1.1",
   "scripts": {
-    "preinstall": "npx only-allow yarn",
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",

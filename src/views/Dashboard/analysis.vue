@@ -220,7 +220,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref, reactive } from 'vue'
+import { onMounted, ref, reactive, nextTick } from 'vue'
 import { Top, MoreFilled, ShoppingCartFull, Refresh, Search, GoodsFilled, Coin, DataLine } from '@element-plus/icons-vue'
 
 import XLSX from 'xlsx'
@@ -396,9 +396,19 @@ const handleExportExcel = () => {
 }
 
 onMounted(() => {
-  useInitChart(refProduct.value)
-  useInitLineChart(refLineChart.value)
-  useInitPieChart(refAverageSales.value)
+  nextTick(() => {
+    setTimeout(() => {
+      if (refProduct.value) {
+        useInitChart(refProduct.value)
+      }
+      if (refLineChart.value) {
+        useInitLineChart(refLineChart.value)
+      }
+      if (refAverageSales.value) {
+        useInitPieChart(refAverageSales.value)
+      }
+    }, 100)
+  })
 })
 </script>
 <style lang="stylus" scoped>

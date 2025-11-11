@@ -5,6 +5,7 @@ import router, { constantRoutes, asyncRoutes } from '@/router'
 import permissionStateTypes from './types'
 import RootStateTypes from '../../types'
 import Service from './api'
+import logger from '@/utils/logger'
 
 const roles = localStorage.getItem('role') || ''
 // create a new Store Modules.
@@ -13,14 +14,14 @@ const permissionModule: Module<permissionStateTypes, RootStateTypes> = {
   state: {
     roles, // 用户包含的角色,
     permissions: [], // 用户指定局部操作权限
-    accessRoutes: constantRoutes, // 可访问路由集合
-    routes: constantRoutes, // 所有路由集合
+    accessRoutes: constantRoutes.concat(asyncRoutes), // 可访问路由集合
+    routes: constantRoutes.concat(asyncRoutes), // 所有路由集合
     authedRoutes: []
   },
   mutations: {
     setRoles: (state: permissionStateTypes, { roleName }) => {
       state.roles = roleName
-      console.log(state.roles)
+      logger.info('Roles set:', state.roles)
     },
     setAccessRoutes: (state: permissionStateTypes, routes) => {
       state.accessRoutes = constantRoutes.concat(routes)
@@ -66,7 +67,7 @@ const permissionModule: Module<permissionStateTypes, RootStateTypes> = {
             }
           })
           router.options.routes = constantRoutes.concat(asyncRoutes)
-          console.log(router)
+          logger.info('Routes added:', accessedRoutes)
           commit('setAccessRoutes', accessedRoutes)
         })
       })

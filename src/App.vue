@@ -16,25 +16,36 @@
 
 <script setup lang="ts">
 import { ElConfigProvider } from 'element-plus'
-import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
-import enLocale from 'element-plus/lib/locale/lang/en'
+import zhLocale from 'element-plus/es/locale/lang/zh-cn'
+import enLocale from 'element-plus/es/locale/lang/en'
 import { computed, onMounted } from 'vue'
 import { useStore } from '@/store/index'
+import { useWindowResize } from '@/hooks/useWindowResize'
 
 const store = useStore()
-const resizeHeight = () => {
-  const { clientHeight } = document.body // 获取文档可视区域的宽度
-  const height = Math.max(600, clientHeight - 170) // 保证最小值大于600
-  store.commit('settingsModule/setTableHeight', height) // 设置tableHeight
+
+// 计算表格高度的函数
+const calculateTableHeight = () => {
+  const { clientHeight } = document.documentElement || document.body
+  const height = Math.max(600, clientHeight - 170)
+  store.commit('settingsModule/setTableHeight', height)
 }
+
+// 使用响应式窗口变化 Hook
+useWindowResize(calculateTableHeight, 200)
+
 onMounted(() => {
+  // 初始化权限
   store.dispatch('permissionModule/getPermissions')
+  
+  // 初始化表格高度
+  calculateTableHeight()
 })
-resizeHeight()
+
+// 国际化locale配置
 const locale = computed(() => {
   const langState = store.getters['settingsModule/getLangState']
-  const local = langState === '/zh-CN' ? zhLocale : enLocale
-  return local
+  return langState === '/zh-CN' ? zhLocale : enLocale
 })
 </script>
 
