@@ -128,7 +128,7 @@ yo vue3-admin-cli
 
 ## 快速启动 | Quick Start
 
-```
+```bash
 # 克隆项目
 # cnpmjs
 git clone https://github.com.cnpmjs.org/GeekQiaQia/vue3.0-template-admin.git
@@ -136,23 +136,26 @@ git clone https://github.com.cnpmjs.org/GeekQiaQia/vue3.0-template-admin.git
 # or
 git clone https://github.com/GeekQiaQia/vue3.0-template-admin.git
 
-
 # 进入项目目录
 cd vue3.0-template-admin
 
-# 安装依赖 （推荐yarn）
-npm install  / yarn
+# 安装依赖 （推荐使用 pnpm）
+pnpm install
 
 # 启动服务
-npm run dev  / yarn dev
+pnpm run dev
 
 # 打包
-npm run build  / yarn build
+pnpm run build
 
 # 本地预览打包后的dist文件
-npm run preview / yarn preview
-
+pnpm run preview
 ```
+
+> **Note:** This project uses **pnpm** as the package manager. Please install pnpm first:
+> ```bash
+> npm install -g pnpm
+> ```
 
 ## 同步代码 | synchronizing code
 
