@@ -36,8 +36,10 @@ useWindowResize(calculateTableHeight, 200)
 
 onMounted(() => {
   // 初始化权限
-  store.dispatch('permissionModule/getPermissions')
-  
+  store.dispatch('permissionModule/getPermissions').catch((error) => {
+    console.error('Failed to initialize permissions:', error)
+  })
+
   // 初始化表格高度
   calculateTableHeight()
 })
@@ -54,10 +56,5 @@ const locale = computed(() => {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-.element-plus-logo {
-  width: 50%;
 }
 </style>

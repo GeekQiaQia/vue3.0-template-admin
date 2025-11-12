@@ -82,7 +82,7 @@ export default function request<T = any>(arr: IAxiosData): Promise<T> {
     })
       .then((response: AxiosResponse<any>) => {
         const responseStatus = `${response.status}`
-        
+
         // 状态码2开头的处理逻辑
         if (responseStatus.charAt(0) === '2') {
           if (response.data.code === '1' || response.data.code === 'err_9999') {

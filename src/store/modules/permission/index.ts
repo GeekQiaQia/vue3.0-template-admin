@@ -40,44 +40,58 @@ const permissionModule: Module<permissionStateTypes, RootStateTypes> = {
   actions: {
     // 异步接口请求，动态添加路由
     getPermissonRoutes({ commit }, payload: any) {
+      // Check if payload exists and has roleName
+      if (!payload || !payload.roleName) {
+        logger.warn('No roleName provided for getPermissonRoutes')
+        return Promise.resolve()
+      }
+
       // api request
       const data = {
         roleName: payload.roleName
       }
       // 后端根据角色名称，查询授权菜单
-      Service.postAuthPermission(data).then((res) => {
-        const { authedRoutes } = res.data
-        commit('setAuthedRoutes', authedRoutes)
-        // 过滤只显示授权菜单
-        const accessedRoutes: RouteRecordRaw[] = []
+      return Service.postAuthPermission(data)
+        .then((res) => {
+          const { authedRoutes } = res
+          commit('setAuthedRoutes', authedRoutes)
+          // 过滤只显示授权菜单
+          const accessedRoutes: RouteRecordRaw[] = []
 
-        for (const path of authedRoutes) {
-          for (const item of asyncRoutes) {
-            if (item.path === path) {
-              accessedRoutes.push(item)
+          for (const path of authedRoutes) {
+            for (const item of asyncRoutes) {
+              if (item.path === path) {
+                accessedRoutes.push(item)
+              }
             }
           }
-        }
-        // 动态添加路由  vue-router4.x 暂时没有addRoutes
-        router.isReady().then(() => {
-          accessedRoutes.forEach((route: RouteRecordRaw) => {
-            const routeName: any = route.name
-            if (!router.hasRoute(routeName)) {
-              router.addRoute(route)
-            }
+          // 动态添加路由  vue-router4.x 暂时没有addRoutes
+          router.isReady().then(() => {
+            accessedRoutes.forEach((route: RouteRecordRaw) => {
+              const routeName: any = route.name
+              if (!router.hasRoute(routeName)) {
+                router.addRoute(route)
+              }
+            })
+            router.options.routes = constantRoutes.concat(asyncRoutes)
+            logger.info('Routes added:', accessedRoutes)
+            commit('setAccessRoutes', accessedRoutes)
           })
-          router.options.routes = constantRoutes.concat(asyncRoutes)
-          logger.info('Routes added:', accessedRoutes)
-          commit('setAccessRoutes', accessedRoutes)
         })
-      })
+        .catch((error) => {
+          logger.error('Failed to fetch permission routes:', error)
+        })
     },
     getPermissions({ commit }) {
       // 后端根据角色名称，查询授权菜单
-      Service.postPermissions({}).then((res) => {
-        const { permissions } = res.data
-        commit('setPermissions', permissions)
-      })
+      Service.postPermissions({})
+        .then((res) => {
+          const { permissions } = res
+          commit('setPermissions', permissions)
+        })
+        .catch((error) => {
+          console.error('Failed to fetch permissions:', error)
+        })
     },
 
     getRoutes({ commit }) {

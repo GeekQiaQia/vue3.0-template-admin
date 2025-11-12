@@ -1,13 +1,13 @@
 import request from '@/utils/request'
 
 const loginApi = {
-  userLogin: '/api/auth/user/login',
-  userRegister: '/api/auth/user/register',
-  sendCaptcha: '/api/auth/email/sendCaptcha',
-  forgetPassword: '/api/auth/email/forgot-password',
-  resetPassword: `/api/auth/user/reset-password`,
-  permissionRoutes: '/api/auth/permission/routes',
-  userInfo: '/api/auth/user/userInfo'
+  userLogin: '/auth/user/login',
+  userRegister: '/auth/user/register',
+  sendCaptcha: '/auth/email/sendCaptcha',
+  forgetPassword: '/auth/email/forgot-password',
+  resetPassword: '/auth/user/reset-password',
+  permissionRoutes: '/auth/permission/routes',
+  userInfo: '/auth/user/userInfo'
 }
 
 class Service {
@@ -20,11 +20,16 @@ class Service {
       method: 'POST',
       json: true,
       data
-    }).then((res) => {
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 
@@ -37,11 +42,16 @@ class Service {
       method: 'POST',
       json: true,
       data
-    }).then((res) => {
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 
@@ -54,82 +64,106 @@ class Service {
       method: 'POST',
       json: true,
       data
-    }).then((res) => {
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 
   /**
-   * @description POST 忘记密码接口
+   * @description POST 忘记密码
    */
-  static postForgetPwd(data: any) {
+  static postForgetPassword(data: any) {
     return request({
       url: loginApi.forgetPassword,
       method: 'POST',
       json: true,
       data
-    }).then((res) => {
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 
   /**
-   * @description /auth/user/reset-password/{token}
+   * @description POST 重置密码
    */
-  static postResetPwd(data: any) {
+  static postResetPassword(data: any) {
     return request({
       url: loginApi.resetPassword,
       method: 'POST',
       json: true,
       data
-    }).then((res) => {
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 
   /**
-   * @description POST 保存授权菜单权限
+   * @description POST 查询授权路由
    */
-  static postAuthPermission(data: any) {
+  static postPermissionRoutes(data: any) {
     return request({
       url: loginApi.permissionRoutes,
       method: 'POST',
       json: true,
       data
-    }).then((res) => {
-      console.log(res)
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 
   /**
-   * @description POST 查询用户信息
+   * @description POST 获取用户信息
    */
-
-  static postAuthUserInfo(data: any) {
+  static postUserInfo(data: any) {
     return request({
       url: loginApi.userInfo,
       method: 'POST',
       json: true,
       data
-    }).then((res) => {
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 }
+
 export default Service

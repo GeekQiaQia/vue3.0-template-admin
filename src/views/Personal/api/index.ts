@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
 const personalApi = {
-  basicInfo: '/api/setting/basicInfo',
-  personalTags: '/api/personal/tags'
+  basicInfo: '/setting/basicInfo',
+  personalTags: '/personal/tags'
 }
 
 class Service {
@@ -15,11 +15,16 @@ class Service {
       method: 'post',
       json: true,
       data
-    }).then((res) => {
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 
@@ -31,11 +36,16 @@ class Service {
       url: personalApi.personalTags,
       method: 'get',
       json: true
-    }).then((res) => {
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 }

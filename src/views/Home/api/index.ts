@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 const homeApi = {
-  getPopulation: '/api/data/world-population'
+  getPopulation: '/data/world-population'
 }
 
 class Service {
@@ -13,11 +13,16 @@ class Service {
       url: homeApi.getPopulation,
       method: 'get',
       json: true
-    }).then((res) => {
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 }

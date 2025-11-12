@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 const roleApi = {
-  queryAuthedPermission: '/api/auth/permission/routes'
+  queryAuthedPermission: '/auth/permission/routes'
 }
 
 class Service {
@@ -14,12 +14,16 @@ class Service {
       method: 'POST',
       json: true,
       data
-    }).then((res) => {
-      console.log(res)
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 }

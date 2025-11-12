@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
 const permissionApi = {
-  queryAuthedPermission: '/api/auth/permission/routes',
-  queryPermissions: '/api/auth/permission/permissions'
+  queryAuthedPermission: '/auth/permission/routes',
+  queryPermissions: '/auth/permission/permissions'
 }
 
 class Service {
@@ -15,11 +15,16 @@ class Service {
       method: 'POST',
       json: true,
       data
-    }).then((res) => {
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 
@@ -32,11 +37,16 @@ class Service {
       method: 'POST',
       json: true,
       data
-    }).then((res) => {
-      if (res.status === 0) {
-        return Promise.resolve(res)
+    }).then((res: any) => {
+      // Handle MockJS response format
+      if (Object.prototype.hasOwnProperty.call(res, 'status')) {
+        if (res.status === 0) {
+          return Promise.resolve(res.data)
+        }
+        return Promise.reject(res)
       }
-      return Promise.reject(res)
+      // Standard format
+      return res
     })
   }
 }
