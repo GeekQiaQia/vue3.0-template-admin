@@ -1,6 +1,11 @@
 # vue3.0-template-admin
 
 <p align="center">
+  <a href="README.md">中文</a> | 
+  <a href="README.en.md">English</a>
+</p>
+
+<p align="center">
 Vue3.0:
 <a href="https://www.npmjs.com/package/vue/v/next">
     <img src="https://img.shields.io/npm/v/vue/next.svg" alt="vue">
@@ -213,7 +218,7 @@ git merge upstream/main
 
 ### 登录注册
 
-![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/920c97e69ad947ffbada5f030556327e~tplv-k3u1fbpfcp-watermark.image)
+![image.png](./src/assets/images/90827394-92b5-4106-9a01-0255b4f4363a.png)
 
 ### 主题风格
 

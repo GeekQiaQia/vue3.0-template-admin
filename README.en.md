@@ -1,6 +1,11 @@
 # Vue3.0 Template Admin
 
 <p align="center">
+  <a href="README.md">中文</a> | 
+  <a href="README.en.md">English</a>
+</p>
+
+<p align="center">
 Vue3.0:
 <a href="https://www.npmjs.com/package/vue/v/next">
     <img src="https://img.shields.io/npm/v/vue/next.svg" alt="vue">
